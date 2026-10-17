@@ -22,3 +22,14 @@ __pycache__/
 /docs/ml/viewer/snapshot.json
 /docs/ml/viewer/verification.json
 /docs/ml/viewer/training.html
+node_modules/
+.next/
+backend/.venv/
+backend/data/osm_raw.json
+backend/data/*.db
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+.env.local
+.DS_Store
