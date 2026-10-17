@@ -34,10 +34,11 @@ const FIXTURES: QueueIncident[] = [
     lon: -82.387545,
     lat: 35.604118,
     title: "Medical evacuation requested",
-    location: "Old US Highway 70",
-    locationNote: "Named Old US Highway 70 in this OpenStreetMap extract, in the Old Fort corridor.",
+    location: "Old Fort Highway",
+    locationNote:
+      "The report names Old Fort Highway. This OpenStreetMap extract has no road by that name, so the marker is on Old US Highway 70 in the Old Fort corridor, retrieved 17 October 2026.",
     message:
-      "Fictional medical evacuation request on Old US Highway 70. The extract does not contain a road named Old Fort Highway, so the marker uses the named highway in that corridor.",
+      "Fictional medical evacuation request for Old Fort Highway. The marker is on Old US Highway 70 because that is the named road in the Old Fort corridor in this extract.",
     people_affected: 2,
     medical: "Evacuation requested",
     mobility: null,

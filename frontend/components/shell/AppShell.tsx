@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { PanelLeftOpen } from "lucide-react";
 import { IncidentSidebar } from "@/components/incidents/IncidentSidebar";
 import { IntelPanel } from "@/components/intel/IntelPanel";
@@ -30,6 +30,8 @@ export function AppShell() {
   const [mapPhase, setMapPhase] = useState<MapPhase>("loading");
   const [toast, setToast] = useState<string | null>(null);
   const [width, setWidth] = useState(1440);
+  const [focusToken, setFocusToken] = useState(0);
+  const sosFocus = useRef<string | null>(null);
 
   const incidents = useMemo(() => (state ? buildQueue(state) : []), [state]);
   const selected = incidents.find((item) => item.id === selectedId) ?? null;
@@ -55,9 +57,22 @@ export function AppShell() {
     }
     const timer = window.setTimeout(() => {
       void goto(target);
-    }, 3200);
+    }, state.scenario.step < 1 ? 200 : 3200);
     return () => window.clearTimeout(timer);
   }, [busy, goto, playing, state]);
+
+  useEffect(() => {
+    if (!state || state.scenario.step < 7) {
+      sosFocus.current = null;
+      return;
+    }
+    const arrived = state.incidents[state.incidents.length - 1];
+    if (!arrived || sosFocus.current === arrived.id) return;
+    sosFocus.current = arrived.id;
+    setSelectedId(arrived.id);
+    setIntelOpen(true);
+    setFocusToken((value) => value + 1);
+  }, [state]);
 
   useEffect(() => {
     if (!state) return;
@@ -205,6 +220,7 @@ export function AppShell() {
             imageryTiles={imageryTiles}
             imageryLabel={imageryLabel}
             focusRoute={focusRoute}
+            focusToken={focusToken}
             placeMode={placeMode}
             draftPoint={draftPoint}
             onBasemap={(mode) => {
@@ -229,8 +245,10 @@ export function AppShell() {
             <p className="pointer-events-none absolute bottom-16 left-3 z-10 max-w-sm text-[12px] text-warning">{roadsError}</p>
           ) : null}
           {toast ? (
-            <div className="pointer-events-none absolute top-16 right-14 left-3 z-10 flex justify-center">
-              <p className="max-w-md rounded-md border border-line bg-surface/95 px-3 py-2 text-[13px] leading-5 text-ink">{toast}</p>
+            <div
+              className={`pointer-events-none absolute inset-x-0 z-20 flex justify-center px-4 ${timelineOpen ? "bottom-52" : "bottom-[4.75rem]"}`}
+            >
+              <p className="max-w-md rounded-md border border-line bg-surface/95 px-3 py-2 text-center text-[13px] leading-5 text-ink">{toast}</p>
             </div>
           ) : null}
           <ScenarioDock

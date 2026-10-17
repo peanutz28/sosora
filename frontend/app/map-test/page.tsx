@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import "maplibre-gl/dist/maplibre-gl.css";
 import { STREET_STYLE } from "@/components/map/mapStyle";
 
 export default function MapTestPage() {
@@ -14,7 +15,6 @@ export default function MapTestPage() {
     let cancelled = false;
     (async () => {
       const maplibregl = (await import("maplibre-gl")).default;
-      await import("maplibre-gl/dist/maplibre-gl.css");
       if (cancelled || !node.current) return;
       const instance = new maplibregl.Map({
         container: node.current,

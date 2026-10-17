@@ -111,7 +111,11 @@ export function IncidentSidebar({
                   <i className={`h-1.5 w-1.5 shrink-0 rounded-full ${tone(incident.urgency)}`} />
                   <span className="truncate text-[12px] text-muted">{incident.id}</span>
                 </span>
-                <span className={`shrink-0 text-[11px] capitalize ${incident.urgency === "critical" ? "text-critical" : "text-warning"}`}>
+                <span
+                  className={`shrink-0 text-[11px] capitalize ${
+                    incident.urgency === "critical" ? "text-critical" : incident.urgency === "high" ? "text-warning" : "text-muted"
+                  }`}
+                >
                   {incident.urgency}
                 </span>
               </div>

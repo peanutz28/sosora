@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown, X } from "lucide-react";
 import { closureKind, km, peopleLabel, titleCase } from "@/lib/format";
 import type { AppState, CalculatedRoute, QueueIncident } from "@/lib/types";
@@ -111,7 +111,12 @@ export function IntelPanel({
           <ImageryTabs state={state} onShowImagery={onShowImagery} />
         </Disclosure>
 
-        <Disclosure key={showExplanation ? "explained" : "unexplained"} title="Nemotron explanation" defaultOpen={showExplanation}>
+        <Disclosure
+          key={showExplanation ? "explained" : "unexplained"}
+          title="Nemotron explanation"
+          defaultOpen={showExplanation}
+          scrollIntoView={showExplanation}
+        >
           {showExplanation && state.explanation ? (
             <div className="space-y-2 text-[13px] leading-5">
               <p className="text-[12px] text-faint">{explanationLabel(state.explanation.inference_mode)}</p>
@@ -138,7 +143,7 @@ export function IntelPanel({
           </ul>
         </Disclosure>
 
-        <Disclosure title="Human review">
+        <Disclosure key={state.review.status} title="Human review" defaultOpen={state.review.status !== "not_requested"}>
           <p className="text-[13px] leading-5">{state.review.note}</p>
           <p className="mt-1 text-[12px] leading-5 text-muted capitalize">{state.review.status.replaceAll("_", " ")}</p>
           <button
@@ -184,10 +189,24 @@ function ImageryTabs({ state, onShowImagery }: { state: AppState; onShowImagery:
   );
 }
 
-function Disclosure({ title, defaultOpen = false, children }: { title: string; defaultOpen?: boolean; children: React.ReactNode }) {
+function Disclosure({
+  title,
+  defaultOpen = false,
+  scrollIntoView = false,
+  children,
+}: {
+  title: string;
+  defaultOpen?: boolean;
+  scrollIntoView?: boolean;
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(defaultOpen);
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (scrollIntoView) ref.current?.scrollIntoView({ block: "nearest" });
+  }, [scrollIntoView]);
   return (
-    <section className="border-t border-line">
+    <section ref={ref} className="border-t border-line">
       <button type="button" onClick={() => setOpen((value) => !value)} className="flex w-full items-center justify-between px-3 py-2.5 text-left">
         <span className="text-[13px] text-ink">{title}</span>
         <ChevronDown size={14} className={`text-muted transition-transform ${open ? "rotate-180" : ""}`} />

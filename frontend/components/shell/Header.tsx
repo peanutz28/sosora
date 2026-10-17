@@ -44,7 +44,7 @@ export function Header({
       <div className="min-w-0 text-center">
         <p className="truncate text-[14px] font-medium text-ink">Hurricane Helene</p>
         <p className="truncate text-[12px] text-muted">
-          Asheville / Swannanoa, North Carolina
+          Asheville–Swannanoa, North Carolina
           <span className="mx-1.5 text-faint">·</span>
           {playing ? "Playing" : stageLabel(state.scenario.step)}
           <span className="mx-1.5 text-faint">·</span>

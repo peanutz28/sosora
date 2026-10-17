@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { GeoJSONSource, Map as MlMap } from "maplibre-gl";
 import { Layers, LocateFixed, Maximize2, Minus, Plus } from "lucide-react";
+import "maplibre-gl/dist/maplibre-gl.css";
 import { loadHybridStyle, SATELLITE_TILES, satelliteStyle, STREET_STYLE } from "@/components/map/mapStyle";
 import type { AppState, BasemapMode, CalculatedRoute, FeatureCollection, LngLat, MapPhase, QueueIncident } from "@/lib/types";
 
@@ -19,6 +20,7 @@ type Props = {
   imageryTiles: string[] | null;
   imageryLabel: string | null;
   focusRoute: CalculatedRoute | null;
+  focusToken: number;
   placeMode: boolean;
   draftPoint: LngLat | null;
   onBasemap: (mode: BasemapMode) => void;
@@ -37,6 +39,7 @@ export function RescueMap({
   imageryTiles,
   imageryLabel,
   focusRoute,
+  focusToken,
   placeMode,
   draftPoint,
   onBasemap,
@@ -55,6 +58,9 @@ export function RescueMap({
   const onPhaseRef = useRef(onPhase);
   const onBasemapRef = useRef(onBasemap);
   const incidentsRef = useRef(incidents);
+  const basemapRef = useRef(basemap);
+  const styleToken = useRef(0);
+  const satelliteFallbackRef = useRef(false);
   const [epoch, setEpoch] = useState(0);
   const [phase, setPhase] = useState<MapPhase>("loading");
   const [detail, setDetail] = useState<string | null>(null);
@@ -72,6 +78,7 @@ export function RescueMap({
   onPhaseRef.current = onPhase;
   onBasemapRef.current = onBasemap;
   incidentsRef.current = incidents;
+  basemapRef.current = basemap;
 
   useEffect(() => {
     const node = nodeRef.current;
@@ -92,23 +99,34 @@ export function RescueMap({
           attributionControl: { compact: true },
         });
         mapRef.current = map;
+        (window as unknown as { __sosMap?: MlMap }).__sosMap = map;
         appliedRef.current = "street";
-        map.on("style.load", () => {
-          if (cancelled || !map) return;
-          addLayers(map);
+        const markReady = () => {
+          if (cancelled || !map || !map.isStyleLoaded()) return;
+          if (!addLayers(map)) return;
+          map.resize();
           setEpoch((value) => value + 1);
           setPhase("ready");
           setDetail(null);
           onPhaseRef.current("ready");
-        });
+        };
+        map.on("load", markReady);
+        map.on("style.load", markReady);
         map.on("error", (event) => {
           const sourceId = "sourceId" in event ? String(event.sourceId ?? "") : "";
           const message = event.error?.message ?? "Map request failed.";
           if (sourceId === "imagery" || sourceId === "sos-satellite") {
-            setImageryNote("Satellite imagery did not load. Street map stays available.");
+            setImageryNote("Satellite imagery is unavailable. Showing the street map.");
+            if (basemapRef.current === "satellite" && !satelliteFallbackRef.current && map) {
+              satelliteFallbackRef.current = true;
+              styleToken.current += 1;
+              appliedRef.current = "street";
+              onBasemapRef.current("street");
+              map.setStyle(STREET_STYLE);
+            }
             return;
           }
-          if (!sourceId && /failed to fetch|ajaxerror|style/i.test(message)) {
+          if (!sourceId && /failed to fetch|ajaxerror|style|webgl/i.test(message)) {
             setPhase("error");
             setDetail(message);
             onPhaseRef.current("error", message);
@@ -151,16 +169,17 @@ export function RescueMap({
     const tiles = imageryTiles?.length ? imageryTiles : [SATELLITE_TILES];
     const key = basemap === "street" ? "street" : `${basemap}:${tiles.join("|")}`;
     if (appliedRef.current === key) return;
-    let cancelled = false;
+    const token = ++styleToken.current;
+    satelliteFallbackRef.current = false;
     setImageryNote(null);
 
     (async () => {
       if (basemap === "hybrid") {
         const hybrid = await loadHybridStyle(tiles);
-        if (cancelled) return;
+        if (token !== styleToken.current) return;
         if (!hybrid) {
           appliedRef.current = "street";
-          setImageryNote("Hybrid imagery is unavailable. Showing streets.");
+          setImageryNote("Satellite imagery is unavailable. Showing the street map.");
           onBasemapRef.current("street");
           map.setStyle(STREET_STYLE);
           return;
@@ -169,13 +188,13 @@ export function RescueMap({
         map.setStyle(hybrid);
         return;
       }
-      if (cancelled) return;
+      if (token !== styleToken.current) return;
       appliedRef.current = key;
       map.setStyle(basemap === "street" ? STREET_STYLE : satelliteStyle(tiles));
     })();
 
     return () => {
-      cancelled = true;
+      styleToken.current += 1;
     };
   }, [basemap, epoch, imageryTiles]);
 
@@ -237,6 +256,8 @@ export function RescueMap({
 
       for (const incident of incidents) {
         if (!incident.map_ready || incident.lon == null || incident.lat == null) continue;
+        const wrap = document.createElement("div");
+        wrap.className = "pin-wrap";
         const button = document.createElement("button");
         button.type = "button";
         button.className = `pin pin-sos pin-${incident.urgency}${incident.id === selectedId ? " is-selected" : ""}`;
@@ -245,7 +266,14 @@ export function RescueMap({
           event.stopPropagation();
           onSelectRef.current(incident.id);
         });
-        place(button, incident.lon, incident.lat);
+        wrap.appendChild(button);
+        if (incident.id === selectedId) {
+          const label = document.createElement("span");
+          label.className = "pin-label";
+          label.textContent = incident.id;
+          wrap.appendChild(label);
+        }
+        place(wrap, incident.lon, incident.lat);
       }
 
       if (draftPoint) {
@@ -272,7 +300,7 @@ export function RescueMap({
       duration: 700,
       essential: true,
     });
-  }, [selectedId]);
+  }, [focusToken, selectedId]);
 
   const retryStreet = () => {
     const map = mapRef.current;
@@ -288,7 +316,7 @@ export function RescueMap({
 
   return (
     <div ref={wrapRef} className={`absolute inset-0 bg-bg ${placeMode ? "cursor-crosshair" : ""}`}>
-      <div ref={nodeRef} className="absolute inset-0" />
+      <div ref={nodeRef} className="absolute inset-0 h-full w-full" />
 
       {phase !== "ready" ? (
         <div className="absolute inset-0 z-20 flex items-center justify-center bg-bg/90">
@@ -396,8 +424,8 @@ function Key({ color, label }: { color: string; label: string }) {
   );
 }
 
-function addLayers(map: MlMap) {
-  if (map.getSource("sos-roads")) return;
+function addLayers(map: MlMap): boolean {
+  if (map.getSource("sos-roads")) return false;
   const addSource = (id: string) => map.addSource(id, { type: "geojson", data: EMPTY as never });
   addSource("sos-roads");
   addSource("sos-damage");
@@ -440,6 +468,7 @@ function addLayers(map: MlMap) {
     source: "sos-focus",
     paint: { "line-color": "#8FBFB6", "line-width": 2.5, "line-dasharray": [1.2, 0.8] },
   });
+  return true;
 }
 
 function setData(map: MlMap, id: string, data: FeatureCollection) {
