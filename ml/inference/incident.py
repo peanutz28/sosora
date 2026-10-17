@@ -1,4 +1,5 @@
 """Evidence-bound structured language inference; provider output always needs review."""
+import asyncio
 import json
 import os
 import time
@@ -75,6 +76,43 @@ def llm_configuration() -> dict:
 
 
 T = TypeVar('T', bound=BaseModel)
+_PROVIDER_TIMEOUT_SECONDS = 90
+
+
+async def _stream_content(client: httpx.AsyncClient, url: str, headers: dict, body: dict) -> str:
+    """Collect answer deltas only; never expose reasoning or accept a truncated stream."""
+    chunks = []
+    size = 0
+    finish = None
+    async with client.stream('POST', url, headers=headers, json=body) as response:
+        response.raise_for_status()
+        async for line in response.aiter_lines():
+            if not line.startswith('data:'):
+                continue
+            data = line[5:].strip()
+            if data == '[DONE]':
+                break
+            event = json.loads(data)
+            if event.get('error'):
+                raise ValueError('Provider stream failed')
+            choices = event.get('choices', [])
+            if not choices:
+                continue
+            choice = choices[0]
+            content = choice.get('delta', {}).get('content')
+            if content is not None:
+                if not isinstance(content, str):
+                    raise ValueError('Invalid content delta')
+                size += len(content)
+                if size > 32768:
+                    raise ValueError('Provider output exceeds limit')
+                chunks.append(content)
+            if choice.get('finish_reason') is not None:
+                finish = choice['finish_reason']
+                break
+    if finish != 'stop':
+        raise ValueError('Incomplete provider output')
+    return ''.join(chunks)
 
 
 async def _infer(payload: dict, output_type: type[T], instruction: str) -> dict:
@@ -90,16 +128,27 @@ async def _infer(payload: dict, output_type: type[T], instruction: str) -> dict:
               json.dumps(output_type.model_json_schema()))
     started = time.perf_counter()
     try:
-        async with httpx.AsyncClient(timeout=90) as client:
-            response = await client.post(base + '/chat/completions',
-                headers={'Authorization': f'Bearer {key}'},
-                json={'model': config['model'], 'messages': [
-                    {'role': 'system', 'content': system},
-                    {'role': 'user', 'content': json.dumps(payload)}],
-                    'max_tokens': 2048, 'temperature': 0})
-            response.raise_for_status()
-        output = output_type.model_validate_json(response.json()['choices'][0]['message']['content'])
-    except (httpx.HTTPError, ValueError, KeyError, IndexError, TypeError) as exc:
+        body = {'model': config['model'], 'messages': [
+            {'role': 'system', 'content': system},
+            {'role': 'user', 'content': json.dumps(payload)}],
+            'max_tokens': 2048, 'temperature': 0}
+        headers = {'Authorization': f'Bearer {key}'}
+        async with asyncio.timeout(_PROVIDER_TIMEOUT_SECONDS):
+            async with httpx.AsyncClient(timeout=httpx.Timeout(_PROVIDER_TIMEOUT_SECONDS, connect=10)) as client:
+                if provider == 'nvidia_api':
+                    body['stream'] = True
+                    body['response_format'] = {'type': 'json_object'}
+                    if config['model'] == 'nvidia/nemotron-3.5-lightning-30b-a3b':
+                        body['chat_template_kwargs'] = {'enable_thinking': False}
+                        body['temperature'] = 1.0
+                        body['top_p'] = 0.95
+                    content = await _stream_content(client, base + '/chat/completions', headers, body)
+                else:
+                    response = await client.post(base + '/chat/completions', headers=headers, json=body)
+                    response.raise_for_status()
+                    content = response.json()['choices'][0]['message']['content']
+        output = output_type.model_validate_json(content)
+    except (httpx.HTTPError, TimeoutError, ValueError, KeyError, IndexError, TypeError, AttributeError) as exc:
         raise HTTPException(502, 'Provider failed or returned invalid structured output') from exc
     return {'output': output.model_dump(), 'model': config['model'], 'provider': provider,
             'inference_mode': 'real', 'latency_ms': (time.perf_counter()-started)*1000,
@@ -109,7 +158,9 @@ async def _infer(payload: dict, output_type: type[T], instruction: str) -> dict:
 @router.post('/ml/incident/parse')
 async def parse(request: IncidentRequest):
     result = await _infer(request.model_dump(), Incident,
-        'Extract only explicitly reported facts. Missing fields must be null or empty.')
+        'Extract only explicitly reported facts. Put requested supplies or assistance in needs, '
+        'and all reported dangers, including rising water, in hazards. Put explicitly unknown '
+        'details in missing_information. Missing scalar fields must be null; absent lists must be empty.')
     result['incident'] = result.pop('output')
     return result
 

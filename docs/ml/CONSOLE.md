@@ -15,7 +15,15 @@ This is an ML demo and integration surface. No rescue routes, road-graph matchin
 
 ## Run
 
-Keep the existing native service on port 8002 running with its documented model/manifest/evaluation settings. Then, from repository root:
+From repository root, start the native API in one terminal. It reads optional provider
+settings from ignored `ml/.env` without printing them, and keeps the documented frozen
+model/manifest/evaluation defaults:
+
+```sh
+ml/.venv312/bin/python scripts/ml/run_native_api.py
+```
+
+Start the console in another terminal:
 
 ```sh
 ml/.venv312/bin/python scripts/ml/console_server.py --port 9030
@@ -33,4 +41,8 @@ The main files are `docs/ml/viewer/index.html`, `console.css`, `console.js`, `co
 
 Browser-tested image selection, real inference (30 Chimney Rock polygons at the frozen 0.5 threshold), candidate inspection, persistent validation/error legends, source metadata, evidence table, missing-provider behavior and GeoJSON download. Browser-exported GeoJSON was parsed and checked for 30 real, unverified features. Desktop 1440px and mobile 390px layouts were checked with no horizontal document overflow or broken visible images. Proxy error behavior was tested when the native service exited; it returned 503 and preserved the last successful overlay. Native service was restored with the unchanged model, manifest and evaluation configuration. Connection status refreshes every 20 seconds.
 
-No provider secret is requested or stored by the page. Nemotron inference remains dependent on configuring the provider in the ML service environment. No live language-model response is claimed by this console until one actually succeeds.
+No provider secret is requested or stored by the page. A real hosted Nemotron parse
+was subsequently verified through the incident desk with a fictional report on
+October 17, 2026. Configuration status alone does not verify provider availability;
+every generated incident and brief still requires human review. See `NEMOTRON.md`
+for private setup, bounded streaming behavior and the opt-in real smoke command.

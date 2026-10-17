@@ -1,0 +1,29 @@
+{
+  "checked_at_utc": "2026-10-17T19:41:12.849069+00:00",
+  "test_kind": "single live browser integration smoke",
+  "accuracy_benchmark": false,
+  "provider": "nvidia_api",
+  "configured_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "endpoint": "POST /ml/incident/parse through local console9030 and API8002",
+  "input_is_fictional": true,
+  "report": "Illustrative test report: Three people near Chimney Rock report rising water and request drinking water and blankets. Exact street address is unknown.",
+  "browser_export": {
+    "incident": {
+      "location_text": "Chimney Rock",
+      "people_count": 3,
+      "needs": [
+        "drinking water",
+        "blankets"
+      ],
+      "hazards": [
+        "rising water"
+      ],
+      "missing_information": [
+        "exact street address"
+      ],
+      "summary": "Three people near Chimney report rising water and are requesting drinking water and blankets; the exact street address is unknown."
+    },
+    "review_status": "unverified"
+  },
+  "validation": "Exported browser result passes the strict Incident schema; reported people count and rising-water hazard checked."
+}
