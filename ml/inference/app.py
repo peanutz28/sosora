@@ -120,3 +120,6 @@ def llm_health():
 
 from ml.inference.incident import router
 app.include_router(router)
+
+from ml.inference.radio import router as radio_router
+app.include_router(radio_router)
