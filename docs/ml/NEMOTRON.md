@@ -59,3 +59,11 @@ ml/.venv312/bin/python scripts/ml/incident_smoke.py --env-file ml/.env --report 
 This command makes a hosted inference request and may consume provider quota. It fails
 explicitly without configuration, prints only validated JSON on success, and does not
 persist credentials. Do not claim provider success until this real check succeeds.
+
+## Observed live brief limitation
+
+The browser evidence-brief request also completed with schema-valid output citing only
+supplied evidence IDs. Its prose nevertheless miscounted region records and interpreted
+different region classes as disagreement between multiple models. Schema and citation
+validation do not establish semantic correctness. Keep briefs unverified, inspect their
+claims against the supplied records, and do not pitch this smoke as factuality validation.
