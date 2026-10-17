@@ -1,0 +1,36 @@
+{
+  "simulated_data": true,
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "retry_policy": "One invocation per split/policy; no selective retries.",
+  "max_turns": 12,
+  "max_seconds_per_run": 14400,
+  "runs": [
+    {
+      "split": "validation",
+      "policy": "baseline",
+      "exit_code": 0
+    },
+    {
+      "split": "validation",
+      "policy": "evidence_first",
+      "exit_code": 0
+    },
+    {
+      "split": "test",
+      "policy": "baseline",
+      "exit_code": 0
+    },
+    {
+      "split": "test",
+      "policy": "evidence_first",
+      "exit_code": 0
+    }
+  ],
+  "input_sha256": {
+    "ml/nemo_gym/evaluate_agent.py": "36a8dbb1e690971ed5523cb5d270676848ad48ce2b842a88c04dc8b5006699d6",
+    "ml/nemo_gym/data/methodology.json": "d635162a8266e7fb57004eed9b2e5b0e5d4b99550f3b188cbd4f6ad905c178f1",
+    "ml/nemo_gym/data/test.jsonl": "2b86c0e594b586f733a03f23ae5e607dfaa02a5182e4a1111a921945a8587e3b",
+    "ml/nemo_gym/data/train.jsonl": "6259d74f38ab28f446193584856dca9979e4c8d9c407e1837f4a23bd67d78875",
+    "ml/nemo_gym/data/validation.jsonl": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650"
+  }
+}

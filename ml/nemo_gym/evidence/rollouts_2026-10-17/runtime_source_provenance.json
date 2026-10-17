@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/NVIDIA-NeMo/Gym",
+  "tag": "v0.6.0",
+  "commit": "3045a793346a31291d7ea4ae6af3f94a35036ce5",
+  "files_verified_against_git_blobs": 149,
+  "installation_scope": "resource-server core; not full Gym CLI dependencies"
+}
