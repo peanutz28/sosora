@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #070b10;
+  --color-panel: #0c141d;
+  --color-panel-2: #101a24;
+  --color-line: rgba(186, 210, 230, 0.14);
+  --color-ink: #e8eef5;
+  --color-muted: #93a6ba;
+  --color-faint: #6d8296;
+  --color-critical: #ff5d5d;
+  --color-warning: #ffc14a;
+  --color-route: #3ddc97;
+  --color-info: #6ad7ff;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-plex), "IBM Plex Sans", sans-serif;
+}
+
+.mono {
+  font-family: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+.maplibregl-ctrl-attrib,
+.maplibregl-ctrl-logo {
+  display: none !important;
+}
+
+.maplibregl-ctrl-group {
+  background: #0c141d !important;
+  border: 1px solid rgba(186, 210, 230, 0.16) !important;
+  border-radius: 2px !important;
+  overflow: hidden;
+}
+
+.maplibregl-ctrl-group button {
+  width: 28px !important;
+  height: 28px !important;
+  filter: invert(0.92) hue-rotate(170deg);
+}
+
+.rescue-pin,
+.objective-pin,
+.sos-pin {
+  width: 14px;
+  height: 14px;
+  transform: translate(-7px, -7px);
+}
+
+.rescue-pin {
+  border: 1.5px solid #6ad7ff;
+  background: #071018;
+  transform: translate(-7px, -7px) rotate(45deg);
+}
+
+.objective-pin {
+  border: 1.5px solid #ffc14a;
+  background: rgba(7, 16, 24, 0.85);
+  border-radius: 1px;
+}
+
+.sos-pin {
+  background: #ff5d5d;
+  border-radius: 1px;
+  box-shadow: 0 0 0 5px rgba(255, 93, 93, 0.22);
+}
+
+.boot-line {
+  height: 1px;
+  width: 140px;
+  background: linear-gradient(90deg, transparent, #6ad7ff, transparent);
+  animation: sweep 1.4s ease-in-out infinite;
+}
+
+@keyframes sweep {
+  0% { transform: translateX(-30px); opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { transform: translateX(30px); opacity: 0.2; }
+}

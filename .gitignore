@@ -1,0 +1,11 @@
+node_modules/
+.next/
+backend/.venv/
+backend/data/osm_raw.json
+backend/data/*.db
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+.env.local
+.DS_Store
