@@ -27,3 +27,15 @@ export function localTime(date: Date): string {
 export function titleCase(value: string): string {
   return value.replaceAll("_", " ");
 }
+
+export function peopleLabel(count: number | null): string {
+  if (count == null) return "People unknown";
+  return count === 1 ? "1 person" : `${count} people`;
+}
+
+export function closureKind(source: string): string {
+  if (source === "simulation") return "Simulated closure";
+  if (source === "verified") return "Verified closure";
+  if (source === "reported") return "Reported closure";
+  return source.replaceAll("_", " ");
+}

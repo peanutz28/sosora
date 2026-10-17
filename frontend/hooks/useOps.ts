@@ -1,63 +1,74 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { API_BASE, api, fetchRoads, readState } from "@/lib/api";
 import type { AppState, FeatureCollection } from "@/lib/types";
 
-const BASE = process.env.NEXT_PUBLIC_APP_API_URL ?? "http://127.0.0.1:8000";
-
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${BASE}${path}`, {
-    ...init,
-    headers: { "Content-Type": "application/json", ...(init?.headers ?? {}) },
-  });
-  if (!response.ok) throw new Error(`${response.status} ${path}`);
-  return response.json();
-}
+type IncidentBody = {
+  client_id: string;
+  source_id: string;
+  lon: number;
+  lat: number;
+  message: string;
+  people_affected?: number;
+  medical?: string;
+  mobility?: string;
+};
 
 export function useOps() {
   const [state, setState] = useState<AppState | null>(null);
   const [roads, setRoads] = useState<FeatureCollection | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [roadsError, setRoadsError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [socketLive, setSocketLive] = useState(false);
 
   const apply = useCallback((next: AppState) => {
     setState((prev) => {
-      if (!prev || next.revision >= prev.revision) return next;
+      if (!prev || next.revision > prev.revision) return next;
       return prev;
     });
   }, []);
 
   const refresh = useCallback(async () => {
-    const next = await request<AppState>("/api/state");
+    const next = await api<AppState>("/api/state");
     apply(next);
     setError(null);
   }, [apply]);
 
   useEffect(() => {
     let stop = false;
-    request<AppState>("/api/state")
+    api<AppState>("/api/state")
       .then((next) => {
         if (!stop) apply(next);
       })
       .catch(() => {
         if (!stop) setError("Routing service is not responding.");
       });
-    request<FeatureCollection>("/api/roads")
+    fetchRoads()
       .then((next) => {
         if (!stop) setRoads(next);
       })
       .catch(() => {
-        if (!stop) setError("Road layer did not load.");
+        if (!stop) setRoadsError("Road graph overlay did not load. The basemap is still available.");
       });
     const poll = window.setInterval(() => {
       refresh().catch(() => setError("Routing service is not responding."));
-    }, 4000);
-    const socket = new WebSocket(BASE.replace(/^http/, "ws") + "/ws/events");
+    }, 5000);
+    const socket = new WebSocket(`${API_BASE.replace(/^http/, "ws")}/ws/events`);
     socket.onmessage = (event) => {
-      const payload = JSON.parse(event.data);
-      if (payload.state) apply(payload.state);
+      try {
+        const payload = JSON.parse(event.data) as { state?: AppState };
+        if (payload.state) apply(payload.state);
+      } catch {
+        /* ignore malformed event frames */
+      }
     };
-    socket.onopen = () => setError(null);
+    socket.onopen = () => {
+      setSocketLive(true);
+      setError(null);
+    };
+    socket.onclose = () => setSocketLive(false);
     return () => {
       stop = true;
       window.clearInterval(poll);
@@ -69,14 +80,17 @@ export function useOps() {
     async (path: string, body?: unknown) => {
       setBusy(true);
       try {
-        const next = await request<AppState | { state: AppState }>(path, {
+        const next = await api<AppState | { state: AppState }>(path, {
           method: "POST",
-          body: body ? JSON.stringify(body) : undefined,
+          body: body === undefined ? undefined : JSON.stringify(body),
         });
-        apply("state" in next ? next.state : next);
+        const resolved = readState(next);
+        apply(resolved);
         setError(null);
+        return next;
       } catch {
         setError("The last action did not reach the routing service.");
+        return null;
       } finally {
         setBusy(false);
       }
@@ -86,21 +100,22 @@ export function useOps() {
 
   const advance = useCallback(() => mutate("/api/scenarios/advance"), [mutate]);
   const reset = useCallback(() => mutate("/api/scenarios/reset"), [mutate]);
+  const goto = useCallback((step: number) => mutate("/api/scenarios/goto", { step }), [mutate]);
   const acknowledge = useCallback(() => mutate("/api/review", { decision: "acknowledged" }), [mutate]);
-  const injectSos = useCallback(() => {
-    if (!state) return;
-    return mutate("/api/incidents", {
-      client_id: "sos-swannanoa-demo-01",
-      source_id: "demo-handset-04",
-      lon: state.objective.lon,
-      lat: state.objective.lat,
-      message:
-        "Water is at the doors. Two adults and a child are inside. One adult cannot walk out. The road toward the highway is underwater.",
-      people_affected: 3,
-      medical: "Child has asthma. Inhaler is nearly empty.",
-      mobility: "One adult needs assistance to move.",
-    });
-  }, [mutate, state]);
+  const createIncident = useCallback((body: IncidentBody) => mutate("/api/incidents", body), [mutate]);
 
-  return { state, roads, error, busy, advance, reset, acknowledge, injectSos, refresh };
+  return {
+    state,
+    roads,
+    error,
+    roadsError,
+    busy,
+    socketLive,
+    advance,
+    reset,
+    goto,
+    acknowledge,
+    createIncident,
+    refresh,
+  };
 }

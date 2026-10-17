@@ -97,6 +97,15 @@ class ScenarioEngine:
         getattr(self, f"_{STEPS[self.step][0]}")()
         self.revision += 1
 
+    def goto(self, step: int) -> None:
+        target = max(0, min(int(step), len(STEPS) - 1))
+        if target == self.step:
+            return
+        if target < self.step:
+            self.reset()
+        while self.step < target:
+            self.advance()
+
     def add_incident(self, payload: dict) -> dict:
         existing = next((item for item in self.incidents if item["client_id"] == payload["client_id"]), None)
         if existing:

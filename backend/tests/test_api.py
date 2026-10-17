@@ -60,6 +60,26 @@ def test_scenario_replay_and_reset(tmp_path):
     assert cleared["routes"]["active"] is None
 
 
+def test_goto_replays_a_previous_stage(tmp_path):
+    api = client(tmp_path)
+    jumped = api.post("/api/scenarios/goto", json={"step": 9})
+    assert jumped.status_code == 200
+    assert jumped.json()["scenario"]["step"] == 9
+    assert jumped.json()["routes"]["status"] == "rerouted"
+    assert jumped.json()["incidents"][0]["id"] == "SOS-001"
+
+    back = api.post("/api/scenarios/goto", json={"step": 1})
+    body = back.json()
+    assert body["scenario"]["step"] == 1
+    assert body["routes"]["status"] == "proposed"
+    assert body["routes"]["active"]["geometry"]
+    assert body["incidents"] == []
+    assert body["closures"] == []
+
+    same = api.post("/api/scenarios/goto", json={"step": 1})
+    assert same.json()["revision"] == body["revision"]
+
+
 def test_health_and_ml_failure_do_not_break_routing(tmp_path, monkeypatch):
     monkeypatch.setenv("DEMO_MODE", "false")
     api = client(tmp_path)

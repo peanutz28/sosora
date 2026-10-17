@@ -8,6 +8,7 @@ The dashboard talks only to the FastAPI app. The FastAPI app is the only process
 - `GET /api/scenarios`
 - `POST /api/scenarios/reset`
 - `POST /api/scenarios/advance`
+- `POST /api/scenarios/goto` with `{ "step": number }` replays the deterministic scenario to that step
 - `GET /api/state`
 - `GET /api/incidents`
 - `POST /api/incidents`

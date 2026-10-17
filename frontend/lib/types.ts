@@ -26,6 +26,43 @@ export type Incident = {
   created_at: string;
 };
 
+export type QueueIncident = {
+  id: string;
+  client_id: string;
+  source: "backend" | "fixture";
+  provenance: string;
+  lon: number | null;
+  lat: number | null;
+  title: string;
+  location: string;
+  locationNote?: string;
+  message: string;
+  people_affected: number | null;
+  medical: string | null;
+  mobility: string | null;
+  urgency: "critical" | "high" | "watch";
+  delivery_status: string;
+  verification: string;
+  created_at: string;
+  map_ready: boolean;
+  map_note?: string;
+};
+
+export type CalculatedRoute = {
+  status: "ok" | "unreachable" | "snap_failed";
+  length_m: number | null;
+  edge_ids: string[];
+  edge_count: number;
+  geometry: LngLat[];
+  roads: string[];
+  origin_snap_m: number;
+  destination_snap_m: number;
+};
+
+export type BasemapMode = "street" | "satellite" | "hybrid";
+
+export type MapPhase = "loading" | "ready" | "error";
+
 export type Detection = {
   id: string;
   class: string;

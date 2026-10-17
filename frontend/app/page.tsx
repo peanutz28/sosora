@@ -1,5 +1,5 @@
-import { CommandCenter } from "@/components/command/CommandCenter";
+import { AppShell } from "@/components/shell/AppShell";
 
 export default function Page() {
-  return <CommandCenter />;
+  return <AppShell />;
 }

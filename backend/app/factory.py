@@ -42,6 +42,10 @@ class ReviewIn(BaseModel):
     decision: str
 
 
+class GotoIn(BaseModel):
+    step: int = Field(ge=0)
+
+
 class Hub:
     def __init__(self):
         self.connections = set()
@@ -102,6 +106,13 @@ def create_app(graph, anchors: dict, db_path: str) -> FastAPI:
     @app.post("/api/scenarios/advance")
     async def advance():
         engine.advance()
+        state = engine.public_state()
+        await hub.broadcast({"type": "state", "state": state})
+        return state
+
+    @app.post("/api/scenarios/goto")
+    async def goto(body: GotoIn):
+        engine.goto(body.step)
         state = engine.public_state()
         await hub.broadcast({"type": "state", "state": state})
         return state
