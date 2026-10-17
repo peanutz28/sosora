@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0c1117"><meta name="description" content="SOSora — specialized disaster imagery intelligence for rescue planning.">
+<title>SOSora — Rescue intelligence</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23ff9f60'/%3E%3Cpath d='M8 25l12-15 12 15M13 25l7-8 7 8' fill='none' stroke='%230c1117' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Zm6-3v15m6-12v15"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 3v17h17M8 15l4-5 4 3 5-8"/></symbol>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M21 11a8 8 0 0 1-8 8H7l-4 3V7a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5ZM7 8h10M7 12h7"/></symbol>
+<symbol id="i-scan" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M3 12h18"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="m2 8 10-5 10 5-10 5ZM2 12l10 5 10-5M2 16l10 5 10-5"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+<symbol id="i-road" viewBox="0 0 24 24"><path d="m7 3-4 18M17 3l4 18M12 3v4m0 3v4m0 3v4"/></symbol>
+<symbol id="i-cross" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></symbol>
+<symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6"/></symbol>
+<symbol id="i-waves" viewBox="0 0 24 24"><path d="M2 6q3-4 6 0t6 0 8 0M2 12q3-4 6 0t6 0 8 0M2 18q3-4 6 0t6 0 8 0"/></symbol>
+</defs></svg>
+<header class="topbar">
+<a class="brand" href="#chimney" aria-label="SOSora operations home"><span class="brand-mark"><svg viewBox="0 0 28 28"><path d="m4 20 10-13 10 13M9 20l5-6 5 6"/></svg></span><span>SOS<span class="brand-light">ora</span><small>RESCUE INTELLIGENCE</small></span></a>
+<div class="header-rule"></div><span class="tagline">When roads disappear,<br><b>rescue can’t stop.</b></span>
+<div class="header-end"><span class="system-state" id="systemState"><i class="status-dot waiting"></i> Connecting to model</span><button class="quiet compact" id="provenanceTop"><svg class="icon"><use href="#i-info"/></svg><span>Data & provenance</span></button><span class="avatar" title="Local ML workspace">ML</span></div>
+</header>
+<div class="app-shell">
+<nav class="rail" aria-label="Workspace navigation">
+<button class="rail-item active" data-view="operations" title="Operations"><svg class="icon"><use href="#i-map"/></svg><span>Explore</span></button>
+<button class="rail-item" data-view="evidence" title="Model evidence"><svg class="icon"><use href="#i-chart"/></svg><span>Evidence</span></button>
+<button class="rail-item" data-view="incidents" title="Incident desk"><svg class="icon"><use href="#i-message"/></svg><span>Incidents</span></button>
+<div class="rail-spacer"></div><a class="rail-item" href="training.html" title="Open detailed training snapshot"><svg class="icon"><use href="#i-layers"/></svg><span>Training</span></a><button class="rail-item" id="helpButton" title="About this workspace"><svg class="icon"><use href="#i-info"/></svg><span>About</span></button>
+</nav>
+<main class="workspace">
+<div class="workspace-bar"><div class="breadcrumb"><span>SOSORA</span><span class="slash">/</span><b id="viewTitle">Imagery operations</b><span class="workspace-tag">ML DEMO</span></div><span class="session-note">Historical imagery · predictions require review</span></div>
+<section id="operationsView" class="view operations-view">
+<aside class="inspector">
+<div class="section-label"><span class="step-index">01</span> SELECT IMAGERY</div>
+<h1>See the road ahead.</h1><p class="muted intro">Disaster imagery. Specialized AI.<br>Evidence for the next decision.</p>
+<div id="sceneList" class="scene-list" aria-label="Available imagery"></div>
+<div class="inspector-divider"></div>
+<div class="section-label"><span class="step-index">02</span> ANALYZE THE ROADS</div>
+<div class="model-card"><span class="model-icon"><svg class="icon"><use href="#i-scan"/></svg></span><div><b>SOSora Road Vision</b><small>SegFormer-B0 · specialized model</small></div><span class="tiny-tag">v2</span></div>
+<div class="threshold-label"><label for="threshold">Detection threshold</label><output id="thresholdValue">50%</output></div>
+<input id="threshold" type="range" min="5" max="95" step="5" value="50" aria-describedby="thresholdHelp"><p class="micro" id="thresholdHelp">Class probability cutoff. Not a safety score.</p>
+<button class="primary analyze-button" id="analyzeButton"><svg class="icon"><use href="#i-scan"/></svg><span>Run analysis</span><kbd>↵</kbd></button>
+<div class="analysis-caption" id="analysisCaption">Uses the trained model on your machine</div>
+<div class="inspector-divider"></div>
+<div class="section-label"><svg class="icon small"><use href="#i-layers"/></svg> MAP LAYERS</div>
+<label class="toggle-row"><span><i class="layer-dot coral"></i> Model predictions</span><input id="predictionsToggle" type="checkbox" checked><span class="switch"></span></label>
+<label class="toggle-row"><span><i class="layer-dot pale"></i> Mapped road corridors</span><input id="roadsToggle" type="checkbox"><span class="switch"></span></label>
+<label class="toggle-row" id="referenceToggleRow" hidden><span><i class="layer-dot mint"></i> Reference labels</span><input id="referenceToggle" type="checkbox"><span class="switch"></span></label>
+<label class="toggle-row" id="errorsToggleRow" hidden><span><i class="layer-dot amber"></i> Show saved prediction errors</span><input id="errorsToggle" type="checkbox"><span class="switch"></span></label><div class="opacity-row"><label for="opacity">Overlay opacity</label><input id="opacity" type="range" min="10" max="95" value="65"></div>
+<div class="inspector-footer"><span class="local-dot"></span><div><b>Local inference</b><small>Your imagery stays in this workspace</small></div></div>
+</aside>
+<div class="map-column">
+<div class="map-toolbar"><div class="map-heading"><svg class="icon"><use href="#i-pin"/></svg><div><b id="mapTitle">Chimney Rock</b><span id="mapSubtitle">Main Street, North Carolina</span></div></div><span id="mapEvidenceBadge" class="evidence-mode-badge">UNVERIFIED TRANSFER</span><div class="map-toolbar-actions"><button class="quiet compact" id="compareButton" aria-pressed="false"><svg class="icon"><use href="#i-layers"/></svg> Compare</button><button class="icon-button" id="fitButton" title="Fit imagery to view" aria-label="Fit imagery to view"><svg class="icon"><use href="#i-expand"/></svg></button><button class="icon-button mobile-observations" id="mobileObservations" title="Toggle observations" aria-label="Toggle observations"><svg class="icon"><use href="#i-road"/></svg></button></div></div>
+<div id="mapViewport" class="map-viewport" tabindex="0" aria-label="Interactive disaster imagery. Drag to pan, scroll to zoom.">
+<div class="map-grid"></div><div class="map-image-stage" id="mapStage"><img id="mapImage" alt="Georeferenced aerial imagery" draggable="false"><img class="road-layer" id="roadLayer" alt="Independently mapped road corridors" draggable="false" hidden><img class="reference-layer" id="referenceLayer" alt="Validation reference labels" draggable="false" hidden><img class="reference-layer" id="errorsLayer" src="assets/validation-errors.png" alt="Known validation prediction errors: correct flood, false alarms, missed floods" draggable="false" hidden><svg id="predictionLayer" xmlns="http://www.w3.org/2000/svg" aria-label="Real model prediction polygons"></svg><div id="compareDivider" class="compare-divider" hidden><span>↔</span></div></div>
+<div class="map-source-tag"><i></i><span id="imageryTag">NOAA NGS · OCT 07, 2024</span></div>
+<div class="map-north"><span>N</span><svg viewBox="0 0 24 30"><path d="m12 2 8 24-8-6-8 6Z"/></svg></div>
+<div id="mapBusy" class="map-busy" hidden><div class="scanline"></div><div class="busy-label"><span class="spinner"></span><b>Analyzing road corridors</b><small>Real inference · local model</small></div></div>
+<div class="zoom-controls"><button id="zoomIn" aria-label="Zoom in">+</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="resetMap" aria-label="Reset map view"><svg class="icon small"><use href="#i-target"/></svg></button></div>
+<div class="compare-control" id="compareControl" hidden><span id="compareLeftLabel">Source</span><input id="compareSlider" type="range" min="0" max="100" value="50" aria-label="Compare source and predictions"><span id="compareRightLabel">AI overlay</span></div>
+<div class="map-bottom"><div class="map-legend" id="mapLegend"><span><i class="layer-dot coral"></i> Flood candidate</span><span><i class="layer-dot mint"></i> Predicted non-flooded</span></div><div class="map-scale"><i id="scaleLine"></i><span id="mapScaleLabel">100 m</span></div></div>
+<div class="map-empty" id="mapEmpty" hidden><svg class="icon"><use href="#i-check"/></svg><b>No retained predictions at this threshold</b><span>This does not establish that roads are clear.</span></div>
+</div>
+<div class="map-status"><span><i class="status-dot"></i><b id="resultMode">Saved real inference</b></span><span id="coordinateReadout">WGS84 · EPSG:4326</span><span id="mapDimensions">512 × 512</span></div>
+<div class="scene-context"><div><span class="context-kicker">SOURCE CONTEXT</span><p id="sceneContext">NOAA response imagery captured after Hurricane Helene. No verified road-closure labels.</p></div><button class="text-button" id="sourceDetails">View source <svg class="icon small"><use href="#i-chevron"/></svg></button></div>
+</div>
+<aside class="observations" id="observationsPanel"><div class="observation-heading"><div><div class="section-label">MODEL OBSERVATIONS</div><h2>Road candidates <span id="totalCount">—</span></h2></div><span class="pulse-symbol">⌁</span></div><div class="observation-summary"><div><strong id="floodCount">—</strong><span>Flood candidates</span></div><div><strong id="otherCount">—</strong><span>Non-flooded</span></div></div><div id="reviewNotice" class="review-notice"><svg class="icon small"><use href="#i-info"/></svg><span>Model evidence, not confirmed closures.</span></div><div class="filter-pills"><button class="active" data-filter="flooded_road">Flood candidates</button><button data-filter="all">All</button></div><div id="detectionList" class="detection-list" aria-live="polite"></div><div class="observation-export"><button class="quiet export-button" id="exportButton"><svg class="icon"><use href="#i-download"/></svg> Export GeoJSON</button><small>Georeferenced polygons for routing integration</small></div></aside>
+</section>
+<section id="evidenceView" class="view content-view" hidden>
+<div class="page-heading"><span class="eyebrow">MEASURED, NOT ASSUMED</span><h1>A small model. A clearer signal.</h1><p>Frozen-model results on six previously untouched Germany tiles.<br>Same labeled road pixels. Same decision rule. No model changes.</p></div>
+<div id="evidenceCards" class="evidence-stats"></div>
+<div class="evidence-grid"><article class="content-card"><div class="card-title"><div><span class="section-label">EXTERNAL EVALUATION</span><h2>Did specialization help?</h2></div><span class="chip mint-chip">Germany · 2021</span></div><div id="comparisonChart" class="comparison-chart"></div><p class="micro">Baseline: saved random binary classifier on the pretrained backbone. It is not an external pretrained flood detector.</p><div class="card-divider"></div><div class="metrics-table" id="metricsTable"></div></article><article class="content-card"><span class="section-label">WHAT THE ERRORS LOOK LIKE</span><h2>Every miss still matters.</h2><div id="confusionMatrix" class="confusion-matrix"></div><p class="muted">A small cross-region pilot, not proof of operational reliability. Flooded and non-flooded labels apply only within annotated road corridors.</p><button class="text-button" id="goValidation">Explore validation imagery <svg class="icon small"><use href="#i-arrow"/></svg></button></article></div>
+<div class="evidence-grid"><article class="content-card"><span class="section-label">REAL TRAINING HISTORY</span><h2>Validation F1 by epoch</h2><div id="f1Chart" class="training-chart"></div><p class="micro">Checkpoint selected at epoch 9 using validation, before the new Germany evaluation.</p></article><article class="content-card"><span class="section-label">MODEL ADAPTATION</span><h2>Training & validation loss</h2><div id="lossChart" class="training-chart"></div><p class="micro"><i class="legend-line cyan-line"></i> Training <i class="legend-line amber-line"></i> Validation · CPU training, 53 native-resolution crops</p></article></div>
+<div class="content-card evidence-footnote"><svg class="icon"><use href="#i-info"/></svg><div><b>Keep the claim as narrow as the evidence.</b><p>The earlier Louisiana F1 of 0.674 used four tiles reused during development. Germany F1 of 0.466 is the frozen external check. Neither is Helene accuracy. Road geometry, registration errors, imagery processing, and domain shift still limit predictions.</p></div><a class="quiet compact" href="training.html">Detailed snapshot <svg class="icon small"><use href="#i-arrow"/></svg></a></div>
+</section>
+<section id="incidentsView" class="view content-view" hidden>
+<div class="page-heading"><span class="eyebrow">TURN REPORTS INTO STRUCTURE</span><h1>Make the next message count.</h1><p>Extract the reported location, needs, and hazards.<br>Keep missing information visible. Keep decisions grounded in evidence.</p></div>
+<div class="incident-grid"><article class="content-card incident-editor"><div class="card-title"><h2>Emergency report</h2><span class="chip" id="llmState">Checking provider</span></div><label for="incidentReport" class="muted">Paste or write a report</label><textarea id="incidentReport" maxlength="12000" placeholder="Example: Three people are stranded near Main Street in Chimney Rock. One needs insulin. We have no vehicle."></textarea><div class="editor-bottom"><button class="text-button" id="loadExample">Load example</button><span class="micro" id="reportCount">0 / 12,000</span></div><button class="primary" id="parseIncident"><svg class="icon"><use href="#i-message"/></svg> Parse with Nemotron <svg class="icon"><use href="#i-arrow"/></svg></button><div id="incidentNotice" class="inline-notice" hidden></div><p class="micro">Only reported facts are extracted. This tool does not geocode a location or declare a route safe.</p></article><article class="content-card incident-result"><div class="card-title"><h2>Structured incident</h2><span class="chip">REVIEW REQUIRED</span></div><div id="incidentResult" class="incident-placeholder"><span class="placeholder-icon"><svg class="icon"><use href="#i-message"/></svg></span><h3>The signal, without the guesswork.</h3><p>A real model response will appear here after parsing. Unknown information stays unknown.</p></div><button class="quiet export-button" id="exportIncident" hidden><svg class="icon"><use href="#i-download"/></svg> Export incident JSON</button></article></div>
+<article class="content-card brief-card"><div><span class="section-label">CONNECT THE EVIDENCE</span><h2>A responder-facing brief</h2><p class="muted">Combine a parsed incident with the selected scene’s real model observations. Each brief cites supplied evidence and preserves uncertainty.</p></div><button class="quiet" id="explainIncident" disabled>Generate evidence brief <svg class="icon"><use href="#i-arrow"/></svg></button><div id="briefResult" hidden></div></article>
+</section>
+</main></div>
+<div id="toast" class="toast" role="status" hidden></div>
+<dialog id="sourceDialog" class="source-dialog"><div class="dialog-top"><span class="eyebrow">TRACE THE EVIDENCE</span><button class="icon-button" id="closeSource" aria-label="Close source details"><svg class="icon"><use href="#i-cross"/></svg></button></div><div id="sourceContent"></div></dialog>
+<script src="console.js" defer></script>
+</body></html>

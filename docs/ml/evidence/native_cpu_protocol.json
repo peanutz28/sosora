@@ -1,0 +1,34 @@
+{
+  "selection": "Choose between two pre-set CPU experiments by validation only; no new test metrics consulted before model selection",
+  "candidates": [
+    {
+      "run": "sn8_native_cpu_v1",
+      "epochs": 6,
+      "lr": 0.0002,
+      "freeze_backbone": true
+    },
+    {
+      "run": "sn8_native_cpu_v2",
+      "epochs": 10,
+      "lr": 5e-05,
+      "freeze_backbone": false
+    }
+  ],
+  "shared": {
+    "seed": 42,
+    "batch_size": 4,
+    "threads": 2,
+    "native_crop_size": 256,
+    "time_cap_per_run_seconds": 180,
+    "train_crops": 53,
+    "validation_crops": 11
+  },
+  "selection_rule": "Highest completed validation F1 from native crops; full validation tile metrics are diagnostic, not a test-tuning signal",
+  "final_test": "Evaluate selected model and its saved random-binary-head control once at native resolution on original 4 test tiles; compare all-flood and all-dry controls",
+  "limitations": [
+    "Test set was previously evaluated for old pilot; new experiments do not tune using new test output",
+    "Same event, tiny geographic sample, not a representative deployment estimate",
+    "Masks derived from 4-pixel buffered reference road centerlines; no off-road supervision",
+    "Road ROI for demo uses geometry only, never Flooded values"
+  ]
+}

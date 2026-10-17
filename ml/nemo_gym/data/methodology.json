@@ -1,0 +1,41 @@
+{
+  "license": "CC0-1.0",
+  "synthetic": true,
+  "generator": "scenarios.py; no model-generated annotations",
+  "graph_semantics": "undirected, unweighted; only open edges traversable",
+  "splits": {
+    "train": {
+      "node_counts": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "scenarios": 28
+    },
+    "validation": {
+      "node_counts": [
+        9,
+        10
+      ],
+      "scenarios": 14
+    },
+    "test": {
+      "node_counts": [
+        11,
+        12
+      ],
+      "scenarios": 14
+    }
+  },
+  "limitations": [
+    "simulated small graphs, not field route validation",
+    "same scenario families across splits, disjoint topology sizes",
+    "no LLM rollouts or model improvement implied"
+  ],
+  "sha256": {
+    "train.jsonl": "6259d74f38ab28f446193584856dca9979e4c8d9c407e1837f4a23bd67d78875",
+    "validation.jsonl": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650",
+    "test.jsonl": "2b86c0e594b586f733a03f23ae5e607dfaa02a5182e4a1111a921945a8587e3b"
+  }
+}

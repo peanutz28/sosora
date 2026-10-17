@@ -1,0 +1,17 @@
+{
+  "dataset": "SpaceNet 8 Louisiana East",
+  "license": "CC-BY-SA-4.0",
+  "seed": 42,
+  "task": "flood state on labeled road corridors only",
+  "road_buffer_source_pixels": 4,
+  "background_and_unknown": 255,
+  "registration": "georeferencing-based rasterio bilinear warp; residual misregistration uncorrected",
+  "split": "three pre-event acquisition groups; cross-split footprints separated by 250m in Web Mercator; 8 train,2 validation,4 test, half flood-positive tiles",
+  "limitations": [
+    "tiny pilot, not representative event-level validation",
+    "test same event as training",
+    "Web Mercator distances approximate",
+    "road corridor width convention is derived, not official segmentation labels",
+    "not all-image flood segmentation; outside labeled roads ignored"
+  ]
+}

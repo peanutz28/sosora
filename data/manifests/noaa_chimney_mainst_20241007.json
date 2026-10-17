@@ -1,0 +1,51 @@
+[
+  {
+    "image_id": "noaa_chimney_rock_20241007",
+    "path": "ml/artifacts/noaa_chimney_mainst_20241007/noaa_chimney_20241007.tif",
+    "road_roi_path": "ml/artifacts/noaa_chimney_mainst_20241007/independent_roads.png",
+    "dataset": "NOAA NGS Hurricane Helene emergency response imagery",
+    "event": "Hurricane Helene aftermath, Chimney Rock NC",
+    "capture_date": "2024-10-07 (NOAA dated layer; exact flight time unverified)",
+    "source_url": "https://storms.ngs.noaa.gov/storms/helene/services/index.json",
+    "date_evidence_url": "https://oceanservice.noaa.gov/news/sep24/ngs-storm-imagery-helene.html",
+    "source_layer": "20241007a_RGB",
+    "source_tiles": [
+      {
+        "z": 18,
+        "x": 71180,
+        "y": 103442,
+        "url": "https://stormscdn.ngs.noaa.gov/20241007a-rgb/18/71180/103442"
+      },
+      {
+        "z": 18,
+        "x": 71181,
+        "y": 103442,
+        "url": "https://stormscdn.ngs.noaa.gov/20241007a-rgb/18/71181/103442"
+      },
+      {
+        "z": 18,
+        "x": 71180,
+        "y": 103443,
+        "url": "https://stormscdn.ngs.noaa.gov/20241007a-rgb/18/71180/103443"
+      },
+      {
+        "z": 18,
+        "x": 71181,
+        "y": 103443,
+        "url": "https://stormscdn.ngs.noaa.gov/20241007a-rgb/18/71181/103443"
+      }
+    ],
+    "license": "NOAA attribution; inspect source license disclaimer before redistribution. No publication performed.",
+    "ground_truth": false,
+    "split": "unlabeled_transfer_demo",
+    "road_roi_source": "https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_StateMaintainedRoadsQtr/MapServer/0",
+    "registration": "Georeference derived from documented XYZ WebMercator grid; road vectors transformed to exact raster grid",
+    "warnings": [
+      "NOAA informational/planning imagery, no guarantee of completeness or accuracy",
+      "Mosaicked visual tiles are processed imagery, not raw sensor radiometry",
+      "Independent June2026 road geometry may differ from October2024 roads; state-maintained roads only",
+      "No flood truth or accuracy measurement for this image",
+      "Model trained on Louisiana satellite imagery; transfer/domain shift may cause false positives or misses"
+    ]
+  }
+]

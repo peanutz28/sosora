@@ -1,0 +1,812 @@
+{
+  "split": "test",
+  "scale": "original_native_resolution",
+  "manifest": "ml/artifacts/sn8_frozen_external/manifest.json",
+  "tile_count": 6,
+  "tile_size": 256,
+  "stride": 256,
+  "decision": "argmax across binary classes; no threshold tuning",
+  "support": "Identical original mask pixels labeled 0 or 1 for every model/control; 255 ignored",
+  "provenance": {
+    "model_id": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/sn8_native_cpu_v2/model",
+    "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+    "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2",
+    "task": "flood_state_on_road_corridors",
+    "requires_road_roi": true,
+    "label_map": {
+      "0": "non_flooded_road",
+      "1": "flooded_road"
+    },
+    "native_tile_size": 256,
+    "identity_status": "verified"
+  },
+  "model_provenance": {
+    "tuned": {
+      "model_id": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/sn8_native_cpu_v2/model",
+      "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+      "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2",
+      "task": "flood_state_on_road_corridors",
+      "requires_road_roi": true,
+      "label_map": {
+        "0": "non_flooded_road",
+        "1": "flooded_road"
+      },
+      "native_tile_size": 256,
+      "identity_status": "verified"
+    },
+    "baseline": {
+      "model_id": "ml/artifacts/sn8_native_cpu_v2/baseline_model",
+      "checkpoint_id": "sha256:cd2432b4910dfe50d50df36b9f3f87a67b8f8ab498d68651f39b7c1bdd3619bc",
+      "run_id": null,
+      "task": "flood_state_on_road_corridors",
+      "requires_road_roi": true,
+      "label_map": {
+        "0": "non_flooded_road",
+        "1": "flooded_road"
+      },
+      "native_tile_size": 256,
+      "identity_status": "legacy_unverified"
+    }
+  },
+  "metrics": {
+    "tuned": {
+      "tp": 1624,
+      "fp": 2417,
+      "fn": 1301,
+      "valid_pixels": 72961,
+      "iou": 0.30400599026581804,
+      "precision": 0.40188072259341745,
+      "recall": 0.5552136752136753,
+      "f1": 0.46626471432672983,
+      "tn": 67619
+    },
+    "baseline": {
+      "tp": 1290,
+      "fp": 6962,
+      "fn": 1635,
+      "valid_pixels": 72961,
+      "iou": 0.13047436027106302,
+      "precision": 0.15632573921473583,
+      "recall": 0.441025641025641,
+      "f1": 0.23083117115505056,
+      "tn": 63074
+    },
+    "all_positive": {
+      "tp": 2925,
+      "fp": 70036,
+      "fn": 0,
+      "valid_pixels": 72961,
+      "iou": 0.04008991104836831,
+      "precision": 0.04008991104836831,
+      "recall": 1.0,
+      "f1": 0.07708931818780802,
+      "tn": 0
+    },
+    "all_negative": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2925,
+      "valid_pixels": 72961,
+      "iou": 0.0,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tn": 70036
+    }
+  },
+  "per_tile": [
+    {
+      "source_image_id": "10500500C4DD7000_0_45_63",
+      "spatial_group": "Germany_external_10500500C4DD7000_0_45_63",
+      "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_63.png",
+      "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_63_mask.png",
+      "metrics": {
+        "tuned": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "valid_pixels": 5065,
+          "iou": null,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "tn": 5065
+        },
+        "all_positive": {
+          "tp": 0,
+          "fp": 5065,
+          "fn": 0,
+          "valid_pixels": 5065,
+          "iou": 0.0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": 0.0,
+          "tn": 0
+        },
+        "all_negative": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "valid_pixels": 5065,
+          "iou": null,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "tn": 5065
+        },
+        "baseline": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "valid_pixels": 5065,
+          "iou": null,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "tn": 5065
+        }
+      },
+      "inference_seconds": {
+        "tuned": 2.0472982919891365,
+        "baseline": 2.0099893340375274
+      },
+      "native_size": [
+        1300,
+        1300
+      ]
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_18_66",
+      "spatial_group": "Germany_external_10500500C4DD7000_0_18_66",
+      "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_18_66.png",
+      "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_18_66_mask.png",
+      "metrics": {
+        "tuned": {
+          "tp": 0,
+          "fp": 2417,
+          "fn": 0,
+          "valid_pixels": 47088,
+          "iou": 0.0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": 0.0,
+          "tn": 44671
+        },
+        "all_positive": {
+          "tp": 0,
+          "fp": 47088,
+          "fn": 0,
+          "valid_pixels": 47088,
+          "iou": 0.0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": 0.0,
+          "tn": 0
+        },
+        "all_negative": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "valid_pixels": 47088,
+          "iou": null,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "tn": 47088
+        },
+        "baseline": {
+          "tp": 0,
+          "fp": 4335,
+          "fn": 0,
+          "valid_pixels": 47088,
+          "iou": 0.0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": 0.0,
+          "tn": 42753
+        }
+      },
+      "inference_seconds": {
+        "tuned": 2.1104249589843675,
+        "baseline": 1.9747130000032485
+      },
+      "native_size": [
+        1300,
+        1300
+      ]
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_31_63",
+      "spatial_group": "Germany_external_10500500C4DD7000_0_31_63",
+      "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_31_63.png",
+      "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_31_63_mask.png",
+      "metrics": {
+        "tuned": {
+          "tp": 1624,
+          "fp": 0,
+          "fn": 575,
+          "valid_pixels": 5077,
+          "iou": 0.7385175079581628,
+          "precision": 1.0,
+          "recall": 0.7385175079581628,
+          "f1": 0.8495945592466649,
+          "tn": 2878
+        },
+        "all_positive": {
+          "tp": 2199,
+          "fp": 2878,
+          "fn": 0,
+          "valid_pixels": 5077,
+          "iou": 0.43312980106362026,
+          "precision": 0.43312980106362026,
+          "recall": 1.0,
+          "f1": 0.6044529961517318,
+          "tn": 0
+        },
+        "all_negative": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2199,
+          "valid_pixels": 5077,
+          "iou": 0.0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tn": 2878
+        },
+        "baseline": {
+          "tp": 1290,
+          "fp": 85,
+          "fn": 909,
+          "valid_pixels": 5077,
+          "iou": 0.5647985989492119,
+          "precision": 0.9381818181818182,
+          "recall": 0.5866302864938608,
+          "f1": 0.7218802462227196,
+          "tn": 2793
+        }
+      },
+      "inference_seconds": {
+        "tuned": 2.162058582995087,
+        "baseline": 1.90982812497532
+      },
+      "native_size": [
+        1300,
+        1300
+      ]
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_38_62",
+      "spatial_group": "Germany_external_10500500C4DD7000_0_38_62",
+      "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_38_62.png",
+      "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_38_62_mask.png",
+      "metrics": {
+        "tuned": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 726,
+          "valid_pixels": 726,
+          "iou": 0.0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tn": 0
+        },
+        "all_positive": {
+          "tp": 726,
+          "fp": 0,
+          "fn": 0,
+          "valid_pixels": 726,
+          "iou": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tn": 0
+        },
+        "all_negative": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 726,
+          "valid_pixels": 726,
+          "iou": 0.0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tn": 0
+        },
+        "baseline": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 726,
+          "valid_pixels": 726,
+          "iou": 0.0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tn": 0
+        }
+      },
+      "inference_seconds": {
+        "tuned": 2.1991875839885324,
+        "baseline": 1.9592839580145665
+      },
+      "native_size": [
+        1300,
+        1300
+      ]
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_45_70",
+      "spatial_group": "Germany_external_10500500C4DD7000_0_45_70",
+      "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_70.png",
+      "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_70_mask.png",
+      "metrics": {
+        "tuned": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "valid_pixels": 9075,
+          "iou": null,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "tn": 9075
+        },
+        "all_positive": {
+          "tp": 0,
+          "fp": 9075,
+          "fn": 0,
+          "valid_pixels": 9075,
+          "iou": 0.0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": 0.0,
+          "tn": 0
+        },
+        "all_negative": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "valid_pixels": 9075,
+          "iou": null,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "tn": 9075
+        },
+        "baseline": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "valid_pixels": 9075,
+          "iou": null,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "tn": 9075
+        }
+      },
+      "inference_seconds": {
+        "tuned": 2.0114545830292627,
+        "baseline": 1.95622758398531
+      },
+      "native_size": [
+        1300,
+        1300
+      ]
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_39_60",
+      "spatial_group": "Germany_external_10500500C4DD7000_0_39_60",
+      "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_39_60.png",
+      "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_39_60_mask.png",
+      "metrics": {
+        "tuned": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "valid_pixels": 5930,
+          "iou": null,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "tn": 5930
+        },
+        "all_positive": {
+          "tp": 0,
+          "fp": 5930,
+          "fn": 0,
+          "valid_pixels": 5930,
+          "iou": 0.0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": 0.0,
+          "tn": 0
+        },
+        "all_negative": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "valid_pixels": 5930,
+          "iou": null,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "tn": 5930
+        },
+        "baseline": {
+          "tp": 0,
+          "fp": 2542,
+          "fn": 0,
+          "valid_pixels": 5930,
+          "iou": 0.0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": 0.0,
+          "tn": 3388
+        }
+      },
+      "inference_seconds": {
+        "tuned": 2.011713874991983,
+        "baseline": 1.9320168339763768
+      },
+      "native_size": [
+        1300,
+        1300
+      ]
+    }
+  ],
+  "elapsed_seconds": 24.372697874961887,
+  "caveats": [
+    "Six label-blind sampled tiles from one new event/acquisition; small convenience subset, not representative deployment accuracy",
+    "Checkpoint/config/threshold frozen before new labels; no tuning or re-selection based on these outcomes",
+    "Different event and continent from Louisiana training and development data",
+    "Only narrow annotated road corridors evaluated; not full-scene road extraction or routing accuracy",
+    "Four-source-pixel road buffers and uncorrected pre/post registration may introduce label noise",
+    "Exact capture dates unverified; source registry identifies Germany2021 flooding",
+    "No Helene accuracy claim; this result must not be substituted for unmeasured Swannanoa transfer"
+  ],
+  "dataset": "SpaceNet8 Germany_Training_Public",
+  "event": "Germany2021 floods; exact imagery capture dates unverified",
+  "assessment": "Frozen cross-event external spatial subset; small pilot, not an official competition benchmark",
+  "freeze": {
+    "frozen_at_utc": "2026-10-17T18:23:24.444397+00:00",
+    "model": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/sn8_native_cpu_v2/model",
+    "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+    "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2",
+    "selected_epoch": 9,
+    "model_config_sha256": "fa96efe1a74c64fb49e8cbe54200de15653db2402cff9b18f8461046aceeb7d8",
+    "decision": "binary argmax (flood class1 threshold0.5; tiesclass0)",
+    "native_tile_size": 256,
+    "stride": 256,
+    "crop_or_augmentation": false,
+    "task": "flood state on annotated road corridors only",
+    "road_buffer_source_pixels": 4,
+    "unknown": 255,
+    "dataset": "SpaceNet8 Germany_Training_Public",
+    "event": "Germany2021 floods; exact imagery capture dates unverified",
+    "selection": "seed17017 shuffle sorted pre-event image mapping; choose first6 available non-overlapping footprints, at least500m bbox gap; no class balancing/label inspection",
+    "count": 6,
+    "failure_policy": "Record every failure; no replacements after opening labels; do not tune model/threshold after evaluation",
+    "frozen_before_new_label_access": true,
+    "baseline": "saved initialization binary model sn8_native_cpu_v2/baseline_model and constant controls, identical support",
+    "download_budget_bytes": 160000000,
+    "separation": "Germany event/AOI disjoint from all Louisiana pilot tiles; measure bbox separation after georeference checks",
+    "limitations": [
+      "Small convenience subset within public dataset; not official challenge score",
+      "Possible residual registration and narrow-corridor label errors",
+      "Not Helene accuracy",
+      "No model changes or threshold tuning permitted from these results"
+    ]
+  },
+  "evaluated_utc": "2026-10-17T18:25:36.669345+00:00",
+  "preparation_failures": [],
+  "preparation": {
+    "freeze": {
+      "frozen_at_utc": "2026-10-17T18:23:24.444397+00:00",
+      "model": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/sn8_native_cpu_v2/model",
+      "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+      "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2",
+      "selected_epoch": 9,
+      "model_config_sha256": "fa96efe1a74c64fb49e8cbe54200de15653db2402cff9b18f8461046aceeb7d8",
+      "decision": "binary argmax (flood class1 threshold0.5; tiesclass0)",
+      "native_tile_size": 256,
+      "stride": 256,
+      "crop_or_augmentation": false,
+      "task": "flood state on annotated road corridors only",
+      "road_buffer_source_pixels": 4,
+      "unknown": 255,
+      "dataset": "SpaceNet8 Germany_Training_Public",
+      "event": "Germany2021 floods; exact imagery capture dates unverified",
+      "selection": "seed17017 shuffle sorted pre-event image mapping; choose first6 available non-overlapping footprints, at least500m bbox gap; no class balancing/label inspection",
+      "count": 6,
+      "failure_policy": "Record every failure; no replacements after opening labels; do not tune model/threshold after evaluation",
+      "frozen_before_new_label_access": true,
+      "baseline": "saved initialization binary model sn8_native_cpu_v2/baseline_model and constant controls, identical support",
+      "download_budget_bytes": 160000000,
+      "separation": "Germany event/AOI disjoint from all Louisiana pilot tiles; measure bbox separation after georeference checks",
+      "limitations": [
+        "Small convenience subset within public dataset; not official challenge score",
+        "Possible residual registration and narrow-corridor label errors",
+        "Not Helene accuracy",
+        "No model changes or threshold tuning permitted from these results"
+      ]
+    },
+    "selected_count": 6,
+    "prepared_count": 6,
+    "download_bytes": 32209671,
+    "license": "CC-BY-SA-4.0",
+    "official_catalog": "https://spacenet.ai/sn8-challenge/",
+    "registration": "PostRGB bilinear warped to pre grid; uncorrected residual offsets",
+    "labels": "Official reference Wkt_Pix road centerlines buffered4 source pixels; conflicts/unknown/no coverage ignored255",
+    "selection_label_blind": true,
+    "label_access_started_after_selection_written": true,
+    "replacement_after_label_access": false,
+    "footprint_gap_units": "EPSG3857 metres (not geodesic; different continent demonstrates separation)",
+    "new_evaluation_only_no_tuning": true
+  },
+  "selection": {
+    "selected_without_label_access": [
+      {
+        "source_image_id": "10500500C4DD7000_0_45_63",
+        "pair": {
+          "label": "0_45_63.geojson",
+          "pre-event image": "10500500C4DD7000_0_45_63.tif",
+          "post-event image 1": "10500500E6DD3C00_0_45_63.tif",
+          "post-event image 2": ""
+        },
+        "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_63.tif",
+        "bounds_epsg3857": [
+          785785.1887185232,
+          6534502.901279451,
+          786326.8553851903,
+          6535354.639300816
+        ],
+        "minimum_previous_bbox_gap_epsg3857_m": 11222329.343404261
+      },
+      {
+        "source_image_id": "10500500C4DD7000_0_18_66",
+        "pair": {
+          "label": "0_18_66.geojson",
+          "pre-event image": "10500500C4DD7000_0_18_66.tif",
+          "post-event image 1": "10500500E6DD3C00_0_18_66.tif",
+          "post-event image 2": "1040050035DC3B00_0_18_66.tif"
+        },
+        "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_18_66.tif",
+        "bounds_epsg3857": [
+          771160.1887185114,
+          6531948.213708872,
+          771701.8553851786,
+          6532799.688507701
+        ],
+        "minimum_previous_bbox_gap_epsg3857_m": 11207559.904757148
+      },
+      {
+        "source_image_id": "10500500C4DD7000_0_31_63",
+        "pair": {
+          "label": "0_31_63.geojson",
+          "pre-event image": "10500500C4DD7000_0_31_63.tif",
+          "post-event image 1": "10500500E6DD3C00_0_31_63.tif",
+          "post-event image 2": ""
+        },
+        "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_31_63.tif",
+        "bounds_epsg3857": [
+          778201.8553851838,
+          6534502.901279451,
+          778743.522051851,
+          6535354.639300816
+        ],
+        "minimum_previous_bbox_gap_epsg3857_m": 11215030.658580355
+      },
+      {
+        "source_image_id": "10500500C4DD7000_0_38_62",
+        "pair": {
+          "label": "0_38_62.geojson",
+          "pre-event image": "10500500C4DD7000_0_38_62.tif",
+          "post-event image 1": "10500500E6DD3C00_0_38_62.tif",
+          "post-event image 2": ""
+        },
+        "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_38_62.tif",
+        "bounds_epsg3857": [
+          781993.5220518535,
+          6535354.639300816,
+          782535.1887185207,
+          6536206.465111484
+        ],
+        "minimum_previous_bbox_gap_epsg3857_m": 11218911.15361738
+      },
+      {
+        "source_image_id": "10500500C4DD7000_0_45_70",
+        "pair": {
+          "label": "0_45_70.geojson",
+          "pre-event image": "10500500C4DD7000_0_45_70.tif",
+          "post-event image 1": "10500500E6DD3C00_0_45_70.tif",
+          "post-event image 2": ""
+        },
+        "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_70.tif",
+        "bounds_epsg3857": [
+          785785.1887185232,
+          6528543.191195765,
+          786326.8553851903,
+          6529394.315370092
+        ],
+        "minimum_previous_bbox_gap_epsg3857_m": 11220713.81307797
+      },
+      {
+        "source_image_id": "10500500C4DD7000_0_39_60",
+        "pair": {
+          "label": "0_39_60.geojson",
+          "pre-event image": "10500500C4DD7000_0_39_60.tif",
+          "post-event image 1": "10500500E6DD3C00_0_39_60.tif",
+          "post-event image 2": ""
+        },
+        "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_39_60.tif",
+        "bounds_epsg3857": [
+          782535.1887185207,
+          6537058.378735701,
+          783076.8553851878,
+          6537910.380197717
+        ],
+        "minimum_previous_bbox_gap_epsg3857_m": 11219895.107855642
+      }
+    ],
+    "previous_source_ids": [
+      "105001001A0FFC00_0_18_12",
+      "105001001A0FFC00_0_17_11",
+      "105001001A0FFC00_0_22_19",
+      "105001001A0FFC00_0_14_17",
+      "105001001A0FFC00_0_13_1",
+      "105001001A0FFC00_0_10_2",
+      "105001001A0FFC00_0_15_6",
+      "105001001A0FFC00_0_16_8",
+      "10400100684A4B00_1_17_85",
+      "10400100684A4B00_1_18_73",
+      "10300100AF395C00_2_18_54",
+      "10300100AF395C00_2_18_52",
+      "10300100AF395C00_2_28_36",
+      "10300100AF395C00_2_20_37"
+    ],
+    "previous_tif_inventory": [
+      "10300100AF395C00_2_18_52.tif",
+      "10300100AF395C00_2_18_52_aligned.tif",
+      "10300100AF395C00_2_18_54.tif",
+      "10300100AF395C00_2_18_54_aligned.tif",
+      "10300100AF395C00_2_20_37.tif",
+      "10300100AF395C00_2_20_37_aligned.tif",
+      "10300100AF395C00_2_28_36.tif",
+      "10300100AF395C00_2_28_36_aligned.tif",
+      "10300100C46F5900_0_10_2.tif",
+      "10300100C46F5900_0_13_1.tif",
+      "10300100C46F5900_0_14_17.tif",
+      "10300100C46F5900_0_15_6.tif",
+      "10300100C46F5900_0_16_8.tif",
+      "10300100C46F5900_0_17_11.tif",
+      "10300100C46F5900_0_18_12.tif",
+      "10300100C46F5900_0_22_19.tif",
+      "10300100C46F5900_1_16_93.tif",
+      "10300100C46F5900_1_17_85.tif",
+      "10300100C46F5900_1_18_73.tif",
+      "10300100C46F5900_2_18_52.tif",
+      "10300100C46F5900_2_18_54.tif",
+      "10300100C46F5900_2_20_37.tif",
+      "10300100C46F5900_2_28_36.tif",
+      "10400100684A4B00_1_16_93.tif",
+      "10400100684A4B00_1_17_85.tif",
+      "10400100684A4B00_1_18_73.tif",
+      "105001001A0FFC00_0_10_2.tif",
+      "105001001A0FFC00_0_13_1.tif",
+      "105001001A0FFC00_0_14_17.tif",
+      "105001001A0FFC00_0_15_6.tif",
+      "105001001A0FFC00_0_16_8.tif",
+      "105001001A0FFC00_0_17_11.tif",
+      "105001001A0FFC00_0_18_12.tif",
+      "105001001A0FFC00_0_22_19.tif",
+      "helene_swannanoa_roads.tif",
+      "helene_swannanoa_spring2025.tif",
+      "sn8_louisiana_post_0_10_2.tif"
+    ],
+    "label_access_started": false,
+    "selection_failures": []
+  },
+  "sources": [
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/Germany_Training_Public_label_image_mapping.csv",
+      "path": "ml/artifacts/sn8_frozen_external/Germany_Training_Public_label_image_mapping.csv",
+      "bytes": 17450,
+      "sha256": "6eb036a70cdd19f15fb9dabc067e8c41a79d7cea8e4b3927d5188661d7e5e45e",
+      "retrieved_utc": "2026-10-17T18:24:21.059512+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_45_63.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_63.tif",
+      "bytes": 1955810,
+      "sha256": "09980988c5a70f87bcb9918f00eee90815cbb22855b6d48835a344faae792322",
+      "retrieved_utc": "2026-10-17T18:24:21.347554+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_18_66.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_18_66.tif",
+      "bytes": 3538082,
+      "sha256": "ebe22f111383b99d3e3cb0168d604a2c3964519470d56bfbfd96505b5d36fa34",
+      "retrieved_utc": "2026-10-17T18:24:21.731187+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_31_63.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_31_63.tif",
+      "bytes": 3759922,
+      "sha256": "0f759574433c83f4254293e855f2e31c0d75a684d07d0bfe338fd328cf94d017",
+      "retrieved_utc": "2026-10-17T18:24:22.131619+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_38_62.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_38_62.tif",
+      "bytes": 3716808,
+      "sha256": "389c556eac3d1b1ab58b681a343f1434cae9e3ff62f25731df5251097d2156fb",
+      "retrieved_utc": "2026-10-17T18:24:22.414701+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_45_70.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_70.tif",
+      "bytes": 1748802,
+      "sha256": "19102339c0a916c76f93bfe38adbccc2361dfe7bcfb5cca6ac0650e820db6e33",
+      "retrieved_utc": "2026-10-17T18:24:22.745553+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_39_60.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_39_60.tif",
+      "bytes": 4185896,
+      "sha256": "ba541e23c49b409d9981d5364507332c909648a6b7b49de933b4aa551b74e56f",
+      "retrieved_utc": "2026-10-17T18:24:23.209311+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/Germany_Training_Public_reference.csv",
+      "path": "ml/artifacts/sn8_frozen_external/Germany_Training_Public_reference.csv",
+      "bytes": 2161947,
+      "sha256": "1ae10038aedc7e84086d82b40941e844b5fc54787afe99f7f6151b78138b46e5",
+      "retrieved_utc": "2026-10-17T18:24:23.610249+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_45_63.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_45_63.tif",
+      "bytes": 1855338,
+      "sha256": "7137c4e524310783d53c9121e65deff4271e8f191f880c81689471c0d9cf9695",
+      "retrieved_utc": "2026-10-17T18:24:23.894378+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_18_66.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_18_66.tif",
+      "bytes": 1852980,
+      "sha256": "626ad461ffa2058857799a6c9952c7bc3b3cd6714410d8e0406952530e96edaf",
+      "retrieved_utc": "2026-10-17T18:24:24.628575+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_31_63.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_31_63.tif",
+      "bytes": 1855338,
+      "sha256": "e7a6b6ee08f09850fd0da9dcc0f18de5f15ff6a4823267e97d49e3ef0efdbb84",
+      "retrieved_utc": "2026-10-17T18:24:25.188841+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_38_62.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_38_62.tif",
+      "bytes": 1852980,
+      "sha256": "daa4823ecccde056da321cb37d60d784675ba5c9ac2824b03850f035d155a842",
+      "retrieved_utc": "2026-10-17T18:24:25.743288+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_45_70.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_45_70.tif",
+      "bytes": 1852980,
+      "sha256": "f7eda5019782daa9574350161c5b115c18e6d13fdba074f7572f84134c2f4e92",
+      "retrieved_utc": "2026-10-17T18:24:26.290362+00:00"
+    },
+    {
+      "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_39_60.tif",
+      "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_39_60.tif",
+      "bytes": 1855338,
+      "sha256": "aee6ed08020fdccfa3cbf86f9fb4f5007e2e553c2af11a7ae3cdc5e7f37f644e",
+      "retrieved_utc": "2026-10-17T18:24:26.815334+00:00"
+    }
+  ],
+  "inference_failures": []
+}

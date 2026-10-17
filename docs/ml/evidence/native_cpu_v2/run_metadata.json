@@ -1,0 +1,39 @@
+{
+  "model_id": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/sn8_native_cpu_v2/model",
+  "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+  "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2",
+  "task": "flood_state_on_road_corridors",
+  "requires_road_roi": true,
+  "label_map": {
+    "0": "non_flooded_road",
+    "1": "flooded_road"
+  },
+  "identity_status": "verified",
+  "native_tile_size": 256,
+  "training_resolution": {
+    "height": 256,
+    "width": 256
+  },
+  "initialization_model_id": "nvidia/segformer-b0-finetuned-ade-512-512",
+  "initialization_revision": "489d5cd81a0b59fab9b7ea758d3548ebe99677da",
+  "selected_epoch": 9,
+  "selection_metric": "validation.f1",
+  "selection_score": 0.6142329020332717,
+  "training_settings": {
+    "requested_device": "cpu",
+    "device": "cpu",
+    "threads": 2,
+    "learning_rate": 5e-05,
+    "batch_size": 4,
+    "freeze_backbone": false,
+    "max_seconds": 180.0,
+    "skip_test": true,
+    "native_tile_inference": true,
+    "save_baseline_model": true
+  },
+  "timing": {
+    "budget_scope": "after_model_setup_between_batches",
+    "stopped_for_time": false,
+    "elapsed_seconds": 147.68450004101032
+  }
+}

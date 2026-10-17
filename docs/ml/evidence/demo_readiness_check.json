@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "check": "/health",
+      "status": 200
+    },
+    {
+      "check": "/ml/model-info",
+      "status": 200
+    },
+    {
+      "check": "/ml/images",
+      "status": 200
+    },
+    {
+      "check": "/ml/metrics",
+      "status": 200
+    },
+    {
+      "check": "/ml/llm-health",
+      "status": 200
+    },
+    {
+      "check": "/openapi.json",
+      "status": 200
+    },
+    {
+      "check": "prediction failure {'image_id': 'missing'}",
+      "status": 404
+    },
+    {
+      "check": "prediction failure {'image_id': 'x', 'threshold': -0.1}",
+      "status": 422
+    },
+    {
+      "check": "prediction failure {'image_id': 'x', 'threshold': 1.1}",
+      "status": 422
+    },
+    {
+      "check": "prediction failure {'image_id': 'x', 'path': '/etc/passwd'}",
+      "status": 422
+    },
+    {
+      "check": "actual imagery, labels and coordinates",
+      "image_id": "sn8_road_validation_10400100684A4B00_1_17_85",
+      "status": 200,
+      "detections": 10,
+      "bounds": [
+        -89.98046686520543,
+        29.833473082818934,
+        -89.9759824753071,
+        29.837957472717257
+      ],
+      "source_split": "validation",
+      "event": "Hurricane Ida 2021 (not Helene)",
+      "coordinate_order": "longitude,latitude verified within source extent"
+    },
+    {
+      "check": "actual imagery, labels and coordinates",
+      "image_id": "helene_swannanoa_roads_spring2025",
+      "status": 200,
+      "detections": 19,
+      "bounds": [
+        -82.323,
+        35.603,
+        -82.31299999999999,
+        35.613
+      ],
+      "source_split": "unlabeled_transfer_demo",
+      "event": "Helene recovery period; not immediate post-storm",
+      "coordinate_order": "longitude,latitude verified within source extent"
+    },
+    {
+      "check": "frontend CORS",
+      "status": 200
+    },
+    {
+      "check": "unconfigured real provider fails explicitly",
+      "status": 503
+    }
+  ]
+}
