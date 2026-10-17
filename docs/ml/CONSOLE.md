@@ -2,6 +2,14 @@
 
 Open http://127.0.0.1:9030 . The existing static training viewer has been upgraded to a live ML console. The original detailed snapshot is preserved at `/training.html`; `build_training_viewer.py` now writes that snapshot without overwriting the interactive homepage.
 
+## Fine-tuning demonstration
+
+Open http://127.0.0.1:9030/fine-tuning.html (also linked from Training and Evidence). Two selectable validation tiles each show the original image, reference flood labels, saved initialization prediction and tuned prediction on an identical native pixel grid. Class colors, opacity and the independent-road-ROI outline are shared. Both saved checkpoints are re-run only for inference; generated confusion counts must exactly reproduce the saved validation evaluation. No training or frozen-Germany inference/tuning runs.
+
+The baseline is a pretrained SegFormer encoder/decoder plus a random two-class head, not a pretrained flood detector. The page explains all-weight adaptation, sample counts, checkpoint selection, per-image versus two-tile validation metrics, the constant all-flood control, and both major frozen Germany failures. The positive validation image alone scores worse than the all-flood control; that comparison remains visible. Generated assets stay under ignored `assets/finetuning/`.
+
+Regenerate separately with `ml/.venv312/bin/python -m scripts.ml.build_finetuning_demo`. Console startup also prepares this comparison; the CPU inference preparation can take roughly a minute on this machine. Original `training.html` remains available.
+
 ## What is interactive
 
 - Three georeferenced scenes: NOAA Chimney Rock October 7 2024, NC Swannanoa spring 2025 recovery, and a SpaceNet 8 Louisiana validation tile from Hurricane Ida 2021.

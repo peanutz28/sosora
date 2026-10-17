@@ -5,12 +5,14 @@ import argparse
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
+import sys
 from pathlib import Path
 import urllib.error
 import urllib.request
 
 ROOT=Path(__file__).resolve().parents[2]
 VIEWER=ROOT/'docs/ml/viewer'
+sys.path.insert(0, str(ROOT))
 GET_ROUTES={'/health','/ml/model-info','/ml/images','/ml/metrics','/ml/llm-health'}
 POST_ROUTES={'/ml/predict','/ml/incident/parse','/ml/incident/explain'}
 
@@ -64,7 +66,9 @@ def prepare_assets():
     validation=json.loads((ROOT/'ml/artifacts/sn8_native_cpu_v2_validation/evaluation.json').read_text())
     payload={'scenes':scenes,'external_evaluation':{'dataset':external.get('dataset'),'tile_count':external['tile_count'],'metrics':external['metrics'],'caveats':external['caveats'],'decision':external['decision'],'evaluated_utc':external.get('evaluated_utc')},'training':{'selected_epoch':training['selected_epoch'],'history':training['history'],'crop_count':53,'validation_crops':11,'device':'CPU'},'validation_metrics':validation['metrics'],'checkpoint_id':external['provenance']['checkpoint_id'],'model_name':'SOSora Road Vision','architecture':'SegFormer-B0','task':'Flood state within independently mapped road corridors','version':'native-v2'}
     (VIEWER/'console-data.json').write_text(json.dumps(payload))
-    print('Prepared',len(scenes),'real georeferenced scenes',flush=True)
+    from scripts.ml.build_finetuning_demo import build
+    build(VIEWER/'assets/finetuning')
+    print('Prepared',len(scenes),'real georeferenced scenes and validation fine-tuning comparison',flush=True)
 
 
 class ConsoleHandler(SimpleHTTPRequestHandler):

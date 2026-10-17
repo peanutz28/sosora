@@ -1,6 +1,6 @@
 # SOSora ML handoff
 
-The interactive ML console runs at **http://127.0.0.1:9030** with the native inference API on **http://127.0.0.1:8002/docs**. Choose an actual image, run the model, inspect candidate road highlights, compare known validation labels, and export unverified GeoJSON. The detailed saved training view is at `/training.html`. This is the ML integration surface, separate from the teammate's routing application.
+The interactive ML console runs at **http://127.0.0.1:9030** with the native inference API on **http://127.0.0.1:8002/docs**. Choose an actual image, run the model, inspect candidate road highlights, compare known validation labels, and export unverified GeoJSON. The focused before/after teaching page is at `/fine-tuning.html`: both validation tiles, original/reference/random-head initialization/tuned panels, exact metrics and frozen Germany failures. The detailed saved training view remains at `/training.html`. This is the ML integration surface, separate from the teammate's routing application.
 
 See [console setup](CONSOLE.md), [teammate API instructions](TEAMMATE_INTEGRATION.md), [source and pitch provenance](PITCH_PROVENANCE.md), and [repository publication scope](REPOSITORY_SCOPE.md).
 
