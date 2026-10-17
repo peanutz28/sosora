@@ -23,12 +23,14 @@ def images():
 @app.get('/health')
 def health():
     module = sys.modules.get('ml.vision.predict')
-    loaded = bool(module and module.load_model.cache_info().currsize)
+    loader = getattr(module, 'load_model', None)
+    loaded = bool(loader and loader.cache_info().currsize)
     return {'status': 'ok', 'service': 'sosora-ml', 'vision_loaded': loaded, 'note': 'Liveness only; model loads on first prediction.'}
 
 def served_metadata():
     module = sys.modules.get('ml.vision.predict')
-    if module and module.load_model.cache_info().currsize:
+    loader = getattr(module, 'load_model', None)
+    if loader and loader.cache_info().currsize:
         _, model, _ = module.load_model()
         captured = getattr(model, '_sosora_provenance', None)
         if captured is not None:

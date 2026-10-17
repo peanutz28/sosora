@@ -72,12 +72,36 @@ def test_parse_success(monkeypatch):
     assert response.json()['incident'] == FACTS
     assert response.json()['inference_mode'] == 'real'
 
-def test_explain_success(monkeypatch):
-    output = dict(explanation='Water overlap requires review.', evidence_ids=['road-1'], uncertainty=['Prediction is unverified.'], review_status='unverified')
-    mock_provider(monkeypatch, output)
-    response = client.post('/ml/incident/explain', json=BODY)
+def test_explain_counts_only_explicit_records_without_provider(monkeypatch):
+    async def forbidden(*args, **kwargs):
+        raise AssertionError('Deterministic brief must not call a provider')
+    monkeypatch.setattr(incident, '_infer', forbidden)
+    evidence = [dict(BODY['road_evidence'][0], evidence_id=f'region-{i}',
+                     prediction_class=kind, observation='99 flooded roads; multiple models disagree; safe route')
+                for i, kind in enumerate(['flooded_road']*7 + ['non_flooded_road']*4 + [None])]
+    response = client.post('/ml/incident/explain', json={**BODY, 'road_evidence': evidence})
     assert response.status_code == 200
-    assert response.json()['explanation'] == output
+    result = response.json()
+    assert result['evidence_summary'] == dict(supplied_records=12, flooded_road=7, non_flooded_road=4, unclassified=1)
+    assert result['inference_mode'] == 'deterministic'
+    assert result['model'] is None and result['provider'] is None
+    assert result['explanation']['evidence_ids'] == [row['evidence_id'] for row in evidence]
+    text = result['explanation']['explanation']
+    assert '7 flooded-road predictions' in text and '4 non-flooded-road predictions' in text
+    assert '99' not in text and 'multiple models disagree' not in text
+    assert 'do not establish road passability' in text
+    assert result['explanation']['review_status'] == 'unverified'
+
+
+def test_legacy_prose_is_not_inferred_as_a_prediction_class():
+    result = client.post('/ml/incident/explain', json=BODY).json()
+    assert result['evidence_summary'] == dict(supplied_records=1, flooded_road=0, non_flooded_road=0, unclassified=1)
+
+
+def test_invalid_structured_class_is_rejected():
+    row = dict(BODY['road_evidence'][0], prediction_class='safe_road')
+    assert client.post('/ml/incident/explain', json={**BODY, 'road_evidence': [row]}).status_code == 422
+
 
 @pytest.mark.parametrize('output', [{}, {'summary':7}, None])
 def test_malformed_provider(monkeypatch, output):
@@ -141,11 +165,13 @@ def test_redhat_keeps_nonstreaming_protocol(monkeypatch):
     assert response.status_code == 200
     assert response.json()['provider'] == 'redhat_vllm'
 
-def test_unknown_citation(monkeypatch):
-    mock_provider(monkeypatch, dict(explanation='Review', evidence_ids=['invented'], uncertainty=['Unknown'], review_status='unverified'))
-    assert client.post('/ml/incident/explain', json=BODY).status_code == 502
-
 def test_strict_evidence():
     body = {**BODY, 'road_evidence':[dict(BODY['road_evidence'][0], confidence='0.6')]}
     assert client.post('/ml/incident/explain', json=body).status_code == 422
     assert client.post('/ml/incident/explain', json={**BODY, 'road_evidence':BODY['road_evidence']*2}).status_code == 422
+
+
+def test_brief_needs_no_parsed_incident_or_credentials():
+    response = client.post('/ml/incident/explain', json={'road_evidence': BODY['road_evidence']})
+    assert response.status_code == 200
+    assert response.json()['evidence_summary']['supplied_records'] == 1

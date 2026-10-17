@@ -1,0 +1,55 @@
+{
+  "checked_at_utc": "2026-10-17T19:47:42.655535+00:00",
+  "test_kind": "local deterministic brief integration; browser and HTTP verified",
+  "fictional_browser_report": "Three people near Chimney Rock need drinking water and blankets. Exact street address is unknown.",
+  "report_parsed_for_this_check": false,
+  "accuracy_benchmark": false,
+  "browser_observed_counts": {
+    "supplied_records": 12,
+    "flooded_road": 9,
+    "non_flooded_road": 3,
+    "unclassified": 0
+  },
+  "http_result": {
+    "explanation": {
+      "explanation": "Supplied evidence: 12 region records; 9 flooded-road predictions, 3 non-flooded-road predictions, 0 without a structured prediction class. Counts describe only the supplied records, not unique roads, people, or all regions in an image. Different region classes do not establish a comparison between models. These predictions do not establish road passability, an official closure, or a safe route.",
+      "evidence_ids": [
+        "prediction_0000",
+        "prediction_0001",
+        "prediction_0002",
+        "prediction_0003",
+        "prediction_0004",
+        "prediction_0005",
+        "prediction_0006",
+        "prediction_0007",
+        "prediction_0008",
+        "prediction_0009",
+        "prediction_0010",
+        "prediction_0011"
+      ],
+      "uncertainty": [
+        "Predictions and reported incident facts remain unverified.",
+        "No spatial or temporal association with the reported incident is established.",
+        "Class counts use explicit prediction_class values only; observation prose is not classified."
+      ],
+      "review_status": "unverified"
+    },
+    "evidence_summary": {
+      "flooded_road": 9,
+      "non_flooded_road": 3,
+      "unclassified": 0,
+      "supplied_records": 12
+    },
+    "provider": null,
+    "model": null,
+    "inference_mode": "deterministic",
+    "latency_ms": 0.027583912014961243,
+    "review_status": "unverified"
+  },
+  "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+  "notes": [
+    "Brief is independent of report parsing and does not associate imagery with the fictional incident.",
+    "Observed browser counts match the first twelve native prediction records.",
+    "Hosted parse attempt during verification did not complete before local restart; no new parse success is claimed."
+  ]
+}

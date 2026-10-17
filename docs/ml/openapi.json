@@ -162,6 +162,7 @@
     "/ml/incident/explain": {
       "post": {
         "summary": "Explain",
+        "description": "Render supplied record counts without asking a model to infer facts or totals.",
         "operationId": "explain_ml_incident_explain_post",
         "requestBody": {
           "content": {
@@ -245,7 +246,14 @@
       "ExplainRequest": {
         "properties": {
           "incident": {
-            "$ref": "#/components/schemas/Incident"
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Incident"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "road_evidence": {
             "items": {
@@ -260,7 +268,6 @@
         "additionalProperties": false,
         "type": "object",
         "required": [
-          "incident",
           "road_evidence"
         ],
         "title": "ExplainRequest"
@@ -557,6 +564,21 @@
               }
             ],
             "title": "Confidence"
+          },
+          "prediction_class": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "flooded_road",
+                  "non_flooded_road"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prediction Class"
           }
         },
         "additionalProperties": false,

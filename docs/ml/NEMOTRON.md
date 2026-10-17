@@ -1,7 +1,8 @@
 # Nemotron incident workflow
 
-The API implements real OpenAI-compatible provider requests for `POST /ml/incident/parse`
-and `POST /ml/incident/explain`. There is no mock fallback in production.
+The API uses a real OpenAI-compatible provider for `POST /ml/incident/parse`.
+`POST /ml/incident/explain` renders a deterministic evidence brief without a provider call.
+Neither endpoint uses a mock fallback.
 A real hosted Nemotron incident parse was verified through the local console on
 October 17, 2026 using an explicitly fictional report. This establishes integration,
 not extraction accuracy or production reliability. Mocked contract tests alone do not
@@ -36,18 +37,19 @@ These settings follow the [NVIDIA model card](https://huggingface.co/nvidia/NVID
 and [NVIDIA structured JSON example](https://docs.nvidia.com/nim/large-language-models/2.0.10/get-started/advanced/get-started-nemotron-3.5-lightning.html#structured-json-output).
 
 `parse` accepts `{ "report": "..." }` and returns the existing incident schema.
-`explain` accepts `incident` (the parsed incident object) and `road_evidence`, a nonempty
-list of objects containing unique `evidence_id`, `observation`, `source`, and optional
-numeric `confidence` between zero and one. Its `explanation` object contains prose,
-known `evidence_ids`, explicit `uncertainty`, and `review_status: unverified`.
-Evidence may describe vision observations but must not conflate water/road overlap
-with a validated flooded-road prediction. Supply source provenance in `source`.
+`explain` accepts an optional legacy `incident` field (unused) and one to thirty `road_evidence` records with unique
+`evidence_id`, `observation`, `source`, optional numeric `confidence`, and optional
+`prediction_class` (`flooded_road` or `non_flooded_road`). A missing class is counted as
+unclassified, never inferred from prose. It returns exact counts in `evidence_summary`,
+a fixed explanation and all supplied IDs. Counts cover only supplied region records,
+not unique roads or the full image. The console supplies at most the first twelve regions.
 
-The system instruction forbids invented coordinates, official closures, and safe-route
-claims. Strict schema validation and evidence-reference checking reject malformed
-outputs and unknown citations. These checks cannot prove semantic factuality: a human
-must review every response. Never use generated prose as a routing or closure authority.
-Provider errors/timeouts and invalid outputs yield 502; missing configuration yields 503.
+The brief does not synthesize observation text, compare models, infer disagreement,
+associate an image with an incident, or establish passability, closures or safe routes.
+It returns `inference_mode: deterministic`, null provider/model, and unverified status.
+It works without provider credentials. Incident parsing still requires human review:
+strict JSON validates shape, not factuality. Provider failure yields 502; missing parse
+configuration yields 503. Duplicate IDs or invalid evidence classes yield 422.
 
 After approved credentials are present, run the opt-in real smoke command:
 
@@ -56,7 +58,8 @@ ml/.venv312/bin/python scripts/ml/incident_smoke.py --env-file ml/.env --report 
 # Or: --explain-json /path/to/request.json
 ```
 
-This command makes a hosted inference request and may consume provider quota. It fails
+The --report command makes a hosted inference request and may consume provider quota.
+The --explain-json command renders the deterministic brief without a hosted request. It fails
 explicitly without configuration, prints only validated JSON on success, and does not
 persist credentials. Do not claim provider success until this real check succeeds.
 
@@ -67,3 +70,7 @@ supplied evidence IDs. Its prose nevertheless miscounted region records and inte
 different region classes as disagreement between multiple models. Schema and citation
 validation do not establish semantic correctness. Keep briefs unverified, inspect their
 claims against the supplied records, and do not pitch this smoke as factuality validation.
+
+The observed live brief errors motivated replacing generated evidence prose with exact
+structured counts and a fixed template. The earlier hosted brief is historical evidence
+of connectivity only; current briefs are explicitly deterministic.

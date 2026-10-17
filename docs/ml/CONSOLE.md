@@ -9,7 +9,7 @@ Open http://127.0.0.1:9030 . The existing static training viewer has been upgrad
 - Pan, zoom, source-versus-prediction comparison, road geometry layer, opacity, per-polygon inspection, and actual GeoJSON export. Class probabilities are not safety scores.
 - Louisiana defaults to known-label versus prediction comparison. Saved error view uses green correct flood, amber false alarm, purple missed flood, with a persistent legend and snapshot status. This is validation data; no new external test images are displayed or used for tuning.
 - Evidence view shows the frozen Germany evaluation, actual confusion counts and saved training curves. Reused Louisiana results remain clearly distinguished.
-- Incident desk calls the existing real Nemotron parse/explain endpoints. Missing credentials are shown as unavailable; no fabricated model response or incident coordinates.
+- Incident desk uses real Nemotron parsing and deterministic evidence briefs with exact supplied-record counts. Missing credentials are shown as unavailable; no fabricated model response or incident coordinates.
 
 This is an ML demo and integration surface. No rescue routes, road-graph matching, official closures, hardware gateway, or authoritative damage labels were invented. Frontend/backend/shared contract files were not modified. Trained models and frozen evaluation evidence were not changed.
 

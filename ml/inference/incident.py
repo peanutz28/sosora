@@ -32,11 +32,12 @@ class RoadEvidence(BaseModel):
     observation: str = Field(min_length=1, max_length=2000)
     source: str = Field(min_length=1, max_length=500)
     confidence: float | None = Field(default=None, ge=0, le=1)
+    prediction_class: Literal['flooded_road', 'non_flooded_road'] | None = None
 
 
 class ExplainRequest(BaseModel):
     model_config = ConfigDict(extra='forbid', strict=True)
-    incident: Incident
+    incident: Incident | None = None
     road_evidence: list[RoadEvidence] = Field(min_length=1, max_length=30)
 
 
@@ -167,15 +168,29 @@ async def parse(request: IncidentRequest):
 
 @router.post('/ml/incident/explain')
 async def explain(request: ExplainRequest):
+    """Render supplied record counts without asking a model to infer facts or totals."""
+    started = time.perf_counter()
     ids = [item.evidence_id for item in request.road_evidence]
     if len(ids) != len(set(ids)):
         raise HTTPException(422, 'evidence_id values must be unique')
-    result = await _infer(request.model_dump(), Explanation,
-        'Explain only the supplied incident and road evidence. Cite evidence using evidence_ids. '
-        'Explicitly describe uncertainty and limits of visual predictions. Every substantive claim '
-        'must be supported by supplied evidence. Set review_status to unverified.')
-    output = result.pop('output')
-    if not set(output['evidence_ids']).issubset(set(ids)):
-        raise HTTPException(502, 'Provider cited unknown evidence')
-    result['explanation'] = output
-    return result
+    counts = {name: sum(item.prediction_class == name for item in request.road_evidence)
+              for name in ('flooded_road', 'non_flooded_road')}
+    counts['unclassified'] = sum(item.prediction_class is None for item in request.road_evidence)
+    counts['supplied_records'] = len(ids)
+    output = Explanation(
+        explanation=(f"Supplied evidence: {len(ids)} region records; "
+                     f"{counts['flooded_road']} flooded-road predictions, "
+                     f"{counts['non_flooded_road']} non-flooded-road predictions, "
+                     f"{counts['unclassified']} without a structured prediction class. "
+                     "Counts describe only the supplied records, not unique roads, people, "
+                     "or all regions in an image. Different region classes do not establish "
+                     "a comparison between models. These predictions do not establish "
+                     "road passability, an official closure, or a safe route."),
+        evidence_ids=ids,
+        uncertainty=["Predictions and reported incident facts remain unverified.",
+                     "No spatial or temporal association with the reported incident is established.",
+                     "Class counts use explicit prediction_class values only; observation prose is not classified."],
+        review_status='unverified')
+    return {'explanation': output.model_dump(), 'evidence_summary': counts,
+            'provider': None, 'model': None, 'inference_mode': 'deterministic',
+            'latency_ms': (time.perf_counter()-started)*1000, 'review_status': 'unverified'}

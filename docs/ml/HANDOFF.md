@@ -22,7 +22,7 @@ Model, checkpoint fingerprint, run and task identities are explicit. Metrics att
 
 ## Language integration
 
-`POST /ml/incident/parse` and `/ml/incident/explain` use a real OpenAI-compatible provider transport with strict validation. Missing configuration returns 503; invalid upstream output or provider errors return 502. A real hosted Nemotron parse through the browser was verified on October 17, 2026 with a fictional report. This single integration smoke is not an accuracy benchmark; see [sanitized evidence](evidence/nemotron_live_smoke_20261017.json).
+`POST /ml/incident/parse` uses a real OpenAI-compatible provider transport with strict validation. `/ml/incident/explain` now uses a deterministic template and exact structured region counts, without a provider request; its output stays unverified. Missing configuration returns 503; invalid upstream output or provider errors return 502. A real hosted Nemotron parse through the browser was verified on October 17, 2026 with a fictional report. This single integration smoke is not an accuracy benchmark; see [sanitized evidence](evidence/nemotron_live_smoke_20261017.json).
 
 For NVIDIA use `LLM_PROVIDER=nvidia_api` and a secret `NVIDIA_API_KEY`. For Red Hat use `LLM_PROVIDER=redhat_vllm`, explicit `LLM_BASE_URL`, `LLM_MODEL`, and required secret `LLM_API_KEY`. Secrets belong only in the local environment or ignored `ml/.env`, never chat, logs or Git. [Nemotron workflow](NEMOTRON.md).
 

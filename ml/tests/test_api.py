@@ -28,3 +28,15 @@ def test_actual_metrics_are_explicit():
         assert result["baseline"]["initialization"].startswith("pretrained backbone")
         assert result["fine_tuned"]["valid_pixels"] > 0
         assert result["limitations"]
+
+
+def test_partial_vision_import_keeps_health_and_metadata_available(monkeypatch):
+    import sys
+    import types
+    monkeypatch.setitem(sys.modules, 'ml.vision.predict', types.ModuleType('ml.vision.predict'))
+    response = client.get('/health')
+    assert response.status_code == 200
+    assert response.json()['vision_loaded'] is False
+    result = client.get('/ml/model-info')
+    assert result.status_code == 200
+    assert result.json()['metadata_scope'] == 'configured_model_not_loaded'

@@ -1,4 +1,4 @@
-"""Opt-in real provider smoke test. Never supplies a fallback or fabricated response."""
+"""Opt-in live parse or deterministic evidence brief. No fallback or fabricated response."""
 import argparse
 import asyncio
 import json
@@ -24,7 +24,7 @@ async def main():
             print('Invalid private settings file; no result produced.', file=sys.stderr)
             return 2
     config = llm_configuration()
-    if not config['configured']:
+    if args.report and not config['configured']:
         print('Unavailable: ' + config['configuration_error'], file=sys.stderr)
         return 2
     try:
