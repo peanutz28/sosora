@@ -235,6 +235,7 @@ function accessHeadline(status: AppState["routes"]["status"]): string {
 
 function accessDetail(state: AppState): string {
   if (state.routes.status === "unreachable") return "No available path in the current road graph. Nothing has been dispatched.";
+  if (state.routes.status === "invalidated") return "The candidate used the closed segment, so it was withdrawn. Nothing has been dispatched.";
   if (state.routes.conflicts) return "The candidate still uses a segment this simulation has closed.";
   if (state.routes.status === "rerouted") return "Calculated again after the simulated closure. This does not mean the road is open in the field.";
   if (state.routes.status === "proposed") return "Shortest path on the current OpenStreetMap graph.";

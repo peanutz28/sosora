@@ -99,11 +99,14 @@ export function RescueMap({
           attributionControl: { compact: true },
         });
         mapRef.current = map;
-        (window as unknown as { __sosMap?: MlMap }).__sosMap = map;
         appliedRef.current = "street";
         const markReady = () => {
           if (cancelled || !map || !map.isStyleLoaded()) return;
-          if (!addLayers(map)) return;
+          try {
+            if (!addLayers(map)) return;
+          } catch {
+            return;
+          }
           map.resize();
           setEpoch((value) => value + 1);
           setPhase("ready");
@@ -112,6 +115,7 @@ export function RescueMap({
         };
         map.on("load", markReady);
         map.on("style.load", markReady);
+        map.on("idle", markReady);
         map.on("error", (event) => {
           const sourceId = "sourceId" in event ? String(event.sourceId ?? "") : "";
           const message = event.error?.message ?? "Map request failed.";
@@ -425,8 +429,13 @@ function Key({ color, label }: { color: string; label: string }) {
 }
 
 function addLayers(map: MlMap): boolean {
-  if (map.getSource("sos-roads")) return false;
-  const addSource = (id: string) => map.addSource(id, { type: "geojson", data: EMPTY as never });
+  if (map.getLayer("sos-focus")) return false;
+  const addSource = (id: string) => {
+    if (!map.getSource(id)) map.addSource(id, { type: "geojson", data: EMPTY as never });
+  };
+  const addLayer = (layer: Parameters<MlMap["addLayer"]>[0]) => {
+    if (!map.getLayer(layer.id)) map.addLayer(layer);
+  };
   addSource("sos-roads");
   addSource("sos-damage");
   addSource("sos-closures");
@@ -434,7 +443,7 @@ function addLayers(map: MlMap): boolean {
   addSource("sos-alt");
   addSource("sos-active");
   addSource("sos-focus");
-  map.addLayer({
+  addLayer({
     id: "sos-roads",
     type: "line",
     source: "sos-roads",
@@ -444,25 +453,25 @@ function addLayers(map: MlMap): boolean {
       "line-width": ["interpolate", ["linear"], ["zoom"], 10, 0.4, 14, 1.6],
     },
   });
-  map.addLayer({ id: "sos-damage-fill", type: "fill", source: "sos-damage", paint: { "fill-color": "#C4924A", "fill-opacity": 0.22 } });
-  map.addLayer({ id: "sos-damage-line", type: "line", source: "sos-damage", paint: { "line-color": "#C4924A", "line-width": 1.25 } });
-  map.addLayer({
+  addLayer({ id: "sos-damage-fill", type: "fill", source: "sos-damage", paint: { "fill-color": "#C4924A", "fill-opacity": 0.22 } });
+  addLayer({ id: "sos-damage-line", type: "line", source: "sos-damage", paint: { "line-color": "#C4924A", "line-width": 1.25 } });
+  addLayer({
     id: "sos-old",
     type: "line",
     source: "sos-old",
     paint: { "line-color": "#C46B64", "line-width": 3, "line-dasharray": [1.4, 1.2], "line-opacity": 0.9 },
   });
-  map.addLayer({
+  addLayer({
     id: "sos-alt",
     type: "line",
     source: "sos-alt",
     paint: { "line-color": "#8FBFB6", "line-width": 2, "line-dasharray": [2, 1.5], "line-opacity": 0.8 },
   });
-  map.addLayer({ id: "sos-closure", type: "line", source: "sos-closures", paint: { "line-color": "#C46B64", "line-width": 5, "line-opacity": 0.95 } });
-  map.addLayer({ id: "sos-active-case", type: "line", source: "sos-active", paint: { "line-color": "#07140F", "line-width": 7, "line-opacity": 0.55 } });
-  map.addLayer({ id: "sos-active", type: "line", source: "sos-active", paint: { "line-color": "#3C9B6E", "line-width": 3.5 } });
-  map.addLayer({ id: "sos-focus-case", type: "line", source: "sos-focus", paint: { "line-color": "#101820", "line-width": 6, "line-opacity": 0.45 } });
-  map.addLayer({
+  addLayer({ id: "sos-closure", type: "line", source: "sos-closures", paint: { "line-color": "#C46B64", "line-width": 5, "line-opacity": 0.95 } });
+  addLayer({ id: "sos-active-case", type: "line", source: "sos-active", paint: { "line-color": "#07140F", "line-width": 7, "line-opacity": 0.55 } });
+  addLayer({ id: "sos-active", type: "line", source: "sos-active", paint: { "line-color": "#3C9B6E", "line-width": 3.5 } });
+  addLayer({ id: "sos-focus-case", type: "line", source: "sos-focus", paint: { "line-color": "#101820", "line-width": 6, "line-opacity": 0.45 } });
+  addLayer({
     id: "sos-focus",
     type: "line",
     source: "sos-focus",
