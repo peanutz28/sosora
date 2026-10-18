@@ -1,0 +1,60 @@
+{
+  "status": "completed",
+  "at_utc": "2026-10-18T12:00:02.348834+00:00",
+  "runs": [
+    {
+      "arm": "baseline",
+      "repeat": 1,
+      "status": "completed",
+      "exit_code": 0
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 1,
+      "status": "completed",
+      "exit_code": 0
+    },
+    {
+      "arm": "grounded_v2_nullable",
+      "repeat": 1,
+      "status": "completed",
+      "exit_code": 0
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 2,
+      "status": "completed",
+      "exit_code": 0
+    },
+    {
+      "arm": "grounded_v2_nullable",
+      "repeat": 2,
+      "status": "completed",
+      "exit_code": 0
+    },
+    {
+      "arm": "baseline",
+      "repeat": 2,
+      "status": "completed",
+      "exit_code": 0
+    },
+    {
+      "arm": "grounded_v2_nullable",
+      "repeat": 3,
+      "status": "completed",
+      "exit_code": 0
+    },
+    {
+      "arm": "baseline",
+      "repeat": 3,
+      "status": "completed",
+      "exit_code": 0
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 3,
+      "status": "completed",
+      "exit_code": 0
+    }
+  ]
+}

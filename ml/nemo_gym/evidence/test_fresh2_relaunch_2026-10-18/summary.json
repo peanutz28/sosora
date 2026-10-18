@@ -1,0 +1,478 @@
+{
+  "policies": [
+    {
+      "arm": "baseline",
+      "repaired_fields": 0,
+      "repaired_tool_calls": 0,
+      "repaired_scenarios": 0,
+      "complete_runs": 3,
+      "passes_per_complete_run": [
+        15,
+        11,
+        13
+      ],
+      "mean_passes_per42": 13,
+      "range_passes_per42": [
+        11,
+        15
+      ],
+      "provider_errors": {
+        "RemoteProtocolError": 1
+      },
+      "provider_error_count": 1,
+      "runs": [
+        {
+          "arm": "baseline",
+          "repeat": 1,
+          "status": "complete",
+          "passed": 15,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 0
+        },
+        {
+          "arm": "baseline",
+          "repeat": 2,
+          "status": "complete",
+          "passed": 11,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 0
+        },
+        {
+          "arm": "baseline",
+          "repeat": 3,
+          "status": "complete",
+          "passed": 13,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 1
+        }
+      ],
+      "verifier_issue_counts": {
+        "invalid_tool_arguments": 39,
+        "unsupported_path": 33,
+        "missing_required_tools": 22,
+        "require_exactly_one_recommendation": 16,
+        "route_tool_before_current_status": 18,
+        "stale_graph_version": 18,
+        "missing_human_review": 20,
+        "incorrect_reachability": 20,
+        "invented_graph_version": 16,
+        "incorrect_graph_version": 7
+      }
+    },
+    {
+      "arm": "grounded_v2",
+      "repaired_fields": 0,
+      "repaired_tool_calls": 0,
+      "repaired_scenarios": 0,
+      "complete_runs": 3,
+      "passes_per_complete_run": [
+        30,
+        30,
+        30
+      ],
+      "mean_passes_per42": 30,
+      "range_passes_per42": [
+        30,
+        30
+      ],
+      "provider_errors": {},
+      "provider_error_count": 0,
+      "runs": [
+        {
+          "arm": "grounded_v2",
+          "repeat": 1,
+          "status": "complete",
+          "passed": 30,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 0
+        },
+        {
+          "arm": "grounded_v2",
+          "repeat": 2,
+          "status": "complete",
+          "passed": 30,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 0
+        },
+        {
+          "arm": "grounded_v2",
+          "repeat": 3,
+          "status": "complete",
+          "passed": 30,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 0
+        }
+      ],
+      "verifier_issue_counts": {
+        "invalid_tool_arguments": 36,
+        "missing_required_tools": 36,
+        "require_exactly_one_recommendation": 36
+      }
+    },
+    {
+      "arm": "grounded_v2_nullable",
+      "repaired_fields": 36,
+      "repaired_tool_calls": 36,
+      "repaired_scenarios": 36,
+      "complete_runs": 3,
+      "passes_per_complete_run": [
+        41,
+        40,
+        42
+      ],
+      "mean_passes_per42": 41,
+      "range_passes_per42": [
+        40,
+        42
+      ],
+      "provider_errors": {},
+      "provider_error_count": 0,
+      "runs": [
+        {
+          "arm": "grounded_v2_nullable",
+          "repeat": 1,
+          "status": "complete",
+          "passed": 41,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 0
+        },
+        {
+          "arm": "grounded_v2_nullable",
+          "repeat": 2,
+          "status": "complete",
+          "passed": 40,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 0
+        },
+        {
+          "arm": "grounded_v2_nullable",
+          "repeat": 3,
+          "status": "complete",
+          "passed": 42,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 0
+        }
+      ],
+      "verifier_issue_counts": {
+        "incorrect_reachability": 3
+      }
+    }
+  ],
+  "families": {
+    "baseline": {
+      "alternate_route": {
+        "passed": 10,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          4,
+          4,
+          2
+        ]
+      },
+      "bridge_closed": {
+        "passed": 11,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          4,
+          2,
+          5
+        ]
+      },
+      "conflicting_evidence": {
+        "passed": 3,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          1,
+          1,
+          1
+        ]
+      },
+      "isolated": {
+        "passed": 4,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          2,
+          1,
+          1
+        ]
+      },
+      "missing_location": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tool_failure": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "two_roads_closed": {
+        "passed": 11,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          4,
+          3,
+          4
+        ]
+      }
+    },
+    "grounded_v2": {
+      "alternate_route": {
+        "passed": 18,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          6,
+          6,
+          6
+        ]
+      },
+      "bridge_closed": {
+        "passed": 18,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          6,
+          6,
+          6
+        ]
+      },
+      "conflicting_evidence": {
+        "passed": 18,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          6,
+          6,
+          6
+        ]
+      },
+      "isolated": {
+        "passed": 18,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          6,
+          6,
+          6
+        ]
+      },
+      "missing_location": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tool_failure": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "two_roads_closed": {
+        "passed": 18,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          6,
+          6,
+          6
+        ]
+      }
+    },
+    "grounded_v2_nullable": {
+      "alternate_route": {
+        "passed": 18,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          6,
+          6,
+          6
+        ]
+      },
+      "bridge_closed": {
+        "passed": 18,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          6,
+          6,
+          6
+        ]
+      },
+      "conflicting_evidence": {
+        "passed": 18,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          6,
+          6,
+          6
+        ]
+      },
+      "isolated": {
+        "passed": 18,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          6,
+          6,
+          6
+        ]
+      },
+      "missing_location": {
+        "passed": 18,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          6,
+          6,
+          6
+        ]
+      },
+      "tool_failure": {
+        "passed": 15,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          5,
+          4,
+          6
+        ]
+      },
+      "two_roads_closed": {
+        "passed": 18,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          6,
+          6,
+          6
+        ]
+      }
+    }
+  },
+  "runs": [
+    {
+      "arm": "baseline",
+      "repeat": 1,
+      "status": "complete",
+      "passed": 15,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "baseline",
+      "repeat": 2,
+      "status": "complete",
+      "passed": 11,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "baseline",
+      "repeat": 3,
+      "status": "complete",
+      "passed": 13,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 1
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 1,
+      "status": "complete",
+      "passed": 30,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 2,
+      "status": "complete",
+      "passed": 30,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 3,
+      "status": "complete",
+      "passed": 30,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "grounded_v2_nullable",
+      "repeat": 1,
+      "status": "complete",
+      "passed": 41,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "grounded_v2_nullable",
+      "repeat": 2,
+      "status": "complete",
+      "passed": 40,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "grounded_v2_nullable",
+      "repeat": 3,
+      "status": "complete",
+      "passed": 42,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 0
+    }
+  ],
+  "planned_scenario_attempts": 378,
+  "evaluated_scenario_attempts": 378,
+  "provider_errors": 1,
+  "complete_runs": 9,
+  "selection": false,
+  "policy_changes": false,
+  "mean_denominator": "Only complete42-case runs enter mean/range. Any incomplete run stays separately reported; no retry or imputed score."
+}

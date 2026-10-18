@@ -1,6 +1,6 @@
 # NeMo Gym evaluation results
 
-Latest: the sealed 42-case fresh exam is complete; results, per-family counts and limitations are in the final section below.
+Latest: fresh exam 2 isolates the audited argument adapter; results, repairs, the retained infrastructure failure and authorized relaunch are in the final section below.
 
 All scenarios are simulated. Same frozen tasks, policies, custom chat-completions
 runner and pinned official NeMo Gym tools/verifier; this is not the full Gym CLI.
@@ -39,7 +39,10 @@ This scores saved trajectories offline using the pinned official verifier, audit
 seal and adapter edits, and rebuilds the fresh-exam-2 tables; it makes no model calls.
 Set `GYM_PYTHON` and `GYM_OFFICIAL` to the prepared runtime (here
 `/private/tmp/sosora_nemo_gym_runtime/venv/bin/python` and
-`/private/tmp/sosora_nemo_gym_runtime/official`). Completed exam data must be present.
+`/private/tmp/sosora_nemo_gym_runtime/official`). Completed exam data must be present. Historical `check_fresh_exam.py` is an
+exact-source audit of the first exam; use its archived source revision for that
+audit. The fresh2 scoring command above checks the new frozen source and all four
+unchanged prior split hashes.
 
 ```sh
 # Export private LLM configuration and these existing runtime paths:
@@ -351,3 +354,119 @@ python scripts/vllm/run_fresh_exam.py --output ml/nemo_gym/evidence/test_fresh_2
 python scripts/vllm/summarize_fresh_exam.py --evidence ml/nemo_gym/evidence/test_fresh_2026-10-18
 python scripts/vllm/check_fresh_exam.py
 ```
+
+## Fresh exam 2 — argument-repair isolation (October 18, 2026)
+
+The authorized complete live relaunch finished at **08:18:41 AM ET**, before the 8:40 AM ET
+filming deadline. The runner enforced an 8:35 generation cutoff. All **378 scenario attempts
+across nine runs** completed with **1 provider error**, using
+**2227 recorded model calls**. No run or case was retried within the relaunch.
+
+### Seal and unchanged components
+
+Original seal commit **b4b4cc6** contains 42 `test_fresh2` cases (node counts 19–24,
+seven families, six cases per family), its hash, three frozen arms and an immutable
+marker stating zero model calls and no exam opening at seal time. Task SHA256:
+`eab007ad30e6025accaba84a18b5770591b896c012dc21398920596d108c5816`. All prior train/validation/test/test_fresh data hashes
+remain unchanged. All 51 pre-seal tests passed using mocked providers. The verifier
+score function and audited adapter are unchanged. Adapter SHA256:
+`35dadb940fce81f6822efaace52fe820bc0388208dc84086e25bb9ebcc9875f0`.
+
+`grounded_v2` and `grounded_v2_nullable` use identical policy JSON bytes. The latter
+alone enables existing `nullable-null-v1`. Effective prompt/tool descriptions match
+the last fresh exam exactly; the current source JSON also carries unused name/revision
+metadata, explaining its different file hash from the earlier minimal snapshot.
+Same serving container/image/flags and sampling: temperature 1.0, max_tokens 1024,
+parallel_tool_calls=false, 12 turns, HTTP timeout 60 seconds; prefix caching retained.
+No new sampling seed, checkpoint, weight update, prompt change or RL.
+
+Order: baseline → grounded → adapter; grounded → adapter → baseline;
+adapter → baseline → grounded. Both policies were fixed before any successful
+model call on these tasks. The baseline is a contextual comparator; only the two
+grounded arms isolate argument repair.
+
+### Results
+
+| Policy | Complete runs | Passes /42 | Mean /42 | Range /42 | Provider errors |
+|---|---:|---|---:|---|---:|
+| baseline | 3/3 | 15, 11, 13 | 13.00 | 11–15 | 1 |
+| grounded_v2 | 3/3 | 30, 30, 30 | 30.00 | 30–30 | 0 |
+| grounded_v2_nullable | 3/3 | 41, 40, 42 | 41.00 | 40–42 | 0 |
+
+Per-family counts are passes / evaluated attempts across three runs (planned 18 each):
+
+| Family | Baseline | grounded_v2 | grounded_v2 + nullable adapter |
+|---|---|---|---|
+| alternate_route | 10/18 (4, 4, 2) | 18/18 (6, 6, 6) | 18/18 (6, 6, 6) |
+| bridge_closed | 11/18 (4, 2, 5) | 18/18 (6, 6, 6) | 18/18 (6, 6, 6) |
+| conflicting_evidence | 3/18 (1, 1, 1) | 18/18 (6, 6, 6) | 18/18 (6, 6, 6) |
+| isolated | 4/18 (2, 1, 1) | 18/18 (6, 6, 6) | 18/18 (6, 6, 6) |
+| missing_location | 0/18 (0, 0, 0) | 0/18 (0, 0, 0) | 18/18 (6, 6, 6) |
+| tool_failure | 0/18 (0, 0, 0) | 0/18 (0, 0, 0) | 15/18 (5, 4, 6) |
+| two_roads_closed | 11/18 (4, 3, 4) | 18/18 (6, 6, 6) | 18/18 (6, 6, 6) |
+
+Adapter repairs (field edits / tool calls / scenarios): baseline: 0 / 0 / 0, grounded_v2: 0 / 0 / 0, grounded_v2_nullable: 36 / 36 / 36
+
+
+Adapter versus grounded_v2 mean difference: **+11.00 passes /42
+(+26.19 percentage points)**. Adapter repairs: **36
+scalar arguments**, across **36 tool calls** and
+**36 repeated scenario attempts**. Raw/effective arguments
+and each field edit were retained and checked against the unchanged adapter.
+`adapter_repairs.json` lists exact repairs and family/spelling counts. Repairs are
+system compatibility behavior, not improved model generation or prompt-only gains.
+
+All 36 repairs converted `graph_version: "None"` to JSON null: 18 in missing-location
+cases and 18 in tool-failure cases. Missing-location passes rose from 0/18 to 18/18;
+tool-failure passes rose from 0/18 to 15/18. The other five families stayed 18/18 in
+both grounded arms. The three remaining adapter failures submitted `needs_location`
+for known-location incidents with unavailable road status, where the correct answer
+was `unknown`. The adapter preserved those wrong decisions. Their original and
+repaired arguments are retained in `adapter_failure_diagnosis.json`. This result
+supports a bounded encoding-compatibility benefit, not a fix for reasoning errors.
+
+Baseline repetition 3 had one `RemoteProtocolError`; its case remains a failed
+attempt in the 42-case denominator and was not retried. The two grounded arms had
+no provider errors. The server request-success counter delta was 2,227, matching
+the runner's recorded response-call count; post-run queues were empty and GPU
+utilization was 0%, with the same model left resident for filming.
+
+The full 54-test suite passed (51 before sealing, plus reporting/admission tests).
+The new `launch_fresh_exam2.sh` admission wrapper was added and tested after the
+initial launch error; the authorized relaunch itself used a fail-fast shell gate.
+The frozen evaluator, adapter and verifier were not edited during the experiment.
+Raw runner configs use the generic policy label `grounded_v2` because frozen
+per-arm JSON is selected via the existing config-root loader. `exam_run.json` and
+its policy SHA256 identify the actual arm.
+
+### Initial infrastructure failure and authorized relaunch
+
+The initial launch's configured local tunnel was down. Readiness raised connection
+refused; a shell launch error allowed the evaluator to proceed anyway. All 378
+attempts ended in ConnectError, with zero requests reaching the model and zero
+repairs. Each initial arm's raw pass counts were 0,0,0 /42 (mean 0, range 0–0), all
+families 0/18 and 126 provider errors per arm. These are infrastructure failures,
+not evidence of model quality. No record was discarded or overwritten.
+
+The user explicitly authorized **one complete relaunch, retaining failures** as an
+exception to the original no-retries instruction. Commit **68f5b1a** records that
+authorization with byte-identical seal and arms before the relaunch. Its shell
+failed closed on readiness. There were 756 recorded scenario attempts in total:
+378 initial connection failures plus the separately reported 378 live attempts.
+No selective retry, policy selection or tuning occurred. The performance table
+above describes the authorized live relaunch, not a pooled or selected-best result.
+
+### Evidence and limits
+
+Live evidence: `ml/nemo_gym/evidence/test_fresh2_relaunch_2026-10-18/`.
+Initial failure: `ml/nemo_gym/evidence/test_fresh2_2026-10-18/`. Seals, opening markers,
+raw rollouts/configs/metrics, serving audit, complete per-family results, repair
+ledger, offline official-verifier rescoring and post-run GPU-idle checks are retained.
+The offline scoring command is the first command in Reproduce above.
+
+This is the same seven deterministic synthetic families at larger graph sizes,
+not a novel task distribution or real-road field validation. The 42 cases are now
+spent. Repeated attempts are not independent emergencies. The custom loop uses
+pinned genuine NeMo Gym resource-server tools/verifier, not the full Gym CLI.
+These results do not establish the origin of stringified nulls in generation versus
+serving conversion, or establish a general benefit on unseen families.

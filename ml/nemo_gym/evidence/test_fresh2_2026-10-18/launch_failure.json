@@ -1,0 +1,17 @@
+{
+  "recorded_utc": "2026-10-18T12:02:52.760679+00:00",
+  "classification": "infrastructure_failure_not_model_performance",
+  "cause": "Configured local model tunnel was not listening; readiness raised ConnectError. Shell omitted fail-fast and still launched the evaluation loop.",
+  "provider_errors": 378,
+  "attempts": 378,
+  "successful_model_calls": 0,
+  "raw_rewards": [
+    0,
+    0,
+    0
+  ],
+  "mean_reward_interpretation": "zero observed rewards are connection failures, not evidence of model quality",
+  "adapter_repaired_arguments": 0,
+  "retries_within_launch": false,
+  "subsequent_action": "User explicitly authorized one complete relaunch with original failures retained. See ../test_fresh2_relaunch_2026-10-18/relaunch_authorization.json."
+}

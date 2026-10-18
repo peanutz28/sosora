@@ -1,0 +1,9 @@
+{
+  "arm": "grounded_v2",
+  "repeat": 2,
+  "started_utc": "2026-10-18T11:59:38.231713+00:00",
+  "configuration_sha256": "bacd482bc08054d058aecad93889624370ee6a06ee97a13babb2984f0399ef28",
+  "requested_cases": 42,
+  "runner_policy_label": "grounded_v2; arm selected by frozen config root",
+  "argument_adapter": "none"
+}

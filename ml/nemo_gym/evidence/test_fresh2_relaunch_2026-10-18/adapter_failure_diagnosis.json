@@ -1,0 +1,77 @@
+[
+  {
+    "run": "grounded_v2_nullable_r1",
+    "scenario_id": "test_fresh2_46215b0d978cf6cc",
+    "issues": [
+      "incorrect_reachability"
+    ],
+    "error_type": null,
+    "submission": [
+      {
+        "type": "function_call",
+        "id": "chatcmpl-tool-b823d88a6985e26e",
+        "call_id": "chatcmpl-tool-b823d88a6985e26e",
+        "name": "submit_recommendation",
+        "arguments": "{\"status\": \"needs_location\", \"graph_version\": null, \"path\": [], \"reason\": \"Incident location is missing; obtain a location before planning access.\", \"requires_human_review\": true, \"review_status\": \"unverified\"}",
+        "status": "completed"
+      }
+    ],
+    "repair_edits": [
+      {
+        "field": "graph_version",
+        "before": "None",
+        "after": null
+      }
+    ]
+  },
+  {
+    "run": "grounded_v2_nullable_r2",
+    "scenario_id": "test_fresh2_83f59211cc1869a6",
+    "issues": [
+      "incorrect_reachability"
+    ],
+    "error_type": null,
+    "submission": [
+      {
+        "type": "function_call",
+        "id": "chatcmpl-tool-8ac74ed02bcdb001",
+        "call_id": "chatcmpl-tool-8ac74ed02bcdb001",
+        "name": "submit_recommendation",
+        "arguments": "{\"status\": \"needs_location\", \"graph_version\": null, \"path\": [], \"requires_human_review\": true, \"review_status\": \"unverified\", \"reason\": \"Incident location is missing; obtain a location before planning access.\"}",
+        "status": "completed"
+      }
+    ],
+    "repair_edits": [
+      {
+        "field": "graph_version",
+        "before": "None",
+        "after": null
+      }
+    ]
+  },
+  {
+    "run": "grounded_v2_nullable_r2",
+    "scenario_id": "test_fresh2_dd44baf17cff1880",
+    "issues": [
+      "incorrect_reachability"
+    ],
+    "error_type": null,
+    "submission": [
+      {
+        "type": "function_call",
+        "id": "chatcmpl-tool-b7a13e9920bf3541",
+        "call_id": "chatcmpl-tool-b7a13e9920bf3541",
+        "name": "submit_recommendation",
+        "arguments": "{\"status\": \"needs_location\", \"graph_version\": null, \"path\": [], \"requires_human_review\": true, \"review_status\": \"unverified\", \"reason\": \"Incident location is missing; obtain a location before planning access.\"}",
+        "status": "completed"
+      }
+    ],
+    "repair_edits": [
+      {
+        "field": "graph_version",
+        "before": "None",
+        "after": null
+      }
+    ]
+  }
+]

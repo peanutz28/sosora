@@ -1,0 +1,6 @@
+{
+  "effective_prompt_identical_to_last_fresh_exam": true,
+  "tool_descriptions_identical_to_last_fresh_exam": true,
+  "file_hash_difference": "Current source JSON also has unused name/revision metadata; effective runner policy is identical.",
+  "grounded_arms_policy_bytes_identical": true
+}

@@ -1,0 +1,13 @@
+{
+  "opened_utc": "2026-10-18T12:02:08.873077+00:00",
+  "seal_commit": "68f5b1a",
+  "policy_hashes": {
+    "baseline": "6b15bea75f32d3d44b1cc97ba0784c469246753e2d5c1f9823a31f85b378f4da",
+    "grounded_v2": "bacd482bc08054d058aecad93889624370ee6a06ee97a13babb2984f0399ef28",
+    "grounded_v2_nullable": "bacd482bc08054d058aecad93889624370ee6a06ee97a13babb2984f0399ef28"
+  },
+  "evaluation_cutoff_utc": "2026-10-18T12:35:00+00:00",
+  "documentation_deadline_utc": "2026-10-18T12:40:00+00:00",
+  "retries": false,
+  "selection": false
+}

@@ -1,0 +1,474 @@
+{
+  "policies": [
+    {
+      "arm": "baseline",
+      "repaired_fields": 0,
+      "repaired_tool_calls": 0,
+      "repaired_scenarios": 0,
+      "complete_runs": 3,
+      "passes_per_complete_run": [
+        0,
+        0,
+        0
+      ],
+      "mean_passes_per42": 0,
+      "range_passes_per42": [
+        0,
+        0
+      ],
+      "provider_errors": {
+        "ConnectError": 126
+      },
+      "provider_error_count": 126,
+      "runs": [
+        {
+          "arm": "baseline",
+          "repeat": 1,
+          "status": "complete",
+          "passed": 0,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 42
+        },
+        {
+          "arm": "baseline",
+          "repeat": 2,
+          "status": "complete",
+          "passed": 0,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 42
+        },
+        {
+          "arm": "baseline",
+          "repeat": 3,
+          "status": "complete",
+          "passed": 0,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 42
+        }
+      ],
+      "verifier_issue_counts": {
+        "missing_required_tools": 126,
+        "require_exactly_one_recommendation": 126
+      }
+    },
+    {
+      "arm": "grounded_v2",
+      "repaired_fields": 0,
+      "repaired_tool_calls": 0,
+      "repaired_scenarios": 0,
+      "complete_runs": 3,
+      "passes_per_complete_run": [
+        0,
+        0,
+        0
+      ],
+      "mean_passes_per42": 0,
+      "range_passes_per42": [
+        0,
+        0
+      ],
+      "provider_errors": {
+        "ConnectError": 126
+      },
+      "provider_error_count": 126,
+      "runs": [
+        {
+          "arm": "grounded_v2",
+          "repeat": 1,
+          "status": "complete",
+          "passed": 0,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 42
+        },
+        {
+          "arm": "grounded_v2",
+          "repeat": 2,
+          "status": "complete",
+          "passed": 0,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 42
+        },
+        {
+          "arm": "grounded_v2",
+          "repeat": 3,
+          "status": "complete",
+          "passed": 0,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 42
+        }
+      ],
+      "verifier_issue_counts": {
+        "missing_required_tools": 126,
+        "require_exactly_one_recommendation": 126
+      }
+    },
+    {
+      "arm": "grounded_v2_nullable",
+      "repaired_fields": 0,
+      "repaired_tool_calls": 0,
+      "repaired_scenarios": 0,
+      "complete_runs": 3,
+      "passes_per_complete_run": [
+        0,
+        0,
+        0
+      ],
+      "mean_passes_per42": 0,
+      "range_passes_per42": [
+        0,
+        0
+      ],
+      "provider_errors": {
+        "ConnectError": 126
+      },
+      "provider_error_count": 126,
+      "runs": [
+        {
+          "arm": "grounded_v2_nullable",
+          "repeat": 1,
+          "status": "complete",
+          "passed": 0,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 42
+        },
+        {
+          "arm": "grounded_v2_nullable",
+          "repeat": 2,
+          "status": "complete",
+          "passed": 0,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 42
+        },
+        {
+          "arm": "grounded_v2_nullable",
+          "repeat": 3,
+          "status": "complete",
+          "passed": 0,
+          "evaluated": 42,
+          "requested": 42,
+          "provider_errors": 42
+        }
+      ],
+      "verifier_issue_counts": {
+        "missing_required_tools": 126,
+        "require_exactly_one_recommendation": 126
+      }
+    }
+  ],
+  "families": {
+    "baseline": {
+      "alternate_route": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "bridge_closed": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "conflicting_evidence": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "isolated": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "missing_location": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tool_failure": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "two_roads_closed": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "grounded_v2": {
+      "alternate_route": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "bridge_closed": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "conflicting_evidence": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "isolated": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "missing_location": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tool_failure": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "two_roads_closed": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "grounded_v2_nullable": {
+      "alternate_route": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "bridge_closed": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "conflicting_evidence": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "isolated": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "missing_location": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tool_failure": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      },
+      "two_roads_closed": {
+        "passed": 0,
+        "evaluated": 18,
+        "planned": 18,
+        "passes_per_run": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "runs": [
+    {
+      "arm": "baseline",
+      "repeat": 1,
+      "status": "complete",
+      "passed": 0,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 42
+    },
+    {
+      "arm": "baseline",
+      "repeat": 2,
+      "status": "complete",
+      "passed": 0,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 42
+    },
+    {
+      "arm": "baseline",
+      "repeat": 3,
+      "status": "complete",
+      "passed": 0,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 42
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 1,
+      "status": "complete",
+      "passed": 0,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 42
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 2,
+      "status": "complete",
+      "passed": 0,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 42
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 3,
+      "status": "complete",
+      "passed": 0,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 42
+    },
+    {
+      "arm": "grounded_v2_nullable",
+      "repeat": 1,
+      "status": "complete",
+      "passed": 0,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 42
+    },
+    {
+      "arm": "grounded_v2_nullable",
+      "repeat": 2,
+      "status": "complete",
+      "passed": 0,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 42
+    },
+    {
+      "arm": "grounded_v2_nullable",
+      "repeat": 3,
+      "status": "complete",
+      "passed": 0,
+      "evaluated": 42,
+      "requested": 42,
+      "provider_errors": 42
+    }
+  ],
+  "planned_scenario_attempts": 378,
+  "evaluated_scenario_attempts": 378,
+  "provider_errors": 378,
+  "complete_runs": 9,
+  "selection": false,
+  "policy_changes": false,
+  "mean_denominator": "Only complete42-case runs enter mean/range. Any incomplete run stays separately reported; no retry or imputed score."
+}

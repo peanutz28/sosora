@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "seal_commit": "b4b4cc6",
+  "commit_precedes_open": true,
+  "rescored_attempts": 378,
+  "recorded_model_calls": 0,
+  "adapter_raw_effective_edits_verified": true,
+  "previous_split_bytes_unchanged": true,
+  "completion": {
+    "status": "completed",
+    "at_utc": "2026-10-18T12:00:02.348834+00:00",
+    "runs": [
+      {
+        "arm": "baseline",
+        "repeat": 1,
+        "status": "completed",
+        "exit_code": 0
+      },
+      {
+        "arm": "grounded_v2",
+        "repeat": 1,
+        "status": "completed",
+        "exit_code": 0
+      },
+      {
+        "arm": "grounded_v2_nullable",
+        "repeat": 1,
+        "status": "completed",
+        "exit_code": 0
+      },
+      {
+        "arm": "grounded_v2",
+        "repeat": 2,
+        "status": "completed",
+        "exit_code": 0
+      },
+      {
+        "arm": "grounded_v2_nullable",
+        "repeat": 2,
+        "status": "completed",
+        "exit_code": 0
+      },
+      {
+        "arm": "baseline",
+        "repeat": 2,
+        "status": "completed",
+        "exit_code": 0
+      },
+      {
+        "arm": "grounded_v2_nullable",
+        "repeat": 3,
+        "status": "completed",
+        "exit_code": 0
+      },
+      {
+        "arm": "baseline",
+        "repeat": 3,
+        "status": "completed",
+        "exit_code": 0
+      },
+      {
+        "arm": "grounded_v2",
+        "repeat": 3,
+        "status": "completed",
+        "exit_code": 0
+      }
+    ]
+  }
+}

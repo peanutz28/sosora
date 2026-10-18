@@ -1,0 +1,47 @@
+{
+  "image": "vllm/vllm-openai:v0.27.1",
+  "image_id": "sha256:e0cfcfcb9b86e2c2d0d52a93689773f20f380cb8e050a24ce550c44f6f55c5eb",
+  "container_created": "2026-10-18T03:38:36.203163531Z",
+  "started_at": "2026-10-18T07:49:53.848268831Z",
+  "state": "running",
+  "command": [
+    "--model",
+    "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+    "--served-model-name",
+    "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000",
+    "--dtype",
+    "bfloat16",
+    "--max-model-len",
+    "16384",
+    "--max-num-seqs",
+    "32",
+    "--gpu-memory-utilization",
+    "0.90",
+    "--enable-prefix-caching",
+    "--async-scheduling",
+    "--mamba-backend",
+    "flashinfer",
+    "--mamba-ssm-cache-dtype",
+    "float16",
+    "--enable-mamba-cache-stochastic-rounding",
+    "--mamba-cache-philox-rounds",
+    "5",
+    "--reasoning-parser",
+    "nemotron_v3",
+    "--tool-call-parser",
+    "qwen3_coder",
+    "--enable-auto-tool-choice",
+    "--default-chat-template-kwargs",
+    "{\"enable_thinking\":false}"
+  ],
+  "strict_tool_calling_env": [
+    "VLLM_ENFORCE_STRICT_TOOL_CALLING=false"
+  ]
+}
+name, utilization.gpu [%], memory.used [MiB]
+NVIDIA H100 80GB HBM3, 0 %, 72565 MiB
+sosora-lightning-vllm

@@ -1,0 +1,375 @@
+{
+  "field_edits": 36,
+  "by_family": {
+    "tool_failure": 18,
+    "missing_location": 18
+  },
+  "by_field": {
+    "graph_version": 36
+  },
+  "by_original_spelling": {
+    "None": 36
+  },
+  "edits": [
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_83f59211cc1869a6",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-80770d6fba16b2b5",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_279196f8ed2c38d3",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-b653002d7530d9fd",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_2cd3b76f617c638d",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-a397e998fda04490",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_6dba1be4480143e8",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-8cba09aff6f4eac0",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_46215b0d978cf6cc",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-b823d88a6985e26e",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_b0ba8309794aee80",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-a19cb2442837340c",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_b7cd98d61ef28eae",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-833c38b53c7c25d3",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_957fec01380f7e50",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-b1acc8b1e24869d0",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_b97ead386c96dbca",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-a2f58f900e081558",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_75ae404e2fe26911",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-908df32cdc72656c",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_dd44baf17cff1880",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-b95f162ab356ce9d",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r1",
+      "scenario_id": "test_fresh2_f41d806a789855ea",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-a3ca1c294efa52c9",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_83f59211cc1869a6",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-8ac74ed02bcdb001",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_279196f8ed2c38d3",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-81a9340224c13132",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_2cd3b76f617c638d",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-83c641d77ca35495",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_6dba1be4480143e8",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-b6433d4fbfe350f2",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_46215b0d978cf6cc",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-90743a1c05b32e56",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_b0ba8309794aee80",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-83c320453d052ab5",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_b7cd98d61ef28eae",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-bcbfe8b50d2849ac",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_957fec01380f7e50",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-9ff5134728b84e73",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_b97ead386c96dbca",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-92bbf9b39648a7fa",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_75ae404e2fe26911",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-b641d5ddc3ab632e",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_dd44baf17cff1880",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-b7a13e9920bf3541",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r2",
+      "scenario_id": "test_fresh2_f41d806a789855ea",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-99b42c94a3a0f210",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_83f59211cc1869a6",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-aaf0894335ae08b9",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_279196f8ed2c38d3",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-8e849b446d0ec415",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_2cd3b76f617c638d",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-9a81e91177c518d7",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_6dba1be4480143e8",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-8208cb36588df6be",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_46215b0d978cf6cc",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-873364907166f1e5",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_b0ba8309794aee80",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-a48100433953dbbd",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_b7cd98d61ef28eae",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-b12039c143ca2162",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_957fec01380f7e50",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-a3341f82528101b0",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_b97ead386c96dbca",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-8844980bcefb0d13",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_75ae404e2fe26911",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-abd23148f72cdc0b",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_dd44baf17cff1880",
+      "family": "tool_failure",
+      "call_id": "chatcmpl-tool-b9bfabd5243624b5",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    },
+    {
+      "run": "grounded_v2_nullable_r3",
+      "scenario_id": "test_fresh2_f41d806a789855ea",
+      "family": "missing_location",
+      "call_id": "chatcmpl-tool-bb33723b61faae1f",
+      "tool": "submit_recommendation",
+      "field": "graph_version",
+      "before": "None",
+      "after": null
+    }
+  ]
+}

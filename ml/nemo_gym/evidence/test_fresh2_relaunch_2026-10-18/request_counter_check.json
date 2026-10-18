@@ -1,0 +1,16 @@
+{
+  "before": {
+    "vllm:request_success_total": 4617.0,
+    "vllm:num_requests_running": 0.0,
+    "vllm:num_requests_waiting": 0.0
+  },
+  "after": {
+    "vllm:request_success_total": 6844.0,
+    "vllm:num_requests_running": 0.0,
+    "vllm:num_requests_waiting": 0.0
+  },
+  "server_success_counter_delta": 2227.0,
+  "recorded_response_calls": 2227,
+  "difference": 0.0,
+  "interpretation": "Counters are server-wide. A transport error can leave a server-completed response unobserved by the runner; shared traffic cannot be excluded from counters alone."
+}

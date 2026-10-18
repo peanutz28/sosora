@@ -1,0 +1,7 @@
+vllm:num_requests_running{engine="0",model_name="nvidia/nemotron-3.5-lightning-30b-a3b"} 0.0
+vllm:num_requests_waiting{engine="0",model_name="nvidia/nemotron-3.5-lightning-30b-a3b"} 0.0
+vllm:request_success_total{engine="0",finished_reason="stop",model_name="nvidia/nemotron-3.5-lightning-30b-a3b"} 6844.0
+vllm:request_success_total{engine="0",finished_reason="length",model_name="nvidia/nemotron-3.5-lightning-30b-a3b"} 0.0
+vllm:request_success_total{engine="0",finished_reason="abort",model_name="nvidia/nemotron-3.5-lightning-30b-a3b"} 0.0
+vllm:request_success_total{engine="0",finished_reason="error",model_name="nvidia/nemotron-3.5-lightning-30b-a3b"} 0.0
+vllm:request_success_total{engine="0",finished_reason="repetition",model_name="nvidia/nemotron-3.5-lightning-30b-a3b"} 0.0

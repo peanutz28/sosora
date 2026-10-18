@@ -1,0 +1,20 @@
+| Policy | Complete runs | Passes /42 | Mean /42 | Range /42 | Provider errors |
+|---|---:|---|---:|---|---:|
+| baseline | 3/3 | 15, 11, 13 | 13.00 | 11–15 | 1 |
+| grounded_v2 | 3/3 | 30, 30, 30 | 30.00 | 30–30 | 0 |
+| grounded_v2_nullable | 3/3 | 41, 40, 42 | 41.00 | 40–42 | 0 |
+
+Per-family counts are passes / evaluated attempts across three runs (planned 18 each):
+
+| Family | Baseline | grounded_v2 | grounded_v2 + nullable adapter |
+|---|---|---|---|
+| alternate_route | 10/18 (4, 4, 2) | 18/18 (6, 6, 6) | 18/18 (6, 6, 6) |
+| bridge_closed | 11/18 (4, 2, 5) | 18/18 (6, 6, 6) | 18/18 (6, 6, 6) |
+| conflicting_evidence | 3/18 (1, 1, 1) | 18/18 (6, 6, 6) | 18/18 (6, 6, 6) |
+| isolated | 4/18 (2, 1, 1) | 18/18 (6, 6, 6) | 18/18 (6, 6, 6) |
+| missing_location | 0/18 (0, 0, 0) | 0/18 (0, 0, 0) | 18/18 (6, 6, 6) |
+| tool_failure | 0/18 (0, 0, 0) | 0/18 (0, 0, 0) | 15/18 (5, 4, 6) |
+| two_roads_closed | 11/18 (4, 3, 4) | 18/18 (6, 6, 6) | 18/18 (6, 6, 6) |
+
+Adapter repairs (field edits / tool calls / scenarios): baseline: 0 / 0 / 0, grounded_v2: 0 / 0 / 0, grounded_v2_nullable: 36 / 36 / 36
+{"passed": true, "seal_commit": "68f5b1a", "commit_precedes_open": true, "rescored_attempts": 378, "recorded_model_calls": 2227, "adapter_raw_effective_edits_verified": true, "previous_split_bytes_unchanged": true, "completion": {"status": "completed", "at_utc": "2026-10-18T12:18:41.536750+00:00", "runs": [{"arm": "baseline", "repeat": 1, "status": "completed", "exit_code": 0}, {"arm": "grounded_v2", "repeat": 1, "status": "completed", "exit_code": 0}, {"arm": "grounded_v2_nullable", "repeat": 1, "status": "completed", "exit_code": 0}, {"arm": "grounded_v2", "repeat": 2, "status": "completed", "exit_code": 0}, {"arm": "grounded_v2_nullable", "repeat": 2, "status": "completed", "exit_code": 0}, {"arm": "baseline", "repeat": 2, "status": "completed", "exit_code": 0}, {"arm": "grounded_v2_nullable", "repeat": 3, "status": "completed", "exit_code": 0}, {"arm": "baseline", "repeat": 3, "status": "completed", "exit_code": 0}, {"arm": "grounded_v2", "repeat": 3, "status": "completed", "exit_code": 0}]}}

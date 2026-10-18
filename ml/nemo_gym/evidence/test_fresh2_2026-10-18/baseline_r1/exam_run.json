@@ -1,0 +1,9 @@
+{
+  "arm": "baseline",
+  "repeat": 1,
+  "started_utc": "2026-10-18T11:59:22.905292+00:00",
+  "configuration_sha256": "6b15bea75f32d3d44b1cc97ba0784c469246753e2d5c1f9823a31f85b378f4da",
+  "requested_cases": 42,
+  "runner_policy_label": "grounded_v2; arm selected by frozen config root",
+  "argument_adapter": "none"
+}
