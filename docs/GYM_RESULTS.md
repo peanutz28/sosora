@@ -32,7 +32,7 @@ Do not attribute all score changes to transport or call this RL.
 ## Reproduce
 
 ```sh
-PYTHONPATH="$PWD:$GYM_OFFICIAL" "$GYM_PYTHON" scripts/vllm/score_fresh_exam2.py --evidence ml/nemo_gym/evidence/test_fresh2_2026-10-18
+PYTHONPATH="$PWD:$GYM_OFFICIAL" "$GYM_PYTHON" scripts/vllm/score_fresh_exam2.py --evidence ml/nemo_gym/evidence/test_fresh2_relaunch_2026-10-18
 ```
 
 This scores saved trajectories offline using the pinned official verifier, audits the

@@ -1,0 +1,104 @@
+{
+  "sealed_utc": "2026-10-18T11:58:56.639889+00:00",
+  "test_fresh2_opened_by_model_run": false,
+  "model_calls_on_test_fresh2": 0,
+  "no_policy_edits_after_seal": true,
+  "no_selection": true,
+  "no_retries": true,
+  "new_node_counts": [
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "new_cases": 42,
+  "families": 7,
+  "simulated": true,
+  "fresh_task_sha256": "eab007ad30e6025accaba84a18b5770591b896c012dc21398920596d108c5816",
+  "legacy_hashes_before": {
+    "ml/nemo_gym/data/train.jsonl": "6259d74f38ab28f446193584856dca9979e4c8d9c407e1837f4a23bd67d78875",
+    "ml/nemo_gym/data/validation.jsonl": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650",
+    "ml/nemo_gym/data/test.jsonl": "2b86c0e594b586f733a03f23ae5e607dfaa02a5182e4a1111a921945a8587e3b",
+    "ml/nemo_gym/data/test_fresh.jsonl": "37162bed13593d17438f7352173be649b486adff7c78328c4ff2206268cfd0e8"
+  },
+  "legacy_hashes_after": {
+    "ml/nemo_gym/data/train.jsonl": "6259d74f38ab28f446193584856dca9979e4c8d9c407e1837f4a23bd67d78875",
+    "ml/nemo_gym/data/validation.jsonl": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650",
+    "ml/nemo_gym/data/test.jsonl": "2b86c0e594b586f733a03f23ae5e607dfaa02a5182e4a1111a921945a8587e3b",
+    "ml/nemo_gym/data/test_fresh.jsonl": "37162bed13593d17438f7352173be649b486adff7c78328c4ff2206268cfd0e8"
+  },
+  "legacy_hashes_unchanged": true,
+  "policy_sha256": {
+    "baseline": "6b15bea75f32d3d44b1cc97ba0784c469246753e2d5c1f9823a31f85b378f4da",
+    "grounded_v2": "bacd482bc08054d058aecad93889624370ee6a06ee97a13babb2984f0399ef28",
+    "grounded_v2_nullable": "bacd482bc08054d058aecad93889624370ee6a06ee97a13babb2984f0399ef28"
+  },
+  "argument_adapters": {
+    "baseline": "none",
+    "grounded_v2": "none",
+    "grounded_v2_nullable": "nullable-null-v1"
+  },
+  "frozen_source_sha256": {
+    "ml/nemo_gym/scenarios.py": "32aa81ef4e7bfb826b44e5ceb63f720c6337824059540bfcb248b63ea6f7d7ab",
+    "ml/nemo_gym/core.py": "22d9c49b6597e744b9d4690f16937749a42936b9cca6bc56baa010b3513e11c7",
+    "ml/nemo_gym/app.py": "7f3df73d2315605270d6294292dbfee79582701bb0c20768acedef9230d1f126",
+    "ml/nemo_gym/evaluate_agent.py": "9f2a54184913bd0846bb631bac92bf572ea212a32d35a3252e274043ee9ac676",
+    "ml/nemo_gym/tool_arguments.py": "35dadb940fce81f6822efaace52fe820bc0388208dc84086e25bb9ebcc9875f0",
+    "scripts/vllm/serve_brev.sh": "009014a92debe7d5bd8232bf7225b9f36862fe60a042e1b15ee3db23fc3f8026",
+    "scripts/vllm/run_fresh_exam2.py": "6cc980185cfc1175aaf6c31c7f945d65f993d0058f0866a633a6babb275b1da2",
+    "scripts/vllm/score_fresh_exam2.py": "532db5fae1a9cc13296a1651319fb86ebdb15851b1c4794ffc27ac047c6c0028",
+    "scripts/vllm/summarize_fresh_exam2.py": "5dcd0f7f96f718e83d952b729ad3fb803e8a338e5aa9867107c44aa83ca58f96"
+  },
+  "verifier_score_function_unchanged": true,
+  "verifier_score_function_sha256": "d2cda1a4b7e0125f84bbbabfcbce2cf675a080c6123f4042493a5547aae954b7",
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "sampling": {
+    "temperature": 1.0,
+    "max_tokens": 1024,
+    "parallel_tool_calls": false,
+    "max_turns": 12,
+    "per_call_timeout_seconds": 60
+  },
+  "arms": [
+    "baseline",
+    "grounded_v2",
+    "grounded_v2_nullable"
+  ],
+  "repeat_order": [
+    [
+      "baseline",
+      "grounded_v2",
+      "grounded_v2_nullable"
+    ],
+    [
+      "grounded_v2",
+      "grounded_v2_nullable",
+      "baseline"
+    ],
+    [
+      "grounded_v2_nullable",
+      "baseline",
+      "grounded_v2"
+    ]
+  ],
+  "evaluation_cutoff_utc": "2026-10-18T12:35:00+00:00",
+  "deadline_utc": "2026-10-18T12:40:00+00:00",
+  "deadline_et": "2026-10-18 08:40 America/New_York",
+  "documentation_reserve_minutes": 5,
+  "official_runtime": {
+    "repository": "https://github.com/NVIDIA-NeMo/Gym",
+    "tag": "v0.6.0",
+    "commit": "3045a793346a31291d7ea4ae6af3f94a35036ce5",
+    "files_verified_against_git_blobs": 149,
+    "installation_scope": "resource-server core; not full Gym CLI dependencies"
+  },
+  "limitations": [
+    "New deterministic topology sizes/IDs; same seven synthetic families, not a novel task distribution.",
+    "Three repetitions reuse the same 42 cases; 378 attempts are not independent incidents.",
+    "Only grounded_v2 versus grounded_v2_nullable isolates argument repair; baseline differs in policy.",
+    "nullable-null-v1 repairs only schema-proven nullable scalar null spellings; no adapter edits.",
+    "Custom chat-completions runner with genuine pinned NeMo Gym resource-server tools/verifier; not full Gym CLI."
+  ]
+}

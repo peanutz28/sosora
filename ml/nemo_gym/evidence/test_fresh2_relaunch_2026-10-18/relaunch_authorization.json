@@ -1,0 +1,15 @@
+{
+  "authorized_utc": "2026-10-18T12:01:07.159855+00:00",
+  "authorization": "User: Allow one complete relaunch; retain failures",
+  "original_seal_commit": "b4b4cc6",
+  "failed_launch": "ml/nemo_gym/evidence/test_fresh2_2026-10-18",
+  "failed_launch_attempts": 378,
+  "failed_launch_successful_model_calls": 0,
+  "policy_changes": false,
+  "adapter_changes": false,
+  "data_changes": false,
+  "one_complete_relaunch": true,
+  "selective_retries": false,
+  "internal_retries": false,
+  "note": "Original seal is copied byte for byte. Its unopened statement describes original seal time. Original launch records and its opened marker are preserved separately."
+}
