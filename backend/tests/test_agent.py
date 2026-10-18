@@ -157,3 +157,28 @@ def test_completion_uses_configured_endpoint_and_tools(monkeypatch, provider, ch
                               request=httpx.Request("POST", url))
     monkeypatch.setattr(httpx.AsyncClient, "post", respond)
     assert run(agent.completion([]))["content"] == "ok"
+
+
+def test_model_gets_route_summary_while_events_keep_full_geometry(monkeypatch):
+    agent = make(monkeypatch)
+    step = 0
+    async def fake(messages):
+        nonlocal step
+        if step == 0:
+            name, arguments = "recompute_reachability", {}
+        else:
+            result = json.loads(messages[-1]["content"])
+            route = result["routes"]["SOS-001"]
+            assert route["status"] == "ok"
+            assert route["length_m"] == 1800.0
+            assert "geometry" not in route
+            assert "edge_ids" not in route
+            name, arguments = "submit_assessment", assessment()
+        step += 1
+        return {"role": "assistant", "tool_calls": [{"id": str(step), "type": "function",
+                "function": {"name": name, "arguments": json.dumps(arguments)}}]}
+    agent.completion = fake
+    run(agent.run())
+    event = next(e for e in agent.engine.events if e.get("tool") == "recompute_reachability" and e["kind"] == "agent_tool_result")
+    assert event["result"]["routes"]["SOS-001"]["geometry"]
+    assert event["result"]["routes"]["SOS-001"]["edge_ids"] == ["ab", "bc"]

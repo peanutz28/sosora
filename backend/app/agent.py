@@ -321,7 +321,15 @@ class RadioAgent:
                     except (ValueError, TypeError):
                         arguments = None
                     result = await self.call(function["name"], arguments, call["id"])
-                    messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result)})
+                    # Full routes remain in state and streamed tool events. Geometry
+                    # and hundreds of edge ids are not needed to assess access, and
+                    # can overflow a laptop-sized vLLM context after this tool.
+                    model_result = result
+                    if function["name"] == "recompute_reachability" and "routes" in result:
+                        model_result = {**result, "routes": {
+                            incident_id: {key: route[key] for key in ("status", "length_m", "edge_count") if key in route}
+                            for incident_id, route in result["routes"].items()}}
+                    messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(model_result)})
                     if function["name"] == "submit_assessment" and "error" not in result:
                         return result
             except Exception as exc:
