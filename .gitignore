@@ -38,3 +38,6 @@ __pycache__/
 *.sqlite3
 dashboard/cache/
 ios-app/**/xcuserdata/
+
+# Separate production build output while the dashboard dev server is running
+frontend/.next-build/

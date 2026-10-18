@@ -78,8 +78,12 @@ const RANK: Record<QueueIncident["urgency"], number> = {
   watch: 2,
 };
 
-function fromBackend(incident: Incident, objectiveLabel: string): QueueIncident {
-  const title = incident.message.split(". ")[0] || incident.message || "Incoming SOS";
+function fromBackend(
+  incident: Incident,
+  objectiveLabel: string,
+): QueueIncident {
+  const title =
+    incident.message.split(". ")[0] || incident.message || "Incoming SOS";
   return {
     id: incident.id,
     client_id: incident.client_id,
@@ -88,7 +92,9 @@ function fromBackend(incident: Incident, objectiveLabel: string): QueueIncident 
     lon: incident.lon,
     lat: incident.lat,
     title,
-    location: objectiveLabel,
+    location:
+      incident.message.replace(/^\[SIMULATED\]\s*/i, "").split(". ")[0] ||
+      objectiveLabel,
     message: incident.message,
     people_affected: incident.people_affected,
     medical: incident.medical,
@@ -104,8 +110,12 @@ function fromBackend(incident: Incident, objectiveLabel: string): QueueIncident 
 }
 
 export function buildQueue(state: AppState): QueueIncident[] {
-  const live = state.incidents.map((incident) => fromBackend(incident, state.objective.label));
+  const live = state.incidents.map((incident) =>
+    fromBackend(incident, state.objective.label),
+  );
   const liveIds = new Set(live.map((item) => item.client_id));
   const fixtures = FIXTURES.filter((item) => !liveIds.has(item.client_id));
-  return [...live, ...fixtures].sort((a, b) => RANK[a.urgency] - RANK[b.urgency] || a.id.localeCompare(b.id));
+  return (live.length ? live : fixtures).sort(
+    (a, b) => RANK[a.urgency] - RANK[b.urgency] || a.id.localeCompare(b.id),
+  );
 }

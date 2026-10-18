@@ -121,7 +121,13 @@ export type AppState = {
     clock: string;
   };
   steps: { id: string; label: string; title: string; index: number }[];
-  rescue_unit: { id: string; name: string; lon: number; lat: number; fictional: boolean };
+  rescue_unit: {
+    id: string;
+    name: string;
+    lon: number;
+    lat: number;
+    fictional: boolean;
+  };
   objective: { lon: number; lat: number; label: string };
   incidents: Incident[];
   closures: Closure[];
@@ -143,7 +149,10 @@ export type AppState = {
     uncertainties?: string[];
     human_review?: boolean;
   } | null;
-  review: { status: "not_requested" | "requested" | "acknowledged"; note: string };
+  review: {
+    status: "not_requested" | "requested" | "acknowledged";
+    note: string;
+  };
   ml: { mode: string; detail: string };
   imagery: {
     selected: boolean;
@@ -169,4 +178,39 @@ export type FeatureCollection = {
     properties: Record<string, string | number | boolean | null>;
     geometry: { type: string; coordinates: unknown };
   }[];
+};
+
+export type OpsEvent = ScenarioEvent & {
+  simulated?: boolean;
+  radio_id?: string;
+  source_type?: string;
+  unit?: string;
+  beacon_id?: string;
+  text?: string;
+  water_level_cm?: number;
+  over_threshold?: boolean;
+  tool?: string;
+  call_id?: string;
+  arguments?: Record<string, unknown>;
+  result?: Record<string, unknown>;
+  parse?: Record<string, unknown>;
+  error?: string;
+};
+export type Assessment = {
+  summary: string;
+  affected_incident_ids: string[];
+  needs_human_review: boolean;
+};
+export type BridgeCandidate = {
+  id: string;
+  name: string;
+  centroid: LngLat;
+  label: string;
+};
+export type Beacon = { id: string; name: string; lon: number; lat: number };
+export type DrillSeed = {
+  hero_message: string;
+  open_report: string;
+  beacon_position: { lon: number; lat: number };
+  state: AppState;
 };

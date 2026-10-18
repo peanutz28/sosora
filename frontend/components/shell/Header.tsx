@@ -1,77 +1,91 @@
 "use client";
 
 import { Play } from "lucide-react";
-import { stageLabel } from "@/lib/stages";
 import type { AppState, MapPhase } from "@/lib/types";
-
-const MODEL_LABEL: Record<string, string> = {
-  mock: "Model demo",
-  real: "Model live",
-  unavailable: "Model offline",
-  unchecked: "Model idle",
-};
 
 export function Header({
   state,
   mapPhase,
-  playing,
   busy,
+  agentWorking,
   onRun,
 }: {
   state: AppState;
   mapPhase: MapPhase;
-  playing: boolean;
+  playing?: boolean;
   busy: boolean;
+  agentWorking: boolean;
   onRun: () => void;
 }) {
-  const mapLabel = mapPhase === "ready" ? "Map live" : mapPhase === "error" ? "Map unavailable" : "Map loading";
-  const mapTone = mapPhase === "ready" ? "bg-route" : mapPhase === "error" ? "bg-critical" : "bg-warning";
-  const model = MODEL_LABEL[state.ml.mode] ?? state.ml.mode;
-  const modelTone = state.ml.mode === "real" ? "bg-route" : state.ml.mode === "unavailable" ? "bg-warning" : "bg-faint";
-  const done = state.scenario.step >= state.scenario.step_count - 1;
-
   return (
-    <header className="grid h-[60px] shrink-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 border-b border-line bg-surface px-4">
-      <div className="flex items-center gap-2.5">
-        <p className="text-[18px] leading-none font-semibold tracking-tight">
-          <span className="text-ink">SOS</span>
-          <span className="font-medium text-muted">ora</span>
-        </p>
-        <span className="hidden h-4 w-px bg-line sm:block" />
-        <p className="hidden text-[12px] text-muted sm:block">Rescue Intelligence</p>
+    <header className="ops-header">
+      <div className="brand">
+        <div className="brand-mark" aria-hidden>
+          ≋
+        </div>
+        <div>
+          <strong>
+            SOS<span>ora</span>
+          </strong>
+          <small>RESCUE INTELLIGENCE</small>
+        </div>
       </div>
-
-      <div className="min-w-0 text-center">
-        <p className="truncate text-[14px] font-medium text-ink">Hurricane Helene</p>
-        <p className="truncate text-[12px] text-muted">
-          Asheville–Swannanoa, North Carolina
-          <span className="mx-1.5 text-faint">·</span>
-          {playing ? "Playing" : stageLabel(state.scenario.step)}
-          <span className="mx-1.5 text-faint">·</span>
-          Simulated
-        </p>
+      <div className="header-center">
+        Swannanoa operations drill{" "}
+        <span className="text-faint">· Western North Carolina</span>
+        <span className="simulation-tag">SIMULATION</span>
       </div>
-
-      <div className="flex items-center gap-3">
-        <Status label={mapLabel} tone={mapTone} title={mapLabel} />
-        <Status label={model} tone={modelTone} title={state.ml.detail} />
+      <div className="header-actions">
+        <Status
+          label={
+            mapPhase === "ready"
+              ? "Map"
+              : mapPhase === "error"
+                ? "Map offline"
+                : "Map loading"
+          }
+          tone={mapPhase === "ready" ? "bg-route" : "bg-warning"}
+          title="Map rendering status"
+        />
+        <Status
+          label={
+            state.ml.mode === "real"
+              ? "Model online"
+              : state.system.demo_mode
+                ? "Model cached"
+                : "Model idle"
+          }
+          tone={state.ml.mode === "real" ? "bg-route" : "bg-faint"}
+          title={state.ml.detail}
+        />
+        <Status
+          label={`Agent: ${agentWorking ? "working" : "idle"}`}
+          tone={agentWorking ? "bg-live animate-pulse" : "bg-route"}
+          title="Radio agent processing status"
+        />
         <button
-          type="button"
+          className="primary-button"
           onClick={onRun}
-          disabled={busy}
-          className="inline-flex h-8 items-center gap-1.5 rounded-md bg-accent px-3 text-[13px] font-medium text-ink disabled:opacity-50"
+          disabled={busy || agentWorking}
         >
           <Play size={13} fill="currentColor" />
-          {done && !playing ? "Replay" : "Run scenario"}
+          Run demo
         </button>
       </div>
     </header>
   );
 }
-
-function Status({ label, tone, title }: { label: string; tone: string; title: string }) {
+function Status({
+  label,
+  tone,
+  title,
+}: {
+  label: string;
+  tone: string;
+  title: string;
+}) {
   return (
-    <span title={title} className="hidden items-center gap-1.5 text-[12px] text-muted lg:inline-flex">
+    <span title={title} className="header-status">
       <i className={`h-1.5 w-1.5 rounded-full ${tone}`} />
       {label}
     </span>

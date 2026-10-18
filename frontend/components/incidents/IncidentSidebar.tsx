@@ -1,18 +1,22 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { PanelLeftClose, Search } from "lucide-react";
+import {
+  PanelLeftClose,
+  Search,
+  Plus,
+  ArrowUpRight,
+  Users,
+} from "lucide-react";
 import { roadAccess } from "@/lib/access";
 import { peopleLabel, scenarioTime } from "@/lib/format";
 import type { LngLat, QueueIncident } from "@/lib/types";
 
-type Filter = "all" | "critical" | "unresolved";
-
+type Filter = "all" | "critical" | "cut off";
 export function IncidentSidebar({
   incidents,
   selectedId,
   busy,
-  reviewStatus,
   placeMode,
   draftPoint,
   onSelect,
@@ -36,169 +40,176 @@ export function IncidentSidebar({
   const [composer, setComposer] = useState(false);
   const [message, setMessage] = useState("");
   const [people, setPeople] = useState("1");
-
-  const visible = useMemo(() => {
-    const needle = query.trim().toLowerCase();
-    return incidents.filter((incident) => {
-      if (filter === "critical" && incident.urgency !== "critical") return false;
-      if (filter === "unresolved" && incident.verification === "verified") return false;
-      if (!needle) return true;
-      const haystack = `${incident.id} ${incident.title} ${incident.location} ${incident.message}`.toLowerCase();
-      return haystack.includes(needle);
-    });
-  }, [filter, incidents, query]);
-
-  const submit = () => {
-    const count = Number(people);
-    if (!draftPoint || !message.trim() || !Number.isFinite(count)) return;
-    onCreate({ message: message.trim(), people: count, point: draftPoint });
-    setMessage("");
-    setPeople("1");
-    setComposer(false);
-    onPlace(false);
-  };
-
+  const visible = useMemo(
+    () =>
+      incidents.filter((incident) => {
+        if (filter === "critical" && incident.urgency !== "critical")
+          return false;
+        if (filter === "cut off" && roadAccess(incident).status !== "lost")
+          return false;
+        return `${incident.id} ${incident.title} ${incident.message}`
+          .toLowerCase()
+          .includes(query.trim().toLowerCase());
+      }),
+    [filter, incidents, query],
+  );
   return (
-    <aside className="flex w-[272px] shrink-0 flex-col border-r border-line bg-surface">
-      <div className="flex items-center justify-between px-3 pt-3 pb-2">
-        <div className="flex items-baseline gap-2">
-          <h1 className="text-[14px] font-medium">Incidents</h1>
-          <span className="text-[12px] text-muted">{incidents.length}</span>
+    <aside className="incident-rail">
+      <div className="rail-heading">
+        <div>
+          <p className="eyebrow">OPERATIONS</p>
+          <h1 className="font-display">
+            Incident log <span>{incidents.length}</span>
+          </h1>
         </div>
-        <button type="button" aria-label="Collapse incidents" onClick={onCollapse} className="grid h-7 w-7 place-items-center text-muted hover:text-ink">
-          <PanelLeftClose size={15} />
+        <button
+          aria-label="Collapse incidents"
+          className="icon-control"
+          onClick={onCollapse}
+        >
+          <PanelLeftClose size={16} />
         </button>
       </div>
-
-      <div className="px-3 pb-2">
-        <label className="flex h-8 items-center gap-2 rounded-md bg-elevated px-2">
-          <Search size={13} className="shrink-0 text-faint" />
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search incidents"
-            className="w-full bg-transparent text-[13px] outline-none placeholder:text-faint"
-          />
-        </label>
-        <div className="mt-2 grid grid-cols-3 rounded-md bg-elevated p-0.5 text-[12px]">
-          {(["all", "critical", "unresolved"] as const).map((item) => (
-            <button
-              key={item}
-              type="button"
-              onClick={() => setFilter(item)}
-              className={`h-6 rounded capitalize ${filter === item ? "bg-surface text-ink" : "text-muted"}`}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
+      <label className="incident-search">
+        <Search size={14} />
+        <input
+          placeholder="Search incidents"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <span className="font-mono">⌕</span>
+      </label>
+      <div className="segmented">
+        {(["all", "critical", "cut off"] as const).map((value) => (
+          <button
+            key={value}
+            className={filter === value ? "active" : ""}
+            onClick={() => setFilter(value)}
+          >
+            {value}
+          </button>
+        ))}
       </div>
-
-      <div className="min-h-0 flex-1 overflow-y-auto">
-        {visible.length === 0 ? (
-          <p className="px-3 py-6 text-[13px] text-muted">No incidents match.</p>
-        ) : (
-          visible.map((incident) => (
+      <div className="incident-scroll">
+        {visible.length === 0 && (
+          <p className="empty-note">No incidents match this filter.</p>
+        )}
+        {visible.map((incident) => {
+          const access = roadAccess(incident);
+          return (
             <button
               key={incident.id}
-              type="button"
+              className={`incident-card ${incident.urgency === "critical" ? "critical" : ""} ${selectedId === incident.id ? "selected" : ""}`}
               onClick={() => onSelect(incident.id)}
-              className={`block w-full border-t border-line px-3 py-2.5 text-left ${
-                incident.id === selectedId ? "bg-elevated" : "hover:bg-white/[0.02]"
-              }`}
             >
-              <div className="flex items-center justify-between gap-2">
-                <span className="flex min-w-0 items-center gap-1.5">
-                  <i className={`h-1.5 w-1.5 shrink-0 rounded-full ${tone(incident.urgency)}`} />
-                  <span className="truncate text-[12px] text-muted">{incident.id}</span>
-                </span>
-                <span
-                  className={`shrink-0 text-[11px] capitalize ${
-                    incident.urgency === "critical" ? "text-critical" : incident.urgency === "high" ? "text-warning" : "text-muted"
-                  }`}
-                >
-                  {incident.urgency}
+              <div className="incident-top">
+                <b className="font-mono">{incident.id}</b>
+                <span className={`priority ${incident.urgency}`}>
+                  ● {incident.urgency}
                 </span>
               </div>
-              <p className="mt-1 line-clamp-2 text-[13px] leading-5 text-ink">{incident.title}</p>
-              <p className={`mt-1 text-[11px] font-medium ${roadAccess(incident).status === "lost" ? "text-critical" : "text-muted"}`}>
-                {roadAccess(incident).label}
+              <h2>{incident.title.replace(/^\[SIMULATED\]\s*/i, "")}</h2>
+              <p className="incident-message">
+                {incident.message
+                  .replace(/^\[SIMULATED\]\s*/i, "")
+                  .split(". ")
+                  .slice(1)
+                  .join(". ") ||
+                  incident.message.replace(/^\[SIMULATED\]\s*/i, "")}
               </p>
-              <p className="mt-0.5 truncate text-[12px] text-muted">{incident.location}</p>
-              <p className="mt-1 truncate text-[11px] text-faint">
-                {peopleLabel(incident.people_affected)}
-                <span className="mx-1">·</span>
-                {incident.delivery_status}
-                <span className="mx-1">·</span>
-                {incident.verification}
-                {incident.source === "backend" && reviewStatus !== "not_requested" ? ` · ${reviewStatus.replaceAll("_", " ")}` : ""}
-                <span className="mx-1">·</span>
-                {scenarioTime(incident.created_at)}
-              </p>
+              <div className="incident-meta">
+                <span>
+                  <Users size={12} />
+                  {peopleLabel(incident.people_affected)}
+                </span>
+                <time>{scenarioTime(incident.created_at)}</time>
+              </div>
+              <div className="incident-access">
+                <span className={`access-${access.status}`}>
+                  {access.status === "lost"
+                    ? "⊘"
+                    : access.status === "available"
+                      ? "↗"
+                      : "○"}{" "}
+                  {access.label}
+                </span>
+                <ArrowUpRight size={13} />
+              </div>
+              <span className="pill simulated">SIMULATED</span>
             </button>
-          ))
-        )}
+          );
+        })}
       </div>
-
-      <div className="border-t border-line p-3">
+      <div className="rail-footer">
         {composer ? (
           <div className="space-y-2">
             <textarea
+              aria-label="SOS message"
               value={message}
-              onChange={(event) => setMessage(event.target.value)}
-              placeholder="What is happening?"
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Describe the situation"
               rows={3}
-              className="w-full resize-none rounded-md bg-elevated px-2 py-1.5 text-[13px] outline-none placeholder:text-faint"
             />
-            <div className="flex items-center gap-2">
-              <input
-                value={people}
-                onChange={(event) => setPeople(event.target.value)}
-                inputMode="numeric"
-                aria-label="People affected"
-                className="h-8 w-16 rounded-md bg-elevated px-2 text-[13px] outline-none"
-              />
-              <button
-                type="button"
-                onClick={() => onPlace(!placeMode)}
-                className={`h-8 flex-1 rounded-md px-2 text-[12px] ${placeMode ? "bg-accent text-on-accent font-semibold" : "bg-elevated text-muted"}`}
-              >
-                {draftPoint ? "Location set" : "Click map to place"}
-              </button>
-            </div>
+            <input
+              aria-label="People affected"
+              type="number"
+              min={1}
+              value={people}
+              onChange={(e) => setPeople(e.target.value)}
+            />
+            <button
+              className="outline-button w-full"
+              onClick={() => onPlace(!placeMode)}
+            >
+              {draftPoint ? "Location set" : "Click map to place"}
+            </button>
             <div className="flex gap-2">
               <button
-                type="button"
+                className="outline-button flex-1"
                 onClick={() => {
                   setComposer(false);
                   onPlace(false);
                 }}
-                className="h-8 flex-1 rounded-md text-[12px] text-muted"
               >
                 Cancel
               </button>
               <button
-                type="button"
-                disabled={busy || !draftPoint || !message.trim()}
-                onClick={submit}
-                className="h-8 flex-1 rounded-md bg-accent text-[12px] font-semibold text-on-accent disabled:opacity-40"
+                className="primary-button flex-1"
+                disabled={
+                  busy ||
+                  !draftPoint ||
+                  !message.trim() ||
+                  !Number.isFinite(Number(people)) ||
+                  Number(people) < 1
+                }
+                onClick={() => {
+                  if (!draftPoint) return;
+                  onCreate({
+                    message: "[SIMULATED] " + message.trim(),
+                    people: Number(people),
+                    point: draftPoint,
+                  });
+                  setMessage("");
+                  setComposer(false);
+                  onPlace(false);
+                }}
               >
-                Add SOS
+                Save SOS
               </button>
             </div>
           </div>
         ) : (
-          <button type="button" onClick={() => setComposer(true)} className="h-8 w-full rounded-md bg-elevated text-[13px] text-ink">
-            New SOS
+          <button className="new-sos" onClick={() => setComposer(true)}>
+            <Plus size={15} />
+            Create drill SOS
           </button>
         )}
+        <p>
+          Simulated reports. Real road geometry.
+          <br />
+          Operator review before any response.
+        </p>
       </div>
     </aside>
   );
-}
-
-function tone(urgency: QueueIncident["urgency"]): string {
-  if (urgency === "critical") return "bg-critical";
-  if (urgency === "high") return "bg-warning";
-  return "bg-faint";
 }
