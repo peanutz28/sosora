@@ -32,7 +32,7 @@ def tools():
 def generate(out):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     hashes={}
-    for split,sizes in [('train',range(5,9)),('validation',range(9,11)),('test',range(11,13))]:
+    for split,sizes in [('train',range(5,9)),('validation',range(9,11)),('test',range(11,13)),('test_fresh',range(13,19))]:
         rows=[]
         for size in sizes:
             for family in FAMILIES:
@@ -40,7 +40,7 @@ def generate(out):
                 rows.append({'scenario_id':scenario.scenario_id,'responses_create_params':{'input':[{'role':'system','content':SYSTEM},{'role':'user','content':'Assess incident '+scenario.scenario_id+' using the tools.'}],'tools':tools(),'parallel_tool_calls':False},'scenario':scenario.model_dump()})
         path=out/(split+'.jsonl');path.write_text(''.join(json.dumps(r,sort_keys=True)+'\n' for r in rows))
         hashes[path.name]=hashlib.sha256(path.read_bytes()).hexdigest()
-    (out/'methodology.json').write_text(json.dumps({'license':'CC0-1.0','synthetic':True,'generator':'scenarios.py; no model-generated annotations','graph_semantics':'undirected, unweighted; only open edges traversable','splits':{'train':{'node_counts':[5,6,7,8],'scenarios':28},'validation':{'node_counts':[9,10],'scenarios':14},'test':{'node_counts':[11,12],'scenarios':14}},'limitations':['simulated small graphs, not field route validation','same scenario families across splits, disjoint topology sizes','no LLM rollouts or model improvement implied'],'sha256':hashes},indent=2))
+    (out/'methodology.json').write_text(json.dumps({'license':'CC0-1.0','synthetic':True,'generator':'scenarios.py; no model-generated annotations','graph_semantics':'undirected, unweighted; only open edges traversable','splits':{'train':{'node_counts':[5,6,7,8],'scenarios':28},'validation':{'node_counts':[9,10],'scenarios':14},'test':{'node_counts':[11,12],'scenarios':14},'test_fresh':{'node_counts':[13,14,15,16,17,18],'scenarios':42}},'limitations':['simulated small graphs, not field route validation','same scenario families across splits, disjoint topology sizes','no LLM rollouts or model improvement implied'],'sha256':hashes},indent=2))
 if __name__=='__main__':
     import sys
     generate(sys.argv[1])

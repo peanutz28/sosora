@@ -1,0 +1,86 @@
+{
+  "sealed_utc": "2026-10-18T08:32:18.262976+00:00",
+  "test_fresh_opened_by_model_run": false,
+  "model_calls_on_test_fresh": 0,
+  "no_policy_edits_after_seal": true,
+  "no_selection": true,
+  "no_retries": true,
+  "new_node_counts": [
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "new_cases": 42,
+  "families": 7,
+  "simulated": true,
+  "fresh_task_sha256": "37162bed13593d17438f7352173be649b486adff7c78328c4ff2206268cfd0e8",
+  "legacy_hashes_before": {
+    "ml/nemo_gym/data/train.jsonl": "6259d74f38ab28f446193584856dca9979e4c8d9c407e1837f4a23bd67d78875",
+    "ml/nemo_gym/data/validation.jsonl": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650",
+    "ml/nemo_gym/data/test.jsonl": "2b86c0e594b586f733a03f23ae5e607dfaa02a5182e4a1111a921945a8587e3b"
+  },
+  "legacy_hashes_after": {
+    "ml/nemo_gym/data/train.jsonl": "6259d74f38ab28f446193584856dca9979e4c8d9c407e1837f4a23bd67d78875",
+    "ml/nemo_gym/data/validation.jsonl": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650",
+    "ml/nemo_gym/data/test.jsonl": "2b86c0e594b586f733a03f23ae5e607dfaa02a5182e4a1111a921945a8587e3b"
+  },
+  "legacy_hashes_unchanged": true,
+  "policy_sha256": {
+    "grounded_v2": "3f07030aed69074f5add45b2d8bd00c4195d42538168fc0989374ff0e68f8633",
+    "baseline": "6b15bea75f32d3d44b1cc97ba0784c469246753e2d5c1f9823a31f85b378f4da",
+    "system_prompt_only": "8f3f7977440d64b98195f80f90684750374f20922bbfad56e98a12495751882b"
+  },
+  "deadline_utc": "2026-10-18T10:30:00+00:00",
+  "deadline_et": "2026-10-18 06:30 America/New_York",
+  "limitations": [
+    "New deterministic scenario IDs/topology sizes; same seven synthetic task families and verifier.",
+    "The old test split was used previously.",
+    "Size17 missing-location/tool-failure deterministic fake-provider unit cases previously existed; no live model exam on these42 cases. This is not a wholly novel task distribution."
+  ],
+  "frozen_source_sha256": {
+    "ml/nemo_gym/scenarios.py": "754b9deda8bea4ba58a6858a5ae8bf700bea3ebbc3eb163e438dfa724ad256ee",
+    "ml/nemo_gym/core.py": "97cea58d1e8932ccb58b798280f9460e8e0287c986d90d19f2ae8be76a4a7a3c",
+    "ml/nemo_gym/app.py": "7f3df73d2315605270d6294292dbfee79582701bb0c20768acedef9230d1f126",
+    "ml/nemo_gym/evaluate_agent.py": "aae033c1c72ed5cb6d9e97f44ae2d8186ac5955ac31895ea002bb2f25ee66f1a",
+    "ml/nemo_gym/tool_arguments.py": "35dadb940fce81f6822efaace52fe820bc0388208dc84086e25bb9ebcc9875f0",
+    "scripts/vllm/serve_brev.sh": "009014a92debe7d5bd8232bf7225b9f36862fe60a042e1b15ee3db23fc3f8026",
+    "scripts/vllm/run_fresh_exam.py": "f16cc1b5642099e4cb657f069df87319cc1406b117a840148be8159ed65af673"
+  },
+  "verifier_score_function_unchanged": true,
+  "verifier_score_function_sha256": "d2cda1a4b7e0125f84bbbabfcbce2cf675a080c6123f4042493a5547aae954b7",
+  "sampling": {
+    "temperature": 1.0,
+    "max_tokens": 1024,
+    "parallel_tool_calls": false,
+    "max_turns": 12,
+    "per_call_timeout_seconds": 60,
+    "argument_adapter": "none"
+  },
+  "arms": [
+    "baseline",
+    "system_prompt_only",
+    "grounded_v2"
+  ],
+  "repeat_order": [
+    [
+      "baseline",
+      "system_prompt_only",
+      "grounded_v2"
+    ],
+    [
+      "system_prompt_only",
+      "grounded_v2",
+      "baseline"
+    ],
+    [
+      "grounded_v2",
+      "baseline",
+      "system_prompt_only"
+    ]
+  ],
+  "evaluation_cutoff_utc": "2026-10-18T10:25:00+00:00",
+  "documentation_reserve_minutes": 5
+}

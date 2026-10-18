@@ -17,7 +17,7 @@ BASELINE='Assess this simulated rescue incident using the available tools. Finis
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--split',choices=['validation','test'],default='validation')
+    parser.add_argument('--split',choices=['validation','test','test_fresh'],default='validation')
     parser.add_argument('--policy',choices=['baseline','evidence_first','grounded_v2'],required=True)
     parser.add_argument('--output',required=True)
     parser.add_argument('--limit',type=int,default=3)
