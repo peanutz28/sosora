@@ -112,3 +112,59 @@ OSM graph. It exercises the fake-sensor CLI, replay CLI, and a failed connection
 by restart/reconnect; results are saved in `beacon/evidence/demo_verification.json`.
 Its generated silent WAV tests cached transcription only, not real speech recognition.
 Real microphone, ultrasonic sensor, GPIO button, and physical Wi-Fi unplug remain Pi checks.
+
+## Real USB microphone without a water sensor
+
+Pi recording verified by Ria on 2026-10-18: Sizheng/JMTek USB MIC, ALSA card 3/device 0;
+`vcgencmd get_throttled` returned `0x0`. Use the stable ALSA card name where available:
+
+```sh
+# On Pi (after copying the updated beacon.py from the Mac)
+cd ~/beacon
+source .venv/bin/activate
+python beacon.py --voice-only --audio-device plughw:MIC,0 --server http://192.168.68.80:8000
+```
+
+Press Enter, speak for eight seconds, then watch QUEUED → SENT and the Command dashboard.
+This mode starts no water sensor and emits no simulated water readings. Recordings are
+real audio; describe exercise reports as simulated incidents. Stop older Beacon processes
+first. Card numbers can change across boots; `arecord -l` identifies the current device.
+
+### Local speech recognition on Command (Mac)
+
+The optional CPU ASR sidecar serves Whisper `tiny.en` (published size 39M parameters),
+using faster-whisper int8. Nemotron remains the sole reasoning/tool-calling model. This
+is a smaller ASR alternative to the unserved 618M Parakeet, not an NVIDIA ASR claim.
+Sources: https://github.com/openai/whisper and https://github.com/SYSTRAN/faster-whisper.
+Download weights once while online; startup uses a local directory and will not download.
+
+```sh
+# Mac, repo root; one-time preparation
+ml/.venv312/bin/python -m pip install -r beacon/requirements-asr.txt
+ml/.venv312/bin/python -c "from faster_whisper.utils import download_model; download_model('tiny.en', output_dir='ml/artifacts/asr-tiny.en')"
+# Keep running in its own terminal (localhost only)
+ml/.venv312/bin/python -m uvicorn beacon.asr_server:app --host 127.0.0.1 --port 8003
+```
+
+Restart Command with its usual model-provider settings plus:
+`ASR_BASE_URL=http://127.0.0.1:8003 ASR_MODEL=tiny.en`.
+The existing `/api/radio/audio` transcribes the WAV, then runs the same radio agent and
+broadcasts state updates. No transcript prompt supplies bridge names. Arbitrary live
+recordings fail visibly if ASR is unavailable and remain queued on Pi; only explicitly
+named `demo_hero.wav` can use the existing cached SIMULATED fallback.
+
+For an already recorded clip, no client update is needed:
+
+```sh
+# Pi: this is actual audio transcription when the ASR server is running
+cd ~/beacon
+source .venv/bin/activate
+python beacon.py --replay ~/mic-test.wav --server http://192.168.68.80:8000
+```
+
+For arbitrary microphone reports, run Command and the ML parser with `DEMO_MODE=false`
+and the existing live Nemotron settings. `DEMO_MODE=true` only recognizes named cached
+fixtures; it does not parse arbitrary speech. Seed the dashboard's simulated SOS incidents before a bridge demo. Example exercise line:
+“Exercise report. Warren Wilson Road bridge has collapsed. Road impassable. Three families
+are stranded on the far side.” Keep each eight-second report short. A replay uses real
+speech recognition too; it is prerecorded audio, not a live microphone capture.

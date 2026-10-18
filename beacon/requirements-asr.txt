@@ -1,0 +1,7 @@
+# Command laptop only; the Pi needs only requirements.txt and ALSA.
+faster-whisper==1.2.1
+fastapi==0.115.14
+uvicorn==0.39.0
+python-multipart==0.0.20
+# PyAV 19 removed metadata_errors used by faster-whisper 1.2.1.
+av==16.1.0

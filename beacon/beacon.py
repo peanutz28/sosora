@@ -164,7 +164,9 @@ def arguments(argv=None):
     parser.add_argument('--mount-height-cm', type=float, default=60)
     parser.add_argument('--threshold-cm', type=float, default=30)
     parser.add_argument('--replay', type=Path)
-    parser.add_argument('--fake-sensor', action='store_true')
+    sensor_mode = parser.add_mutually_exclusive_group()
+    sensor_mode.add_argument('--fake-sensor', action='store_true')
+    sensor_mode.add_argument('--voice-only', action='store_true', help='Record microphone audio without starting a water sensor')
     parser.add_argument('--flush', action='store_true', help='Send existing outbox and exit; no sensor or recording')
     parser.add_argument('--offline', action='store_true')
     parser.add_argument('--outbox', type=Path, default=Path(__file__).resolve().parent / 'outbox')
@@ -234,7 +236,7 @@ def main(argv=None):
                 if sensor is not None:
                     sensor.close()
         sensor_thread = None
-        if not (args.replay or args.flush) or args.fake_sensor:
+        if not args.voice_only and (not (args.replay or args.flush) or args.fake_sensor):
             sensor_thread = threading.Thread(target=sensor_loop, daemon=True)
             sensor_thread.start()
         def sender_loop():

@@ -1,0 +1,76 @@
+{
+  "note": "Real Pi microphone recording of a SIMULATED exercise. Live local ASR succeeded. First Command trial used cached DEMO_MODE: unknown wording remained unverified and no SOS access changed. Live Nemotron trial pending explicit transcript-to-Brev approval. Upload was from Mac; physical Pi upload pending.",
+  "elapsed_seconds": 2.283,
+  "result": {
+    "transcript": {
+      "text": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable.",
+      "mode": "live",
+      "model": "tiny.en"
+    },
+    "radio_id": "radio-01988036",
+    "parse": {
+      "event_type": "other",
+      "road_name": null,
+      "road_ref": null,
+      "landmark": null,
+      "location_text": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable.",
+      "people_count": null,
+      "urgency": "low",
+      "needs_review": true,
+      "raw": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable.",
+      "parse_mode": "demo_unknown_message"
+    },
+    "assessment": {
+      "summary": "Simulated cached radio assessment. Road evidence and reachability evaluated in code.",
+      "affected_incident_ids": [],
+      "recommended_actions": [
+        "Review field report and access routes"
+      ],
+      "confidence": 0.5,
+      "needs_human_review": true,
+      "simulated": true
+    },
+    "statuses": {
+      "549633356:0:b": {
+        "status": "unverified",
+        "sources": [
+          {
+            "type": "beacon",
+            "time": "2026-10-18T08:24:40.894179+00:00",
+            "text": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable.",
+            "credible": true,
+            "verified": false,
+            "simulated": true,
+            "claim": "unverified"
+          }
+        ]
+      },
+      "549633356:0:f": {
+        "status": "unverified",
+        "sources": [
+          {
+            "type": "beacon",
+            "time": "2026-10-18T08:24:40.894179+00:00",
+            "text": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable.",
+            "credible": true,
+            "verified": false,
+            "simulated": true,
+            "claim": "unverified"
+          }
+        ]
+      }
+    },
+    "agent_runtime": {
+      "cached": true,
+      "model_id": null,
+      "serving_backend": null,
+      "last_call_latency_ms": null
+    }
+  },
+  "asr_http_check": {
+    "model": "tiny.en",
+    "mode": "live",
+    "seconds": 0.387,
+    "text": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable."
+  }
+}

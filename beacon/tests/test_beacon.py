@@ -122,3 +122,22 @@ def test_slow_upload_does_not_prevent_durable_sensor_enqueue(tmp_path):
             return SimpleNamespace(status_code=200)
     queue.send_due('http://command', session=CommandWithSensor())
     assert len(queue.pending()) == 1
+
+
+def test_voice_only_excludes_simulated_sensor():
+    args = beacon.arguments(['--voice-only', '--audio-device', 'plughw:3,0'])
+    assert args.voice_only and not args.fake_sensor
+    with pytest.raises(SystemExit):
+        beacon.arguments(['--voice-only', '--fake-sensor'])
+
+
+def test_record_uses_selected_usb_mic_and_durably_queues(tmp_path, monkeypatch):
+    queue = beacon.Outbox(tmp_path / 'outbox')
+    def capture(command, **kwargs):
+        assert command[:3] == ['arecord', '-D', 'plughw:3,0']
+        Path(command[-1]).write_bytes(b'RIFF microphone recording')
+    monkeypatch.setattr(beacon.subprocess, 'run', capture)
+    beacon.record(queue, beacon.arguments(['--voice-only', '--audio-device', 'plughw:3,0']))
+    row = json.loads(queue.pending()[0].read_text())
+    assert not row['simulated'] and row['filename'] == 'voice.wav'
+    assert (queue.path / row['wav']).read_bytes() == b'RIFF microphone recording'
