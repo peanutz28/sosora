@@ -1,0 +1,45 @@
+{
+  "created_at_utc": "2026-10-18T06:31:31.369968+00:00",
+  "manifest_sha256": "6d406a00b2247d369fce27caa9d96c3236ba3652136d7a32c1ebbd9aa9b03ebd",
+  "protocol_sha256": "d557eb517e128b3d1a7a3d921850fbbc0d3fa0091ad046436fc42d156cf49ade",
+  "device": "cuda",
+  "candidates": [
+    {
+      "architecture": "segformer",
+      "learning_rate": 5e-05,
+      "seed": 42,
+      "epochs": 20,
+      "batch_size": 4,
+      "max_steps": 2720
+    },
+    {
+      "architecture": "segformer",
+      "learning_rate": 0.0002,
+      "seed": 42,
+      "epochs": 20,
+      "batch_size": 4,
+      "max_steps": 2720
+    },
+    {
+      "architecture": "unet",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "epochs": 20,
+      "batch_size": 4,
+      "max_steps": 2720
+    },
+    {
+      "architecture": "unet",
+      "learning_rate": 0.001,
+      "seed": 42,
+      "epochs": 20,
+      "batch_size": 4,
+      "max_steps": 2720
+    }
+  ],
+  "selection": "Highest finite complete development-crop micro F1; earliest epoch on exact ties; candidate order breaks remaining ties. No final labels or threshold tuning.",
+  "learning_rate_rationale": "Two rates per architecture chosen before training: pretrained SegFormer lower rates; randomly initialized U-Net wider/higher range. Capacities and initialization differ; this is a bounded sweep, not equal optimization.",
+  "inference_decision": "binary argmax, fixed threshold 0.5",
+  "maximum_epoch_count": 20,
+  "runner_source_sha256": "b811d1dd56e531c88185cb6bf107b91f49cb79b5a58b55762a87ff44e4463d93"
+}

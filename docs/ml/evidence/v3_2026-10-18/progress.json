@@ -1,0 +1,51 @@
+{
+  "checked_at_utc": "2026-10-18T06:39:08.970148+00:00",
+  "completed_runs": [
+    {
+      "name": "01_segformer_lr5e-05",
+      "architecture": "segformer",
+      "benchmark": false,
+      "steps": 2720,
+      "elapsed_seconds": 184.47660214500002,
+      "mean_step_seconds": 0.03735641426242179,
+      "selected_epoch": 3,
+      "best_dev_f1": 0.5761495730891883,
+      "checkpoint_sha256": "2afa7d89bcd2030eaa76d8e7496c4a8243fb7328354694805b91b736b53d3520"
+    },
+    {
+      "name": "02_segformer_lr0.0002",
+      "architecture": "segformer",
+      "benchmark": false,
+      "steps": 2720,
+      "elapsed_seconds": 185.779809891,
+      "mean_step_seconds": 0.037638190097534885,
+      "selected_epoch": 10,
+      "best_dev_f1": 0.6317782909930716,
+      "checkpoint_sha256": "154f95c0679f59dedfe1c5c84fa4caf21f6cb098f208f6183dd06a9eb2d9d778"
+    },
+    {
+      "name": "segformer_benchmark",
+      "architecture": "segformer",
+      "benchmark": true,
+      "steps": 13,
+      "elapsed_seconds": 1.437319222000042,
+      "mean_step_seconds": 0.03845566399999143,
+      "selected_epoch": null,
+      "best_dev_f1": null,
+      "checkpoint_sha256": null
+    },
+    {
+      "name": "unet_benchmark",
+      "architecture": "unet",
+      "benchmark": true,
+      "steps": 13,
+      "elapsed_seconds": 0.9831764280000925,
+      "mean_step_seconds": 0.013568309100037368,
+      "selected_epoch": null,
+      "best_dev_f1": null,
+      "checkpoint_sha256": null
+    }
+  ],
+  "exit_code": null,
+  "winner_saved": false
+}

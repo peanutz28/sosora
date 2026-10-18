@@ -1,0 +1,8 @@
+{
+  "torch": "2.7.0+cu126",
+  "cuda": "12.6",
+  "gpu": "NVIDIA L4",
+  "vram_bytes": 23661248512,
+  "operation": "1024x1024 matmul passed",
+  "docker": "/usr/bin/docker"
+}

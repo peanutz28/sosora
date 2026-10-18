@@ -1,0 +1,44 @@
+{
+  "status": "manual_quality_review_completed",
+  "reviewed_at_utc": "2026-10-17T20:51:02.861718+00:00",
+  "protocol_sha256": "d557eb517e128b3d1a7a3d921850fbbc0d3fa0091ad046436fc42d156cf49ade",
+  "final_labels_sealed": true,
+  "final_ids_unchanged": true,
+  "approved_manifest_sha256": "6d406a00b2247d369fce27caa9d96c3236ba3652136d7a32c1ebbd9aa9b03ebd",
+  "approved_manifest": "reviewed_crop_manifest.json",
+  "quarantined_alignment_ids": [
+    "10400100684A4B00_1_15_78",
+    "10400100684A4B00_1_7_106",
+    "10400100684A4B00_1_13_80",
+    "10400100684A4B00_1_11_79",
+    "10400100684A4B00_1_12_83",
+    "10400100684A4B00_1_13_79",
+    "10400100684A4B00_1_13_72",
+    "10400100684A4B00_1_15_71",
+    "10400100684A4B00_1_6_105",
+    "10400100684A4B00_1_12_77",
+    "10400100684A4B00_1_11_85",
+    "10400100684A4B00_1_21_79",
+    "10400100684A4B00_1_20_77",
+    "10400100684A4B00_1_20_79"
+  ],
+  "review_scope": "All14 flagged train/dev pre/post/label contact-sheet pairs visually inspected. Consistent shift/haze concerns; conservative quarantine, no correction claimed. No model scores used.",
+  "automatic_exclusions": {
+    "no_supervision": 6,
+    "bright_cloud_screen_manual_review": 5
+  },
+  "reviewed_crop_counts": {
+    "train": 544,
+    "validation": 99
+  },
+  "reviewed_tile_counts": {
+    "train": 80,
+    "validation": 19
+  },
+  "limitations": [
+    "Coarse alignment screen is not a calibrated registration measurement.",
+    "Unflagged samples are not guaranteed free of clouds or label errors.",
+    "Final assessment remains38 metadata-frozen tiles across two geographic blocks within known events, not operational validation."
+  ],
+  "long_training_status": "held_pending_compute_choice"
+}

@@ -1,0 +1,23 @@
+{
+  "branch": "integration",
+  "source_paths": [
+    "ml/experiments/v3_budget_guard.py",
+    "ml/experiments/v3_collect.py",
+    "ml/experiments/v3_models.py",
+    "ml/experiments/v3_protocol.py",
+    "ml/experiments/v3_report.py",
+    "ml/experiments/v3_sweep.py",
+    "ml/tests/test_v3_candidate_adapter.py",
+    "ml/tests/test_v3_final_guards.py",
+    "ml/tests/test_v3_proof_selection.py",
+    "scripts/ml/build_v3_gpu_bundle.py",
+    "scripts/ml/freeze_v3_selection.py",
+    "scripts/ml/run_v3_final.py",
+    "scripts/ml/score_v3_dev_reference.py"
+  ],
+  "evidence_directory": "docs/ml/evidence/v3_2026-10-18",
+  "files_reviewed": 57,
+  "no_keys_or_instance_urls_detected": true,
+  "frozen_paths_in_commit": false,
+  "selection_final_data_opened": false
+}

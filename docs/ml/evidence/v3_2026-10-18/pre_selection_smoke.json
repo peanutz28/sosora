@@ -1,0 +1,15 @@
+{
+  "checkpoint_sha256": "154f95c0679f59dedfe1c5c84fa4caf21f6cb098f208f6183dd06a9eb2d9d778",
+  "architecture": "segformer",
+  "test_image_split": "train",
+  "test_source_id": "10300100AF395C00_2_17_51",
+  "output_shape": [
+    2,
+    256,
+    256
+  ],
+  "finite_probabilities": true,
+  "normalization_check_passed": true,
+  "parameters": 3714658,
+  "final_data_accessed": false
+}

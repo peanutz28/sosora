@@ -1,0 +1,33 @@
+{
+  "stop_requested_at_utc": "2026-10-18T06:43:10.092825+00:00",
+  "instance_alias": "sosora-vision",
+  "gpu": "L4",
+  "events": [
+    {
+      "name": "sosora-vision",
+      "gpu": "L4",
+      "instance_type": "g2-standard-4:nvidia-l4:1",
+      "status": "RUNNING"
+    },
+    {
+      "stop_returncode": 0
+    },
+    {
+      "name": "sosora-vision",
+      "gpu": "L4",
+      "instance_type": "g2-standard-4:nvidia-l4:1",
+      "status": "STOPPING"
+    },
+    {
+      "stop_returncode": 0
+    },
+    {
+      "name": "sosora-vision",
+      "gpu": "L4",
+      "instance_type": "g2-standard-4:nvidia-l4:1",
+      "status": "STOPPED"
+    }
+  ],
+  "verified_stopped_at_utc": "2026-10-18T06:43:53.176859+00:00",
+  "verified_stopped": true
+}

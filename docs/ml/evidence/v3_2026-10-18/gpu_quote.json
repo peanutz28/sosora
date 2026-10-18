@@ -1,0 +1,23 @@
+{
+  "captured_at_utc": "2026-10-18T06:08:40.706856+00:00",
+  "source": "Brev CLI live catalog search; read-only",
+  "instance_type": "g2-standard-4:nvidia-l4:1",
+  "provider": "gcp",
+  "gpu_name": "L4",
+  "gpu_count": 1,
+  "vram_per_gpu_gb": 24,
+  "compute_usd_per_hour": 0.845421,
+  "disk_usd_per_gb_month": 0.14965,
+  "stoppable": true,
+  "credit_eligibility": "Brev organization credits; console displayed available balance, and official Billing & Usage states running instances consume organization credits",
+  "launch_authorized": true,
+  "launched": false,
+  "approval_recorded_at_utc": "2026-10-18T06:14:36.574311+00:00",
+  "authorized_total_usd": 5,
+  "authorization": "User: OK, use the L4 with a $5 total cap",
+  "credit_source": "Signed-in Brev organization console balance was sufficient for the approved cap; balance value retained only in ignored local evidence.",
+  "billing_reference": "https://docs.nvidia.com/brev/guides/console-reference#billing--usage",
+  "credit_verification_limit": "CLI has no balance field; the overview page later failed to render. No card funding or auto-recharge change requested or performed.",
+  "operation": "Resume existing stopped L4 sosora-vision; separate from Codex B H100",
+  "credit_coverage_verified": true
+}

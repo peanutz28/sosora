@@ -1,0 +1,9 @@
+{
+  "protocol_sha256": "d557eb517e128b3d1a7a3d921850fbbc0d3fa0091ad046436fc42d156cf49ade",
+  "final_ids_sha256": "d18eab0a9ff977400cfbc96158a2d28da0928f166236185ec7a5e09d81030ffc",
+  "final_count": 38,
+  "sealed_at_utc": "2026-10-17T20:43:09.940735+00:00",
+  "protocol_file_created_utc": "2026-10-17T20:42:37.563055+00:00",
+  "final_label_processing_performed": false,
+  "note": "Created before train/dev label interpretation; no final masks or model scores may be prepared until checkpoint/settings selection."
+}

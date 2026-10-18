@@ -1,0 +1,1409 @@
+{
+  "checked_at_utc": "2026-10-18T06:30:17.929292+00:00",
+  "model": "native_v2",
+  "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+  "parameters": 3714658,
+  "manifest_sha256": "6d406a00b2247d369fce27caa9d96c3236ba3652136d7a32c1ebbd9aa9b03ebd",
+  "metrics": {
+    "tp": 9537,
+    "fp": 13147,
+    "fn": 76145,
+    "valid_pixels": 341148,
+    "iou": 0.09650001517773123,
+    "precision": 0.42042849585611003,
+    "recall": 0.11130692560864593,
+    "f1": 0.17601461713083438,
+    "tn": 242319
+  },
+  "crop_count": 99,
+  "source_tile_count": 19,
+  "per_crop": [
+    {
+      "source_image_id": "10300100AF395C00_2_15_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_15_44_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2304,
+        "valid_pixels": 2304,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_15_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_15_44_01.png",
+      "metrics": {
+        "tp": 193,
+        "fp": 0,
+        "fn": 770,
+        "valid_pixels": 2226,
+        "iou": 0.20041536863966772,
+        "precision": 1.0,
+        "recall": 0.20041536863966772,
+        "f1": 0.33391003460207613
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_15_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_15_44_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2115,
+        "valid_pixels": 2248,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_15_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_15_44_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2210,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_15_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_15_44_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2156,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_15_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_15_44_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2155,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_18_40",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_18_40_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2465,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_18_40",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_18_40_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 5,
+        "fn": 0,
+        "valid_pixels": 2436,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_18_40",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_18_40_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2424,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_18_40",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_18_40_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 408,
+        "fn": 0,
+        "valid_pixels": 2376,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_18_40",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_18_40_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2339,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_18_40",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_18_40_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2326,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_18_41",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_18_41_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 1036,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_17_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_17_44_00.png",
+      "metrics": {
+        "tp": 3170,
+        "fp": 0,
+        "fn": 3611,
+        "valid_pixels": 6781,
+        "iou": 0.467482672172246,
+        "precision": 1.0,
+        "recall": 0.467482672172246,
+        "f1": 0.6371218972967541
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_17_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_17_44_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2093,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_17_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_17_44_02.png",
+      "metrics": {
+        "tp": 4698,
+        "fp": 0,
+        "fn": 661,
+        "valid_pixels": 5407,
+        "iou": 0.8766560925545811,
+        "precision": 1.0,
+        "recall": 0.8766560925545811,
+        "f1": 0.9342746345828776
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_17_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_17_44_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2087,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_17_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_17_44_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 5311,
+        "valid_pixels": 5311,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_17_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_17_44_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2079,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_16_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_16_44_00.png",
+      "metrics": {
+        "tp": 233,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 241,
+        "iou": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_16_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_16_44_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 3111,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_16_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_16_44_02.png",
+      "metrics": {
+        "tp": 23,
+        "fp": 0,
+        "fn": 210,
+        "valid_pixels": 2893,
+        "iou": 0.09871244635193133,
+        "precision": 1.0,
+        "recall": 0.09871244635193133,
+        "f1": 0.1796875
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_16_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_16_44_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2151,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_16_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_16_44_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2126,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_16_44",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_16_44_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2124,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_19_43",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_19_43_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2155,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_19_43",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_19_43_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2134,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_19_43",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_19_43_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 121,
+        "valid_pixels": 2064,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_19_43",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_19_43_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 636,
+        "fn": 0,
+        "valid_pixels": 1584,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10300100AF395C00_2_19_43",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10300100AF395C00_2_19_43_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 543,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_42_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_42_59_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 1956,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_43_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_43_58_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2014,
+        "valid_pixels": 2014,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_43_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_43_58_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 508,
+        "fn": 0,
+        "valid_pixels": 2175,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_43_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_43_58_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 2117,
+        "fn": 0,
+        "valid_pixels": 2117,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_43_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_43_58_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 548,
+        "fn": 0,
+        "valid_pixels": 2082,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_43_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_43_58_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2067,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_43_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_43_58_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2066,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_57",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_57_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 238,
+        "fn": 0,
+        "valid_pixels": 524,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_57",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_57_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 358,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_58_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 6515,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_58_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 6399,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_58_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 6200,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_58_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 5964,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_58_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 5749,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_58_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 5511,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_42_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_42_58_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 5618,
+        "valid_pixels": 5618,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_42_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_42_58_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2855,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_42_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_42_58_02.png",
+      "metrics": {
+        "tp": 97,
+        "fp": 0,
+        "fn": 5085,
+        "valid_pixels": 5182,
+        "iou": 0.018718641451177152,
+        "precision": 1.0,
+        "recall": 0.018718641451177152,
+        "f1": 0.03674938435309718
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_42_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_42_58_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1034,
+        "valid_pixels": 2390,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_42_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_42_58_04.png",
+      "metrics": {
+        "tp": 449,
+        "fp": 0,
+        "fn": 4049,
+        "valid_pixels": 4498,
+        "iou": 0.09982214317474433,
+        "precision": 1.0,
+        "recall": 0.09982214317474433,
+        "f1": 0.18152415605417424
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_42_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_42_58_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 1802,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_59_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 5917,
+        "valid_pixels": 6065,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_59_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1657,
+        "valid_pixels": 3771,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_59_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 4666,
+        "valid_pixels": 5750,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_59_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 708,
+        "valid_pixels": 2123,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_59_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 5359,
+        "valid_pixels": 5359,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_59_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 1375,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_58_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 4673,
+        "valid_pixels": 5166,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_58_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2265,
+        "valid_pixels": 5273,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_58_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 4814,
+        "valid_pixels": 4814,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_58_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 301,
+        "fn": 0,
+        "valid_pixels": 4468,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_58_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 4669,
+        "valid_pixels": 4669,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_41_58",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_41_58_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 348,
+        "valid_pixels": 4378,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_59_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2081,
+        "valid_pixels": 3831,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_59_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 5518,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_59_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3605,
+        "valid_pixels": 3605,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_59_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 5406,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_59_04.png",
+      "metrics": {
+        "tp": 488,
+        "fp": 722,
+        "fn": 1586,
+        "valid_pixels": 3469,
+        "iou": 0.17453505007153075,
+        "precision": 0.4033057851239669,
+        "recall": 0.23529411764705882,
+        "f1": 0.2971985383678441
+      }
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_40_59",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10500500C4DD7000_0_40_59_05.png",
+      "metrics": {
+        "tp": 186,
+        "fp": 242,
+        "fn": 894,
+        "valid_pixels": 4776,
+        "iou": 0.14069591527987896,
+        "precision": 0.43457943925233644,
+        "recall": 0.17222222222222222,
+        "f1": 0.246684350132626
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_75",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_75_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2360,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_75",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_75_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2278,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_75",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_75_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2265,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_75",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_75_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2160,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_75",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_75_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2144,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_75",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_75_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2100,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_78",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_78_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 7160,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_78",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_78_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 6701,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_78",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_78_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 564,
+        "fn": 0,
+        "valid_pixels": 6512,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_78",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_78_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 5128,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_78",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_78_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 4569,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_78",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_78_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 4442,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_21_76",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_21_76_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 6065,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_21_76",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_21_76_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 3534,
+        "fn": 0,
+        "valid_pixels": 5898,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_21_76",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_21_76_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 5,
+        "fn": 0,
+        "valid_pixels": 4671,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_21_76",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_21_76_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 4454,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_21_76",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_21_76_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 3767,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_21_76",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_21_76_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 3636,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_77_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 4125,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_77_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 2599,
+        "fn": 0,
+        "valid_pixels": 3641,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_77_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 15,
+        "fn": 0,
+        "valid_pixels": 2809,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_77_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 359,
+        "fn": 0,
+        "valid_pixels": 2212,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_77_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2204,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_24_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_24_77_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2202,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_77_00.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 4338,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_77_01.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 346,
+        "fn": 0,
+        "valid_pixels": 3747,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_77_02.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 3272,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_77_03.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 3091,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_77_04.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 3079,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_23_77",
+      "image": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/v3_experiment/crops/10400100684A4B00_1_23_77_05.png",
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "valid_pixels": 2675,
+        "iou": null,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    }
+  ],
+  "support": "Same99 reviewed dev crops used by the runner; overlapping crops are correlated, not independent tiles."
+}

@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-10-18T06:14:36.574311+00:00",
+  "manifest_sha256": "6d406a00b2247d369fce27caa9d96c3236ba3652136d7a32c1ebbd9aa9b03ebd",
+  "manifest_split_counts": {
+    "train": 544,
+    "validation": 99
+  },
+  "dev_tile_count": 19,
+  "protocol_sha256": "d557eb517e128b3d1a7a3d921850fbbc0d3fa0091ad046436fc42d156cf49ade",
+  "canonical_protocol_sha256": "d557eb517e128b3d1a7a3d921850fbbc0d3fa0091ad046436fc42d156cf49ade",
+  "final_ids_sha256": "d18eab0a9ff977400cfbc96158a2d28da0928f166236185ec7a5e09d81030ffc",
+  "sealed_final_count": 38,
+  "final_rows_in_training_manifest": 0,
+  "final_preparation_markers": [],
+  "preparation_storage_bytes": 1320320722,
+  "final_images_or_labels_opened_by_this_task": false,
+  "frozen_files_modified_by_this_task": false
+}

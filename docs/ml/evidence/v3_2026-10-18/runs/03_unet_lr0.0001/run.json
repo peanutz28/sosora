@@ -1,0 +1,231 @@
+{
+  "manifest_sha256": "6d406a00b2247d369fce27caa9d96c3236ba3652136d7a32c1ebbd9aa9b03ebd",
+  "settings": {
+    "manifest": "ml/artifacts/v3_experiment/reviewed_crop_manifest.json",
+    "output": "ml/artifacts/v3_runs_20261018/03_unet_lr0.0001",
+    "architecture": "unet",
+    "base": "ml/artifacts/sn8_native_cpu_v2/baseline_model",
+    "device": "cuda",
+    "threads": 2,
+    "batch_size": 4,
+    "seed": 42,
+    "epochs": 20,
+    "max_steps": 2720,
+    "max_seconds": 2400.0,
+    "learning_rate": 0.0001,
+    "benchmark": false,
+    "warmup": 3
+  },
+  "parameters": 1962642,
+  "steps": 2720,
+  "elapsed_seconds": 104.47702684799992,
+  "measured_steps": 2717,
+  "mean_step_seconds": 0.013714420452336609,
+  "selected_epoch": 13,
+  "history": [
+    {
+      "epoch": 1,
+      "steps": 136,
+      "complete": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 85682,
+      "tn": 255466,
+      "f1": 0.0
+    },
+    {
+      "epoch": 2,
+      "steps": 272,
+      "complete": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 85682,
+      "tn": 255466,
+      "f1": 0.0
+    },
+    {
+      "epoch": 3,
+      "steps": 408,
+      "complete": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 85682,
+      "tn": 255466,
+      "f1": 0.0
+    },
+    {
+      "epoch": 4,
+      "steps": 544,
+      "complete": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 85682,
+      "tn": 255466,
+      "f1": 0.0
+    },
+    {
+      "epoch": 5,
+      "steps": 680,
+      "complete": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 85682,
+      "tn": 255466,
+      "f1": 0.0
+    },
+    {
+      "epoch": 6,
+      "steps": 816,
+      "complete": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 85682,
+      "tn": 255466,
+      "f1": 0.0
+    },
+    {
+      "epoch": 7,
+      "steps": 952,
+      "complete": true,
+      "tp": 0,
+      "fp": 4375,
+      "fn": 85682,
+      "tn": 251091,
+      "f1": 0.0
+    },
+    {
+      "epoch": 8,
+      "steps": 1088,
+      "complete": true,
+      "tp": 1432,
+      "fp": 16618,
+      "fn": 84250,
+      "tn": 238848,
+      "f1": 0.02760960937801257
+    },
+    {
+      "epoch": 9,
+      "steps": 1224,
+      "complete": true,
+      "tp": 137,
+      "fp": 8805,
+      "fn": 85545,
+      "tn": 246661,
+      "f1": 0.002895671288468042
+    },
+    {
+      "epoch": 10,
+      "steps": 1360,
+      "complete": true,
+      "tp": 27854,
+      "fp": 63020,
+      "fn": 57828,
+      "tn": 192446,
+      "f1": 0.31552595210584744
+    },
+    {
+      "epoch": 11,
+      "steps": 1496,
+      "complete": true,
+      "tp": 103,
+      "fp": 539,
+      "fn": 85579,
+      "tn": 254927,
+      "f1": 0.00238635837078912
+    },
+    {
+      "epoch": 12,
+      "steps": 1632,
+      "complete": true,
+      "tp": 7409,
+      "fp": 27695,
+      "fn": 78273,
+      "tn": 227771,
+      "f1": 0.12267978076929445
+    },
+    {
+      "epoch": 13,
+      "steps": 1768,
+      "complete": true,
+      "tp": 38218,
+      "fp": 64986,
+      "fn": 47464,
+      "tn": 190480,
+      "f1": 0.4046673655008841
+    },
+    {
+      "epoch": 14,
+      "steps": 1904,
+      "complete": true,
+      "tp": 23322,
+      "fp": 30758,
+      "fn": 62360,
+      "tn": 224708,
+      "f1": 0.3337387845050872
+    },
+    {
+      "epoch": 15,
+      "steps": 2040,
+      "complete": true,
+      "tp": 24464,
+      "fp": 28704,
+      "fn": 61218,
+      "tn": 226762,
+      "f1": 0.3523802664746129
+    },
+    {
+      "epoch": 16,
+      "steps": 2176,
+      "complete": true,
+      "tp": 13524,
+      "fp": 20971,
+      "fn": 72158,
+      "tn": 234495,
+      "f1": 0.22506802466362116
+    },
+    {
+      "epoch": 17,
+      "steps": 2312,
+      "complete": true,
+      "tp": 30370,
+      "fp": 37309,
+      "fn": 55312,
+      "tn": 218157,
+      "f1": 0.3960589719681014
+    },
+    {
+      "epoch": 18,
+      "steps": 2448,
+      "complete": true,
+      "tp": 929,
+      "fp": 11058,
+      "fn": 84753,
+      "tn": 244408,
+      "f1": 0.01902343630015665
+    },
+    {
+      "epoch": 19,
+      "steps": 2584,
+      "complete": true,
+      "tp": 26274,
+      "fp": 20602,
+      "fn": 59408,
+      "tn": 234864,
+      "f1": 0.39641515412121486
+    },
+    {
+      "epoch": 20,
+      "steps": 2720,
+      "complete": true,
+      "tp": 17006,
+      "fp": 19034,
+      "fn": 68676,
+      "tn": 236432,
+      "f1": 0.2794236046072197
+    }
+  ],
+  "role": "supervised architecture comparator; development only; no final evaluation",
+  "budget_scope": "checked between batches; model setup excluded",
+  "checkpoint_sha256": "5513875f413f0d77cf40a5cdd37eea333290a0072c026b10fc8e0ca9c6e1c768",
+  "runner_source_sha256": "b811d1dd56e531c88185cb6bf107b91f49cb79b5a58b55762a87ff44e4463d93"
+}

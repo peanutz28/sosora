@@ -1,0 +1,10 @@
+{
+  "started_at_utc": "2026-10-18T06:18:41.640130+00:00",
+  "instance_alias": "sosora-vision",
+  "gpu": "L4",
+  "instance_type": "g2-standard-4:nvidia-l4:1",
+  "command": "brev start sosora-vision --detached",
+  "returncode": 0,
+  "h100_used": false,
+  "guard_armed_before_start": true
+}

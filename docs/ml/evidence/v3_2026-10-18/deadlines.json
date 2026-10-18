@@ -1,0 +1,10 @@
+{
+  "timezone": "America/New_York",
+  "deadlines": {
+    "gpu_running_or_fallback": "2026-10-18T03:30:00-04:00",
+    "selection_commit": "2026-10-18T05:30:00-04:00",
+    "gpu_stopped": "2026-10-18T06:30:00-04:00",
+    "feature_freeze": "2026-10-18T07:00:00-04:00"
+  },
+  "guard_stop_request_utc": "2026-10-18T10:20:00+00:00"
+}
