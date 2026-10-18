@@ -1,0 +1,71 @@
+{
+  "origin": {
+    "lon": -82.4937359,
+    "lat": 35.5964452,
+    "target": {
+      "lon": -82.492,
+      "lat": 35.596
+    }
+  },
+  "destination": {
+    "lon": -82.3178429,
+    "lat": 35.6183259,
+    "target": {
+      "lon": -82.318,
+      "lat": 35.618
+    }
+  },
+  "closure_edge_ids": [
+    "655144867:50:f",
+    "655144867:51:f",
+    "655144867:52:f",
+    "390851651:0:f",
+    "390851652:0:f",
+    "390851652:1:f",
+    "390851652:2:f"
+  ],
+  "closure_geometry": [
+    [
+      -82.4664014,
+      35.5836816
+    ],
+    [
+      -82.4658873,
+      35.5836972
+    ],
+    [
+      -82.4657809,
+      35.5837004
+    ],
+    [
+      -82.4656997,
+      35.5837028
+    ],
+    [
+      -82.4650437,
+      35.5837512
+    ],
+    [
+      -82.4649577,
+      35.5837618
+    ],
+    [
+      -82.4645297,
+      35.5838143
+    ],
+    [
+      -82.4644906,
+      35.5838191
+    ]
+  ],
+  "closure_name": "Tunnel Road",
+  "closure_highway": "primary",
+  "closure_is_bridge": true,
+  "expected_outcome": "reroute",
+  "initial_length_m": 18923.8,
+  "replacement_length_m": 21335.1,
+  "divergence_m": 485.6,
+  "region": "Swannanoa corridor, Buncombe County, North Carolina",
+  "retrieved": "2026-10-17",
+  "source": "OpenStreetMap via Overpass (overpass.openstreetmap.fr)"
+}

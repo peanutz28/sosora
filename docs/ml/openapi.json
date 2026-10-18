@@ -1,0 +1,628 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SOSora ML",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ml/model-info": {
+      "get": {
+        "summary": "Model Info",
+        "operationId": "model_info_ml_model_info_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ml/images": {
+      "get": {
+        "summary": "List Images",
+        "operationId": "list_images_ml_images_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ml/predict": {
+      "post": {
+        "summary": "Predict",
+        "operationId": "predict_ml_predict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prediction"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ml/metrics": {
+      "get": {
+        "summary": "Metrics",
+        "operationId": "metrics_ml_metrics_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ml/llm-health": {
+      "get": {
+        "summary": "Llm Health",
+        "operationId": "llm_health_ml_llm_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ml/incident/parse": {
+      "post": {
+        "summary": "Parse",
+        "operationId": "parse_ml_incident_parse_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncidentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ml/incident/explain": {
+      "post": {
+        "summary": "Explain",
+        "description": "Render supplied record counts without asking a model to infer facts or totals.",
+        "operationId": "explain_ml_incident_explain_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExplainRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Detection": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "class": {
+            "type": "string",
+            "title": "Class"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "geometry": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Geometry"
+          },
+          "road_segment_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Road Segment Ids"
+          },
+          "review_status": {
+            "type": "string",
+            "const": "unverified",
+            "title": "Review Status",
+            "default": "unverified"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "class",
+          "confidence",
+          "geometry"
+        ],
+        "title": "Detection"
+      },
+      "ExplainRequest": {
+        "properties": {
+          "incident": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Incident"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "road_evidence": {
+            "items": {
+              "$ref": "#/components/schemas/RoadEvidence"
+            },
+            "type": "array",
+            "maxItems": 30,
+            "minItems": 1,
+            "title": "Road Evidence"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "road_evidence"
+        ],
+        "title": "ExplainRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Incident": {
+        "properties": {
+          "location_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Location Text"
+          },
+          "people_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "People Count"
+          },
+          "needs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Needs"
+          },
+          "hazards": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Hazards"
+          },
+          "missing_information": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Information"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "location_text",
+          "people_count",
+          "needs",
+          "hazards",
+          "missing_information",
+          "summary"
+        ],
+        "title": "Incident"
+      },
+      "IncidentRequest": {
+        "properties": {
+          "report": {
+            "type": "string",
+            "maxLength": 12000,
+            "minLength": 1,
+            "title": "Report"
+          }
+        },
+        "type": "object",
+        "required": [
+          "report"
+        ],
+        "title": "IncidentRequest"
+      },
+      "ModelProvenance": {
+        "properties": {
+          "native_tile_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Native Tile Size"
+          },
+          "model_id": {
+            "type": "string",
+            "title": "Model Id"
+          },
+          "checkpoint_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Checkpoint Id"
+          },
+          "run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Id"
+          },
+          "task": {
+            "type": "string",
+            "title": "Task"
+          },
+          "requires_road_roi": {
+            "type": "boolean",
+            "title": "Requires Road Roi"
+          },
+          "label_map": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Label Map"
+          },
+          "identity_status": {
+            "type": "string",
+            "title": "Identity Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "model_id",
+          "task",
+          "requires_road_roi",
+          "identity_status"
+        ],
+        "title": "ModelProvenance"
+      },
+      "PredictRequest": {
+        "properties": {
+          "image_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Image Id"
+          },
+          "threshold": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Threshold",
+            "default": 0.65
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "image_id"
+        ],
+        "title": "PredictRequest"
+      },
+      "Prediction": {
+        "properties": {
+          "image_id": {
+            "type": "string",
+            "title": "Image Id"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          },
+          "model_provenance": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModelProvenance"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "inference_mode": {
+            "type": "string",
+            "enum": [
+              "real",
+              "mock"
+            ],
+            "title": "Inference Mode"
+          },
+          "crs": {
+            "type": "string",
+            "title": "Crs"
+          },
+          "image_width": {
+            "type": "integer",
+            "title": "Image Width"
+          },
+          "image_height": {
+            "type": "integer",
+            "title": "Image Height"
+          },
+          "source": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Source"
+          },
+          "detections": {
+            "items": {
+              "$ref": "#/components/schemas/Detection"
+            },
+            "type": "array",
+            "title": "Detections"
+          },
+          "latency_ms": {
+            "type": "number",
+            "title": "Latency Ms"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "type": "object",
+        "required": [
+          "image_id",
+          "model_version",
+          "inference_mode",
+          "crs",
+          "image_width",
+          "image_height",
+          "source",
+          "detections",
+          "latency_ms"
+        ],
+        "title": "Prediction"
+      },
+      "RoadEvidence": {
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Evidence Id"
+          },
+          "observation": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Observation"
+          },
+          "source": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Source"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "prediction_class": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "flooded_road",
+                  "non_flooded_road"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prediction Class"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "observation",
+          "source"
+        ],
+        "title": "RoadEvidence"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

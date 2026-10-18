@@ -1,0 +1,121 @@
+{
+  "purpose": "Validation-only four-panel fine-tuning comparison; no training or external retuning",
+  "checkpoint_hashes": {
+    "baseline": "sha256:cd2432b4910dfe50d50df36b9f3f87a67b8f8ab498d68651f39b7c1bdd3619bc",
+    "tuned": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b"
+  },
+  "validation_tiles": [
+    {
+      "id": "10400100684A4B00_1_17_85",
+      "split": "validation",
+      "size": [
+        1300,
+        1300
+      ],
+      "metrics": {
+        "tuned": {
+          "tp": 2361,
+          "fp": 2045,
+          "fn": 1855,
+          "valid_pixels": 10087,
+          "iou": 0.3770963104935314,
+          "precision": 0.5358601906491148,
+          "recall": 0.5600094876660342,
+          "f1": 0.5476687543493389
+        },
+        "all_positive": {
+          "tp": 4216,
+          "fp": 5871,
+          "fn": 0,
+          "valid_pixels": 10087,
+          "iou": 0.4179637156736393,
+          "precision": 0.4179637156736393,
+          "recall": 1.0,
+          "f1": 0.5895266727260016
+        },
+        "all_negative": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4216,
+          "valid_pixels": 10087,
+          "iou": 0.0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "baseline": {
+          "tp": 1592,
+          "fp": 1672,
+          "fn": 2624,
+          "valid_pixels": 10087,
+          "iou": 0.2703804347826087,
+          "precision": 0.4877450980392157,
+          "recall": 0.3776091081593928,
+          "f1": 0.42566844919786095
+        }
+      },
+      "labeled_pixels_inside_independent_roi": 10087
+    },
+    {
+      "id": "10400100684A4B00_1_18_73",
+      "split": "validation",
+      "size": [
+        1300,
+        1300
+      ],
+      "metrics": {
+        "tuned": {
+          "tp": 0,
+          "fp": 295,
+          "fn": 0,
+          "valid_pixels": 25226,
+          "iou": 0.0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": 0.0
+        },
+        "all_positive": {
+          "tp": 0,
+          "fp": 25226,
+          "fn": 0,
+          "valid_pixels": 25226,
+          "iou": 0.0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": 0.0
+        },
+        "all_negative": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "valid_pixels": 25226,
+          "iou": null,
+          "precision": null,
+          "recall": null,
+          "f1": null
+        },
+        "baseline": {
+          "tp": 0,
+          "fp": 629,
+          "fn": 0,
+          "valid_pixels": 25226,
+          "iou": 0.0,
+          "precision": 0.0,
+          "recall": null,
+          "f1": 0.0
+        }
+      },
+      "labeled_pixels_inside_independent_roi": 25226
+    }
+  ],
+  "generation_check": "Native inference from both saved checkpoints exactly reproduced saved tp/fp/fn/valid_pixels on both validation tiles.",
+  "browser_checks": [
+    "Both selectable tiles displayed with four aligned panels and consistent class colors.",
+    "ROI checkbox hid all four outlines; no broken images or horizontal overflow at 1280px.",
+    "Undefined recall on dry tile remains undefined.",
+    "Single-image, two-tile validation and frozen Germany results are labeled separately."
+  ],
+  "regressions": "85 core ML tests passed; added palette/support and saved-count-mismatch checks.",
+  "external_evaluation_unchanged": true,
+  "generated_imagery_excluded_from_git": true
+}

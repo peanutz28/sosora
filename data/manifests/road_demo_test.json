@@ -1,0 +1,98 @@
+[
+  {
+    "image_id": "sn8_louisiana_post_0_10_2",
+    "path": "ml/artifacts/images/sn8_louisiana_post_0_10_2.tif",
+    "dataset": "SpaceNet 8 Louisiana East",
+    "event": "Hurricane Ida 2021 (not Helene)",
+    "capture_date": null,
+    "source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_0_10_2.tif",
+    "license": "CC-BY-SA-4.0",
+    "ground_truth": false
+  },
+  {
+    "image_id": "helene_swannanoa_spring2025",
+    "path": "ml/artifacts/images/helene_swannanoa_spring2025.tif",
+    "dataset": "NC Helene Orthoimagery 2025",
+    "event": "Helene recovery period; not immediate post-storm",
+    "capture_date": "spring 2025 (source-level; exact date unverified)",
+    "source_url": "https://services.gis.nc.gov/secure/rest/services/Imagery/Orthoimagery_Helene_2025/ImageServer",
+    "license": "Verify NC source redistribution terms before publishing imagery",
+    "ground_truth": false
+  },
+  {
+    "image_id": "sn8_road_test_10300100AF395C00_2_18_54",
+    "path": "ml/artifacts/road_demo_test/10300100AF395C00_2_18_54.tif",
+    "road_roi_path": "ml/artifacts/road_demo_test/10300100AF395C00_2_18_54_roads.png",
+    "dataset": "SpaceNet 8 Louisiana East",
+    "event": "Hurricane Ida 2021 (not Helene)",
+    "capture_date": null,
+    "source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_2_18_54.tif",
+    "license": "CC-BY-SA-4.0",
+    "ground_truth": false,
+    "split": "test",
+    "source_image_id": "10300100AF395C00_2_18_54",
+    "registration": "Post RGB warped to pre-event georeferencing; residual registration error possible",
+    "road_roi_source": "Official road centerline geometry buffered 4 source pixels; no Flooded values used",
+    "warnings": [
+      "Conditioned on annotated road locations; road extraction is not evaluated",
+      "Flood labels are not supplied to inference; predictions remain unverified"
+    ]
+  },
+  {
+    "image_id": "sn8_road_test_10300100AF395C00_2_18_52",
+    "path": "ml/artifacts/road_demo_test/10300100AF395C00_2_18_52.tif",
+    "road_roi_path": "ml/artifacts/road_demo_test/10300100AF395C00_2_18_52_roads.png",
+    "dataset": "SpaceNet 8 Louisiana East",
+    "event": "Hurricane Ida 2021 (not Helene)",
+    "capture_date": null,
+    "source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_2_18_52.tif",
+    "license": "CC-BY-SA-4.0",
+    "ground_truth": false,
+    "split": "test",
+    "source_image_id": "10300100AF395C00_2_18_52",
+    "registration": "Post RGB warped to pre-event georeferencing; residual registration error possible",
+    "road_roi_source": "Official road centerline geometry buffered 4 source pixels; no Flooded values used",
+    "warnings": [
+      "Conditioned on annotated road locations; road extraction is not evaluated",
+      "Flood labels are not supplied to inference; predictions remain unverified"
+    ]
+  },
+  {
+    "image_id": "sn8_road_test_10300100AF395C00_2_28_36",
+    "path": "ml/artifacts/road_demo_test/10300100AF395C00_2_28_36.tif",
+    "road_roi_path": "ml/artifacts/road_demo_test/10300100AF395C00_2_28_36_roads.png",
+    "dataset": "SpaceNet 8 Louisiana East",
+    "event": "Hurricane Ida 2021 (not Helene)",
+    "capture_date": null,
+    "source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_2_28_36.tif",
+    "license": "CC-BY-SA-4.0",
+    "ground_truth": false,
+    "split": "test",
+    "source_image_id": "10300100AF395C00_2_28_36",
+    "registration": "Post RGB warped to pre-event georeferencing; residual registration error possible",
+    "road_roi_source": "Official road centerline geometry buffered 4 source pixels; no Flooded values used",
+    "warnings": [
+      "Conditioned on annotated road locations; road extraction is not evaluated",
+      "Flood labels are not supplied to inference; predictions remain unverified"
+    ]
+  },
+  {
+    "image_id": "sn8_road_test_10300100AF395C00_2_20_37",
+    "path": "ml/artifacts/road_demo_test/10300100AF395C00_2_20_37.tif",
+    "road_roi_path": "ml/artifacts/road_demo_test/10300100AF395C00_2_20_37_roads.png",
+    "dataset": "SpaceNet 8 Louisiana East",
+    "event": "Hurricane Ida 2021 (not Helene)",
+    "capture_date": null,
+    "source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_2_20_37.tif",
+    "license": "CC-BY-SA-4.0",
+    "ground_truth": false,
+    "split": "test",
+    "source_image_id": "10300100AF395C00_2_20_37",
+    "registration": "Post RGB warped to pre-event georeferencing; residual registration error possible",
+    "road_roi_source": "Official road centerline geometry buffered 4 source pixels; no Flooded values used",
+    "warnings": [
+      "Conditioned on annotated road locations; road extraction is not evaluated",
+      "Flood labels are not supplied to inference; predictions remain unverified"
+    ]
+  }
+]

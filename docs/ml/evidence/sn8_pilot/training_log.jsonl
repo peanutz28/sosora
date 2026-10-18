@@ -1,0 +1,10 @@
+{"epoch": 1, "validation": {"tp": 0, "fp": 0, "fn": 158, "valid_pixels": 1361, "iou": 0.0, "precision": null, "recall": 0.0, "f1": 0.0}}
+{"epoch": 2, "validation": {"tp": 8, "fp": 6, "fn": 150, "valid_pixels": 1361, "iou": 0.04878048780487805, "precision": 0.5714285714285714, "recall": 0.05063291139240506, "f1": 0.09302325581395349}}
+{"epoch": 3, "validation": {"tp": 10, "fp": 10, "fn": 148, "valid_pixels": 1361, "iou": 0.05952380952380952, "precision": 0.5, "recall": 0.06329113924050633, "f1": 0.11235955056179775}}
+{"epoch": 4, "validation": {"tp": 15, "fp": 53, "fn": 143, "valid_pixels": 1361, "iou": 0.07109004739336493, "precision": 0.22058823529411764, "recall": 0.0949367088607595, "f1": 0.13274336283185842}}
+{"epoch": 5, "validation": {"tp": 7, "fp": 0, "fn": 151, "valid_pixels": 1361, "iou": 0.04430379746835443, "precision": 1.0, "recall": 0.04430379746835443, "f1": 0.08484848484848485}}
+{"epoch": 6, "validation": {"tp": 0, "fp": 0, "fn": 158, "valid_pixels": 1361, "iou": 0.0, "precision": null, "recall": 0.0, "f1": 0.0}}
+{"epoch": 7, "validation": {"tp": 37, "fp": 42, "fn": 121, "valid_pixels": 1361, "iou": 0.185, "precision": 0.46835443037974683, "recall": 0.23417721518987342, "f1": 0.31223628691983124}}
+{"epoch": 8, "validation": {"tp": 115, "fp": 105, "fn": 43, "valid_pixels": 1361, "iou": 0.4372623574144487, "precision": 0.5227272727272727, "recall": 0.7278481012658228, "f1": 0.6084656084656085}}
+{"epoch": 9, "validation": {"tp": 111, "fp": 152, "fn": 47, "valid_pixels": 1361, "iou": 0.3580645161290323, "precision": 0.4220532319391635, "recall": 0.7025316455696202, "f1": 0.5273159144893111}}
+{"epoch": 10, "validation": {"tp": 12, "fp": 108, "fn": 146, "valid_pixels": 1361, "iou": 0.045112781954887216, "precision": 0.1, "recall": 0.0759493670886076, "f1": 0.08633093525179857}}

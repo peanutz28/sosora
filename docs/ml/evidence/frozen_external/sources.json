@@ -1,0 +1,100 @@
+[
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/Germany_Training_Public_label_image_mapping.csv",
+    "path": "ml/artifacts/sn8_frozen_external/Germany_Training_Public_label_image_mapping.csv",
+    "bytes": 17450,
+    "sha256": "6eb036a70cdd19f15fb9dabc067e8c41a79d7cea8e4b3927d5188661d7e5e45e",
+    "retrieved_utc": "2026-10-17T18:24:21.059512+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_45_63.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_63.tif",
+    "bytes": 1955810,
+    "sha256": "09980988c5a70f87bcb9918f00eee90815cbb22855b6d48835a344faae792322",
+    "retrieved_utc": "2026-10-17T18:24:21.347554+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_18_66.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_18_66.tif",
+    "bytes": 3538082,
+    "sha256": "ebe22f111383b99d3e3cb0168d604a2c3964519470d56bfbfd96505b5d36fa34",
+    "retrieved_utc": "2026-10-17T18:24:21.731187+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_31_63.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_31_63.tif",
+    "bytes": 3759922,
+    "sha256": "0f759574433c83f4254293e855f2e31c0d75a684d07d0bfe338fd328cf94d017",
+    "retrieved_utc": "2026-10-17T18:24:22.131619+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_38_62.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_38_62.tif",
+    "bytes": 3716808,
+    "sha256": "389c556eac3d1b1ab58b681a343f1434cae9e3ff62f25731df5251097d2156fb",
+    "retrieved_utc": "2026-10-17T18:24:22.414701+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_45_70.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_70.tif",
+    "bytes": 1748802,
+    "sha256": "19102339c0a916c76f93bfe38adbccc2361dfe7bcfb5cca6ac0650e820db6e33",
+    "retrieved_utc": "2026-10-17T18:24:22.745553+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/PRE-event/10500500C4DD7000_0_39_60.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_39_60.tif",
+    "bytes": 4185896,
+    "sha256": "ba541e23c49b409d9981d5364507332c909648a6b7b49de933b4aa551b74e56f",
+    "retrieved_utc": "2026-10-17T18:24:23.209311+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/Germany_Training_Public_reference.csv",
+    "path": "ml/artifacts/sn8_frozen_external/Germany_Training_Public_reference.csv",
+    "bytes": 2161947,
+    "sha256": "1ae10038aedc7e84086d82b40941e844b5fc54787afe99f7f6151b78138b46e5",
+    "retrieved_utc": "2026-10-17T18:24:23.610249+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_45_63.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_45_63.tif",
+    "bytes": 1855338,
+    "sha256": "7137c4e524310783d53c9121e65deff4271e8f191f880c81689471c0d9cf9695",
+    "retrieved_utc": "2026-10-17T18:24:23.894378+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_18_66.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_18_66.tif",
+    "bytes": 1852980,
+    "sha256": "626ad461ffa2058857799a6c9952c7bc3b3cd6714410d8e0406952530e96edaf",
+    "retrieved_utc": "2026-10-17T18:24:24.628575+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_31_63.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_31_63.tif",
+    "bytes": 1855338,
+    "sha256": "e7a6b6ee08f09850fd0da9dcc0f18de5f15ff6a4823267e97d49e3ef0efdbb84",
+    "retrieved_utc": "2026-10-17T18:24:25.188841+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_38_62.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_38_62.tif",
+    "bytes": 1852980,
+    "sha256": "daa4823ecccde056da321cb37d60d784675ba5c9ac2824b03850f035d155a842",
+    "retrieved_utc": "2026-10-17T18:24:25.743288+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_45_70.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_45_70.tif",
+    "bytes": 1852980,
+    "sha256": "f7eda5019782daa9574350161c5b115c18e6d13fdba074f7572f84134c2f4e92",
+    "retrieved_utc": "2026-10-17T18:24:26.290362+00:00"
+  },
+  {
+    "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_39_60.tif",
+    "path": "ml/artifacts/sn8_frozen_external/10500500E6DD3C00_0_39_60.tif",
+    "bytes": 1855338,
+    "sha256": "aee6ed08020fdccfa3cbf86f9fb4f5007e2e553c2af11a7ae3cdc5e7f37f644e",
+    "retrieved_utc": "2026-10-17T18:24:26.815334+00:00"
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "note": "Single CPU runs, not accuracy evaluation or throughput benchmark",
+  "results": [
+    {
+      "image_id": "sn8_louisiana_post_0_10_2",
+      "model_version": "nvidia/segformer-b0-finetuned-ade-512-512@489d5cd81a0b59fab9b7ea758d3548ebe99677da",
+      "inference_mode": "real",
+      "crs": "EPSG:4326",
+      "image_width": 1114,
+      "image_height": 1114,
+      "source": {
+        "image_id": "sn8_louisiana_post_0_10_2",
+        "dataset": "SpaceNet 8 Louisiana East",
+        "event": "Hurricane Ida 2021 (not Helene)",
+        "capture_date": null,
+        "source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_0_10_2.tif",
+        "license": "CC-BY-SA-4.0",
+        "ground_truth": false
+      },
+      "latency_ms": 1479.4285829993896,
+      "warnings": [
+        "Unverified model predictions; not authoritative road closures.",
+        "ADE20K baseline has no flooded-road class."
+      ],
+      "detection_count": 33,
+      "class_counts": {
+        "road": 10,
+        "water": 23
+      }
+    },
+    {
+      "image_id": "helene_swannanoa_spring2025",
+      "model_version": "nvidia/segformer-b0-finetuned-ade-512-512@489d5cd81a0b59fab9b7ea758d3548ebe99677da",
+      "inference_mode": "real",
+      "crs": "EPSG:4326",
+      "image_width": 512,
+      "image_height": 512,
+      "source": {
+        "image_id": "helene_swannanoa_spring2025",
+        "dataset": "NC Helene Orthoimagery 2025",
+        "event": "Helene recovery period; not immediate post-storm",
+        "capture_date": "spring 2025 (source-level; exact date unverified)",
+        "source_url": "https://services.gis.nc.gov/secure/rest/services/Imagery/Orthoimagery_Helene_2025/ImageServer",
+        "license": "Verify NC source redistribution terms before publishing imagery",
+        "ground_truth": false
+      },
+      "latency_ms": 581.213041965384,
+      "warnings": [
+        "Unverified model predictions; not authoritative road closures.",
+        "ADE20K baseline has no flooded-road class."
+      ],
+      "detection_count": 0,
+      "class_counts": {}
+    }
+  ]
+}

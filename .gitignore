@@ -1,0 +1,35 @@
+# Local secrets and execution environments
+.env
+.env.*
+!.env.example
+.venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+
+# Downloaded sources, model weights, environments and infrastructure state
+/ml/artifacts/
+/ml/.cache/
+/ml/tools/
+
+# Generated visual assets remain local until source redistribution is cleared.
+/docs/ml/viewer/assets/
+/docs/ml/viewer/*.jpg
+/docs/ml/viewer/*.jpeg
+/docs/ml/viewer/*.png
+/docs/ml/viewer/console-data.json
+/docs/ml/viewer/snapshot.json
+/docs/ml/viewer/verification.json
+/docs/ml/viewer/training.html
+node_modules/
+.next/
+backend/.venv/
+backend/data/osm_raw.json
+backend/data/*.db
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+.env.local
+.DS_Store

@@ -1,0 +1,10 @@
+{
+  "selected_run": "sn8_native_cpu_v2",
+  "selected_epoch": 9,
+  "validation_f1": 0.6142329020332717,
+  "other_validation_f1": 0.4830434238518333,
+  "rule": "Higher best native-crop validation F1; frozen versus full backbone presets",
+  "test_metrics_consulted": false,
+  "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+  "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2"
+}

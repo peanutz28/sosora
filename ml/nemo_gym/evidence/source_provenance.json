@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/NVIDIA-NeMo/Gym",
+  "tag": "v0.6.0",
+  "commit": "3045a793346a31291d7ea4ae6af3f94a35036ce5",
+  "official_files_verified_against_git_blobs": 149,
+  "installation_scope": "official core imported from pinned source; resource-server runtime, not full CLI",
+  "runtime_python": "3.14.3",
+  "tests_passed": 25,
+  "scripted_integration_cases_passed": 7,
+  "language_model_calls": 0
+}

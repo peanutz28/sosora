@@ -1,0 +1,8 @@
+{
+  "server": "http://192.168.1.50:8000",
+  "beacon_id": "beacon-ww-bridge",
+  "mount_height_cm": 60,
+  "threshold_cm": 30,
+  "record_seconds": 8,
+  "audio_device": "plughw:1,0"
+}

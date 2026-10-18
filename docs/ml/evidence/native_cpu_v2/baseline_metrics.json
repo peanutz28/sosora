@@ -1,0 +1,42 @@
+{
+  "initialization": "pretrained ADE20K backbone and decoder with random binary classifier; same saved initialization as selected training run, not an external pretrained flood baseline",
+  "metrics": {
+    "tp": 3674,
+    "fp": 18908,
+    "fn": 13299,
+    "valid_pixels": 61304,
+    "iou": 0.10239402469273431,
+    "precision": 0.16269595252856256,
+    "recall": 0.21646143875567078,
+    "f1": 0.1857666540260397
+  },
+  "provenance": {
+    "model_id": "ml/artifacts/sn8_native_cpu_v2/baseline_model",
+    "checkpoint_id": "sha256:cd2432b4910dfe50d50df36b9f3f87a67b8f8ab498d68651f39b7c1bdd3619bc",
+    "run_id": null,
+    "task": "flood_state_on_road_corridors",
+    "requires_road_roi": true,
+    "label_map": {
+      "0": "non_flooded_road",
+      "1": "flooded_road"
+    },
+    "native_tile_size": 256,
+    "identity_status": "legacy_unverified"
+  },
+  "evaluation": {
+    "split": "test",
+    "scale": "original_native_resolution",
+    "tile_count": 4,
+    "tile_size": 256,
+    "stride": 256,
+    "decision": "argmax across binary classes; no threshold tuning",
+    "support": "Identical original mask pixels labeled 0 or 1 for every model/control; 255 ignored",
+    "caveats": [
+      "Tiny same-event pilot; not event-level generalization evidence",
+      "Corridor labels use existing reference-line buffers, not full-scene flood truth",
+      "Residual image/label registration errors remain uncorrected",
+      "Native tiled evaluation differs from earlier 256px full-tile resized evaluation",
+      "Validation may inform model development; explicit test evaluation is reserved for final assessment"
+    ]
+  }
+}

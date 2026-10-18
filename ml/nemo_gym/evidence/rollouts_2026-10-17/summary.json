@@ -1,0 +1,30 @@
+[
+  {
+    "split": "validation",
+    "policy": "baseline",
+    "evaluated": 14,
+    "passed": 1,
+    "mean_turns": 3.5
+  },
+  {
+    "split": "validation",
+    "policy": "evidence_first",
+    "evaluated": 14,
+    "passed": 7,
+    "mean_turns": 3.9285714285714284
+  },
+  {
+    "split": "test",
+    "policy": "baseline",
+    "evaluated": 14,
+    "passed": 1,
+    "mean_turns": 4
+  },
+  {
+    "split": "test",
+    "policy": "evidence_first",
+    "evaluated": 14,
+    "passed": 4,
+    "mean_turns": 3.142857142857143
+  }
+]

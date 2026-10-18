@@ -1,0 +1,163 @@
+{
+  "selected_without_label_access": [
+    {
+      "source_image_id": "10500500C4DD7000_0_45_63",
+      "pair": {
+        "label": "0_45_63.geojson",
+        "pre-event image": "10500500C4DD7000_0_45_63.tif",
+        "post-event image 1": "10500500E6DD3C00_0_45_63.tif",
+        "post-event image 2": ""
+      },
+      "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_63.tif",
+      "bounds_epsg3857": [
+        785785.1887185232,
+        6534502.901279451,
+        786326.8553851903,
+        6535354.639300816
+      ],
+      "minimum_previous_bbox_gap_epsg3857_m": 11222329.343404261
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_18_66",
+      "pair": {
+        "label": "0_18_66.geojson",
+        "pre-event image": "10500500C4DD7000_0_18_66.tif",
+        "post-event image 1": "10500500E6DD3C00_0_18_66.tif",
+        "post-event image 2": "1040050035DC3B00_0_18_66.tif"
+      },
+      "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_18_66.tif",
+      "bounds_epsg3857": [
+        771160.1887185114,
+        6531948.213708872,
+        771701.8553851786,
+        6532799.688507701
+      ],
+      "minimum_previous_bbox_gap_epsg3857_m": 11207559.904757148
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_31_63",
+      "pair": {
+        "label": "0_31_63.geojson",
+        "pre-event image": "10500500C4DD7000_0_31_63.tif",
+        "post-event image 1": "10500500E6DD3C00_0_31_63.tif",
+        "post-event image 2": ""
+      },
+      "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_31_63.tif",
+      "bounds_epsg3857": [
+        778201.8553851838,
+        6534502.901279451,
+        778743.522051851,
+        6535354.639300816
+      ],
+      "minimum_previous_bbox_gap_epsg3857_m": 11215030.658580355
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_38_62",
+      "pair": {
+        "label": "0_38_62.geojson",
+        "pre-event image": "10500500C4DD7000_0_38_62.tif",
+        "post-event image 1": "10500500E6DD3C00_0_38_62.tif",
+        "post-event image 2": ""
+      },
+      "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_38_62.tif",
+      "bounds_epsg3857": [
+        781993.5220518535,
+        6535354.639300816,
+        782535.1887185207,
+        6536206.465111484
+      ],
+      "minimum_previous_bbox_gap_epsg3857_m": 11218911.15361738
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_45_70",
+      "pair": {
+        "label": "0_45_70.geojson",
+        "pre-event image": "10500500C4DD7000_0_45_70.tif",
+        "post-event image 1": "10500500E6DD3C00_0_45_70.tif",
+        "post-event image 2": ""
+      },
+      "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_70.tif",
+      "bounds_epsg3857": [
+        785785.1887185232,
+        6528543.191195765,
+        786326.8553851903,
+        6529394.315370092
+      ],
+      "minimum_previous_bbox_gap_epsg3857_m": 11220713.81307797
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_39_60",
+      "pair": {
+        "label": "0_39_60.geojson",
+        "pre-event image": "10500500C4DD7000_0_39_60.tif",
+        "post-event image 1": "10500500E6DD3C00_0_39_60.tif",
+        "post-event image 2": ""
+      },
+      "pre": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_39_60.tif",
+      "bounds_epsg3857": [
+        782535.1887185207,
+        6537058.378735701,
+        783076.8553851878,
+        6537910.380197717
+      ],
+      "minimum_previous_bbox_gap_epsg3857_m": 11219895.107855642
+    }
+  ],
+  "previous_source_ids": [
+    "105001001A0FFC00_0_18_12",
+    "105001001A0FFC00_0_17_11",
+    "105001001A0FFC00_0_22_19",
+    "105001001A0FFC00_0_14_17",
+    "105001001A0FFC00_0_13_1",
+    "105001001A0FFC00_0_10_2",
+    "105001001A0FFC00_0_15_6",
+    "105001001A0FFC00_0_16_8",
+    "10400100684A4B00_1_17_85",
+    "10400100684A4B00_1_18_73",
+    "10300100AF395C00_2_18_54",
+    "10300100AF395C00_2_18_52",
+    "10300100AF395C00_2_28_36",
+    "10300100AF395C00_2_20_37"
+  ],
+  "previous_tif_inventory": [
+    "10300100AF395C00_2_18_52.tif",
+    "10300100AF395C00_2_18_52_aligned.tif",
+    "10300100AF395C00_2_18_54.tif",
+    "10300100AF395C00_2_18_54_aligned.tif",
+    "10300100AF395C00_2_20_37.tif",
+    "10300100AF395C00_2_20_37_aligned.tif",
+    "10300100AF395C00_2_28_36.tif",
+    "10300100AF395C00_2_28_36_aligned.tif",
+    "10300100C46F5900_0_10_2.tif",
+    "10300100C46F5900_0_13_1.tif",
+    "10300100C46F5900_0_14_17.tif",
+    "10300100C46F5900_0_15_6.tif",
+    "10300100C46F5900_0_16_8.tif",
+    "10300100C46F5900_0_17_11.tif",
+    "10300100C46F5900_0_18_12.tif",
+    "10300100C46F5900_0_22_19.tif",
+    "10300100C46F5900_1_16_93.tif",
+    "10300100C46F5900_1_17_85.tif",
+    "10300100C46F5900_1_18_73.tif",
+    "10300100C46F5900_2_18_52.tif",
+    "10300100C46F5900_2_18_54.tif",
+    "10300100C46F5900_2_20_37.tif",
+    "10300100C46F5900_2_28_36.tif",
+    "10400100684A4B00_1_16_93.tif",
+    "10400100684A4B00_1_17_85.tif",
+    "10400100684A4B00_1_18_73.tif",
+    "105001001A0FFC00_0_10_2.tif",
+    "105001001A0FFC00_0_13_1.tif",
+    "105001001A0FFC00_0_14_17.tif",
+    "105001001A0FFC00_0_15_6.tif",
+    "105001001A0FFC00_0_16_8.tif",
+    "105001001A0FFC00_0_17_11.tif",
+    "105001001A0FFC00_0_18_12.tif",
+    "105001001A0FFC00_0_22_19.tif",
+    "helene_swannanoa_roads.tif",
+    "helene_swannanoa_spring2025.tif",
+    "sn8_louisiana_post_0_10_2.tif"
+  ],
+  "label_access_started": false,
+  "selection_failures": []
+}

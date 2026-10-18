@@ -1,0 +1,26 @@
+[
+  {
+    "image_id": "sn8_louisiana_post_0_10_2",
+    "path": "ml/artifacts/images/sn8_louisiana_post_0_10_2.tif",
+    "dataset": "SpaceNet 8 Louisiana East",
+    "event": "Hurricane Ida 2021 (not Helene)",
+    "capture_date": null,
+    "source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_0_10_2.tif",
+    "license": "CC-BY-SA-4.0",
+    "ground_truth": false
+  },
+  {
+    "image_id": "helene_swannanoa_spring2025",
+    "path": "ml/artifacts/images/helene_swannanoa_spring2025.tif",
+    "dataset": "NC Helene Orthoimagery 2025",
+    "event": "Helene recovery period; not immediate post-storm",
+    "capture_date": "spring 2025 (source-level; exact date unverified)",
+    "source_url": "https://services.gis.nc.gov/secure/rest/services/Imagery/Orthoimagery_Helene_2025/ImageServer",
+    "license": "Verify NC source redistribution terms before publishing imagery",
+    "ground_truth": false,
+    "warnings": [
+      "NCOneMap says processing may adjust pixel values and discourages detailed pixel-value image analysis; use this as exploratory visual transfer, not validated radiometric analysis."
+    ],
+    "analysis_limit_source": "https://www.nconemap.gov/maps/06367a1aa3c044b890ca21cdbb2804e2/about"
+  }
+]

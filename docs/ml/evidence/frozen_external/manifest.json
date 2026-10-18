@@ -1,0 +1,213 @@
+[
+  {
+    "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_63.png",
+    "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_63_mask.png",
+    "split": "test",
+    "spatial_group": "Germany_external_10500500C4DD7000_0_45_63",
+    "source_image_id": "10500500C4DD7000_0_45_63",
+    "post_image": "10500500E6DD3C00_0_45_63.tif",
+    "bounds_epsg3857": [
+      785785.1887185232,
+      6534502.901279451,
+      786326.8553851903,
+      6535354.639300816
+    ],
+    "minimum_previous_bbox_gap_epsg3857_m": 11222329.343404261,
+    "label_counts": {
+      "0": 5065,
+      "255": 1684935
+    },
+    "georeferencing": {
+      "crs": "EPSG:4326",
+      "transform": [
+        3.74298035050102e-06,
+        0.0,
+        7.05882845060592,
+        0.0,
+        -3.74298035050102e-06,
+        50.5116155170656,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "width": 1300,
+      "height": 1300
+    }
+  },
+  {
+    "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_18_66.png",
+    "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_18_66_mask.png",
+    "split": "test",
+    "spatial_group": "Germany_external_10500500C4DD7000_0_18_66",
+    "source_image_id": "10500500C4DD7000_0_18_66",
+    "post_image": "10500500E6DD3C00_0_18_66.tif",
+    "bounds_epsg3857": [
+      771160.1887185114,
+      6531948.213708872,
+      771701.8553851786,
+      6532799.688507701
+    ],
+    "minimum_previous_bbox_gap_epsg3857_m": 11207559.904757148,
+    "label_counts": {
+      "0": 47088,
+      "255": 1642912
+    },
+    "georeferencing": {
+      "crs": "EPSG:4326",
+      "transform": [
+        3.74298035050102e-06,
+        0.0,
+        6.927449840303334,
+        0.0,
+        -3.74298035050102e-06,
+        50.49701789369865,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "width": 1300,
+      "height": 1300
+    }
+  },
+  {
+    "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_31_63.png",
+    "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_31_63_mask.png",
+    "split": "test",
+    "spatial_group": "Germany_external_10500500C4DD7000_0_31_63",
+    "source_image_id": "10500500C4DD7000_0_31_63",
+    "post_image": "10500500E6DD3C00_0_31_63.tif",
+    "bounds_epsg3857": [
+      778201.8553851838,
+      6534502.901279451,
+      778743.522051851,
+      6535354.639300816
+    ],
+    "minimum_previous_bbox_gap_epsg3857_m": 11215030.658580355,
+    "label_counts": {
+      "0": 2878,
+      "1": 2199,
+      "255": 1684923
+    },
+    "georeferencing": {
+      "crs": "EPSG:4326",
+      "transform": [
+        3.74298035050102e-06,
+        0.0,
+        6.990706208226801,
+        0.0,
+        -3.74298035050102e-06,
+        50.5116155170656,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "width": 1300,
+      "height": 1300
+    }
+  },
+  {
+    "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_38_62.png",
+    "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_38_62_mask.png",
+    "split": "test",
+    "spatial_group": "Germany_external_10500500C4DD7000_0_38_62",
+    "source_image_id": "10500500C4DD7000_0_38_62",
+    "post_image": "10500500E6DD3C00_0_38_62.tif",
+    "bounds_epsg3857": [
+      781993.5220518535,
+      6535354.639300816,
+      782535.1887185207,
+      6536206.465111484
+    ],
+    "minimum_previous_bbox_gap_epsg3857_m": 11218911.15361738,
+    "label_counts": {
+      "1": 726,
+      "255": 1689274
+    },
+    "georeferencing": {
+      "crs": "EPSG:4326",
+      "transform": [
+        3.74298035050102e-06,
+        0.0,
+        7.024767329416361,
+        0.0,
+        -3.74298035050102e-06,
+        50.51648139152125,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "width": 1300,
+      "height": 1300
+    }
+  },
+  {
+    "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_70.png",
+    "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_45_70_mask.png",
+    "split": "test",
+    "spatial_group": "Germany_external_10500500C4DD7000_0_45_70",
+    "source_image_id": "10500500C4DD7000_0_45_70",
+    "post_image": "10500500E6DD3C00_0_45_70.tif",
+    "bounds_epsg3857": [
+      785785.1887185232,
+      6528543.191195765,
+      786326.8553851903,
+      6529394.315370092
+    ],
+    "minimum_previous_bbox_gap_epsg3857_m": 11220713.81307797,
+    "label_counts": {
+      "0": 9075,
+      "255": 1680925
+    },
+    "georeferencing": {
+      "crs": "EPSG:4326",
+      "transform": [
+        3.74298035050102e-06,
+        0.0,
+        7.05882845060592,
+        0.0,
+        -3.74298035050102e-06,
+        50.47755439587604,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "width": 1300,
+      "height": 1300
+    }
+  },
+  {
+    "image": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_39_60.png",
+    "mask": "ml/artifacts/sn8_frozen_external/10500500C4DD7000_0_39_60_mask.png",
+    "split": "test",
+    "spatial_group": "Germany_external_10500500C4DD7000_0_39_60",
+    "source_image_id": "10500500C4DD7000_0_39_60",
+    "post_image": "10500500E6DD3C00_0_39_60.tif",
+    "bounds_epsg3857": [
+      782535.1887185207,
+      6537058.378735701,
+      783076.8553851878,
+      6537910.380197717
+    ],
+    "minimum_previous_bbox_gap_epsg3857_m": 11219895.107855642,
+    "label_counts": {
+      "0": 5930,
+      "255": 1684070
+    },
+    "georeferencing": {
+      "crs": "EPSG:4326",
+      "transform": [
+        3.74298035050102e-06,
+        0.0,
+        7.029633203872012,
+        0.0,
+        -3.74298035050102e-06,
+        50.52621314043255,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "width": 1300,
+      "height": 1300
+    }
+  }
+]

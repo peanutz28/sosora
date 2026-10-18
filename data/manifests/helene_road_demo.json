@@ -1,0 +1,27 @@
+[
+  {
+    "image_id": "helene_swannanoa_roads_spring2025",
+    "path": "ml/artifacts/images/helene_swannanoa_spring2025.tif",
+    "road_roi_path": "ml/artifacts/helene_road_demo/helene_swannanoa_roads.png",
+    "dataset": "NC Helene Orthoimagery 2025",
+    "event": "Helene recovery period; not immediate post-storm",
+    "capture_date": "spring 2025 (source-level; exact date unverified)",
+    "source_url": "https://services.gis.nc.gov/secure/rest/services/Imagery/Orthoimagery_Helene_2025/ImageServer",
+    "ground_truth": false,
+    "split": "unlabeled_transfer_demo",
+    "license": "Verify NC imagery and NCDOT redistribution terms before publishing",
+    "road_roi_source": "https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_StateMaintainedRoadsQtr/MapServer/0",
+    "road_roi_provenance": "ml/artifacts/helene_road_demo/provenance.json",
+    "registration": "Vector coordinates transformed to source raster CRS; rasterized with exactly source transform and shape, pixel-center rule.",
+    "warnings": [
+      "Unlabeled transfer demonstration; no accuracy estimate or verified flood state.",
+      "Spring 2025 recovery imagery is not immediate Helene storm imagery.",
+      "Road geometry published June 2026 may differ from roads at imagery date.",
+      "State-maintained roads only: local/private roads may be absent.",
+      "Three-metre buffer is a corridor convention, not measured pavement width.",
+      "Geographic registration errors between independent sources remain possible.",
+      "NCOneMap says processing may adjust pixel values and discourages detailed pixel-value image analysis; use this as exploratory visual transfer, not validated radiometric analysis."
+    ],
+    "analysis_limit_source": "https://www.nconemap.gov/maps/06367a1aa3c044b890ca21cdbb2804e2/about"
+  }
+]

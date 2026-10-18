@@ -1,0 +1,588 @@
+{
+  "test": {
+    "split": "test",
+    "scale": "original_native_resolution",
+    "manifest": "ml/artifacts/sn8_pilot/manifest.json",
+    "tile_count": 4,
+    "tile_size": 256,
+    "stride": 256,
+    "decision": "argmax across binary classes; no threshold tuning",
+    "support": "Identical original mask pixels labeled 0 or 1 for every model/control; 255 ignored",
+    "provenance": {
+      "model_id": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/sn8_native_cpu_v2/model",
+      "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+      "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2",
+      "task": "flood_state_on_road_corridors",
+      "requires_road_roi": true,
+      "label_map": {
+        "0": "non_flooded_road",
+        "1": "flooded_road"
+      },
+      "native_tile_size": 256,
+      "identity_status": "verified"
+    },
+    "model_provenance": {
+      "tuned": {
+        "model_id": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/sn8_native_cpu_v2/model",
+        "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+        "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2",
+        "task": "flood_state_on_road_corridors",
+        "requires_road_roi": true,
+        "label_map": {
+          "0": "non_flooded_road",
+          "1": "flooded_road"
+        },
+        "native_tile_size": 256,
+        "identity_status": "verified"
+      },
+      "baseline": {
+        "model_id": "ml/artifacts/sn8_native_cpu_v2/baseline_model",
+        "checkpoint_id": "sha256:cd2432b4910dfe50d50df36b9f3f87a67b8f8ab498d68651f39b7c1bdd3619bc",
+        "run_id": null,
+        "task": "flood_state_on_road_corridors",
+        "requires_road_roi": true,
+        "label_map": {
+          "0": "non_flooded_road",
+          "1": "flooded_road"
+        },
+        "native_tile_size": 256,
+        "identity_status": "legacy_unverified"
+      }
+    },
+    "metrics": {
+      "tuned": {
+        "tp": 14596,
+        "fp": 11731,
+        "fn": 2377,
+        "valid_pixels": 61304,
+        "iou": 0.5085005574136009,
+        "precision": 0.5544118205644395,
+        "recall": 0.8599540446591646,
+        "f1": 0.6741801385681293
+      },
+      "baseline": {
+        "tp": 3674,
+        "fp": 18908,
+        "fn": 13299,
+        "valid_pixels": 61304,
+        "iou": 0.10239402469273431,
+        "precision": 0.16269595252856256,
+        "recall": 0.21646143875567078,
+        "f1": 0.1857666540260397
+      },
+      "all_positive": {
+        "tp": 16973,
+        "fp": 44331,
+        "fn": 0,
+        "valid_pixels": 61304,
+        "iou": 0.27686610987863763,
+        "precision": 0.27686610987863763,
+        "recall": 1.0,
+        "f1": 0.43366506125681875
+      },
+      "all_negative": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 16973,
+        "valid_pixels": 61304,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "per_tile": [
+      {
+        "source_image_id": "10300100AF395C00_2_18_54",
+        "spatial_group": "acquisition_2",
+        "image": "ml/artifacts/sn8_pilot/10300100AF395C00_2_18_54.png",
+        "mask": "ml/artifacts/sn8_pilot/10300100AF395C00_2_18_54_mask.png",
+        "metrics": {
+          "tuned": {
+            "tp": 6176,
+            "fp": 3302,
+            "fn": 0,
+            "valid_pixels": 9478,
+            "iou": 0.6516142646127875,
+            "precision": 0.6516142646127875,
+            "recall": 1.0,
+            "f1": 0.7890634981474384
+          },
+          "all_positive": {
+            "tp": 6176,
+            "fp": 3302,
+            "fn": 0,
+            "valid_pixels": 9478,
+            "iou": 0.6516142646127875,
+            "precision": 0.6516142646127875,
+            "recall": 1.0,
+            "f1": 0.7890634981474384
+          },
+          "all_negative": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6176,
+            "valid_pixels": 9478,
+            "iou": 0.0,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "baseline": {
+            "tp": 2693,
+            "fp": 1294,
+            "fn": 3483,
+            "valid_pixels": 9478,
+            "iou": 0.36050870147255687,
+            "precision": 0.6754451968898921,
+            "recall": 0.43604274611398963,
+            "f1": 0.5299616255042803
+          }
+        },
+        "inference_seconds": {
+          "tuned": 2.4099603749928065,
+          "baseline": 1.951413125032559
+        },
+        "native_size": [
+          1300,
+          1300
+        ]
+      },
+      {
+        "source_image_id": "10300100AF395C00_2_18_52",
+        "spatial_group": "acquisition_2",
+        "image": "ml/artifacts/sn8_pilot/10300100AF395C00_2_18_52.png",
+        "mask": "ml/artifacts/sn8_pilot/10300100AF395C00_2_18_52_mask.png",
+        "metrics": {
+          "tuned": {
+            "tp": 8420,
+            "fp": 667,
+            "fn": 2377,
+            "valid_pixels": 11464,
+            "iou": 0.7344731332868109,
+            "precision": 0.926598437328051,
+            "recall": 0.7798462535889599,
+            "f1": 0.8469120901227117
+          },
+          "all_positive": {
+            "tp": 10797,
+            "fp": 667,
+            "fn": 0,
+            "valid_pixels": 11464,
+            "iou": 0.941817864619679,
+            "precision": 0.941817864619679,
+            "recall": 1.0,
+            "f1": 0.9700372849377835
+          },
+          "all_negative": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 10797,
+            "valid_pixels": 11464,
+            "iou": 0.0,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "baseline": {
+            "tp": 981,
+            "fp": 20,
+            "fn": 9816,
+            "valid_pixels": 11464,
+            "iou": 0.0906905796431543,
+            "precision": 0.98001998001998,
+            "recall": 0.09085857182550708,
+            "f1": 0.1662993727750466
+          }
+        },
+        "inference_seconds": {
+          "tuned": 2.3089908749680035,
+          "baseline": 2.4003676249994896
+        },
+        "native_size": [
+          1300,
+          1300
+        ]
+      },
+      {
+        "source_image_id": "10300100AF395C00_2_28_36",
+        "spatial_group": "acquisition_2",
+        "image": "ml/artifacts/sn8_pilot/10300100AF395C00_2_28_36.png",
+        "mask": "ml/artifacts/sn8_pilot/10300100AF395C00_2_28_36_mask.png",
+        "metrics": {
+          "tuned": {
+            "tp": 0,
+            "fp": 7169,
+            "fn": 0,
+            "valid_pixels": 15777,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          },
+          "all_positive": {
+            "tp": 0,
+            "fp": 15777,
+            "fn": 0,
+            "valid_pixels": 15777,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          },
+          "all_negative": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "valid_pixels": 15777,
+            "iou": null,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "baseline": {
+            "tp": 0,
+            "fp": 657,
+            "fn": 0,
+            "valid_pixels": 15777,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          }
+        },
+        "inference_seconds": {
+          "tuned": 2.2153725000098348,
+          "baseline": 2.1812375410227105
+        },
+        "native_size": [
+          1300,
+          1300
+        ]
+      },
+      {
+        "source_image_id": "10300100AF395C00_2_20_37",
+        "spatial_group": "acquisition_2",
+        "image": "ml/artifacts/sn8_pilot/10300100AF395C00_2_20_37.png",
+        "mask": "ml/artifacts/sn8_pilot/10300100AF395C00_2_20_37_mask.png",
+        "metrics": {
+          "tuned": {
+            "tp": 0,
+            "fp": 593,
+            "fn": 0,
+            "valid_pixels": 24585,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          },
+          "all_positive": {
+            "tp": 0,
+            "fp": 24585,
+            "fn": 0,
+            "valid_pixels": 24585,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          },
+          "all_negative": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "valid_pixels": 24585,
+            "iou": null,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "baseline": {
+            "tp": 0,
+            "fp": 16937,
+            "fn": 0,
+            "valid_pixels": 24585,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          }
+        },
+        "inference_seconds": {
+          "tuned": 1.9156104999710806,
+          "baseline": 1.9415910830139183
+        },
+        "native_size": [
+          1300,
+          1300
+        ]
+      }
+    ],
+    "elapsed_seconds": 17.393529708031565,
+    "caveats": [
+      "Tiny same-event pilot; not event-level generalization evidence",
+      "Corridor labels use existing reference-line buffers, not full-scene flood truth",
+      "Residual image/label registration errors remain uncorrected",
+      "Native tiled evaluation differs from earlier 256px full-tile resized evaluation",
+      "Validation may inform model development; explicit test evaluation is reserved for final assessment"
+    ]
+  },
+  "validation": {
+    "split": "validation",
+    "scale": "original_native_resolution",
+    "manifest": "ml/artifacts/sn8_pilot/manifest.json",
+    "tile_count": 2,
+    "tile_size": 256,
+    "stride": 256,
+    "decision": "argmax across binary classes; no threshold tuning",
+    "support": "Identical original mask pixels labeled 0 or 1 for every model/control; 255 ignored",
+    "provenance": {
+      "model_id": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/sn8_native_cpu_v2/model",
+      "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+      "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2",
+      "task": "flood_state_on_road_corridors",
+      "requires_road_roi": true,
+      "label_map": {
+        "0": "non_flooded_road",
+        "1": "flooded_road"
+      },
+      "native_tile_size": 256,
+      "identity_status": "verified"
+    },
+    "model_provenance": {
+      "tuned": {
+        "model_id": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/sn8_native_cpu_v2/model",
+        "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+        "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2",
+        "task": "flood_state_on_road_corridors",
+        "requires_road_roi": true,
+        "label_map": {
+          "0": "non_flooded_road",
+          "1": "flooded_road"
+        },
+        "native_tile_size": 256,
+        "identity_status": "verified"
+      },
+      "baseline": {
+        "model_id": "ml/artifacts/sn8_native_cpu_v2/baseline_model",
+        "checkpoint_id": "sha256:cd2432b4910dfe50d50df36b9f3f87a67b8f8ab498d68651f39b7c1bdd3619bc",
+        "run_id": null,
+        "task": "flood_state_on_road_corridors",
+        "requires_road_roi": true,
+        "label_map": {
+          "0": "non_flooded_road",
+          "1": "flooded_road"
+        },
+        "native_tile_size": 256,
+        "identity_status": "legacy_unverified"
+      }
+    },
+    "metrics": {
+      "tuned": {
+        "tp": 2361,
+        "fp": 2340,
+        "fn": 1855,
+        "valid_pixels": 35313,
+        "iou": 0.3601281269066504,
+        "precision": 0.5022335673261008,
+        "recall": 0.5600094876660342,
+        "f1": 0.529550297185152
+      },
+      "baseline": {
+        "tp": 1592,
+        "fp": 2301,
+        "fn": 2624,
+        "valid_pixels": 35313,
+        "iou": 0.2442841798373485,
+        "precision": 0.40893912150012846,
+        "recall": 0.3776091081593928,
+        "f1": 0.3926501418177334
+      },
+      "all_positive": {
+        "tp": 4216,
+        "fp": 31097,
+        "fn": 0,
+        "valid_pixels": 35313,
+        "iou": 0.11938945997224817,
+        "precision": 0.11938945997224817,
+        "recall": 1.0,
+        "f1": 0.21331174580687595
+      },
+      "all_negative": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 4216,
+        "valid_pixels": 35313,
+        "iou": 0.0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "per_tile": [
+      {
+        "source_image_id": "10400100684A4B00_1_17_85",
+        "spatial_group": "acquisition_1",
+        "image": "ml/artifacts/sn8_pilot/10400100684A4B00_1_17_85.png",
+        "mask": "ml/artifacts/sn8_pilot/10400100684A4B00_1_17_85_mask.png",
+        "metrics": {
+          "tuned": {
+            "tp": 2361,
+            "fp": 2045,
+            "fn": 1855,
+            "valid_pixels": 10087,
+            "iou": 0.3770963104935314,
+            "precision": 0.5358601906491148,
+            "recall": 0.5600094876660342,
+            "f1": 0.5476687543493389
+          },
+          "all_positive": {
+            "tp": 4216,
+            "fp": 5871,
+            "fn": 0,
+            "valid_pixels": 10087,
+            "iou": 0.4179637156736393,
+            "precision": 0.4179637156736393,
+            "recall": 1.0,
+            "f1": 0.5895266727260016
+          },
+          "all_negative": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4216,
+            "valid_pixels": 10087,
+            "iou": 0.0,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "baseline": {
+            "tp": 1592,
+            "fp": 1672,
+            "fn": 2624,
+            "valid_pixels": 10087,
+            "iou": 0.2703804347826087,
+            "precision": 0.4877450980392157,
+            "recall": 0.3776091081593928,
+            "f1": 0.42566844919786095
+          }
+        },
+        "inference_seconds": {
+          "tuned": 2.1337924590334296,
+          "baseline": 2.0918592080124654
+        },
+        "native_size": [
+          1300,
+          1300
+        ]
+      },
+      {
+        "source_image_id": "10400100684A4B00_1_18_73",
+        "spatial_group": "acquisition_1",
+        "image": "ml/artifacts/sn8_pilot/10400100684A4B00_1_18_73.png",
+        "mask": "ml/artifacts/sn8_pilot/10400100684A4B00_1_18_73_mask.png",
+        "metrics": {
+          "tuned": {
+            "tp": 0,
+            "fp": 295,
+            "fn": 0,
+            "valid_pixels": 25226,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          },
+          "all_positive": {
+            "tp": 0,
+            "fp": 25226,
+            "fn": 0,
+            "valid_pixels": 25226,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          },
+          "all_negative": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "valid_pixels": 25226,
+            "iou": null,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "baseline": {
+            "tp": 0,
+            "fp": 629,
+            "fn": 0,
+            "valid_pixels": 25226,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          }
+        },
+        "inference_seconds": {
+          "tuned": 2.45995904202573,
+          "baseline": 1.9538128330023028
+        },
+        "native_size": [
+          1300,
+          1300
+        ]
+      }
+    ],
+    "elapsed_seconds": 8.702572082984261,
+    "caveats": [
+      "Tiny same-event pilot; not event-level generalization evidence",
+      "Corridor labels use existing reference-line buffers, not full-scene flood truth",
+      "Residual image/label registration errors remain uncorrected",
+      "Native tiled evaluation differs from earlier 256px full-tile resized evaluation",
+      "Validation may inform model development; explicit test evaluation is reserved for final assessment"
+    ]
+  },
+  "selection": {
+    "selected_run": "sn8_native_cpu_v2",
+    "selected_epoch": 9,
+    "validation_f1": 0.6142329020332717,
+    "other_validation_f1": 0.4830434238518333,
+    "rule": "Higher best native-crop validation F1; frozen versus full backbone presets",
+    "test_metrics_consulted": false,
+    "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+    "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2"
+  },
+  "protocol": {
+    "selection": "Choose between two pre-set CPU experiments by validation only; no new test metrics consulted before model selection",
+    "candidates": [
+      {
+        "run": "sn8_native_cpu_v1",
+        "epochs": 6,
+        "lr": 0.0002,
+        "freeze_backbone": true
+      },
+      {
+        "run": "sn8_native_cpu_v2",
+        "epochs": 10,
+        "lr": 5e-05,
+        "freeze_backbone": false
+      }
+    ],
+    "shared": {
+      "seed": 42,
+      "batch_size": 4,
+      "threads": 2,
+      "native_crop_size": 256,
+      "time_cap_per_run_seconds": 180,
+      "train_crops": 53,
+      "validation_crops": 11
+    },
+    "selection_rule": "Highest completed validation F1 from native crops; full validation tile metrics are diagnostic, not a test-tuning signal",
+    "final_test": "Evaluate selected model and its saved random-binary-head control once at native resolution on original 4 test tiles; compare all-flood and all-dry controls",
+    "limitations": [
+      "Test set was previously evaluated for old pilot; new experiments do not tune using new test output",
+      "Same event, tiny geographic sample, not a representative deployment estimate",
+      "Masks derived from 4-pixel buffered reference road centerlines; no off-road supervision",
+      "Road ROI for demo uses geometry only, never Flooded values"
+    ]
+  }
+}

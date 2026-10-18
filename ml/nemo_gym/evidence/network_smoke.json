@@ -1,0 +1,73 @@
+{
+  "seed_session": {
+    "http_status": 200,
+    "body": {
+      "initialized": true
+    }
+  },
+  "get_incident": {
+    "http_status": 200,
+    "body": {
+      "report": "SOS: stranded residents request rescue. Reported location: node_4.",
+      "rescue_node": "node_0",
+      "incident_node": "node_4",
+      "initial_route": [
+        "node_0",
+        "node_1",
+        "node_2",
+        "node_3",
+        "node_4"
+      ],
+      "note": "Initial route is stale; query current road status before planning."
+    }
+  },
+  "get_road_status": {
+    "http_status": 200,
+    "body": {
+      "available": true,
+      "graph_version": 2,
+      "edges": [
+        {
+          "id": "road_0",
+          "source": "node_0",
+          "target": "node_1",
+          "status": "open"
+        },
+        {
+          "id": "road_1",
+          "source": "node_1",
+          "target": "node_2",
+          "status": "open"
+        },
+        {
+          "id": "road_2",
+          "source": "node_2",
+          "target": "node_3",
+          "status": "closed"
+        },
+        {
+          "id": "road_3",
+          "source": "node_3",
+          "target": "node_4",
+          "status": "open"
+        },
+        {
+          "id": "detour",
+          "source": "node_0",
+          "target": "node_4",
+          "status": "open"
+        }
+      ],
+      "authority": "synthetic official-status simulator"
+    }
+  },
+  "check_reachability": {
+    "http_status": 200,
+    "body": {
+      "available": true,
+      "graph_version": 2,
+      "reachable": true,
+      "note": "Graph reachability only; no safety clearance."
+    }
+  }
+}

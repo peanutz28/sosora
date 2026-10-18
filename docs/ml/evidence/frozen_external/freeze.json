@@ -1,0 +1,30 @@
+{
+  "frozen_at_utc": "2026-10-17T18:23:24.444397+00:00",
+  "model": "/Users/peanutz/Documents/GitHub/sosora/ml/artifacts/sn8_native_cpu_v2/model",
+  "checkpoint_id": "sha256:3ab85783b140ec6ebfac7ad45cf78cb38e6b668c082b053d15ef3edcd20ee69b",
+  "run_id": "2c66a49a-fb5a-4d56-9d5d-7142d42f57b2",
+  "selected_epoch": 9,
+  "model_config_sha256": "fa96efe1a74c64fb49e8cbe54200de15653db2402cff9b18f8461046aceeb7d8",
+  "decision": "binary argmax (flood class1 threshold0.5; tiesclass0)",
+  "native_tile_size": 256,
+  "stride": 256,
+  "crop_or_augmentation": false,
+  "task": "flood state on annotated road corridors only",
+  "road_buffer_source_pixels": 4,
+  "unknown": 255,
+  "dataset": "SpaceNet8 Germany_Training_Public",
+  "event": "Germany2021 floods; exact imagery capture dates unverified",
+  "selection": "seed17017 shuffle sorted pre-event image mapping; choose first6 available non-overlapping footprints, at least500m bbox gap; no class balancing/label inspection",
+  "count": 6,
+  "failure_policy": "Record every failure; no replacements after opening labels; do not tune model/threshold after evaluation",
+  "frozen_before_new_label_access": true,
+  "baseline": "saved initialization binary model sn8_native_cpu_v2/baseline_model and constant controls, identical support",
+  "download_budget_bytes": 160000000,
+  "separation": "Germany event/AOI disjoint from all Louisiana pilot tiles; measure bbox separation after georeference checks",
+  "limitations": [
+    "Small convenience subset within public dataset; not official challenge score",
+    "Possible residual registration and narrow-corridor label errors",
+    "Not Helene accuracy",
+    "No model changes or threshold tuning permitted from these results"
+  ]
+}

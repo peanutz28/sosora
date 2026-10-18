@@ -1,0 +1,44 @@
+{
+  "status": "preparation_complete_training_held",
+  "repository": "/Users/peanutz/Documents/GitHub/sosora",
+  "protocol_sha256": "d557eb517e128b3d1a7a3d921850fbbc0d3fa0091ad046436fc42d156cf49ade",
+  "manifest_sha256": "6d406a00b2247d369fce27caa9d96c3236ba3652136d7a32c1ebbd9aa9b03ebd",
+  "tile_counts": {
+    "train": 80,
+    "validation": 19
+  },
+  "crop_counts": {
+    "train": 544,
+    "validation": 99
+  },
+  "sealed_final_tiles": 38,
+  "additional_storage_mib": 1259.2,
+  "alignment_quarantine_count": 14,
+  "tests_passed": 94,
+  "benchmarks": {
+    "unet": {
+      "parameters": 1962642,
+      "steps": 13,
+      "elapsed_seconds": 16.849265500088222,
+      "measured_steps": 10,
+      "mean_step_seconds": 1.1522401542169973,
+      "checkpoint_sha256": null,
+      "runner_source_sha256": "b811d1dd56e531c88185cb6bf107b91f49cb79b5a58b55762a87ff44e4463d93"
+    },
+    "segformer": {
+      "parameters": 3714658,
+      "steps": 13,
+      "elapsed_seconds": 22.016339124995284,
+      "measured_steps": 10,
+      "mean_step_seconds": 1.6544825083808974,
+      "checkpoint_sha256": null,
+      "runner_source_sha256": "b811d1dd56e531c88185cb6bf107b91f49cb79b5a58b55762a87ff44e4463d93"
+    }
+  },
+  "limitations": [
+    "Coarse alignment screen is not a calibrated registration measurement.",
+    "Unflagged samples are not guaranteed free of clouds or label errors.",
+    "Final assessment remains38 metadata-frozen tiles across two geographic blocks within known events, not operational validation."
+  ],
+  "brev_quote": "Unavailable: supported Chrome inspection and CLI help stalled; no approval decision or account quote returned. No paid action taken."
+}
