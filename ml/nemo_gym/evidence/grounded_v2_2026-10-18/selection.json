@@ -1,0 +1,26 @@
+{
+  "frozen_at_utc": "2026-10-18T06:14:00.753780+00:00",
+  "selected_revision": 2,
+  "selection_reason": "R2 and R3 tie at 10/14 validation; select earlier, simpler R2. R1 4/14. Fresh baseline 5/14. No new test runs opened.",
+  "policy_sha256": "bacd482bc08054d058aecad93889624370ee6a06ee97a13babb2984f0399ef28",
+  "source_hashes": {
+    "ml/nemo_gym/data/train.jsonl": "6259d74f38ab28f446193584856dca9979e4c8d9c407e1837f4a23bd67d78875",
+    "ml/nemo_gym/data/validation.jsonl": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650",
+    "ml/nemo_gym/data/test.jsonl": "2b86c0e594b586f733a03f23ae5e607dfaa02a5182e4a1111a921945a8587e3b",
+    "ml/nemo_gym/core.py": "e59eb6752e796568896e07bf4d33c833b8bceb6c2bac129affa04a5f6e188696",
+    "ml/nemo_gym/app.py": "7f3df73d2315605270d6294292dbfee79582701bb0c20768acedef9230d1f126",
+    "ml/nemo_gym/evaluate_agent.py": "7723ffa9207ad3ac1320e7481a1737630dc8b25e1535a7445a753d290db32eac",
+    "scripts/vllm/serve_brev.sh": "009014a92debe7d5bd8232bf7225b9f36862fe60a042e1b15ee3db23fc3f8026"
+  },
+  "sampling": {
+    "temperature": 1.0,
+    "max_tokens": 1024,
+    "parallel_tool_calls": false
+  },
+  "test_invocations_allowed": {
+    "baseline": 1,
+    "grounded_v2": 1
+  },
+  "conservative_review_tradeoff": "All recommendations require human review; verifier does not penalize unnecessary review.",
+  "null_diagnosis": "All R2 failures submit string None instead of JSON null. Parser/source inspection is diagnostic only; no parser or schema changes. Exact raw-generation versus conversion origin not established."
+}

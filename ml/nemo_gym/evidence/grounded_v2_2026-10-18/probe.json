@@ -1,0 +1,28 @@
+{
+  "unauthenticated_models_status": 401,
+  "authenticated_models_status": 200,
+  "served_model_ids": [
+    "nvidia/nemotron-3.5-lightning-30b-a3b"
+  ],
+  "tool_call_valid": true,
+  "strict_native_probe": true,
+  "finish_reason": "tool_calls",
+  "latency_ms": 381.5365410409868,
+  "usage": {
+    "prompt_tokens": 288,
+    "total_tokens": 314,
+    "completion_tokens": 26,
+    "prompt_tokens_details": null
+  },
+  "tool_calls": [
+    {
+      "id": "chatcmpl-tool-94e1591fedea4466",
+      "type": "function",
+      "function": {
+        "name": "acknowledge",
+        "arguments": "{\"ok\": true}"
+      }
+    }
+  ],
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b"
+}

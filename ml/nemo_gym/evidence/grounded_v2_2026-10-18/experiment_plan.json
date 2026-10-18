@@ -1,0 +1,27 @@
+{
+  "created_at_utc": "2026-10-18T06:01:18.326393+00:00",
+  "new_policy_names": [
+    "grounded_v2"
+  ],
+  "allowed_changes": [
+    "system prompt",
+    "tool descriptions"
+  ],
+  "unchanged": [
+    "model weights",
+    "sampling",
+    "task rows and tool parameter schemas",
+    "tool execution loop",
+    "verifier"
+  ],
+  "validation_only_development": true,
+  "maximum_policy_revisions": 3,
+  "stopping_rule": "Stop development at full validation pass or after three revisions; freeze the final selected policy before any new test run. Retain every attempt.",
+  "test_plan": "One full baseline test invocation and one full final grounded_v2 test invocation; no retries or policy changes after test is opened.",
+  "known_prior_test_aggregate": "baseline 7/14; evidence_first 4/14 supplied in user request; no prior test trajectories inspected for this policy",
+  "test_interpretation": "This split was evaluated previously; fresh run is not a never-before-seen benchmark. New policy development uses validation only.",
+  "llm_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "vllm_config": "scripts/vllm/serve_brev.sh",
+  "policy_r01_sha256": "a0520add710b28128c92a2d8a737b175dbb0ebcd7f17f7282b660573232609d2",
+  "gpu_shutdown": "Stop when evaluation finishes per user reply"
+}

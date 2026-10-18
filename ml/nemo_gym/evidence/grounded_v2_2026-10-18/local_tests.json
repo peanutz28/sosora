@@ -1,0 +1,6 @@
+{
+  "command": "PYTHONPATH=\"$PWD:/private/tmp/sosora_nemo_gym_runtime/official\" /private/tmp/sosora_nemo_gym_runtime/venv/bin/python -m pytest ml/nemo_gym/tests -q",
+  "passed": 26,
+  "seconds": 19.4,
+  "notes": "Regression checks cover unchanged baseline prompt/descriptions and grounded_v2 description-only overrides with real Gym tools/verifier and a fake provider."
+}

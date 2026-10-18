@@ -1,0 +1,115 @@
+{
+  "baseline": {
+    "bridge_closed": {
+      "passed": 2,
+      "total": 2,
+      "issues": {}
+    },
+    "two_roads_closed": {
+      "passed": 1,
+      "total": 2,
+      "issues": {
+        "invalid_tool_arguments": 1
+      }
+    },
+    "alternate_route": {
+      "passed": 2,
+      "total": 2,
+      "issues": {}
+    },
+    "isolated": {
+      "passed": 2,
+      "total": 2,
+      "issues": {}
+    },
+    "tool_failure": {
+      "passed": 0,
+      "total": 2,
+      "issues": {
+        "missing_required_tools": 2,
+        "require_exactly_one_recommendation": 2,
+        "route_tool_before_current_status": 2,
+        "stale_graph_version": 2,
+        "invalid_tool_arguments": 1
+      }
+    },
+    "conflicting_evidence": {
+      "passed": 1,
+      "total": 2,
+      "issues": {
+        "missing_human_review": 1
+      }
+    },
+    "missing_location": {
+      "passed": 0,
+      "total": 2,
+      "issues": {
+        "incorrect_reachability": 2,
+        "invalid_tool_arguments": 1,
+        "invented_graph_version": 2,
+        "missing_human_review": 2,
+        "unsupported_path": 2
+      }
+    }
+  },
+  "evidence_first": {
+    "bridge_closed": {
+      "passed": 0,
+      "total": 2,
+      "issues": {
+        "missing_required_tools": 2,
+        "require_exactly_one_recommendation": 2
+      }
+    },
+    "two_roads_closed": {
+      "passed": 0,
+      "total": 2,
+      "issues": {
+        "missing_required_tools": 2,
+        "require_exactly_one_recommendation": 2
+      }
+    },
+    "alternate_route": {
+      "passed": 1,
+      "total": 2,
+      "issues": {
+        "missing_required_tools": 1,
+        "require_exactly_one_recommendation": 1
+      }
+    },
+    "isolated": {
+      "passed": 1,
+      "total": 2,
+      "issues": {
+        "unsupported_path": 1
+      }
+    },
+    "tool_failure": {
+      "passed": 0,
+      "total": 2,
+      "issues": {
+        "missing_required_tools": 2,
+        "require_exactly_one_recommendation": 2,
+        "route_tool_before_current_status": 2,
+        "stale_graph_version": 2
+      }
+    },
+    "conflicting_evidence": {
+      "passed": 0,
+      "total": 2,
+      "issues": {
+        "missing_required_tools": 2,
+        "require_exactly_one_recommendation": 2
+      }
+    },
+    "missing_location": {
+      "passed": 0,
+      "total": 2,
+      "issues": {
+        "missing_required_tools": 1,
+        "require_exactly_one_recommendation": 1,
+        "invented_graph_version": 1
+      }
+    }
+  }
+}
