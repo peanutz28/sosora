@@ -4,7 +4,14 @@ import { roadAccess } from "@/lib/access";
 
 import { useEffect, useRef, useState } from "react";
 import type { GeoJSONSource, Map as MlMap } from "maplibre-gl";
-import { Layers, LocateFixed, Maximize2, Minus, Plus } from "lucide-react";
+import {
+  Layers,
+  LocateFixed,
+  Maximize2,
+  Minus,
+  Plus,
+  RadioTower,
+} from "lucide-react";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   loadHybridStyle,
@@ -74,6 +81,7 @@ export function RescueMap({
   onMapClick,
   onPhase,
 }: Props) {
+  const beaconIconRef = useRef<SVGSVGElement | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const nodeRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MlMap | null>(null);
@@ -458,7 +466,12 @@ export function RescueMap({
       for (const beacon of beacons) {
         const node = document.createElement("div");
         node.className = "beacon-pin";
-        node.textContent = "B";
+        if (beaconIconRef.current)
+          node.appendChild(beaconIconRef.current.cloneNode(true));
+        const name = document.createElement("span");
+        name.className = "beacon-name";
+        name.textContent = "Beacon";
+        node.appendChild(name);
         node.title = beacon.name;
         markers.push(
           new lib.Marker({ element: node, anchor: "bottom", offset: [0, -12] })
@@ -603,6 +616,9 @@ export function RescueMap({
       ref={wrapRef}
       className={`map-shell absolute inset-0 ${placeMode ? "cursor-crosshair" : ""}`}
     >
+      <span className="hidden" aria-hidden="true">
+        <RadioTower ref={beaconIconRef} size={16} />
+      </span>
       <div className="mapbar">
         <div className="mapbar-title">
           <span className="text-accent">◉</span>
@@ -786,7 +802,8 @@ export function RescueMap({
             <i className="legend-cutoff">!</i>SOS cut off
           </span>
           <span>
-            <i className="legend-beacon">B</i>Beacon
+            <RadioTower size={12} className="text-live" aria-hidden="true" />
+            Beacon
           </span>
           <span>
             <i className="legend-line bg-critical" />
@@ -938,7 +955,7 @@ function addLayers(map: MlMap): boolean {
     id: "sos-closure",
     type: "line",
     source: "sos-closures",
-    paint: { "line-color": "#FF3B30", "line-width": 6, "line-opacity": 0.95 },
+    paint: { "line-color": "#FF3B30", "line-width": 7, "line-opacity": 1 },
   });
   addLayer({
     id: "sos-active-case",
@@ -1023,11 +1040,15 @@ function fit(
   incidents: QueueIncident[],
   focusRoute: CalculatedRoute | null,
 ) {
-  const drill = state.incidents.some((incident) => incident.client_id.startsWith("demo-sos-"));
-  const points: LngLat[] = drill ? [] : [
-    [state.rescue_unit.lon, state.rescue_unit.lat],
-    [state.objective.lon, state.objective.lat],
-  ];
+  const drill = state.incidents.some((incident) =>
+    incident.client_id.startsWith("demo-sos-"),
+  );
+  const points: LngLat[] = drill
+    ? []
+    : [
+        [state.rescue_unit.lon, state.rescue_unit.lat],
+        [state.objective.lon, state.objective.lat],
+      ];
   for (const incident of incidents) {
     if (incident.map_ready && incident.lon != null && incident.lat != null)
       points.push([incident.lon, incident.lat]);

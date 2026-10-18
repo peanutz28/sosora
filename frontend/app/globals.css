@@ -1679,3 +1679,18 @@ kbd {
     padding: 13px 18px;
   }
 }
+
+.beacon-name {
+  position: absolute;
+  right: 32px;
+  top: 2px;
+  padding: 2px 6px;
+  border: 1px solid #22d3ee66;
+  border-radius: 4px;
+  background: #0e1b25f2;
+  color: #8ceafb;
+  font: 600 10px var(--font-sans);
+  line-height: 16px;
+  white-space: nowrap;
+  pointer-events: none;
+}

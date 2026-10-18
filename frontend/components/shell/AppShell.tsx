@@ -6,7 +6,7 @@ import { IncidentSidebar } from "@/components/incidents/IncidentSidebar";
 import { IntelPanel } from "@/components/intel/IntelPanel";
 import { RescueMap } from "@/components/map/RescueMap";
 import { OpsConsole, type DrillAction } from "@/components/ops/OpsConsole";
-import { latestAssessment, reviewCandidates } from "@/lib/ops";
+import { agentStatus, latestAssessment, reviewCandidates } from "@/lib/ops";
 import { Header } from "@/components/shell/Header";
 import { useOps } from "@/hooks/useOps";
 import { calculateRoute } from "@/lib/api";
@@ -153,7 +153,7 @@ export function AppShell() {
         state={state}
         mapPhase={mapPhase}
         busy={busy}
-        agentWorking={agentWorking}
+        agentState={agentStatus(agentWorking, assessment)}
         onRun={() => void run()}
       />
       {error ? (

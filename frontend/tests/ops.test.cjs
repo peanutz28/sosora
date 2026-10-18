@@ -143,3 +143,32 @@ test("latest assessment and trace summaries use structured fields, not guessed p
     "No associated imagery; uncertainty retained",
   );
 });
+
+test("blocked roads count physical segments, not their forward/backward directions", async () => {
+  const { physicalClosureCount } = await modulePromise;
+  assert.equal(physicalClosureCount([]), 0);
+  assert.equal(
+    physicalClosureCount([{ id: "549633356:0:f" }, { id: "549633356:0:b" }]),
+    1,
+  );
+  assert.equal(
+    physicalClosureCount([
+      { id: "549633356:0:f" },
+      { id: "549633356:0:b" },
+      { id: "549633356:1:f" },
+      { id: "other" },
+    ]),
+    3,
+  );
+});
+
+test("header and console share the same three-state agent status with working taking precedence", async () => {
+  const { agentStatus } = await modulePromise;
+  assert.equal(agentStatus(false, null), "idle");
+  assert.equal(agentStatus(false, { needs_human_review: false }), "idle");
+  assert.equal(
+    agentStatus(false, { needs_human_review: true }),
+    "needs review",
+  );
+  assert.equal(agentStatus(true, { needs_human_review: true }), "working");
+});

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Radio, ChevronDown, Activity, ShieldCheck } from "lucide-react";
 import {
+  agentStatus,
+  physicalClosureCount,
   eventKey,
   latestAssessment,
   reviewCandidates,
@@ -35,6 +37,7 @@ export function OpsConsole({
   const [inputs, setInputs] = useState(false);
   const [wave, setWave] = useState(false);
   const assessment = latestAssessment(stream);
+  const status = agentStatus(working, assessment);
   const candidates = reviewCandidates(stream, assessment);
   const radioId = [...stream]
     .reverse()
@@ -120,20 +123,16 @@ export function OpsConsole({
         <Kpi label="SOS reachable" value={reachable} tone="text-accent" />
         <Kpi
           label="Roads blocked"
-          value={state.closures.length}
+          value={physicalClosureCount(state.closures)}
           tone="text-ink"
         />
         <div className="kpi">
           <span>Agent</span>
           <b
-            className={`agent-kpi ${working ? "text-live" : assessment?.needs_human_review ? "text-warning" : "text-accent"}`}
+            className={`agent-kpi capitalize ${status === "working" ? "text-live" : status === "needs review" ? "text-warning" : "text-accent"}`}
           >
             <i className={`status-dot ${working ? "working" : ""}`} />
-            {working
-              ? "Working"
-              : assessment?.needs_human_review
-                ? "Needs review"
-                : "Idle"}
+            {status}
           </b>
           <small>
             {state.system.demo_mode
@@ -429,7 +428,7 @@ function Kpi({
           ? "SOS incidents without a road route"
           : label === "SOS reachable"
             ? "Routes in the current graph"
-            : "Directed graph segments"}
+            : "Physical road segments"}
       </small>
     </div>
   );

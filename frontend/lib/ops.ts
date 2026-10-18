@@ -114,3 +114,20 @@ export function traceSummary(event: OpsEvent): string {
       : "Assessment recorded";
   return JSON.stringify(result);
 }
+
+/** Opposite directions on one OSM segment are one physical closure. */
+export function physicalClosureCount(closures: { id: string }[]): number {
+  return new Set(closures.map((closure) => closure.id.replace(/:(f|b)$/, "")))
+    .size;
+}
+
+export function agentStatus(
+  working: boolean,
+  assessment: Assessment | null,
+): "idle" | "working" | "needs review" {
+  return working
+    ? "working"
+    : assessment?.needs_human_review
+      ? "needs review"
+      : "idle";
+}

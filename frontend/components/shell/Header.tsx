@@ -7,14 +7,14 @@ export function Header({
   state,
   mapPhase,
   busy,
-  agentWorking,
+  agentState,
   onRun,
 }: {
   state: AppState;
   mapPhase: MapPhase;
   playing?: boolean;
   busy: boolean;
-  agentWorking: boolean;
+  agentState: ReturnType<typeof import("@/lib/ops").agentStatus>;
   onRun: () => void;
 }) {
   return (
@@ -59,14 +59,20 @@ export function Header({
           title={state.ml.detail}
         />
         <Status
-          label={`Agent: ${agentWorking ? "working" : "idle"}`}
-          tone={agentWorking ? "bg-live animate-pulse" : "bg-route"}
+          label={`Agent: ${agentState}`}
+          tone={
+            agentState === "working"
+              ? "bg-live animate-pulse"
+              : agentState === "needs review"
+                ? "bg-warning"
+                : "bg-route"
+          }
           title="Radio agent processing status"
         />
         <button
           className="primary-button"
           onClick={onRun}
-          disabled={busy || agentWorking}
+          disabled={busy || agentState === "working"}
         >
           <Play size={13} fill="currentColor" />
           Run demo
