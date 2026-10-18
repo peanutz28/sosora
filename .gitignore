@@ -33,3 +33,8 @@ __pycache__/
 .env
 .env.local
 .DS_Store
+
+# Operations dashboard runtime and the native app's per-user Xcode data
+*.sqlite3
+dashboard/cache/
+ios-app/**/xcuserdata/

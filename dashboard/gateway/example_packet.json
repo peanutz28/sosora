@@ -1,0 +1,10 @@
+{
+  "client_id": "RADIO-DEMO-0001",
+  "gateway_id": "pi-gateway-01",
+  "gateway_received_at": "2026-10-17T17:00:00Z",
+  "message": "Two people stranded by rising water. This is a simulated radio packet.",
+  "people": 2,
+  "place": "Swannanoa, NC (demo)",
+  "lat": 35.609,
+  "lng": -82.448
+}
