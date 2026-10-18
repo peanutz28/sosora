@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { TerminalRow } from "@/components/ops/TerminalRow";
 import { Radio, ChevronDown, Activity, ShieldCheck } from "lucide-react";
 import {
   agentStatus,
@@ -32,6 +33,11 @@ export function OpsConsole({
   onAction: (action: DrillAction) => void;
   onConfirm: (candidate: BridgeCandidate, radioId: string) => void;
 }) {
+  const traceRef = useRef<HTMLDivElement>(null);
+  const scrollTrace = useCallback(() => {
+    const list = traceRef.current;
+    if (list) list.scrollTop = list.scrollHeight;
+  }, []);
   const [collapsed, setCollapsed] = useState(false);
   const [controls, setControls] = useState(true);
   const [history, setHistory] = useState(false);
@@ -63,7 +69,7 @@ export function OpsConsole({
     .reverse();
   const calls = stream
     .filter((event) => event.kind === "agent_tool_call")
-    .slice(-6);
+    .slice(-24);
   const errors = stream
     .filter((event) => event.kind === "agent_error")
     .slice(-1);
@@ -315,7 +321,7 @@ export function OpsConsole({
             Resolve location → check evidence → update road → recompute access.
           </p>
         )}
-        <div className="tool-list">
+        <div className="tool-list" ref={traceRef} role="log" aria-label="Agent tool calls" aria-live="polite">
           {calls.map((call, index) => {
             const result = stream.find(
               (event) =>
@@ -325,33 +331,7 @@ export function OpsConsole({
                 event.at >= call.at,
             );
             return (
-              <div
-                className={`tool-row row-in ${result?.result?.error ? "tool-error" : ""}`}
-                key={eventKey(call)}
-              >
-                <span className="tool-step font-mono">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <div className="tool-title">
-                    <code>{call.tool}</code>
-                    <span>
-                      {result ? (result.result?.error ? "!" : "✓") : "···"}
-                    </span>
-                  </div>
-                  {inputs && (
-                    <p
-                      title={traceSummary(call)}
-                      className="tool-args font-mono"
-                    >
-                      {traceSummary(call)}
-                    </p>
-                  )}
-                  <p title={result ? traceSummary(result) : ""}>
-                    {result ? traceSummary(result) : "Waiting for tool result…"}
-                  </p>
-                </div>
-              </div>
+              <TerminalRow key={eventKey(call)} call={call} result={result} index={index} newest={index === calls.length - 1} inputs={inputs} onProgress={scrollTrace} />
             );
           })}
         </div>
