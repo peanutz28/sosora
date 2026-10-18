@@ -33,7 +33,7 @@ export function Header({
       <div className="header-center">
         Swannanoa operations drill{" "}
         <span className="text-faint">· Western North Carolina</span>
-        <span className="simulation-tag">SIMULATION</span>
+        <span className="simulation-tag">[SIMULATED]</span>
       </div>
       <div className="header-actions">
         <Status

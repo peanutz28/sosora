@@ -1750,3 +1750,21 @@ kbd {
 .kpi-alert { border-color: #ff3b3077; box-shadow: 0 0 26px #ff3b3026, inset 0 0 25px #ff3b3012; transition: box-shadow .6s, border-color .6s; }
 .candidate-pin { animation: candidate-pulse 1.6s ease-out infinite; }
 @keyframes candidate-pulse { 0%,100% { box-shadow: 0 0 0 4px #f0b42920; } 50% { box-shadow: 0 0 0 16px #f0b42900, 0 0 22px #f0b42955; } }
+
+.pin-sos { position: relative; overflow: visible; }
+.pin-sos.pin-access-available { background: #3ee0cf; border: 2px solid #0e1b25; box-shadow: 0 0 10px #3ee0cf66; }
+.pin-sos.pin-access-available::before, .pin-sos.pin-access-lost::before {
+ content: ""; position: absolute; inset: -8px; border: 1px solid #3ee0cf;
+ border-radius: 50%; pointer-events: none; animation: sos-breathe 3.6s ease-in-out infinite;
+}
+.pin-sos.pin-access-lost { width: 14px; height: 14px; margin: 0; border: 2px solid #2a1010; border-radius: 50%; background: #FF3B30; box-shadow: 0 0 12px #ff3b3066; }
+.pin-sos.pin-access-lost::before { border-color: #FF3B30; animation: sos-alert 1.1s ease-out infinite; }
+.pin-sos.pin-access-lost::after { content: "!"; position: absolute; top: -10px; right: -9px; width: 12px; height: 12px; display: grid; place-items: center; border-radius: 4px; background: #FF3B30; color: #fff; font: 800 10px var(--font-display); border: 1px solid #ffb8b2; }
+.pin-sos.pin-access-unknown { background: #7d95a2; border-color: #0e1b25; }
+.pin-sos.is-selected { outline: 2px solid #f4f7f8; outline-offset: 5px; }
+@keyframes sos-breathe { 0%,100% { transform: scale(.7); opacity: .18; } 50% { transform: scale(1.25); opacity: .6; } }
+@keyframes sos-alert { 0% { transform: scale(.5); opacity: .85; } 100% { transform: scale(1.7); opacity: 0; } }
+.kpi > b { font-family: var(--font-display); font-variant-numeric: tabular-nums; font-size: 42px; line-height: 1.15; letter-spacing: -1.5px; }
+.kpi .agent-kpi { font-size: 14px; letter-spacing: 0; min-height: 48px; }
+.incident-card, .incident-card.critical { height: 66px; }
+@media (prefers-reduced-motion: reduce) { .pin-sos::before, .candidate-pin { animation: none !important; } }

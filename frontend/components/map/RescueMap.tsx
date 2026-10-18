@@ -390,13 +390,13 @@ export function RescueMap({
         button.className = `pin pin-sos pin-${incident.urgency} pin-access-${access.status}${incident.id === selectedId ? " is-selected" : ""}`;
         button.title = `${incident.id}. ${incident.title}. ${access.label}`;
         button.setAttribute("aria-label", button.title);
-        if (access.status === "lost") button.textContent = "!";
+
         button.addEventListener("click", (event) => {
           event.stopPropagation();
           onSelectRef.current(incident.id);
         });
         wrap.appendChild(button);
-        if (incident.id === selectedId || access.status === "lost") {
+        if (incident.id === selectedId) {
           const label = document.createElement("span");
           label.className = "pin-label";
           label.textContent =

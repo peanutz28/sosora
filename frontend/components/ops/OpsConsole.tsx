@@ -428,7 +428,7 @@ function Kpi({
   return (
     <div className={`kpi ${animate && shown > 0 ? "kpi-alert" : ""}`}>
       <span>{label}</span>
-      <b className={`font-display ${tone}`} aria-label={`${label}: ${value}`}>
+      <b className={`font-display ${shown === 0 ? "text-faint" : tone}`} aria-label={`${label}: ${value}`}>
         {shown.toString().padStart(2, "0")}
       </b>
       <small>
