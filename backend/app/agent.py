@@ -18,7 +18,7 @@ import httpx
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from app.ml_client import demo_mode
-from app.routing import DATA_DIR, compute_route, haversine_m
+from app.routing import DATA_DIR, incident_routes, haversine_m
 
 
 class Args(BaseModel):
@@ -126,13 +126,8 @@ class RadioAgent:
 
     def routes(self):
         bases = self.engine.anchors.get("rescue_bases") or [self.engine.anchors["origin"]]
-        result = {}
-        for incident in self.engine.incidents:
-            base = min(bases, key=lambda b: haversine_m(b["lon"], b["lat"], incident["lon"], incident["lat"]))
-            result[incident["id"]] = compute_route(
-                self.engine.graph, (base["lon"], base["lat"]),
-                (incident["lon"], incident["lat"]), self.engine.closed_ids)
-        return result
+        return incident_routes(self.engine.graph, bases, self.engine.incidents,
+                               self.engine.closed_ids, self.engine.route_snaps)
 
     async def emit(self, kind, payload):
         event = {"id": len(self.engine.events) + 1, "at": datetime.now(timezone.utc).isoformat(),

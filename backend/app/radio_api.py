@@ -201,12 +201,11 @@ async def seed(request: Request):
         engine.add_incident({"client_id": client_id, "source_id": "simulated_seed", "lon": lon, "lat": lat,
                              "message": "[SIMULATED] " + message, "people_affected": people, "medical": medical})
     request.app.state.radio_reports = {}
-    from app.routing import compute_route, haversine_m
+    from app.routing import incident_routes
     bases = engine.anchors.get("rescue_bases") or [engine.anchors["origin"]]
+    routes = incident_routes(engine.graph, bases, engine.incidents, engine.closed_ids, engine.route_snaps)
     for incident in engine.incidents:
-        base = min(bases, key=lambda b: haversine_m(b["lon"], b["lat"], incident["lon"], incident["lat"]))
-        incident["route"] = compute_route(engine.graph, (base["lon"], base["lat"]),
-                                          (incident["lon"], incident["lat"]), engine.closed_ids)
+        incident["route"] = routes[incident["id"]]
         incident["reachable"] = incident["route"]["status"] == "ok"
     state = engine.public_state()
     await request.app.state.hub.broadcast({"type": "state", "state": state})

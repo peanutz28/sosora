@@ -61,6 +61,7 @@ DEMO_SOS = {
 class ScenarioEngine:
     def __init__(self, graph, anchors: dict, store):
         self.graph = graph
+        self.route_snaps = {}
         self.anchors = anchors
         self.store = store
         self.revision = 0

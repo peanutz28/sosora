@@ -137,6 +137,49 @@ def load_graph(path: Path = None) -> nx.MultiDiGraph:
     return build_graph(payload["edges"])
 
 
+def incident_routes(graph, bases, incidents, closed=(), snap_cache=None) -> dict:
+    """One Dijkstra per selected base, preserving compute_route's wire format.
+
+    Road nodes are immutable for an engine's lifetime, so callers may retain snaps
+    across reports. Paths are always recomputed against the current closure set.
+    Multiple rescue bases retain the existing nearest-base-by-distance policy.
+    """
+    if not incidents:
+        return {}
+    snaps = snap_cache if snap_cache is not None else {}
+
+    def snap(point):
+        if point not in snaps:
+            snaps[point] = nearest_node(graph, *point)
+        return snaps[point]
+
+    groups = {}
+    for incident in incidents:
+        base = min(bases, key=lambda b: haversine_m(b["lon"], b["lat"], incident["lon"], incident["lat"]))
+        groups.setdefault((base["lon"], base["lat"]), []).append(incident)
+    banned = set(closed or [])
+    usable = _usable(graph, banned)
+    result = {}
+    for origin, targets in groups.items():
+        origin_node, origin_snap = snap(origin)
+        paths = nx.single_source_dijkstra(usable, origin_node, weight="length")[1] if origin_snap <= 800 else {}
+        for incident in targets:
+            destination_node, destination_snap = snap((incident["lon"], incident["lat"]))
+            meta = {"origin_snap_m": round(origin_snap, 1), "destination_snap_m": round(destination_snap, 1)}
+            empty = {**meta, "length_m": None, "edge_ids": [], "edge_count": 0, "geometry": [], "roads": []}
+            if origin_snap > 800 or destination_snap > 800:
+                route = {**empty, "status": "snap_failed"}
+            elif origin_node == destination_node:
+                route = {**meta, "status": "ok", "length_m": 0.0, "edge_ids": [], "edge_count": 0,
+                         "geometry": [list(_xy(origin_node))], "roads": []}
+            elif destination_node not in paths:
+                route = {**empty, "status": "unreachable"}
+            else:
+                route = {**_assemble(graph, paths[destination_node], banned), **meta}
+            result[incident["id"]] = route
+    return result
+
+
 def load_anchors(path: Path = None) -> dict:
     anchor_path = path or (DATA_DIR / "anchors.json")
     return json.loads(anchor_path.read_text())

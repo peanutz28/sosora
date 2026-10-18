@@ -69,3 +69,46 @@ def test_build_graph_accepts_edges_without_stored_geometry():
     )
     assert bare.number_of_edges() == 1
     assert anchors()["closure_name"] == "Test Bridge"
+
+
+def test_single_source_routes_match_individual_routes_and_one_search(monkeypatch):
+    import networkx as nx
+    from app.routing import incident_routes
+    from tests.support import A, C, E
+
+    network = graph()
+    bases = [dict(lon=A[0], lat=A[1])]
+    incidents = [dict(id=str(i), lon=point[0], lat=point[1])
+                 for i, point in enumerate([A, C, E, (-81, 36)])]
+    original = nx.single_source_dijkstra
+    calls = []
+    def counted(*args, **kwargs):
+        calls.append(args[1])
+        return original(*args, **kwargs)
+    monkeypatch.setattr(nx, 'single_source_dijkstra', counted)
+    snaps = {}
+    for closed in ([], ['bc'], ['ab', 'ae']):
+        old = {i['id']: compute_route(network, A, (i['lon'], i['lat']), closed) for i in incidents}
+        before = len(calls)
+        assert incident_routes(network, bases, incidents, closed, snaps) == old
+        assert len(calls) == before + 1
+    # Once cached, further reports need no node scans; closures still change paths.
+    monkeypatch.setattr('app.routing.nearest_node', lambda *args: (_ for _ in ()).throw(AssertionError('uncached snap')))
+    assert incident_routes(network, bases, incidents, ['ab', 'ae'], snaps) == old
+
+
+def test_single_source_preserves_nearest_base_policy_and_snap_failures():
+    from app.routing import incident_routes
+    from tests.support import A, C, E
+    network = graph()
+    incidents = [dict(id='near-c', lon=C[0], lat=C[1]), dict(id='near-a', lon=A[0], lat=A[1])]
+    bases = [dict(lon=A[0], lat=A[1]), dict(lon=E[0], lat=E[1])]
+    from app.routing import haversine_m
+    expected = {}
+    for i in incidents:
+        base = min(bases, key=lambda b: haversine_m(b['lon'], b['lat'], i['lon'], i['lat']))
+        expected[i['id']] = compute_route(network, (base['lon'], base['lat']), (i['lon'], i['lat']))
+    assert incident_routes(network, bases, incidents) == expected
+    far_base = [dict(lon=-81, lat=36)]
+    assert incident_routes(network, far_base, incidents) == {
+        i['id']: compute_route(network, (-81, 36), (i['lon'], i['lat'])) for i in incidents}
