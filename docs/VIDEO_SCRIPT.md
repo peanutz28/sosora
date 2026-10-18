@@ -56,7 +56,7 @@ JIA: Link dies? [Pull the router plug: QUEUED.] Reports wait. [Plug back in: SEN
 [TOOL CALLING] RIA: For tool calling: six tools, one call at a time. The agent decides when to act, when to ask a human, and how to fall back when something breaks. And the safety rules live in code, not in a prompt.
 [NEMOTRON LIGHTNING] JIA: Nemotron 3.5 Lightning is our only language model. It parses every radio call and runs the agent. We counted every parameter, every expert: 32.95 billion, under the 33 billion cap, speech model included.
 [RED HAT vLLM] RIA: We serve it with Red Hat's vLLM on a single H100. One agent step went from 24 to 55 seconds on the hosted API to under one second. Thirty live runs: the right bridge twenty out of twenty times, and ten out of ten ambiguous calls held safely for a human.
-[NeMo GYM] JIA: With NeMo Gym, we built a graded rescue environment: ambiguous locations, conflicting evidence, broken tools. On 42 brand-new scenarios, the agent went from 36 to 71 percent, and an ablation shows exactly which change did it.
+[NeMo GYM] JIA: With NeMo Gym, we built a graded rescue environment: conflicting evidence, washed-out bridges, isolated neighborhoods. On 42 brand-new scenarios, the agent went from 36 to 71 percent, and an ablation shows exactly which change did it.
 [VISION] RIA: We even fine-tuned NVIDIA SegFormer to spot flooded roads from the air. Our sealed test says it's not reliable yet, so SOSora treats it as a clue, never as the truth. That's our whole philosophy.
 [CUT IF LONG] JIA: It's all open source, and you can try the hosted demo yourself. Links below.  (only if hosting works)
 
