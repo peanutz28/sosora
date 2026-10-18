@@ -1,0 +1,40 @@
+{
+  "tool_choice": "auto",
+  "elapsed_ms": 1219.2343340720981,
+  "usage": {
+    "prompt_tokens": 1785,
+    "total_tokens": 1864,
+    "completion_tokens": 79,
+    "prompt_tokens_details": null
+  },
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "tool_calls": [
+          {
+            "id": "chatcmpl-tool-8d92f1553afa0d44",
+            "type": "function",
+            "function": {
+              "name": "find_segments",
+              "arguments": "{\"road_name\": \"Warren Wilson Road\", \"near_lon\": -82.42702, \"near_lat\": 35.61258, \"bridge_only\": true}"
+            }
+          }
+        ],
+        "reasoning": null
+      },
+      "logprobs": null,
+      "finish_reason": "tool_calls",
+      "stop_reason": null,
+      "token_ids": null,
+      "routed_experts": null
+    }
+  ],
+  "simulated_input": true
+}

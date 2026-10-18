@@ -1,0 +1,7 @@
+{
+  "status": "aborted_diagnostic",
+  "completed_hero_runs": 0,
+  "accuracy_claim": false,
+  "reason": "Initial tool_choice=required hero attempt interrupted because individual agent requests were slow. No completed result discarded. Native auto probe saved separately; provider-specific decoding fix applied before the five-run benchmark.",
+  "evidence": "native_tool_probe.json"
+}

@@ -17,9 +17,30 @@ fi
 # Upstream vLLM image, not claimed to be a Red Hat distribution.
 # BF16 single-H100 recipe from NVIDIA's model card; shorter context for this workload.
 sudo docker pull vllm/vllm-openai:v0.27.1
+# Brev supplied a 120GB disk despite the 200GB request. Keep the BF16 weights
+# off that disk. The VM has 200GiB RAM; /dev/shm provides ~99GiB for this cache.
+# This cache is intentionally ephemeral and must be re-downloaded after stop.
+mkdir -p /dev/shm/sosora-hf
+if [ -d "$HOME/.cache/huggingface" ] && [ ! -L "$HOME/.cache/huggingface" ]; then
+  if [ -z "$(find "$HOME/.cache/huggingface" -mindepth 1 -print -quit)" ]; then
+    rmdir "$HOME/.cache/huggingface"
+    ln -s /dev/shm/sosora-hf "$HOME/.cache/huggingface"
+  else
+    echo "Existing disk cache found; move it explicitly before deploying on a small disk." >&2
+    exit 1
+  fi
+fi
+if sudo docker container inspect sosora-vllm >/dev/null 2>&1; then
+  if [ "$(sudo docker inspect -f '{{.State.Running}}' sosora-vllm)" != true ]; then
+    sudo docker start sosora-vllm
+  fi
+  echo "Existing sosora-vllm container retained."
+  exit 0
+fi
 sudo docker run -d --name sosora-vllm --gpus all --ipc=host \
   --restart unless-stopped -p 8000:8000 \
-  --env-file "$HOME/.config/sosora/vllm.env" \
+  --env-file "$HOME/.config/sosora/vllm.env" -e HF_XET_CHUNK_CACHE_SIZE_BYTES=0 \
+  -e VLLM_ENFORCE_STRICT_TOOL_CALLING=false \
   -v "$HOME/.cache/huggingface:/root/.cache/huggingface" \
   vllm/vllm-openai:v0.27.1 \
   --model nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16 \

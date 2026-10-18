@@ -1,0 +1,27 @@
+{
+  "backend": {
+    "command": "PYTHONPATH=backend ml/.venv312/bin/python -m pytest backend/tests -q",
+    "passed": 28,
+    "warnings": 1,
+    "seconds": 185.45
+  },
+  "gym": {
+    "command": "PYTHONPATH=\"$PWD:/private/tmp/sosora_nemo_gym_runtime/official\" /private/tmp/sosora_nemo_gym_runtime/venv/bin/python -m pytest ml/nemo_gym/tests -q",
+    "passed": 25,
+    "warnings": 51,
+    "seconds": 20.78
+  },
+  "deployment_script": "bash -n passed",
+  "benchmark_python": "py_compile passed",
+  "runtime_dependency_repair": "installed python-multipart==0.0.20 already declared in backend/requirements.txt",
+  "backend_final": {
+    "command": "PYTHONPATH=backend ml/.venv312/bin/python -m pytest backend/tests -q",
+    "passed": 30,
+    "warnings": 1,
+    "seconds": 83.1
+  },
+  "agent_regressions": {
+    "passed": 12,
+    "seconds": 2.08
+  }
+}

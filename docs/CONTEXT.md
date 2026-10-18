@@ -77,11 +77,11 @@ Bounties: Nemotron Lightning, NeMo Gym model improvement, Red Hat vLLM.
 | Merge ML + dashboard into `integration` | Done locally, **NOT PUSHED** as of 23:15 | `git log integration` |
 | Radio parse (Lightning) | Works live, 2.7-4.1 s/message | live run 2026-10-17 ~23:00 |
 | Agent + trust rule, real OSM graph | Works in demo replay; live Lightning resolves the right bridge | `backend/tests/test_radio_api.py` |
-| Live agent speed | **Too slow on hosted API: 24-55 s per turn** | live runs ~23:05 |
+| Live agent speed | H100 vLLM: five hero runs passed; mean total 12.442 s, mean agent call 0.852 s | `docs/VLLM_RESULTS.md`, `docs/evidence/vllm_2026-10-17/hero_final_native.json` |
 | Beacon sensor + audio endpoints | Endpoints done, hardware not started | `backend/app/radio_api.py` |
 | ASR model | Not chosen/served | `backend/app/asr.py` TODO |
 | Gym results | test: baseline 1/14 -> evidence_first 4/14, **polluted by 18 HTTP errors + 5 timeouts** | `ml/nemo_gym/evidence/rollouts_2026-10-17/summary.md` |
-| vLLM on Brev | H100 created; vLLM image download in progress; private route + SSH tunnel | `docs/VLLM_RESULTS.md`, `docs/evidence/vllm_2026-10-17/hardware.json` |
+| vLLM on Brev | Serving Lightning BF16; authenticated private route + SSH tunnel; Gym rerun active | `docs/VLLM_RESULTS.md`, `docs/evidence/vllm_2026-10-17/hardware.json` |
 | Dashboard wired to radio flow | Not started | |
 | Video | Not started | |
 
@@ -91,15 +91,15 @@ Bounties: Nemotron Lightning, NeMo Gym model improvement, Red Hat vLLM.
   provider tests fail on 3.10 only.
 - Live agent: model batched tool calls with blank ids -> fixed (one tool per turn,
   `parallel_tool_calls: false`). Beacon position is injected by code, not the model.
-- Hosted API latency makes live agent runs 2-4 minutes. Fix = vLLM on Brev.
-- Gym numbers must be rerun on vLLM (same tasks, same verifier) before claiming improvement.
+- Private Brev vLLM is verified for the hero flow. `.env.vllm` is local and ignored; never commit it. Upstream vLLM image is used, not a verified Red Hat distribution. Model cache is in RAM and must download again after instance stop.
+- Gym vLLM rerun is active with the original runner, fixed tasks/policies and verifier. Wait for all validation and test outputs before comparing; strict recommendation calls remain slower than hero calls.
 - `backend/data/sosora.db-journal` is a stray file from a sandbox run; safe to delete.
 - Video: never show a phone with signal bars when claiming "no signal".
 - Each radio report takes ~5-7 s even in DEMO_MODE: reachability runs one shortest-path
   query per incident on the 86k-edge graph. Optimization: one single-source Dijkstra from the base.
 
 ## Changelog (newest first)
-- 23:14 Codex: verified H100 quote and actual GPU; launched one stoppable Brev instance, preparing Lightning BF16 vLLM and repeatable hero/Gym measurements. No live vLLM result yet.
+- 23:36 Codex: private H100 Lightning BF16 vLLM serving; five live hero runs passed. Fixed vLLM native tool decoding and bounded model-facing route context (full UI geometry preserved); 30 backend + 25 Gym tests pass. Gym rerun active; shutdown still required.
 - 23:15 Claude: agent fixes (Lightning-only default, landmark matching, bridge direction
   grouping, retries, real tool descriptions, one tool per turn, trusted beacon position);
   `/api/radio` hero flow, confirm, status, demo seed on real roads; Beacon sensor + audio

@@ -1,0 +1,21 @@
+{
+  "status": "interrupted_validation_only",
+  "reason": "Per-tool strict schemas activated structural grammar; recommendation latency caused a provider timeout. Native tool parsing will be configured server-side before the full validation/test rerun.",
+  "test_split_opened": false,
+  "policy_changed": false,
+  "runner_changed": false,
+  "tool_schema_changed": false,
+  "verifier_changed": false,
+  "provider": "redhat_vllm",
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "split": "validation",
+  "policy": "baseline",
+  "limit": 14,
+  "max_turns": 12,
+  "max_seconds": 14400,
+  "enforce_strict_tool_calling": true,
+  "evaluate_agent_sha256": "36a8dbb1e690971ed5523cb5d270676848ad48ce2b842a88c04dc8b5006699d6",
+  "completed_scenarios": 6,
+  "passes": 4,
+  "provider_errors": 1
+}

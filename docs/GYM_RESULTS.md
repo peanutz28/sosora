@@ -19,7 +19,9 @@ before either runs on test; test data does not tune the policy.
 Hosted results contain transport failures; they do not isolate policy quality.
 Serving comparisons also change checkpoint precision and backend defaults. The vLLM
 server disables thinking by default; the unmodified Gym runner has no per-request
-thinking flag. Do not attribute all score changes to transport or call this RL.
+thinking flag. Server structural grammar is disabled for native tool parsing; frozen
+strict tool schemas are unchanged and HTTP tools/verifier validate arguments.
+Do not attribute all score changes to transport or call this RL.
 
 ## Reproduce
 
