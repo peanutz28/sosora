@@ -81,11 +81,12 @@ Bounties: Nemotron Lightning, NeMo Gym model improvement, Red Hat vLLM.
 | Beacon sensor + audio endpoints | Endpoints done, hardware not started | `backend/app/radio_api.py` |
 | ASR model | Not chosen/served | `backend/app/asr.py` TODO |
 | Gym results | test: baseline 1/14 -> evidence_first 4/14, **polluted by 18 HTTP errors + 5 timeouts** | `ml/nemo_gym/evidence/rollouts_2026-10-17/summary.md` |
-| vLLM on Brev | Not started ($700 credits available) | |
+| vLLM on Brev | H100 created; vLLM image download in progress; private route + SSH tunnel | `docs/VLLM_RESULTS.md`, `docs/evidence/vllm_2026-10-17/hardware.json` |
 | Dashboard wired to radio flow | Not started | |
 | Video | Not started | |
 
 ## Open issues / gotchas
+- Brev H100 task active: keep instance running only during serving/evaluation; stop when idle and before 10:00 AM ET. Private endpoint; local ignored `.env.vllm` uses an SSH tunnel. Requested disk size differs from observed root filesystem; see saved hardware evidence.
 - Python 3.12 required for `ml/` (uses `asyncio.timeout`). Two `ml/tests/test_radio.py`
   provider tests fail on 3.10 only.
 - Live agent: model batched tool calls with blank ids -> fixed (one tool per turn,
@@ -98,6 +99,7 @@ Bounties: Nemotron Lightning, NeMo Gym model improvement, Red Hat vLLM.
   query per incident on the 86k-edge graph. Optimization: one single-source Dijkstra from the base.
 
 ## Changelog (newest first)
+- 23:14 Codex: verified H100 quote and actual GPU; launched one stoppable Brev instance, preparing Lightning BF16 vLLM and repeatable hero/Gym measurements. No live vLLM result yet.
 - 23:15 Claude: agent fixes (Lightning-only default, landmark matching, bridge direction
   grouping, retries, real tool descriptions, one tool per turn, trusted beacon position);
   `/api/radio` hero flow, confirm, status, demo seed on real roads; Beacon sensor + audio

@@ -1,0 +1,10 @@
+{
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "memory_mib": 81559,
+  "driver_version": "580.173.02",
+  "root_filesystem_size": "116G",
+  "root_available_before_deploy": "98G",
+  "requested_disk_gb": 200,
+  "quote_compute_usd_per_hour": 5.4,
+  "quote_disk_usd_per_gb_month": 0.12264
+}
