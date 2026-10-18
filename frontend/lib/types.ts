@@ -24,6 +24,8 @@ export type Incident = {
   delivery_status: string;
   verification: string;
   created_at: string;
+  reachable?: boolean | null;
+  route?: CalculatedRoute | null;
 };
 
 export type QueueIncident = {
@@ -44,6 +46,8 @@ export type QueueIncident = {
   delivery_status: string;
   verification: string;
   created_at: string;
+  reachable?: boolean | null;
+  route?: CalculatedRoute | null;
   map_ready: boolean;
   map_note?: string;
 };

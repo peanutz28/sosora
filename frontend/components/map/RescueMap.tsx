@@ -1,5 +1,7 @@
 "use client";
 
+import { roadAccess } from "@/lib/access";
+
 import { useEffect, useRef, useState } from "react";
 import type { GeoJSONSource, Map as MlMap } from "maplibre-gl";
 import { Layers, LocateFixed, Maximize2, Minus, Plus } from "lucide-react";
@@ -264,17 +266,20 @@ export function RescueMap({
         wrap.className = "pin-wrap";
         const button = document.createElement("button");
         button.type = "button";
-        button.className = `pin pin-sos pin-${incident.urgency}${incident.id === selectedId ? " is-selected" : ""}`;
-        button.title = `${incident.id}. ${incident.title}`;
+        const access = roadAccess(incident);
+        button.className = `pin pin-sos pin-${incident.urgency} pin-access-${access.status}${incident.id === selectedId ? " is-selected" : ""}`;
+        button.title = `${incident.id}. ${incident.title}. ${access.label}`;
+        button.setAttribute("aria-label", button.title);
+        if (access.status === "lost") button.textContent = "!";
         button.addEventListener("click", (event) => {
           event.stopPropagation();
           onSelectRef.current(incident.id);
         });
         wrap.appendChild(button);
-        if (incident.id === selectedId) {
+        if (incident.id === selectedId || access.status === "lost") {
           const label = document.createElement("span");
           label.className = "pin-label";
-          label.textContent = incident.id;
+          label.textContent = access.status === "lost" ? `${incident.id} · No road access` : `${incident.id} · ${access.label}`;
           wrap.appendChild(label);
         }
         place(wrap, incident.lon, incident.lat);
@@ -356,6 +361,7 @@ export function RescueMap({
           <Key color="#C46B64" label="Closed or withdrawn" />
           <Key color="#C4924A" label="Suspected" />
           <Key color="#8FBFB6" label="Selected access" />
+          <span>SOS ! = No road access</span>
         </div>
         {imageryLabel ? (
           <button type="button" onClick={onClearImagery} className="rounded-md bg-surface/95 px-2 py-1 text-left text-[12px] text-muted">

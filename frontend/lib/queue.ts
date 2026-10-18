@@ -97,6 +97,8 @@ function fromBackend(incident: Incident, objectiveLabel: string): QueueIncident 
     delivery_status: incident.delivery_status,
     verification: incident.verification,
     created_at: incident.created_at,
+    reachable: incident.reachable,
+    route: incident.route,
     map_ready: true,
   };
 }

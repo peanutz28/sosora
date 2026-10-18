@@ -143,3 +143,27 @@ textarea:focus-visible {
   border: 1.5px dashed #8fbfb6;
   background: transparent;
 }
+
+/* Access is independent of urgency. Exclamation and labels avoid color-only cues. */
+.pin-access-available {
+  border-color: #8fbfb6;
+}
+
+.pin-sos.pin-access-lost {
+  width: 18px;
+  height: 18px;
+  margin: -2px;
+  border: 2px solid #ffe5e1;
+  border-radius: 3px;
+  background: #b53d38;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 14px;
+  text-align: center;
+  box-shadow: 0 0 0 4px rgba(196, 107, 100, 0.3);
+}
+
+.pin-sos.pin-access-lost.is-selected {
+  box-shadow: 0 0 0 5px rgba(143, 191, 182, 0.65);
+}

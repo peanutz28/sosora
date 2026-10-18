@@ -83,7 +83,7 @@ Bounties: Nemotron Lightning, NeMo Gym model improvement, Red Hat vLLM.
 | ASR model | Not chosen/served | `backend/app/asr.py` TODO |
 | Gym results | Clean vLLM: validation 8/14 baseline vs 2/14 evidence_first; test 7/14 vs 4/14; zero provider errors across 56 scenarios | `docs/GYM_RESULTS.md`, `ml/nemo_gym/evidence/vllm_2026-10-17/protocol.json` |
 | vLLM on Brev | Complete; Lightning BF16 H100 verified; GPU STOPPED, disk retained | `docs/VLLM_RESULTS.md`, `docs/evidence/vllm_2026-10-17/hardware.json` |
-| Dashboard wired to radio flow | Not started | |
+| Dashboard wired to radio flow | SOS pins, incident list and selected rescue-access panel consume backend reachability; isolated incidents show red ! markers and No road access; radio controls pending | `frontend/lib/access.ts`, `frontend/tests/road-access.test.cjs` |
 | Video | Not started | |
 
 ## Open issues / gotchas
@@ -102,6 +102,7 @@ Bounties: Nemotron Lightning, NeMo Gym model improvement, Red Hat vLLM.
   query per incident on the 86k-edge graph. Optimization: one single-source Dijkstra from the base.
 
 ## Changelog (newest first)
+- 2026-10-18 00:18 Codex: wired backend incident reachable/route fields through the dashboard queue, map markers, list and intelligence panel. Missing access and snap failures remain unknown; route existence is not verified passability. Node regression tests and TypeScript check pass; live dashboard confirmed SOS-001 through SOS-005 show No road access while the other seeded incidents retain routes.
 - 23:51 Codex: Job A done: H100 Lightning BF16 vLLM; final hero 5/5, mean 12.442 s; clean Gym test baseline 7/14 vs evidence_first 4/14, no provider errors across 56 scenarios; surge 200/200; GPU STOPPED. Results, commands and restart instructions in `docs/VLLM_RESULTS.md` and `docs/GYM_RESULTS.md`. Do not claim evidence_first improvement or a verified Red Hat-distributed image.
 - 23:50 Codex: Beacon client implemented with fake sensor, WAV replay, lazy GPIO/mic, durable outbox/backoff/receipts and `--flush`. 12 unit tests pass; isolated HTTP verification confirms fake sensor and cached replay each block the bridge and cut off 5 of 9 SOS pins; disconnected/restarted queue produces one received report. Evidence in `beacon/evidence/`. Pi hardware and exactly-once backend deduplication remain pending.
 - 23:36 Codex: private H100 Lightning BF16 vLLM serving; five live hero runs passed. Fixed vLLM native tool decoding and bounded model-facing route context (full UI geometry preserved); 30 backend + 25 Gym tests pass. Gym rerun active; shutdown still required.

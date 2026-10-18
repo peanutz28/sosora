@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { PanelLeftClose, Search } from "lucide-react";
+import { roadAccess } from "@/lib/access";
 import { peopleLabel, scenarioTime } from "@/lib/format";
 import type { LngLat, QueueIncident } from "@/lib/types";
 
@@ -120,6 +121,9 @@ export function IncidentSidebar({
                 </span>
               </div>
               <p className="mt-1 line-clamp-2 text-[13px] leading-5 text-ink">{incident.title}</p>
+              <p className={`mt-1 text-[11px] font-medium ${roadAccess(incident).status === "lost" ? "text-critical" : "text-muted"}`}>
+                {roadAccess(incident).label}
+              </p>
               <p className="mt-0.5 truncate text-[12px] text-muted">{incident.location}</p>
               <p className="mt-1 truncate text-[11px] text-faint">
                 {peopleLabel(incident.people_affected)}

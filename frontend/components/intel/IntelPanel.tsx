@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, X } from "lucide-react";
+import { roadAccess } from "@/lib/access";
 import { closureKind, km, peopleLabel, titleCase } from "@/lib/format";
 import type { AppState, CalculatedRoute, QueueIncident } from "@/lib/types";
 
@@ -57,9 +58,11 @@ export function IntelPanel({
         </Disclosure>
 
         <Disclosure title="Rescue access" defaultOpen>
-          <p className="text-[13px] leading-5 text-ink">{accessHeadline(state.routes.status)}</p>
-          <p className="mt-1 text-[12px] leading-5 text-muted">{accessDetail(state)}</p>
-          {scenarioRoute ? (
+          <p className={`text-[13px] leading-5 ${incident && roadAccess(incident).status === "lost" ? "text-critical" : "text-ink"}`}>
+            {incident ? roadAccess(incident).label : accessHeadline(state.routes.status)}
+          </p>
+          <p className="mt-1 text-[12px] leading-5 text-muted">{incident ? roadAccess(incident).detail : accessDetail(state)}</p>
+          {!incident && scenarioRoute ? (
             <p className="mt-2 text-[12px] leading-5 text-faint">
               Corridor graph length {km(scenarioRoute.length_m)} across {scenarioRoute.edge_count} segments. Not a travel time.
             </p>
