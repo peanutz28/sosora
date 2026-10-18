@@ -1,0 +1,10 @@
+{
+  "at_utc": "2026-10-18T08:34:25.921583+00:00",
+  "authenticated_models_status": 200,
+  "served_models": [
+    "nvidia/nemotron-3.5-lightning-30b-a3b"
+  ],
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "metadata_only_no_generation": true,
+  "seal_commit": "5b80c79"
+}

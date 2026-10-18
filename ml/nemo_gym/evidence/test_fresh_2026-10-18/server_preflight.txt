@@ -1,0 +1,5 @@
+2026-10-18T08:34:29Z
+298a1d0a4fc35a726ec11aa5a464ebf0fe91e22a5ac86c9e6111cfb3995b070c sha256:e0cfcfcb9b86e2c2d0d52a93689773f20f380cb8e050a24ce550c44f6f55c5eb true
+pid, process_name, used_gpu_memory [MiB]
+4356, VLLM::EngineCore, 72556 MiB
+sosora-lightning-vllm

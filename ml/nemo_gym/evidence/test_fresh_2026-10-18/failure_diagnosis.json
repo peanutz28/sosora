@@ -1,0 +1,370 @@
+{
+  "policy": "grounded_v2",
+  "failed_attempts": 36,
+  "final_graph_version_counts": {
+    "None (str)": 36
+  },
+  "diagnosis": "Missing-location and unavailable-road-status cases need JSON null; observed final calls contain string None. Origin in generation versus serving conversion is not resolved. No normalization, schema or verifier change used.",
+  "failures": [
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_9cf52b1a241ed162",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_f410e47da6813859",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_010a364d359169d6",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_ed4e32487c5b3a72",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_ad57106bfbd0d8e1",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_5e2a9c55c2c92069",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_e1a8f0bb1c7e3cea",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_217c220a0727dff2",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_f5cf9b309b001aad",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_63a59f72291569f9",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_feed51472533c6d9",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r3",
+      "scenario_id": "test_fresh_999ff36c3dcb65c0",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_9cf52b1a241ed162",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_f410e47da6813859",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_010a364d359169d6",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_ed4e32487c5b3a72",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_ad57106bfbd0d8e1",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_5e2a9c55c2c92069",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_e1a8f0bb1c7e3cea",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_217c220a0727dff2",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_f5cf9b309b001aad",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_63a59f72291569f9",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_feed51472533c6d9",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r2",
+      "scenario_id": "test_fresh_999ff36c3dcb65c0",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_9cf52b1a241ed162",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_f410e47da6813859",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_010a364d359169d6",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_ed4e32487c5b3a72",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_ad57106bfbd0d8e1",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_5e2a9c55c2c92069",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_e1a8f0bb1c7e3cea",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_217c220a0727dff2",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_f5cf9b309b001aad",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_63a59f72291569f9",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_feed51472533c6d9",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    },
+    {
+      "run": "grounded_v2_r1",
+      "scenario_id": "test_fresh_999ff36c3dcb65c0",
+      "issues": [
+        "invalid_tool_arguments",
+        "missing_required_tools",
+        "require_exactly_one_recommendation"
+      ],
+      "submitted_graph_version": "None"
+    }
+  ]
+}

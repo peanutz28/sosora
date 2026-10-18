@@ -212,3 +212,36 @@ PYTHONPATH="$PWD/backend" /path/to/backend/python scripts/vllm/benchmark_reliabi
 ```
 
 The script refuses an existing output and always performs the same 20+10 sequence. The saved run used the fixed backend snapshot described in `measurement_sources.json`; the source archive permits reproducing that code without modifying current backend files.
+
+## Fresh sealed Gym exam before filming — Oct 18
+
+Finished **04:49:20 AM ET**, before the 6:30 AM ET hard stop. The 42-case
+`test_fresh` split (sizes 13–18, seven families) and baseline/prompt-only/both policies
+were committed in **5b80c79 before any model call opened it**. Legacy train/validation/
+test bytes and verifier scoring logic stayed unchanged. No policy edits, retries,
+selection, weight training, adapter normalization or serving-setting changes.
+
+| Frozen policy | Three scores /42 | Mean /42 | Range /42 | Provider errors |
+|---|---|---:|---|---:|
+| baseline | 16, 12, 17 | 15.00 | 12–17 | 0 |
+| system_prompt_only | 30, 29, 30 | 29.67 | 29–30 | 0 |
+| grounded_v2 | 30, 30, 30 | 30.00 | 30–30 | 0 |
+
+All 378 attempts  / 2,182 model calls completed with zero provider errors. Same
+ablation settings: temperature 1.0, max_tokens 1024, no parallel calls, 12 turns,
+60-second HTTP timeout, adapter off. Rotated order across three repeats. The
+6:25 AM evaluation cutoff (five-minute documentation reserve) was not reached.
+
+Both retains 12/42 failures per run in tool-failure/missing-location families,
+all with string `"None"` rather than JSON null. No formatting repair was applied.
+The old test was used before; this new live exam uses larger graphs from the same
+families, with the earlier fake-provider size-17 caveat disclosed. `test_fresh` is
+now spent. These are simulated workflow results, not field rescue accuracy or a
+fix for the prior model-only ambiguity weakness. Full family counts, hashes and
+limits: [GYM_RESULTS.md](GYM_RESULTS.md).
+
+Post-exam checks: H100 RUNNING/HEALTHY, vLLM resident, zero running/waiting model
+requests and 0% GPU utilization. Left running for 7 AM ET filming; no new benchmark
+or training jobs remain on this instance. Evidence, idle check and exact timing:
+`ml/nemo_gym/evidence/test_fresh_2026-10-18/`. Original compute/storage charges and
+private-env live Command setup instructions above still apply.

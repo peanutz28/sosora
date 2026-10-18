@@ -1,0 +1,21 @@
+{
+  "checked_utc": "2026-10-18T08:50:38.577260+00:00",
+  "instance": {
+    "name": "sosora-lightning-vllm",
+    "id": "m11k1tjxq",
+    "status": "RUNNING",
+    "build_status": "COMPLETED",
+    "shell_status": "READY",
+    "health_status": "HEALTHY",
+    "instance_type": "gpu-h100-sxm.1gpu-16vcpu-200gb",
+    "instance_kind": "gpu",
+    "gpu": "H100"
+  },
+  "running_requests": 0,
+  "waiting_requests": 0,
+  "exam_completed_utc": "2026-10-18T08:49:20.812888+00:00",
+  "keep_running_for": "2026-10-18 07:00 America/New_York",
+  "exam_cutoff_utc": "2026-10-18T10:25:00+00:00",
+  "user_hard_deadline_utc": "2026-10-18T10:30:00+00:00",
+  "stopped_compute": false
+}

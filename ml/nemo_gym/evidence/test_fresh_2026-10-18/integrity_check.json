@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "seal_commit": "5b80c79",
+  "commit_precedes_exam_open": true,
+  "legacy_bytes_unchanged": true,
+  "frozen_source_and_policy_hashes_unchanged": true,
+  "unique_fresh_cases": 42,
+  "recorded_model_calls": 2182,
+  "runs": [
+    {
+      "arm": "baseline",
+      "repeat": 1,
+      "cases": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "system_prompt_only",
+      "repeat": 1,
+      "cases": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 1,
+      "cases": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "system_prompt_only",
+      "repeat": 2,
+      "cases": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 2,
+      "cases": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "baseline",
+      "repeat": 2,
+      "cases": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "grounded_v2",
+      "repeat": 3,
+      "cases": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "baseline",
+      "repeat": 3,
+      "cases": 42,
+      "provider_errors": 0
+    },
+    {
+      "arm": "system_prompt_only",
+      "repeat": 3,
+      "cases": 42,
+      "provider_errors": 0
+    }
+  ],
+  "completion_status": "completed",
+  "completed_before0630et": true
+}

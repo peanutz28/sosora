@@ -1,0 +1,18 @@
+{"starting": "baseline", "repeat": 1, "at_utc": "2026-10-18T08:34:26.280162+00:00"}
+{"arm": "baseline", "repeat": 1, "status": "completed", "exit_code": 0}
+{"starting": "system_prompt_only", "repeat": 1, "at_utc": "2026-10-18T08:36:15.814064+00:00"}
+{"arm": "system_prompt_only", "repeat": 1, "status": "completed", "exit_code": 0}
+{"starting": "grounded_v2", "repeat": 1, "at_utc": "2026-10-18T08:37:44.571565+00:00"}
+{"arm": "grounded_v2", "repeat": 1, "status": "completed", "exit_code": 0}
+{"starting": "system_prompt_only", "repeat": 2, "at_utc": "2026-10-18T08:39:25.382222+00:00"}
+{"arm": "system_prompt_only", "repeat": 2, "status": "completed", "exit_code": 0}
+{"starting": "grounded_v2", "repeat": 2, "at_utc": "2026-10-18T08:41:09.936393+00:00"}
+{"arm": "grounded_v2", "repeat": 2, "status": "completed", "exit_code": 0}
+{"starting": "baseline", "repeat": 2, "at_utc": "2026-10-18T08:42:40.398805+00:00"}
+{"arm": "baseline", "repeat": 2, "status": "completed", "exit_code": 0}
+{"starting": "grounded_v2", "repeat": 3, "at_utc": "2026-10-18T08:44:35.849651+00:00"}
+{"arm": "grounded_v2", "repeat": 3, "status": "completed", "exit_code": 0}
+{"starting": "baseline", "repeat": 3, "at_utc": "2026-10-18T08:46:04.368097+00:00"}
+{"arm": "baseline", "repeat": 3, "status": "completed", "exit_code": 0}
+{"starting": "system_prompt_only", "repeat": 3, "at_utc": "2026-10-18T08:47:56.498056+00:00"}
+{"arm": "system_prompt_only", "repeat": 3, "status": "completed", "exit_code": 0}

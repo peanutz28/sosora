@@ -1,0 +1,27 @@
+{
+  "at_utc": "2026-10-18T08:50:07.282104+00:00",
+  "metrics": {
+    "vllm:num_requests_running": {
+      "samples": [
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/nemotron-3.5-lightning-30b-a3b\"} 0.0"
+      ],
+      "sum": 0.0
+    },
+    "vllm:num_requests_waiting": {
+      "samples": [
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/nemotron-3.5-lightning-30b-a3b\"} 0.0"
+      ],
+      "sum": 0.0
+    },
+    "vllm:request_success_total": {
+      "samples": [
+        "vllm:request_success_total{engine=\"0\",finished_reason=\"stop\",model_name=\"nvidia/nemotron-3.5-lightning-30b-a3b\"} 4366.0",
+        "vllm:request_success_total{engine=\"0\",finished_reason=\"length\",model_name=\"nvidia/nemotron-3.5-lightning-30b-a3b\"} 0.0",
+        "vllm:request_success_total{engine=\"0\",finished_reason=\"abort\",model_name=\"nvidia/nemotron-3.5-lightning-30b-a3b\"} 0.0",
+        "vllm:request_success_total{engine=\"0\",finished_reason=\"error\",model_name=\"nvidia/nemotron-3.5-lightning-30b-a3b\"} 0.0",
+        "vllm:request_success_total{engine=\"0\",finished_reason=\"repetition\",model_name=\"nvidia/nemotron-3.5-lightning-30b-a3b\"} 0.0"
+      ],
+      "sum": 4366.0
+    }
+  }
+}
