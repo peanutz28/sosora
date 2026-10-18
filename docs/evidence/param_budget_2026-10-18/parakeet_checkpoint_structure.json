@@ -1,0 +1,12 @@
+{
+  "zip_entries": 722,
+  "pickle_member": "model_weights/data.pkl",
+  "pickle_bytes": 145537,
+  "pickle_sha256": "6f0c85bcade451588dd9362efcfc6b9902f63e2c02dd5368ecc9514f263c693b",
+  "pickle_globals": [
+    "collections OrderedDict",
+    "torch FloatStorage",
+    "torch LongStorage",
+    "torch._utils _rebuild_tensor_v2"
+  ]
+}

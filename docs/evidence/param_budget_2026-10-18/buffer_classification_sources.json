@@ -1,0 +1,51 @@
+[
+  {
+    "kind": "nemotron_routing_buffers",
+    "source_url": "https://raw.githubusercontent.com/huggingface/transformers/2fa1fdd5b27ae54bdcee0516848c7963393a5f5c/src/transformers/models/nemotron_h/modeling_nemotron_h.py",
+    "source_sha256": "968eeb6ee0b5519199153b7761c3e2093f45fcdfa9a240710d7308de38d3569b",
+    "declarations": [
+      {
+        "line": 767,
+        "declaration": "self.e_score_correction_bias = nn.Buffer(torch.zeros(self.num_experts))"
+      }
+    ]
+  },
+  {
+    "kind": "parakeet_preprocessing_buffers",
+    "source_url": "https://raw.githubusercontent.com/NVIDIA/NeMo/v2.4.0/nemo/collections/asr/parts/preprocessing/features.py",
+    "source_sha256": "cd25ac7919400771891bd6f0a6827c108c5472b9198aaed1b65824b13eeb0c9c",
+    "declarations": [
+      {
+        "line": 324,
+        "declaration": "self.register_buffer(\"window\", window_tensor)"
+      },
+      {
+        "line": 341,
+        "declaration": "self.register_buffer(\"fb\", filterbanks)"
+      }
+    ]
+  },
+  {
+    "kind": "batchnorm_buffers",
+    "source_url": "https://raw.githubusercontent.com/pytorch/pytorch/v2.7.0/torch/nn/modules/batchnorm.py",
+    "source_sha256": "5e07f9e100fe79a7c43bf9bd258c37520e7fa2f92aed7c3e740852046dca8ae1",
+    "declarations": [
+      {
+        "line": 80,
+        "declaration": "self.register_buffer(\"running_mean\", None)"
+      },
+      {
+        "line": 81,
+        "declaration": "self.register_buffer(\"running_var\", None)"
+      },
+      {
+        "line": 71,
+        "declaration": "\"num_batches_tracked\","
+      },
+      {
+        "line": 82,
+        "declaration": "self.register_buffer(\"num_batches_tracked\", None)"
+      }
+    ]
+  }
+]

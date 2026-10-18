@@ -1,0 +1,10 @@
+{
+  "parameters": 617825926,
+  "all_tensor_elements": 617908398,
+  "buffer_elements": 82472,
+  "parameter_tensors": 651,
+  "buffer_tensors": 74,
+  "pickle_sha256": "6f0c85bcade451588dd9362efcfc6b9902f63e2c02dd5368ecc9514f263c693b",
+  "requires_grad_not_used": true,
+  "method": "Restricted metadata-only pickle parser; sum tensor shapes excluding preprocessor and BatchNorm buffers."
+}

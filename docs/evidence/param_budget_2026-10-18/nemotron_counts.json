@@ -1,0 +1,27 @@
+{
+  "full_checkpoint_parameters_including_mtp": 32913263168,
+  "core_parameters_excluding_mtp": 31577937344,
+  "mtp_parameters": 1335325824,
+  "all_tensor_elements": 32913266240,
+  "routing_buffer_elements": 3072,
+  "tensor_count": 6513,
+  "by_dtype": {
+    "F32": {
+      "tensors": 24,
+      "elements": 3072,
+      "bytes": 12288
+    },
+    "BF16": {
+      "tensors": 6489,
+      "elements": 32913263168,
+      "bytes": 65826526336
+    }
+  },
+  "index_metadata": {
+    "total_parameters": 31577937344,
+    "total_size": 65842365568
+  },
+  "index_total_size_divided_by_2": 32921182784,
+  "index_tensor_names_and_shards_match": true,
+  "method": "Sum product(shape) from every pinned shard header; exclude only declared routing buffers; include MTP."
+}

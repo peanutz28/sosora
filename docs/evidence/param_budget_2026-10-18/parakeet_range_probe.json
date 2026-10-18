@@ -1,0 +1,7 @@
+{
+  "source_url": "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2/resolve/ae9ad07059c7c739ffaf932226a8fe64ae2620b0/parakeet-tdt-0.6b-v2.nemo",
+  "first_bytes_hex": "2e2f2e2f405061784865616465720000",
+  "sha256": "5e5219799a189aa0689ae4f26ab99fb5d9cd6c942c41466655b48f1696787974",
+  "Content-Range": "bytes 0-65535/2472222720",
+  "ETag": "\"ec7975be13a685179d2d02e7e2e7421e8ac9958e8491368fa65b058a21583668\""
+}

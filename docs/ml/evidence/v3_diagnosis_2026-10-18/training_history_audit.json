@@ -1,0 +1,42 @@
+{
+  "runs": {
+    "01_segformer_lr5e-05": {
+      "selected_epoch": 3,
+      "epoch_count": 20,
+      "best_dev_f1": 0.5761495730891883,
+      "last_dev_f1": 0.5396305718393983,
+      "min_dev_f1": 0.0014927810043617194,
+      "largest_adjacent_dev_f1_change": 0.48904337507047524,
+      "source_sha256": "b2b0dbc2fee30765a384fb9329752dd5960dca5bedc499ba99f58d7bbdd98f22"
+    },
+    "02_segformer_lr0.0002": {
+      "selected_epoch": 10,
+      "epoch_count": 20,
+      "best_dev_f1": 0.6317782909930716,
+      "last_dev_f1": 0.2489021329987453,
+      "min_dev_f1": 0.2321172076989371,
+      "largest_adjacent_dev_f1_change": 0.3155899833619702,
+      "source_sha256": "540ac4cef610ce2a23e47c0be0ca8db25b65753768f9ab9efb1d8100ecb81ce9"
+    },
+    "03_unet_lr0.0001": {
+      "selected_epoch": 13,
+      "epoch_count": 20,
+      "best_dev_f1": 0.4046673655008841,
+      "last_dev_f1": 0.2794236046072197,
+      "min_dev_f1": 0.0,
+      "largest_adjacent_dev_f1_change": 0.37739171782105824,
+      "source_sha256": "a15ff8470720881af33dd4784ab761ad7acfc91202ce9dd4ee266853bae9c52b"
+    },
+    "04_unet_lr0.001": {
+      "selected_epoch": 18,
+      "epoch_count": 20,
+      "best_dev_f1": 0.2862419543592744,
+      "last_dev_f1": 0.1516584892910656,
+      "min_dev_f1": 0.0,
+      "largest_adjacent_dev_f1_change": 0.2035985861227585,
+      "source_sha256": "f955f6906d1af46834949eb252215ef6b51fcb1f82a4f1597b916ea2fa089401"
+    }
+  },
+  "training_loss_recorded": false,
+  "scope": "Original development histories; no new training or checkpoint selection."
+}

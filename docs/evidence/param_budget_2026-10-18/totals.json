@@ -1,0 +1,18 @@
+{
+  "cap": 33000000000,
+  "billion_definition": 1000000000,
+  "nemotron_full_checkpoint_parameters": 32913263168,
+  "segformer_parameters": 3714658,
+  "parakeet_parameters": 617825926,
+  "without_asr": {
+    "parameters": 32916977826,
+    "under_33b": true,
+    "headroom": 83022174
+  },
+  "with_asr": {
+    "parameters": 33534803752,
+    "under_33b": false,
+    "headroom": -534803752
+  },
+  "scope": "Full checkpoint includes MTP and all experts; one Nemotron and one served SegFormer. Parakeet hypothetical addition; no ASR deployment or GPU launch."
+}

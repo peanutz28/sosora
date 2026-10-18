@@ -1,0 +1,163 @@
+{
+  "created_at_utc": "2026-10-18T07:48:42.693417+00:00",
+  "files": {
+    "docs/evidence/param_budget_2026-10-18/parakeet_range_probe.json": {
+      "bytes": 414,
+      "sha256": "96e25f25228e26e31fed56dfc1f758e546fcf21c42c9a826b5ba655c20d4f4ae"
+    },
+    "docs/evidence/param_budget_2026-10-18/parakeet_tar_member.json": {
+      "bytes": 84,
+      "sha256": "2ea98fe447069d6ee8c7a22e799da36bbffca0cae56c3e64c66a84dfc2984226"
+    },
+    "docs/evidence/param_budget_2026-10-18/parakeet.model_weights.data.pkl": {
+      "bytes": 145537,
+      "sha256": "6f0c85bcade451588dd9362efcfc6b9902f63e2c02dd5368ecc9514f263c693b"
+    },
+    "docs/evidence/param_budget_2026-10-18/parakeet_tensor_inventory.json": {
+      "bytes": 263745,
+      "sha256": "408e7dd316d496f14916730d6a64fcacbb5ff869c6e9efca1c892acf62bf802f"
+    },
+    "docs/evidence/param_budget_2026-10-18/parakeet_counts.json": {
+      "bytes": 386,
+      "sha256": "2b095e5b6c48858cc4ff55b8ad949d774e04734a54845728deb2240a12b78e23"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_header_receipts.json": {
+      "bytes": 6737,
+      "sha256": "ada9f81ab8177275d78303c81a1ba5fdd9a988a821e2f7f8c9baf6deb7c359fc"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron.config.json": {
+      "bytes": 2352,
+      "sha256": "a3827a0f5e311547b40943dc081e3ff2f8a277466e8c1a3df2291e8db8a7617c"
+    },
+    "docs/evidence/param_budget_2026-10-18/buffer_classification_sources.json": {
+      "bytes": 1676,
+      "sha256": "715638d2e9b953721309d21c674efd0c529bb532c76771b4279c4faedff6dc6b"
+    },
+    "docs/evidence/param_budget_2026-10-18/parakeet.model_config.yaml": {
+      "bytes": 21015,
+      "sha256": "43d879d29bf1c56a029074d08eb245e7cbd83a3c0f7798004eb2de2a38885c11"
+    },
+    "docs/evidence/param_budget_2026-10-18/audit_tests.xml": {
+      "bytes": 611,
+      "sha256": "b157c5207a396003f53e1bfa9bfea2717a441763c6bde5a247033878a221e3dd"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron.model.safetensors.index.json": {
+      "bytes": 612207,
+      "sha256": "67f21da80ce245a3e24967f54eef3fa10e67a63eba16ef19a2d0569f06103f50"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_counts.json": {
+      "bytes": 754,
+      "sha256": "7ae87323f3702fa3c8bf17b9c0ccfd1fb05389b3b119a8c6576ce080d56da950"
+    },
+    "docs/evidence/param_budget_2026-10-18/parakeet_range_receipts.json": {
+      "bytes": 6670,
+      "sha256": "6b3f0b1cf29d052b28b77345672c978e55c53fd55805a629d23739e1cf2fd613"
+    },
+    "docs/evidence/param_budget_2026-10-18/.gitattributes": {
+      "bytes": 176,
+      "sha256": "1cab0442d662c0cfbc45dd46c4511ae6452f687f2c1f23d44e4f0d2383114da0"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_repository.json": {
+      "bytes": 14522,
+      "sha256": "1681c85971c8ff77b84000e1f25d85de100431c274d19286b3a04c013ca7112a"
+    },
+    "docs/evidence/param_budget_2026-10-18/parakeet_repository.json": {
+      "bytes": 14483,
+      "sha256": "57f7757d9fad990ddd13aec193c79c56fee54f167cb4c31a86e993473a15a10b"
+    },
+    "docs/evidence/param_budget_2026-10-18/totals.json": {
+      "bytes": 556,
+      "sha256": "b1684b7bbbb54b2d5af212b4bee6c4a358845711a1d859f45fdf8b76fa8a89f6"
+    },
+    "docs/evidence/param_budget_2026-10-18/parakeet_checkpoint_structure.json": {
+      "bytes": 330,
+      "sha256": "006fcb2091c8738de11b0342a51fc776324046fedb2c6f419b4419db4e19ad9a"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00006-of-00014.safetensors.json": {
+      "bytes": 64808,
+      "sha256": "29133e2b82d7b26690158a849a29ef10a24e37c3c494e67ca613542df4771c2b"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00013-of-00014.safetensors.json": {
+      "bytes": 33128,
+      "sha256": "82706461be7f46b11ec6060a78765d5c4c4abf71db6a32586fc33ea7db69a1c6"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00014-of-00014.safetensors.json": {
+      "bytes": 33072,
+      "sha256": "0ff2ef4d37e81082909ebe093e3c913637c853a292fc3e433aa91f35d91806e0"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00009-of-00014.safetensors.json": {
+      "bytes": 65016,
+      "sha256": "7ced37ae905d16ee4c9be857dc22ef8abe414be18d4b2c01dad612cc4ca69a3f"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00001-of-00014.safetensors.json": {
+      "bytes": 55584,
+      "sha256": "b1aa8f6e7452c4393c4ebaec72a875ddc6acb3e625d9a9ed465570566b8233d3"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00004-of-00014.safetensors.json": {
+      "bytes": 65016,
+      "sha256": "f2d5fad6c698d1734603f3eca6da57791f40c04793a4aef7755bae43cc780389"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00011-of-00014.safetensors.json": {
+      "bytes": 65016,
+      "sha256": "af4a784d1da3973a2c4761009c102dc19f8aca2712155792a693125cda08de66"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00003-of-00014.safetensors.json": {
+      "bytes": 64784,
+      "sha256": "9825f6a50eb4318fa5905ec3844df83f89868992d3b36d670ef84e60a29f12cf"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00002-of-00014.safetensors.json": {
+      "bytes": 64432,
+      "sha256": "c76c429afdc6dcaf6d96082d20f201c93f8fc0b3a81843321cada2af11662106"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00010-of-00014.safetensors.json": {
+      "bytes": 64936,
+      "sha256": "b47c19bb7bcb98e747cebb6e6c821d5e26a3743f10b26493127d0d99e8816639"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00005-of-00014.safetensors.json": {
+      "bytes": 64864,
+      "sha256": "1767c7664f40464e812e84b8d04ab1f18d0c26cf7c0581272c8ea8c4e997b45e"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00008-of-00014.safetensors.json": {
+      "bytes": 64936,
+      "sha256": "b652dbdcf2519631c70cd819947b1204b69ac95bae53fca8931e3c4bbad736bd"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00012-of-00014.safetensors.json": {
+      "bytes": 65032,
+      "sha256": "2c48f1e2475b98315f77027d69921c0cd34d7c9926c264254285771f2e608fc0"
+    },
+    "docs/evidence/param_budget_2026-10-18/nemotron_headers/model-00007-of-00014.safetensors.json": {
+      "bytes": 64904,
+      "sha256": "fd70dd3ba6d414978d11198606f6208f0f34de7c26e86ef412c874ef73432a5e"
+    },
+    "docs/ml/evidence/v3_diagnosis_2026-10-18/sampling_audit.json": {
+      "bytes": 35029,
+      "sha256": "5131444f8ccbc9e7ef7e5b009a5595f5a5b5313b43cb175f5edb5c72491af211"
+    },
+    "docs/ml/evidence/v3_diagnosis_2026-10-18/development_inference.log": {
+      "bytes": 2568,
+      "sha256": "9c94c158fbe1b1cb095fd6fef4e21cd0efef4760d7e48db9e78b3855d21da392"
+    },
+    "docs/ml/evidence/v3_diagnosis_2026-10-18/integrity_audit.json": {
+      "bytes": 11116,
+      "sha256": "6405597152ef7199b1f18881c2f076e44fd53e4d81eca5a78428d9914f347eef"
+    },
+    "docs/ml/evidence/v3_diagnosis_2026-10-18/diagnosis_summary.json": {
+      "bytes": 7141,
+      "sha256": "d3bcef11388d7cb65122b21427e6b44ffe2da68382b828cc666ea74eacc6b3c8"
+    },
+    "docs/ml/evidence/v3_diagnosis_2026-10-18/development_progress.jsonl": {
+      "bytes": 15019,
+      "sha256": "64c357c0fce81f9a1e9a8e29affefc94c07d9fb095164acf2d7a3d3d5dd198c5"
+    },
+    "docs/ml/evidence/v3_diagnosis_2026-10-18/training_history_audit.json": {
+      "bytes": 1555,
+      "sha256": "4aba17f49207247aa0db3fd09b1f42c2de3ce26eb79f5ecf15b5621c5ba468b9"
+    },
+    "docs/ml/evidence/v3_diagnosis_2026-10-18/development_inference.json": {
+      "bytes": 35172,
+      "sha256": "f27d7a8b44ef857a2f2c3f37df2b9be8ea21504b2544cea738ad46f1d987a8f9"
+    }
+  },
+  "source_files_pinned": true,
+  "gpu_launched": false
+}

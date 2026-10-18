@@ -1,0 +1,114 @@
+[
+  {
+    "file": "model-00001-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00001-of-00014.safetensors",
+    "header_sha256": "b1aa8f6e7452c4393c4ebaec72a875ddc6acb3e625d9a9ed465570566b8233d3",
+    "header_bytes": 55584,
+    "Content-Range": "bytes 8-55591/4991210024",
+    "ETag": "\"729ad97ac67e76aad07862b98a49d89aa02ac9cdeb3090256f24ec7c33d23535\""
+  },
+  {
+    "file": "model-00002-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00002-of-00014.safetensors",
+    "header_sha256": "c76c429afdc6dcaf6d96082d20f201c93f8fc0b3a81843321cada2af11662106",
+    "header_bytes": 64432,
+    "Content-Range": "bytes 8-64439/4992601016",
+    "ETag": "\"bbcfd6669c5cdb131902c7377017da4ea5c4fb8af63429fce59e08623694d902\""
+  },
+  {
+    "file": "model-00003-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00003-of-00014.safetensors",
+    "header_sha256": "9825f6a50eb4318fa5905ec3844df83f89868992d3b36d670ef84e60a29f12cf",
+    "header_bytes": 64784,
+    "Content-Range": "bytes 8-64791/4992601368",
+    "ETag": "\"a8d6578355ee30b797114d2bbf3e5cf626b44a016f9f4b0fff8337b770686705\""
+  },
+  {
+    "file": "model-00004-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00004-of-00014.safetensors",
+    "header_sha256": "f2d5fad6c698d1734603f3eca6da57791f40c04793a4aef7755bae43cc780389",
+    "header_bytes": 65016,
+    "Content-Range": "bytes 8-65023/4995692800",
+    "ETag": "\"9b235af0a699fb96b9ed745d2f011a46cacf8fffc9a1c989d256e49af0a45e74\""
+  },
+  {
+    "file": "model-00005-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00005-of-00014.safetensors",
+    "header_sha256": "1767c7664f40464e812e84b8d04ab1f18d0c26cf7c0581272c8ea8c4e997b45e",
+    "header_bytes": 64864,
+    "Content-Range": "bytes 8-64871/4980553832",
+    "ETag": "\"8524abc0abb9269d29e94bbed3b496bfdf67f5e65de7f7ea061c4f0540466954\""
+  },
+  {
+    "file": "model-00006-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00006-of-00014.safetensors",
+    "header_sha256": "29133e2b82d7b26690158a849a29ef10a24e37c3c494e67ca613542df4771c2b",
+    "header_bytes": 64808,
+    "Content-Range": "bytes 8-64815/4989423536",
+    "ETag": "\"99d54c8fa94225f36f25db585bcf519da7edeadb65126916d7d31789dcbd3d2a\""
+  },
+  {
+    "file": "model-00007-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00007-of-00014.safetensors",
+    "header_sha256": "fd70dd3ba6d414978d11198606f6208f0f34de7c26e86ef412c874ef73432a5e",
+    "header_bytes": 64904,
+    "Content-Range": "bytes 8-64911/4992601488",
+    "ETag": "\"b9601ebafc6791d87ac6a3fe79b233a2492c57a7115e904392ec2fb820801591\""
+  },
+  {
+    "file": "model-00008-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00008-of-00014.safetensors",
+    "header_sha256": "b652dbdcf2519631c70cd819947b1204b69ac95bae53fca8931e3c4bbad736bd",
+    "header_bytes": 64936,
+    "Content-Range": "bytes 8-64943/4992601520",
+    "ETag": "\"4ec48a9cea8596afc6ce132989c93eece046cc7dd75480b8a9b6da3969f4d01a\""
+  },
+  {
+    "file": "model-00009-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00009-of-00014.safetensors",
+    "header_sha256": "7ced37ae905d16ee4c9be857dc22ef8abe414be18d4b2c01dad612cc4ca69a3f",
+    "header_bytes": 65016,
+    "Content-Range": "bytes 8-65023/4995692800",
+    "ETag": "\"955d4e86381901c66b9a6033ff9fc80a2157e72cfd365da19acd09454ebd6d8b\""
+  },
+  {
+    "file": "model-00010-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00010-of-00014.safetensors",
+    "header_sha256": "b47c19bb7bcb98e747cebb6e6c821d5e26a3743f10b26493127d0d99e8816639",
+    "header_bytes": 64936,
+    "Content-Range": "bytes 8-64943/4992601520",
+    "ETag": "\"e7ba4a82223ff8df3176dbb66f63c4082abe046ad46d98d46a1cea3d4964fc91\""
+  },
+  {
+    "file": "model-00011-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00011-of-00014.safetensors",
+    "header_sha256": "af4a784d1da3973a2c4761009c102dc19f8aca2712155792a693125cda08de66",
+    "header_bytes": 65016,
+    "Content-Range": "bytes 8-65023/4995692800",
+    "ETag": "\"d103724fa1c85de907cc068ba365a6268ff9bfdd788d8f49c0f8dfcf3e9dd67f\""
+  },
+  {
+    "file": "model-00012-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00012-of-00014.safetensors",
+    "header_sha256": "2c48f1e2475b98315f77027d69921c0cd34d7c9926c264254285771f2e608fc0",
+    "header_bytes": 65032,
+    "Content-Range": "bytes 8-65039/4995692816",
+    "ETag": "\"b0e7cccec7f426fa77e2c71e489c751fb2de46715b26c762c224c407b756622b\""
+  },
+  {
+    "file": "model-00013-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00013-of-00014.safetensors",
+    "header_sha256": "82706461be7f46b11ec6060a78765d5c4c4abf71db6a32586fc33ea7db69a1c6",
+    "header_bytes": 33128,
+    "Content-Range": "bytes 8-33135/3249723504",
+    "ETag": "\"360ecb73beb0899202fb1cc8a3e9412da99ce9d7010a6fe907567e07b6b84e0b\""
+  },
+  {
+    "file": "model-00014-of-00014.safetensors",
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16/resolve/a9904d24bcc1d289a1950fa9d2b978c47cf903b9/model-00014-of-00014.safetensors",
+    "header_sha256": "0ff2ef4d37e81082909ebe093e3c913637c853a292fc3e433aa91f35d91806e0",
+    "header_bytes": 33072,
+    "Content-Range": "bytes 8-33079/2670685240",
+    "ETag": "\"e33010bb07515c7ce9135c7d8659f945b3c0a40dd525f8691b7c3b8ed1fd4899\""
+  }
+]

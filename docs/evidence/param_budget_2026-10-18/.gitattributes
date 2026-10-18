@@ -1,0 +1,3 @@
+# Exact safetensors headers include alignment padding; preserve their source bytes.
+nemotron_headers/*.safetensors.json -text -diff
+parakeet.model_weights.data.pkl -text -diff
