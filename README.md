@@ -104,3 +104,36 @@ Tests: `cd backend && pytest` (28 tests).
 `frontend/` dashboard · `beacon/` Raspberry Pi device · `docs/CONTEXT.md` living context ·
 `docs/briefs/` task briefs for each workstream · `contracts/` API contracts ·
 `docs/ml/PREVIOUS_README.md` detailed ML notes.
+
+## Operations dashboard and native iOS app
+Two additional applications live beside the agent stack. They do not replace `backend/`, `frontend/`, or `ml/`.
+
+| App | Path | What it is |
+|---|---|---|
+| Operations dashboard | `dashboard/` | FastAPI plus a Leaflet map for Swannanoa. SOS incidents, road reports, access analysis, the Helene best track, and current weather. |
+| Native iOS app | `ios-app/` | SwiftUI field app. Residents queue an SOS offline. Operators can review incidents and send a road report. |
+
+The iOS app talks only to the operations dashboard, not to the Next.js app in `frontend/`. Its default base URL is `http://127.0.0.1:3000`, which is also the port in `dashboard/run.py`. Run one of those two servers at a time: the Next.js dashboard in the section above also uses port 3000.
+
+Shared HTTP contract:
+
+- `GET /api/health` and `GET /api/state`
+- `POST /api/incidents` with `client_id`, `message`, `people`, `place`, `lat`, `lng`
+- `PATCH /api/incidents/{id}` with a status of Received, Acknowledged, Under review, or Resolved
+- `GET /api/road-segments` and `POST /api/road-reports`
+
+Road geometry in `dashboard/frontend/roads.geojson`, `dashboard/swannanoa_roads.graphml`, and `dashboard/swannanoa_roads.gpkg` is the Swannanoa OpenStreetMap extract. The NHC Helene track used by the map is `dashboard/frontend/helene-best-track.geojson`.
+
+### Run the operations dashboard
+```bash
+cd dashboard
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python run.py
+```
+Open http://127.0.0.1:3000. The resident page is http://127.0.0.1:3000/resident. Tests: `.venv/bin/python -m unittest tests.test_roads tests.test_ops`.
+
+The radio gateway reads `SOSORA_GATEWAY_TOKEN` from the environment. Do not commit that value.
+
+### Run the iOS app
+Open `ios-app/SOSora App.xcodeproj` in Xcode, select an iPhone simulator, and run. Start the operations dashboard first. The simulator can reach `127.0.0.1:3000`. A physical iPhone needs the Mac's LAN address in the app's server setting, and the phone and Mac must be on the same network.

@@ -1,0 +1,449 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SOSora — Rescue Intelligence</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><style>
+:root{--bg:#090b0e;--panel:#14181d;--line:#2c333b;--text:#f4f7f8;--muted:#c5d0d6;--teal:#3ee0cf;--red:#ff6d78;--amber:#f0b429}*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text)}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}.app{height:100vh;min-height:590px;display:grid;grid-template-rows:70px minmax(0,1fr)}header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:0 25px;gap:20px;background:#101114}.brand{display:flex;align-items:center;gap:12px}.logo{width:39px;height:39px;background:var(--teal);border-radius:13px;display:grid;place-items:center;color:#08252a;font-size:24px;font-weight:800}.brand strong{font:800 24px Manrope;letter-spacing:-1.2px}.brand strong span{color:var(--teal)}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}.header-center{color:#bdcbd3;font-size:12px}.tag{font-size:10px;border:1px solid #50646b;color:#b9d1d1;padding:5px 8px;border-radius:5px;margin-left:9px;letter-spacing:1px}.primary{border:0;background:var(--teal);color:#08252a;padding:11px 16px;border-radius:9px;font-weight:800}.outline{background:#172934;border:1px solid #365260;color:#dcebec;padding:9px 11px;border-radius:8px}.outline.active{background:#23524f;border-color:#4fc5b7;color:white}.body{min-height:0;display:grid;grid-template-columns:275px minmax(0,1fr)}aside{background:#0e1b25;border-right:1px solid var(--line);padding:22px 15px;overflow:auto}.eyebrow{font-size:10px;font-weight:800;letter-spacing:1.9px;color:#81a1b0;text-transform:uppercase}.sidebar-title{font:800 23px Manrope;margin:9px 0 18px;letter-spacing:-.7px}.nav{display:flex;gap:5px;background:#162834;padding:4px;border-radius:10px;margin:0 0 22px}.nav button{flex:1;background:transparent;color:#9fb3bf;border:0;padding:10px 0;border-radius:7px;font-size:12px}.nav button.active{background:#2a4a54;color:white}.incident{border:1px solid transparent;border-radius:12px;padding:14px;margin:9px 0;background:#152631;cursor:pointer}.incident.selected{border-color:#5ac8bd;background:#18333a}.incident-top{display:flex;justify-content:space-between;align-items:center;font-size:11px}.incident-top b{letter-spacing:.5px}.incident p{font-size:13px;line-height:1.5;margin:10px 0}.muted{color:var(--muted)}.incident-bottom{display:flex;justify-content:space-between;font-size:11px;color:#a7b9c2}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;background:var(--amber)}.dot.critical{background:var(--red)}.sidebar-action{width:100%;margin-top:15px;background:#203943;color:#b6f1e9;border:1px dashed #47746f;padding:12px;border-radius:10px;font-weight:700}.workspace{min-width:0;min-height:0;display:flex;flex-direction:column}.workspace-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px 16px;gap:15px}.workspace-head h1{font:800 23px Manrope;letter-spacing:-.9px;margin:5px 0}.workspace-head p{font-size:12px;color:var(--muted);margin:0}.workspace-actions{display:flex;gap:7px;align-items:center}.content{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:14px;padding:0 17px 17px 24px;min-height:0;flex:1}.content.panel-hidden{grid-template-columns:minmax(0,1fr)}.map-shell{border:1px solid #33505c;border-radius:13px;overflow:hidden;min-width:0;min-height:0;display:flex;flex-direction:column;background:#dce6df}.mapbar{height:52px;background:#132734;display:flex;align-items:center;justify-content:space-between;padding:0 14px;color:#e5f1f1;flex-shrink:0;gap:10px}.mapbar b{font-size:13px}.mapbar small{color:#8eabb8;margin-left:8px}.styles{display:flex;gap:5px}.styles button{background:transparent;border:0;color:#a6c0ca;padding:8px 11px;border-radius:6px;font-size:11px}.styles button.active{background:#2a5760;color:#fff}#map{flex:1;min-height:250px;z-index:0}.mapfoot{height:auto;min-height:52px;background:#102430;display:flex;align-items:center;justify-content:space-between;padding:8px 16px;gap:12px;flex-shrink:0}.mapfoot span{font-size:11px;color:#b3cbd0}.legend{display:flex;gap:13px;flex-wrap:wrap}.legend em{font-style:normal;color:var(--teal)}.scenario{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 15px;background:#152d35;border-top:1px solid #35555d;flex-shrink:0}.scenario strong{font-size:12px}.scenario small{font-size:10px;color:#9cb4bd;display:block;margin-top:3px}.scenario-actions{display:flex;gap:5px}.scenario-actions button{border:1px solid #3e6069;border-radius:7px;background:#203e47;color:white;padding:8px 10px;font-size:11px}.scenario-actions button.next{background:var(--teal);color:#08252a;font-weight:800}.detail{border:1px solid var(--line);background:#10212d;border-radius:13px;padding:19px;overflow:auto;min-height:0}.detail-head{display:flex;align-items:center;justify-content:space-between}.detail h2{font:800 24px Manrope;letter-spacing:-.7px;margin:10px 0}.detail h3{font-size:12px;margin:20px 0 8px}.detail p{font-size:12px;color:#b4c7d0;line-height:1.65}.divider{height:1px;background:#2b414d;margin:18px 0}.status{display:inline-block;font-size:10px;border:1px solid #a25763;color:#ff9da8;padding:5px 7px;border-radius:5px}.card{background:#182f3c;border:1px solid #30515c;border-radius:10px;padding:13px;margin:12px 0}.card .eyebrow{color:#7ad6c8}.route-stat{font:800 22px Manrope;color:var(--teal)}.detail .primary{width:100%;margin-top:10px}.detail .outline{width:100%;margin-top:8px}.notice{font-size:11px;color:#a8bec9;line-height:1.6}.modal-bg{position:fixed;inset:0;background:#030b10bb;z-index:9999;display:grid;place-items:center;padding:20px}.modal{background:#10222e;border:1px solid #385260;border-radius:16px;width:min(430px,100%);padding:25px;box-shadow:0 20px 100px #0009}.modal h2{font:800 23px Manrope;margin:7px 0}.modal p{color:#b4c6cf;font-size:12px;line-height:1.6}.modal label{display:block;color:#a7c0cb;font-size:11px;margin-top:13px;margin-bottom:6px}.modal input,.modal textarea{width:100%;background:#0c1923;color:white;border:1px solid #365160;border-radius:8px;padding:11px;outline:0}.modal textarea{min-height:85px;resize:vertical}.modal .buttons{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}.hide{display:none!important}.leaflet-container{font-family:'DM Sans',sans-serif}.pin{border-radius:50%;display:grid;place-items:center;border:3px solid white;box-shadow:0 3px 12px #0007;color:white;font-weight:800}.pin.sos{background:#ef5d71}.pin.unit{background:#138aa4}.pin.damage{background:#d57e27}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#152f37;border:1px solid #4a7b79;padding:11px 18px;border-radius:9px;color:white;z-index:99999;font-size:12px;box-shadow:0 8px 35px #0009}@media(max-width:1050px){.content{grid-template-columns:minmax(0,1fr)}.detail{position:absolute;right:18px;top:160px;bottom:20px;width:300px;z-index:900;box-shadow:0 12px 45px #0009}.body{grid-template-columns:225px minmax(0,1fr)}}@media(max-width:680px){.body{grid-template-columns:minmax(0,1fr)}aside{display:none}.header-center{display:none}.workspace-head{padding:12px}.workspace-head h1{font-size:18px}.content{padding:0 10px 10px}.workspace-actions .outline{display:none}.mapbar small{display:none}.detail{width:calc(100% - 32px);top:110px}.mapfoot{height:auto;min-height:48px}.legend{gap:6px}}
+
+/* Responsive sizing fixes: keep the map visible without horizontal clipping. */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+.app{width:100%;min-width:0;min-height:0}
+header,.body,.workspace,.content,.map-shell,.detail{min-width:0}
+header{padding-left:clamp(12px,2vw,25px);padding-right:clamp(12px,2vw,25px)}
+.header-center{white-space:nowrap}
+.workspace-head{min-width:0}
+.workspace-actions{flex-shrink:0}
+.incident-bottom{gap:8px;flex-wrap:wrap}
+@media(max-width:1350px){
+  .body{grid-template-columns:230px minmax(0,1fr)}
+  .content{grid-template-columns:minmax(0,1fr);position:relative;padding:0 12px 12px}
+  .detail{position:absolute;right:20px;top:12px;bottom:22px;width:min(330px,calc(100% - 40px));z-index:600;box-shadow:0 12px 45px #000b}
+  .map-shell{min-height:450px}
+  .workspace-head{padding:16px 14px}
+}
+@media(max-width:780px){
+  .body{grid-template-columns:minmax(0,1fr)}
+  aside{display:none}
+  .header-center{display:none}
+  .brand strong{font-size:20px}
+  .content{padding:0 9px 9px}
+  .workspace-head{gap:8px;flex-wrap:wrap}
+  .workspace-actions{margin-left:auto}
+  .detail{top:8px;right:10px;bottom:10px;width:min(330px,calc(100% - 20px))}
+  .mapbar{padding:0 9px}
+  .mapbar small{display:none}
+}
+@media(max-width:430px){
+  .mapbar b{font-size:11px}
+  .styles button{padding:7px}
+  .scenario{align-items:flex-start;flex-direction:column}
+  .scenario-actions{align-self:flex-end}
+}
+.detail .nav{margin:12px 0 8px}
+.detail-head .outline{width:auto;margin:0;flex:0 0 auto}
+.road-legend{margin-top:4px}
+.access-card,.urgent-row{background:#182f3c;border:1px solid #30515c;border-radius:10px;padding:11px;margin:8px 0;cursor:pointer;text-align:left;color:inherit;width:100%}
+.access-card.active,.urgent-row.active{border-color:#5ac8bd}
+.access-card h3,.urgent-row b{font-size:13px;margin:3px 0}
+.callout{background:#1a3148;border:1px solid #3d5d78;border-radius:10px;padding:12px;margin:8px 0}
+.pill{display:inline-block;font-size:10px;letter-spacing:.3px;border-radius:99px;padding:3px 7px;margin:0 4px 4px 0;border:1px solid #3d5c68;color:#c5d7df}
+.pill.unknown{color:#ffc36b;border-color:#8a6a32}
+.pill.unverified{color:#ffd59a;border-color:#8a6a32}
+.pill.verified{color:#51d7c8;border-color:#2f8f84}
+.pill.simulated{color:#e2c8ff;border-color:#7a5ea3}
+.pill.high{color:#ffb3bc;border-color:#a25763}
+#accessBadge{color:#51d7c8;margin-left:4px}
+.kind{font-size:10px;font-weight:800;letter-spacing:1px;color:#81a1b0}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#10222e;color:#edf5f5;box-shadow:0 12px 40px #0008;border-radius:12px}
+.leaflet-popup-content{margin:8px 10px;font-size:12px;line-height:1.4;width:236px!important;max-height:min(420px,62vh);overflow:auto}
+.leaflet-popup-close-button{color:#d5e7ea!important}
+.road-pop{max-width:276px}
+.road-card-title{display:block;font:800 15px Manrope;letter-spacing:-.3px}
+.road-meta{display:grid;grid-template-columns:78px 1fr;gap:3px 8px;margin:8px 0 4px;font-size:12px}
+.road-meta dt{color:#91a6b3;margin:0}
+.road-meta dd{margin:0}
+.road-pop .edit,.road-pop .save{display:block;width:100%;margin-top:8px;padding:7px;border-radius:7px;border:0;cursor:pointer}
+.road-pop .edit{background:#17303c;color:#d7ecec;border:1px solid #36586a}
+.road-pop .save{background:#51d7c8;color:#08252a;font-weight:800}
+.road-form{display:none;margin-top:8px}
+.road-form.open{display:block}
+.road-choices{display:flex;gap:4px}
+.road-choices button{flex:1;font-size:11px;padding:6px 4px;border-radius:7px;border:1px solid #36586a;background:#17303c;color:#e7f4f4}
+.road-choices button.on{border-color:#51d7c8;color:#08252a;background:#51d7c8;font-weight:700}
+.road-pop textarea,.road-pop select{width:100%;box-sizing:border-box;background:#0c1923;color:white;border:1px solid #365160;border-radius:7px;padding:7px;margin-top:6px}
+.road-pop textarea{min-height:40px;resize:vertical}
+.road-check{display:flex;gap:6px;align-items:center;margin:8px 0;font-size:11px}
+.verify-legend{margin-top:2px;color:#8eabb8}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0 4px}
+.summary-grid div{background:#152833;border:1px solid #2c4654;border-radius:8px;padding:8px 9px}
+.summary-grid b{display:block;font:800 16px Manrope;letter-spacing:-.4px}
+.summary-grid span{color:#91a6b3;font-size:10px;letter-spacing:.3px}
+.urgent-row b{display:block}
+details.stats{margin-top:14px;border-top:1px solid #2b414d;padding-top:8px}
+details.stats summary{cursor:pointer;font-size:12px;font-weight:700;color:#d7ecec}
+@media(min-width:980px){
+  .content{grid-template-columns:minmax(0,1fr) 340px;position:static}
+  .detail{position:relative;top:auto;right:auto;bottom:auto;width:auto;max-width:none;box-shadow:none;z-index:1}
+  .map-shell{min-height:0}
+}
+body{background:#090b0e}
+.incident.critical{border-color:#ff6d78;box-shadow:inset 3px 0 0 #ff6d78}
+.incident .pri{font-weight:800;letter-spacing:.04em;color:#f4f7f8}
+.pri-critical{color:#ff8d96}
+.pri-high{color:#ffb4a8}
+.pri-medium{color:#f0b429}
+.pri-low{color:#8ee0d2}
+.pri-unclassified{color:#f4f7f8}
+.when{display:block;margin-top:4px;color:#e8eef2;font-weight:650;font-size:12px}
+.kind-tag{font-size:10px;font-weight:800;letter-spacing:.08em}
+.kind-road{color:#d3b4ff}
+.kind-sos{color:#ff8d96}
+.kind-sim{color:#d3b4ff}
+.sort-row{display:flex;gap:8px;align-items:center;margin:8px 0 4px;color:#f4f7f8;font-size:12px;font-weight:700}
+.sort-row select{background:#101418;color:#f4f7f8;border:1px solid #3a4450;border-radius:8px;padding:6px 8px}
+.mode-switch{margin-left:8px}
+#modeBanner{margin:6px 0 0;color:#f4f7f8}
+.pin.critical{box-shadow:0 0 0 2px #ff6d78}
+.pin.isolation{width:16px;height:16px;border-radius:50%;background:#ff6d78;box-shadow:0 0 0 2px rgba(255,109,120,.45)}
+.road-error{color:#ffb4bc;font-weight:700;margin-top:6px}
+@media (prefers-reduced-motion:no-preference){
+  .pin.critical,.pin.isolation{animation:sos-pulse 1.7s ease-in-out infinite}
+}
+@keyframes sos-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+</style></head><body><div class="app"><header><div class="brand"><div class="logo">≋</div><div><strong>SOS<span>ora</span></strong><small>RESCUE INTELLIGENCE</small></div></div><div class="header-center">Swannanoa operations drill · Western North Carolina <span class="tag">SIMULATION</span></div><div style="display:flex;gap:9px;align-items:center"><a href="/resident" class="outline" style="text-decoration:none;font-size:12px">Resident SOS ↗</a><button class="primary" id="start">▶ Run demo</button></div></header><div class="body"><aside><div class="eyebrow">OPERATIONS</div><div class="sidebar-title">Incident log <span id="count" style="color:#c5d0d6;font-size:15px">3</span></div><div class="nav"><button class="active" data-filter="all">All</button><button data-filter="critical">Critical</button><button data-filter="queued">Queued</button></div><div class="sort-row"><label for="sortMode">Sort</label><select id="sortMode" title="Critical, then high, medium, and low. Unclassified sorts after low. Within a priority, newest is first. Missing timestamps are shown as not recorded and sort last."><option value="priority">Priority</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="timeline">Timeline</option></select></div><div id="incidents"></div><button class="sidebar-action" id="newSOS">＋ Create resident SOS</button><p class="notice" style="margin-top:18px">SOS text is a simulated drill, not a Hurricane Helene record. Road geometry is OpenStreetMap. Unclassified severity sorts after Low. Times use your local timezone.</p></aside><main class="workspace"><div class="workspace-head"><div><div class="eyebrow">LIVE MAP · DEMO DATA</div><h1>Rescue access overview</h1><p>Asheville & Swannanoa, North Carolina</p></div><div class="workspace-actions"><button class="outline" id="fit">◎ Fit incidents</button><button class="outline" id="openAccess">▣ Access</button><button class="outline" id="togglePanel">◧ Details</button></div></div><div class="content" id="content"><section class="map-shell"><div class="mapbar"><div><b>◉ Asheville region</b><small>Roads · incidents · access</small></div><div class="styles"><button class="active" data-style="street">Street</button><button data-style="satellite">Satellite</button><button data-style="terrain">Terrain</button></div><div class="styles mode-switch"><button class="active" data-mode="operations">Operations</button><button data-mode="helene">Helene track</button><button data-mode="current">Current weather</button></div></div><p id="modeBanner" class="notice">Operations map. Road geometry is OpenStreetMap. Passability comes only from saved reports.</p><div id="map"></div><div class="mapfoot"><div><div class="legend"><span><em>●</em> Rescue unit</span><span style="color:#ff8493">● SOS</span><span style="color:#ffc36b">● Damage</span></div><div class="legend road-legend"><span style="color:#c4a36a">━ Unknown</span><span style="color:#51d7c8">━ Reported passable</span><span style="color:#ff6679">━ Reported blocked</span><span style="color:#ff8a4c">━ Reported damaged</span><span style="color:#c084fc">━ AI / simulated</span></div><div class="legend verify-legend"><span>Verification is separate · solid verified in this demo · dashed unverified</span></div></div><span id="mapstatus">Loading map…</span></div><div class="scenario"><div><strong id="stageTitle">01 · Initial access route</strong><small id="stageDesc">A rescue unit has a candidate route to a stranded resident.</small></div><div class="scenario-actions"><button id="reset">Reset stage</button><button id="resetDemo">Reset demo scenario</button><button id="prev">←</button><button class="next" id="next">Next →</button></div></div></section><section class="detail" id="detail"><div class="detail-head"><div class="eyebrow" id="detailEyebrow">SELECTED INCIDENT</div><button class="outline" id="closePanel" style="padding:5px 9px">✕</button></div><div class="nav" id="detailTabs"><button type="button" id="tabIncident" class="active">Incident</button><button type="button" id="tabAccess">Access <b id="accessBadge">0</b></button></div><div id="incidentPane"><h2 id="detailId">SOS-1042</h2><div id="detailBody"></div></div><div id="accessPane" class="hide"><p class="notice">Loading road analysis…</p></div></section></div></main></div></div><div class="modal-bg hide" id="modal"><div class="modal"><div class="eyebrow">RESIDENT SOS · LOCAL DEMO</div><h2>Request emergency help</h2><p>This form demonstrates local SOS storage. It does not contact emergency services or send a message to responders.</p><label>Situation</label><textarea id="message" placeholder="Describe the emergency…">Water is rising. We need help.</textarea><label>Number of people</label><input id="people" type="number" min="1" max="100" value="2"><label>Location (demo)</label><input id="location" value="Swannanoa, NC"><div class="buttons"><button class="outline" id="cancel">Cancel</button><button class="primary" id="save">Save SOS locally</button></div></div></div><div class="toast hide" id="toast"></div><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script>
+const $=id=>document.getElementById(id);let stage=0,selected='SOS-1042',filter='all',panel=true,basemap='street',map,tiles,markers=[],lines=[],roadReports={},roadAnalysis=null,roadLayer=null,roadIndex={},segmentMeta={},highlightLayer=null,accessMarker=null,detailTab='incident',roadsFitted=false,selectedRoadId=null,sortMode='priority',mapMode='operations',timelineEvents=[],roadHistory=[],stormLayer=null,weatherLayer=null,isolationLayer=null;const initial=[{id:'SOS-1042',priority:'critical',desc:'SIMULATED: family stranded by floodwater',place:'Warren Wilson Road',people:4,lat:35.60814,lng:-82.44390,status:'Received',text:'SIMULATED DEMO. Offline placeholder until the server responds. Not a Hurricane Helene record.',created_at:'2024-09-27T10:40:00+00:00',data_class:'simulated',kind:'sos'},{id:'SOS-1039',priority:'high',desc:'SIMULATED: medical evacuation requested',place:'Lower Grassy Branch Road',people:2,lat:35.60847,lng:-82.47568,status:'Acknowledged',text:'SIMULATED DEMO. Offline placeholder until the server responds.',created_at:'2024-09-27T12:05:00+00:00',data_class:'simulated',kind:'sos'},{id:'SOS-1036',priority:'high',desc:'SIMULATED: residents cannot leave Bee Tree Road',place:'Bee Tree Road',people:7,lat:35.61695,lng:-82.42724,status:'Received',text:'SIMULATED DEMO. Offline placeholder until the server responds.',created_at:'2024-09-27T11:15:00+00:00',data_class:'simulated',kind:'sos'}];let incidents=initial;const unit=[35.592,-82.524],damage=[35.6003,-82.475];const routeA=[[35.592,-82.524],[35.594,-82.510],[35.596,-82.496],[35.6003,-82.475],[35.603,-82.457],[35.6042,-82.4379]],routeB=[[35.592,-82.524],[35.586,-82.510],[35.578,-82.485],[35.586,-82.462],[35.6042,-82.4379]];function toast(s){$('toast').textContent=s;$('toast').classList.remove('hide');setTimeout(()=>$('toast').classList.add('hide'),3100)}function persist(){localStorage.setItem('sosora-incidents',JSON.stringify(incidents))}function pin(type,label){return L.divIcon({className:'',html:`<div class="pin ${type}" style="width:30px;height:30px">${label}</div>`,iconSize:[30,30],iconAnchor:[15,15]})}function initMap(){map=L.map('map',{zoomControl:false}).setView([35.597,-82.49],12);L.control.zoom({position:'bottomleft'}).addTo(map);setStyle('street');map.on('load',()=>{$('mapstatus').textContent='Interactive map · Esri'});map.on('tileerror',()=>{$('mapstatus').textContent='Map tiles unavailable · check internet or provider access'});setTimeout(()=>map.invalidateSize(),250);drawMap()}function setStyle(style){basemap=style;if(tiles)map.removeLayer(tiles);const layers={street:['World_Street_Map','Street map © Esri and contributors'],satellite:['World_Imagery','Imagery © Esri and contributors'],terrain:['World_Topo_Map','Terrain map © Esri and contributors']};const layer=layers[style]||layers.street;tiles=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/'+layer[0]+'/MapServer/tile/{z}/{y}/{x}',{attribution:layer[1],maxZoom:19});tiles.on('tileerror',()=>{$('mapstatus').textContent='Map imagery failed to load · try another layer'});tiles.addTo(map);if(roadLayer)roadLayer.bringToFront();document.querySelectorAll('[data-style]').forEach(b=>b.classList.toggle('active',b.dataset.style===style));$('mapstatus').textContent=layer[1]}function clearMap(){markers.forEach(x=>map.removeLayer(x));lines.forEach(x=>map.removeLayer(x));markers=[];lines=[]}function drawMap(){if(!map)return;clearMap();const active=stage>=3?incidents:incidents.filter(x=>x.id!=='SOS-DEMO');active.forEach(i=>{const critical=String(i.priority||'').toLowerCase()==='critical';let m=L.marker([i.lat,i.lng],{icon:pin(critical?'sos critical':'sos','!')}).addTo(map).bindTooltip(i.id+' · '+i.desc+' · '+(i.data_class==='simulated'?'simulated':i.status||''));m.on('click',()=>select(i.id));markers.push(m)});markers.push(L.marker(unit,{icon:pin('unit','↗')}).addTo(map).bindTooltip('Rescue Unit 4'));const addLine=(coords,color,dash)=>{const l=L.polyline(coords,{color,weight:5,opacity:.88,dashArray:dash||null,interactive:false}).addTo(map);lines.push(l)};if(stage===0)addLine(routeA,'#0a9eac','8 9');if(stage>=1){markers.push(L.marker(damage,{icon:pin('damage','×')}).addTo(map).bindTooltip('Simulated bridge obstruction'));addLine(routeA,'#d37d7d','6 9');if(stage>=2)addLine(routeB,'#0aa6aa','8 7')} }function renderIncidents(){const box=$('incidents');if(!box)return;const rows=visibleFeed();$('count').textContent=feed().length;if(sortMode==='timeline'){box.innerHTML=renderTimeline()||'<p class="notice">No timestamped events yet.</p>';box.querySelectorAll('[data-id]').forEach(el=>el.onclick=()=>select(el.dataset.id));return}box.innerHTML=rows.map(i=>{const pri=priorityClass(i.priority);const kind=i.kind==='road'?'ROAD':'SOS';return `<div class="incident ${i.priority==='critical'?'critical ':''}${selected===i.id?'selected':''}" data-id="${escapeHTML(i.id)}"><div class="incident-top"><b><span class="dot ${escapeHTML(pri)}"></span>${escapeHTML(i.id)}</b><span class="pri pri-${escapeHTML(pri)}">${pri==='unclassified'?'UNCLASSIFIED':pri.toUpperCase()}</span></div><p><span class="kind-tag ${i.kind==='road'?'kind-road':'kind-sos'}">${kind}</span> ${escapeHTML(i.desc)}</p><div class="incident-bottom"><span>${escapeHTML(i.place)}${i.people?` · ${i.people} people`:''}</span><span class="pri">${escapeHTML(i.status||'')}</span></div><span class="when">${formatWhen(i.created_at)}</span></div>`}).join('')||'<p class="notice">No incidents match this filter.</p>';box.querySelectorAll('.incident').forEach(el=>el.onclick=()=>select(el.dataset.id))}
+function renderTimeline(){const rows=visibleFeed();const ids=new Set(rows.map(item=>item.id));const items=[];rows.forEach(item=>items.push({at:item.created_at,id:item.id,label:(item.kind==='road'?'Road report':'SOS opened')+' · '+(item.place||item.id),detail:item.desc}));(timelineEvents||[]).forEach(event=>{const id=(event.message||'').split(' ')[0];if(filter!=='all'&&id&&![...ids].some(item=>item===id||item.endsWith(id)))return;items.push({at:event.at,id:incidents.some(item=>item.id===id)?id:null,label:event.kind||'event',detail:event.message||''})});const known=items.filter(item=>timeValue({created_at:item.at})!=null).sort((a,b)=>sortMode==='oldest'?timeValue({created_at:a.at})-timeValue({created_at:b.at}):timeValue({created_at:b.at})-timeValue({created_at:a.at}));const missing=items.filter(item=>timeValue({created_at:item.at})==null);const line=entry=>`<button type="button" class="urgent-row" ${entry.id?`data-id="${escapeHTML(entry.id)}"`:''}><span class="when">${formatWhen(entry.at)}</span><b>${escapeHTML(entry.label||'Event')}</b><p>${escapeHTML(entry.detail||'')}</p></button>`;return known.map(line).join('')+(missing.length?`<p class="notice">Time not recorded</p>`+missing.map(line).join(''):'')}
+function escapeHTML(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function select(id){selected=id;panel=true;detailTab='incident';updatePanel();renderIncidents();const i=feed().find(x=>x.id===id);if(i&&map&&i.lat!=null){map.flyTo([i.lat,i.lng],Math.max(map.getZoom(),13),{duration:.7})}}function updatePanel(){const i=feed().find(x=>x.id===selected)||incidents[0];if(!i){$('detailBody').textContent='No incident selected.';return}$('detailId').textContent=i.id;const klass=i.data_class==='simulated'?'SIMULATED':'UNVERIFIED DEMO';const when=formatWhen(i.created_at);if(i.kind==='road'){const history=(roadHistory||[]).filter(row=>row.segment_id===i.segment_id).slice(0,6);$('detailBody').innerHTML=`<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><b>${escapeHTML(i.desc)}</b><span class="pri pri-high">ROAD</span></div><p class="kind-tag kind-road">${klass}</p><p>⌖ ${escapeHTML(i.place)}<br>Segment ${escapeHTML(i.segment_id||'')}<br>Condition ${escapeHTML(i.condition||'unknown')} · ${escapeHTML(i.status||'')}</p><span class="when">Updated ${when}</span><div class="divider"></div><div class="eyebrow">EVIDENCE</div><p>${escapeHTML(i.text)}</p><div class="eyebrow">REPORT HISTORY</div>${history.map(row=>`<p class="notice">${formatWhen(row.recorded_at)} · ${escapeHTML(row.condition)} · ${escapeHTML(row.source)} · ${escapeHTML(row.verification)}</p>`).join('')||'<p class="notice">No earlier report is stored for this segment.</p>'}<button class="outline" id="focus">Focus on map</button>`}else{let route=stage===0?'Illustrative toy route':'Illustrative toy route after a simulated closure';$('detailBody').innerHTML=`<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><b>${escapeHTML(i.desc)}</b><span class="pri pri-${priorityClass(i.priority)}">${priorityClass(i.priority)==='unclassified'?'UNCLASSIFIED':String(i.priority||'').toUpperCase()}</span></div><p class="kind-tag kind-sos">${klass} · SOS</p><p>⌖ ${escapeHTML(i.place)}<br>◉ ${i.people||0} people · ${escapeHTML(i.status||'')}</p>${(i.lat<35.57||i.lat>35.63||i.lng<-82.49||i.lng>-82.41)?'<p class="notice">These coordinates are outside the Swannanoa road extract. The saved place is shown as submitted and was not rewritten.</p>':''}<span class="when">Opened ${when}${i.updated_at?` · Status updated ${formatWhen(i.updated_at)}`:''}</span><div class="divider"></div><div class="eyebrow">MESSAGE</div><p>${escapeHTML(i.text)}</p><div class="card"><div class="eyebrow">TOY ROUTE · NOT A DRIVING ROUTE</div><h3>${route}</h3><p>The stage control draws a separate simulated graph. It is not an OpenStreetMap route and it is not marked safe to drive.</p></div><button class="primary" id="review">Mark for operator review</button><button class="outline" id="focus">Focus on map</button>`}const focus=$('focus');if(focus)focus.onclick=()=>{if(i.lat!=null)map.flyTo([i.lat,i.lng],14)};const review=$('review');if(review)review.onclick=async()=>{try{const r=await fetch('/api/incidents/'+encodeURIComponent(i.id),{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:'Under review'})});if(!r.ok)throw Error('HTTP '+r.status);await refresh();toast('Review status saved on server')}catch(e){toast('Server unavailable · status not saved')}};$('detail').classList.toggle('hide',!panel);$('content').classList.toggle('panel-hidden',!panel);if($('incidentPane')){$('incidentPane').classList.toggle('hide',detailTab!=='incident');$('accessPane').classList.toggle('hide',detailTab!=='access');$('tabIncident').classList.toggle('active',detailTab==='incident');$('tabAccess').classList.toggle('active',detailTab==='access');$('detailEyebrow').textContent=detailTab==='access'?'ROAD ACCESS':'SELECTED INCIDENT'}setTimeout(()=>map&&map.invalidateSize(),100)}
+const titles=['01 · Initial access route','02 · Simulated road failure','03 · Alternative access','04 · Incoming SOS'];const descriptions=['Candidate route displayed for demonstration.','A simulated bridge obstruction invalidates the initial route.','Illustrative alternative route shown for review.','A new fictional SOS enters the incident queue.'];function setStage(n){stage=Math.max(0,Math.min(3,n));$('stageTitle').textContent=titles[stage];$('stageDesc').textContent=descriptions[stage];$('prev').disabled=stage===0;$('next').textContent=stage===3?'Restart ↻':'Next →';if(stage===3&&!incidents.some(x=>x.id==='SOS-DEMO')){incidents.push({id:'SOS-DEMO',priority:'critical',desc:'Resident trapped near Swannanoa',place:'Swannanoa (simulated)',people:2,lat:35.609,lng:-82.448,status:'Received',text:'Water is rising around our home. Please help.'});persist();selected='SOS-DEMO';panel=true}drawMap();renderIncidents();updatePanel();if(stage>=1)map.flyTo([35.601,-82.477],12,{duration:.6})}document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));renderIncidents()});document.querySelectorAll('[data-style]').forEach(b=>b.onclick=()=>setStyle(b.dataset.style));document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>setMapMode(b.dataset.mode));if($('sortMode'))$('sortMode').onchange=()=>{sortMode=$('sortMode').value;renderIncidents()};if($('resetDemo'))$('resetDemo').onclick=async()=>{try{const res=await fetch('/api/demo/reset',{method:'POST'});if(!res.ok)throw Error('HTTP '+res.status);await refresh();toast('Demo scenario restored. Invented records only.');setMapMode('operations')}catch(e){toast('Could not reset the demo scenario')}};$('next').onclick=()=>changeStage(stage===3?0:stage+1);$('prev').onclick=()=>changeStage(stage-1);$('reset').onclick=()=>changeStage(0);$('start').onclick=()=>{changeStage(0);toast('Demo started · click Next to advance')};$('fit').onclick=()=>map.fitBounds(L.latLngBounds(incidents.map(i=>[i.lat,i.lng]).concat([unit])),{padding:[45,45]});$('togglePanel').onclick=()=>{panel=!panel;updatePanel()};$('closePanel').onclick=()=>{panel=false;updatePanel()};$('newSOS').onclick=()=>{$('modal').classList.remove('hide')};$('cancel').onclick=()=>{$('modal').classList.add('hide')};$('save').onclick=()=>{const msg=$('message').value.trim(),p=Number($('people').value);if(!msg||!p||p<1){toast('Enter a situation and number of people');return}const id='SOS-'+Math.floor(Date.now()/1000);incidents.push({id,priority:'high',desc:msg.slice(0,55),place:$('location').value.trim()||'Swannanoa (demo)',people:p,lat:35.607+Math.random()*.004,lng:-82.447+Math.random()*.004,status:'Queued',text:msg});persist();$('modal').classList.add('hide');drawMap();select(id);toast('SOS saved locally · NOT transmitted to emergency services')};// Backend-backed dashboard. Demo geometry remains illustrative; API persists stage and incidents.
+function formatWhen(iso){if(!iso)return 'Time not recorded';const d=new Date(iso);if(Number.isNaN(d.getTime()))return 'Time not recorded';try{return new Intl.DateTimeFormat(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d)}catch(e){return d.toLocaleString()}}
+function priorityRank(value){const key=String(value||'').trim().toLowerCase();return {critical:0,high:1,medium:2,low:3}[key]??4}
+function priorityClass(value){return priorityRank(value)===4?'unclassified':String(value||'').trim().toLowerCase()}
+function timeValue(item){const t=Date.parse(item.created_at||'');return Number.isNaN(t)?null:t}
+function compareItems(a,b){if(sortMode==='newest'||sortMode==='oldest'){const ta=timeValue(a),tb=timeValue(b);if(ta==null&&tb==null)return a.id.localeCompare(b.id);if(ta==null)return 1;if(tb==null)return -1;return sortMode==='newest'?tb-ta:ta-tb}const rank=priorityRank(a.priority)-priorityRank(b.priority);if(rank)return rank;const ta=timeValue(a),tb=timeValue(b);if(ta==null&&tb==null)return a.id.localeCompare(b.id);if(ta==null)return 1;if(tb==null)return -1;return tb-ta}
+function roadEntries(){return Object.values(roadReports).map(rep=>({id:'ROAD:'+rep.segment_id,kind:'road',priority:rep.condition==='blocked'||rep.condition==='damaged'?'high':rep.condition==='passable'?'low':'unspecified',desc:(rep.source==='simulation'?'SIMULATED road: ':'Road report: ')+(rep.condition||'unknown'),place:rep.name||'Unnamed OSM segment',people:null,lat:rep.lat,lng:rep.lng,status:rep.verification==='verified'?'Verified in this demo':'Unverified',text:rep.evidence||'No evidence note was saved.',created_at:rep.updated_at||rep.reported_at,source:rep.source,data_class:rep.data_class||(rep.source==='simulation'?'simulated':'unverified_report'),segment_id:rep.segment_id,condition:rep.condition}))}
+function feed(){return incidents.map(item=>({...item,kind:item.kind||'sos'})).concat(roadEntries())}
+function visibleFeed(){return feed().filter(item=>filter==='all'||filter==='critical'&&priorityRank(item.priority)===0||filter==='queued'&&item.status==='Queued').sort(compareItems)}
+async function refresh(){try{const r=await fetch('/api/state',{cache:'no-store'});if(!r.ok)throw Error('API '+r.status);const data=await r.json();const previous=stage;stage=data.stage;incidents=(data.incidents||[]).map(x=>({id:x.id,priority:x.priority,desc:x.description,place:x.place,people:x.people,lat:x.lat,lng:x.lng,status:x.status,text:x.message,created_at:x.created_at||null,updated_at:x.updated_at||null,source:x.source||'',kind:x.kind||'sos',data_class:x.data_class||'unverified_demo'}));timelineEvents=data.events||[];roadHistory=data.road_history||[];roadReports={};(data.road_reports||[]).forEach(rep=>{roadReports[rep.segment_id]=rep});roadAnalysis=data.road_analysis||null;if(!feed().some(x=>x.id===selected))selected=incidents[0]?.id||'';$('stageTitle').textContent=titles[stage];$('stageDesc').textContent=descriptions[stage];$('prev').disabled=stage===0;$('next').textContent=stage===3?'Restart ↻':'Next →';drawMap();applyRoadStyles();renderAccess();renderIncidents();if(feed().length)updatePanel();const radio=(data.deliveries||[]).filter(d=>d.transport==='radio').length;$('mapstatus').textContent='Backend connected · '+radio+' radio deliveries · '+Object.keys(roadReports).length+' road reports';return data}catch(e){$('mapstatus').textContent='Dashboard error · '+(e&&e.message?e.message:'request failed');console.error(e);return null}}
+async function changeStage(n){try{const r=await fetch('/api/scenario',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({stage:Math.max(0,Math.min(3,n))})});if(!r.ok)throw Error('HTTP '+r.status);await refresh();if(stage>=1)map.flyTo([35.601,-82.477],12,{duration:.6})}catch(e){toast('Could not update scenario · check backend')}}
+$('save').onclick=async()=>{const msg=$('message').value.trim(),p=Number($('people').value);if(!msg||!p||p<1){toast('Enter a situation and number of people');return}const item={client_id:'SOS-'+crypto.randomUUID(),message:msg,people:p,place:$('location').value.trim()||'Swannanoa (demo)',lat:35.609,lng:-82.448};try{const r=await fetch('/api/incidents',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(item)});if(!r.ok)throw Error('HTTP '+r.status);$('modal').classList.add('hide');selected=item.client_id;await refresh();toast('SOS received by demo backend · NOT emergency services')}catch(e){toast('Server unavailable · use Resident SOS page to queue offline')}};
+renderIncidents();updatePanel();initMap();refresh();setInterval(refresh,3500);
+
+// OpenStreetMap road geometry. Passability comes only from saved demo reports.
+function styleFor(id, hover){
+  const report=roadReports[id];
+  const simulated=report&&report.source==='simulation';
+  const condition=report&&report.condition||'unknown';
+  const verified=report&&report.verification==='verified'&&!simulated;
+  const selected=id===selectedRoadId;
+  const z=map?map.getZoom():12;
+  const far=z<13, mid=z<15;
+  let weight=far?1:(mid?1.6:2.4);
+  let opacity=far?0.28:(mid?0.42:0.62);
+  let color='#b7a07a';
+  if(simulated){color='#c084fc'; weight+=far?0.4:0.8; opacity=Math.min(0.9, opacity+0.28)}
+  else if(condition==='blocked'){color='#ff6679'; weight=far?2.6:(mid?3.6:4.8); opacity=0.96}
+  else if(condition==='damaged'){color='#ff8a4c'; weight=far?2.2:(mid?3.2:4.2); opacity=0.94}
+  else if(condition==='passable'){color='#51d7c8'; weight+=far?0.4:1; opacity=Math.min(0.95, opacity+0.32)}
+  if(selected){weight+=2; opacity=1}
+  else if(hover){weight+=.8; opacity=Math.min(1, opacity+.2)}
+  const dashed=simulated||(report&&!verified&&condition!=='unknown');
+  return {color, weight, opacity, dashArray:dashed?(far?'3 6':'6 5'):null};
+}
+function applyRoadStyles(){
+  if(!roadLayer) return;
+  roadLayer.eachLayer(layer=>{const id=layer.feature&&layer.feature.id; if(id) layer.setStyle(styleFor(id,false));});
+}
+function highlightRoads(ids, color){
+  if(!highlightLayer) highlightLayer=L.layerGroup().addTo(map);
+  highlightLayer.clearLayers();
+  (ids||[]).forEach(id=>{
+    const layer=roadIndex[id];
+    if(!layer) return;
+    const casing=map&&map.getZoom()<14?4:6;
+    L.polyline(layer.getLatLngs(),{color:color||'#efe7ff',weight:casing,opacity:.4,interactive:false}).addTo(highlightLayer);
+  });
+  if(roadLayer) roadLayer.bringToFront();
+  if(accessMarker) accessMarker.bringToFront();
+}
+function mapPadding(){
+  const mapBox=map.getContainer().getBoundingClientRect();
+  const panelEl=$('detail');
+  if(!panelEl||panelEl.classList.contains('hide')) return [36,36];
+  const overlap=Math.max(0, mapBox.right-panelEl.getBoundingClientRect().left);
+  return overlap>8?[overlap+16,36]:[36,36];
+}
+function focusSegment(id){
+  selectedRoadId=id;
+  applyRoadStyles();
+  const layer=roadIndex[id];
+  if(layer){
+    highlightRoads([id],'#ffffff');
+    const pad=mapPadding();
+    let opened=false;
+    const open=()=>{if(opened)return; opened=true; layer.openPopup()};
+    map.once('moveend', open);
+    map.fitBounds(layer.getBounds().pad(0.3),{maxZoom:16,paddingTopLeft:[36,48],paddingBottomRight:pad});
+    setTimeout(open, 700);
+    return;
+  }
+  const meta=segmentMeta[id]||roadReports[id]||{};
+  if(meta.lat!=null) map.flyTo([meta.lat, meta.lng], 16);
+}
+async function saveRoadReport(id, condition, source, evidence, verification){
+  const res=await fetch('/api/road-reports',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({segment_id:id,condition,source,evidence,verification})});
+  let data={};
+  try{data=await res.json()}catch(e){}
+  if(!res.ok){
+    const detail=data.detail;
+    const message=Array.isArray(detail)?detail.map(item=>item.msg||String(item)).join(' '):(typeof detail==='string'?detail:('Could not save ('+res.status+')'));
+    throw new Error(message);
+  }
+  await refresh();
+  return data;
+}
+function conditionLabel(report){
+  if(!report||report.condition==='unknown') return 'Unknown';
+  if(report.condition==='blocked') return 'Reported blocked';
+  if(report.condition==='damaged') return 'Reported damaged';
+  if(report.condition==='passable') return 'Reported passable';
+  return report.condition;
+}
+function sourceLabel(report){
+  if(!report) return 'OpenStreetMap geometry';
+  if(report.source==='simulation') return 'AI / simulated drill';
+  if(report.source==='resident') return 'Resident report';
+  return 'Operator report';
+}
+function verificationLabel(report){
+  if(report&&report.source==='simulation') return 'Simulated · not a verified condition';
+  if(report&&report.verification==='verified') return 'Verified in this demo';
+  if(report) return 'Unverified report';
+  return 'No report';
+}
+function roadPopup(id){
+  const meta=segmentMeta[id]||{};
+  const report=roadReports[id]||null;
+  const wrap=document.createElement('div');
+  wrap.className='road-pop';
+  const title=document.createElement('b');
+  title.className='road-card-title';
+  title.textContent=meta.name||(report&&report.name)||'Unnamed OSM segment';
+  wrap.appendChild(title);
+  const metaList=document.createElement('dl');
+  metaList.className='road-meta';
+  [['Condition', conditionLabel(report)],['Source', sourceLabel(report)],['Verification', verificationLabel(report)],['Segment', id],['Updated', report&&(report.updated_at||report.reported_at)?formatWhen(report.updated_at||report.reported_at):'Time not recorded']].forEach(([label,value])=>{
+    const dt=document.createElement('dt'); dt.textContent=label;
+    const dd=document.createElement('dd'); dd.textContent=value;
+    metaList.appendChild(dt); metaList.appendChild(dd);
+  });
+  wrap.appendChild(metaList);
+  const edit=document.createElement('button');
+  edit.type='button';
+  edit.className='edit';
+  edit.textContent='Edit report';
+  wrap.appendChild(edit);
+  const form=document.createElement('div');
+  form.className='road-form';
+  let condition=report?report.condition:'unknown';
+  const buttons={};
+  const choices=document.createElement('div');
+  choices.className='road-choices';
+  [['Passable','passable'],['Blocked','blocked'],['Damaged','damaged'],['Unknown','unknown']].forEach(([label,value])=>{
+    const button=document.createElement('button');
+    button.type='button';
+    button.textContent=label;
+    if(condition===value) button.className='on';
+    button.onclick=()=>{condition=value; Object.entries(buttons).forEach(([key,el])=>el.classList.toggle('on',key===value)); verifyRow.style.display=value==='unknown'?'none':'flex'};
+    buttons[value]=button;
+    choices.appendChild(button);
+  });
+  form.appendChild(choices);
+  const evidence=document.createElement('textarea');
+  evidence.placeholder='Evidence (required to mark verified)';
+  evidence.value=report&&report.evidence||'';
+  form.appendChild(evidence);
+  const source=document.createElement('select');
+  [['operator','Operator report'],['resident','Resident report'],['simulation','Simulated drill']].forEach(([value,label])=>{const opt=document.createElement('option'); opt.value=value; opt.textContent=label; source.appendChild(opt)});
+  source.value=report&&(report.source==='resident'||report.source==='simulation')?report.source:'operator';
+  form.appendChild(source);
+  const verifyRow=document.createElement('label');
+  verifyRow.className='road-check';
+  const verify=document.createElement('input');
+  verify.type='checkbox';
+  verify.checked=!!(report&&report.verification==='verified'&&report.source!=='simulation');
+  const verifyText=document.createElement('span');
+  verifyText.textContent='Mark verified in this demo';
+  verifyRow.appendChild(verify); verifyRow.appendChild(verifyText);
+  form.appendChild(verifyRow);
+  if(condition==='unknown') verifyRow.style.display='none';
+  const hint=document.createElement('div');
+  hint.className='notice';
+  function syncHint(){
+    if(source.value==='simulation'){verify.checked=false; verify.disabled=true; hint.textContent='Simulated markings stay purple and cannot be stored as verified. This drill can include them in access analysis, still labeled simulated.'}
+    else {verify.disabled=false; hint.textContent=verify.checked?'Verified needs a short evidence note.':'Unverified reports stay dashed.'}
+  }
+  source.onchange=syncHint; verify.onchange=syncHint; syncHint();
+  form.appendChild(hint);
+  const save=document.createElement('button');
+  save.type='button';
+  save.className='save';
+  save.textContent='Save report';
+  save.onclick=async()=>{
+    if(save.dataset.saving==='1')return;
+    save.dataset.saving='1';save.disabled=true;err.textContent='';
+    try{
+      await saveRoadReport(id, condition, source.value, evidence.value, verify.checked&&source.value!=='simulation'?'verified':'unverified');
+      toast(condition==='unknown'?'Segment reset to unknown':'Road report saved on the server');
+      const layer=roadIndex[id];
+      if(layer) layer.closePopup();
+    }catch(error){err.textContent=error.message||'Could not save road report';toast(err.textContent);save.disabled=false;save.dataset.saving='0'}
+  };
+  const err=document.createElement('div');err.className='road-error';form.appendChild(err);
+  form.appendChild(save);
+  wrap.appendChild(form);
+  edit.onclick=()=>{
+    form.classList.toggle('open');
+    edit.textContent=form.classList.contains('open')?'Hide form':'Edit report';
+    const popup=roadIndex[id]&&roadIndex[id].getPopup();
+    if(popup&&popup._map){popup._updateLayout();popup._updatePosition();popup._adjustPan()}
+  };
+  return wrap;
+}
+function showAccessMarker(access){
+  if(!map||!access) return;
+  if(!accessMarker) accessMarker=L.circleMarker([access.lat,access.lng],{radius:6,color:'#51d7c8',weight:2,fillColor:'#09131c',fillOpacity:1}).addTo(map).bindTooltip(access.description||'Analysis entry');
+  else accessMarker.setLatLng([access.lat,access.lng]);
+  accessMarker.bringToFront();
+}
+function showIsolation(areas){if(!map)return;if(isolationLayer){map.removeLayer(isolationLayer);isolationLayer=null}if(mapMode!=='operations')return;const spots=(areas||[]).filter(area=>!area.dominant&&area.centroid);if(!spots.length)return;isolationLayer=L.layerGroup();spots.forEach(area=>{const icon=L.divIcon({className:'',html:'<div class="pin isolation"></div>',iconSize:[16,16],iconAnchor:[8,8]});L.marker([area.centroid.lat,area.centroid.lng],{icon}).bindTooltip((area.title||'Potential isolation')+' · '+(area.evidence_basis||'uncertain')).addTo(isolationLayer)});isolationLayer.addTo(map)}
+async function setMapMode(mode){mapMode=mode;document.querySelectorAll('[data-mode]').forEach(button=>button.classList.toggle('active',button.dataset.mode===mode));if(stormLayer){map.removeLayer(stormLayer);stormLayer=null}if(weatherLayer){map.removeLayer(weatherLayer);weatherLayer=null}const banner=$('modeBanner');if(mode==='operations'){if(banner)banner.textContent='Operations map. Road geometry is OpenStreetMap. Passability comes only from saved reports.';showIsolation(roadAnalysis&&roadAnalysis.areas);return}showIsolation([]);if(mode==='helene')return showHelene(banner);return showCurrent(banner)}
+async function showHelene(banner){let data={};try{const res=await fetch('/api/weather/helene',{cache:'no-store'});data=await res.json()}catch(e){data={available:false,reason:'Helene track request failed.'}}if(!data.available){if(banner)banner.textContent=data.reason||'Historical Helene track is unavailable. No substitute track is shown.';return}const note=data.provenance||{};if(banner)banner.textContent='HISTORICAL TRACK · '+(note.storm||'Hurricane Helene')+' · NHC best track · '+(note.coverage||'Not a current storm and not a road closure.');stormLayer=L.geoJSON(data,{style:{color:'#c084fc',weight:3,opacity:.9},pointToLayer:(feature,latlng)=>L.circleMarker(latlng,{radius:4,color:'#c084fc',fillOpacity:.9})}).bindPopup(layer=>{const p=layer.feature&&layer.feature.properties||{};if(!p.time)return 'Helene best track';return `<b>${p.name||'Helene'}</b><br>${p.class_label||p.class||''}<br>${formatWhen(p.time)}<br>${p.wind_kt} kt · ${p.pressure_mb} mb<br>NOAA NHC best track`}).addTo(map);const near=(data.features||[]).filter(feature=>feature.geometry.type==='Point'&&feature.geometry.coordinates[1]>=33);const group=L.geoJSON({type:'FeatureCollection',features:near.length?near:data.features});map.fitBounds(group.getBounds().pad(0.2))}
+async function showCurrent(banner){let data={};try{const res=await fetch('/api/weather/current',{cache:'no-store'});data=await res.json()}catch(e){data={available:false,reason:'Current weather request failed.'}}if(!data.available){if(banner)banner.textContent=data.reason||'Current conditions are unavailable. No substitute weather is shown.';return}const obs=data.observation,gauge=data.gauge;if(banner)banner.textContent='CURRENT CONDITIONS · updated '+formatWhen(data.as_of)+' · not a September 2024 reconstruction.';weatherLayer=L.layerGroup();if(obs&&obs.lat!=null)L.marker([obs.lat,obs.lng]).bindPopup(`<b>${obs.station}</b><br>${obs.text||'Observation'}<br>${obs.temperature_c==null?'':obs.temperature_c+' °C'}<br>Wind ${obs.wind_kmh==null?'not reported':Math.round(obs.wind_kmh)+' km/h'}<br>${formatWhen(obs.observed_at)}<br>${obs.provider}`).addTo(weatherLayer);if(gauge&&gauge.lat!=null){const reading=(gauge.readings||[]).map(item=>`${item.name}: ${item.value}`).join('<br>');L.circleMarker([gauge.lat,gauge.lng],{radius:7,color:'#3ee0cf'}).bindPopup(`<b>${gauge.name}</b><br>${reading}<br>${formatWhen(gauge.observed_at)}<br>${gauge.provider}<br>${gauge.note||''}`).addTo(weatherLayer)}weatherLayer.addTo(map)}
+let accessRenderKey='';
+function renderAccess(){
+  const pane=$('accessPane');
+  if(!pane) return;
+  const analysis=roadAnalysis;
+  if(!analysis){pane.textContent='Road analysis is waiting for the demo server.'; return}
+  const isolated=(analysis.areas||[]).filter(area=>!area.dominant);
+  const high=(analysis.urgent||[]).filter(item=>item.priority==='high').length;
+  $('accessBadge').textContent=String(isolated.length+high|| (analysis.urgent||[]).length);
+  showAccessMarker(analysis.access);
+  showIsolation(analysis.areas);
+  const key=JSON.stringify(analysis);
+  if(key===accessRenderKey) return;
+  accessRenderKey=key;
+  const scroller=$('detail');
+  const scroll=scroller?scroller.scrollTop:0;
+  const statsOpen=pane.querySelector('details.stats')&&pane.querySelector('details.stats').open;
+  pane.replaceChildren();
+  const eyebrow=document.createElement('div'); eyebrow.className='eyebrow'; eyebrow.textContent='OSM NETWORK · DEMO REPORTS'; pane.appendChild(eyebrow);
+  const heading=document.createElement('h2'); heading.style.fontSize='22px'; heading.textContent='Access analysis'; pane.appendChild(heading);
+  if(analysis.simulation_applied){const drill=document.createElement('p');drill.className='notice';drill.textContent='Simulated drill closures are included below and labeled simulated. They are not Hurricane Helene or NCDOT records.';pane.appendChild(drill)}
+  const counts=analysis.counts||{};
+  const grid=document.createElement('div'); grid.className='summary-grid';
+  [['Unknown', counts.unknown, '#c4a36a'],['Reported passable', (counts.reported_passable_unverified||0)+(counts.verified_passable||0), '#51d7c8'],['Reported blocked', (counts.reported_blocked_unverified||0)+(counts.verified_blocked||0), '#ff6679'],['AI / simulated', counts.simulated, '#c084fc']].forEach(([label,value,color])=>{
+    const cell=document.createElement('div');
+    const num=document.createElement('b'); num.style.color=color; num.textContent=String(value??0);
+    const name=document.createElement('span'); name.textContent=label;
+    cell.appendChild(num); cell.appendChild(name); grid.appendChild(cell);
+  });
+  pane.appendChild(grid);
+  const dominant=(analysis.areas||[]).find(area=>area.dominant);
+  if(dominant){const note=document.createElement('p'); note.className='notice'; note.textContent='Most of the extract is still unreported. That is uncertainty, not a closure.'; pane.appendChild(note)}
+  const areaTitle=document.createElement('h3'); areaTitle.textContent='Potentially isolated'; pane.appendChild(areaTitle);
+  if(!isolated.length){
+    const empty=document.createElement('p'); empty.className='notice'; empty.textContent=dominant?'No blockage has cut an area off, and no large pocket depends on one remaining road.':'No potentially isolated area in the current reports.'; pane.appendChild(empty);
+  }
+  const basisLabel={unknown_segments:'Unknown segments',unverified_report:'Unverified report',verified_blockage:'Verified in this demo',mixed:'Mixed reports',simulated:'Simulated drill'};
+  const kindLabel={blocked_off:'Cut off if blockage reports hold',uncertain_link:'One uncertain link',unverified_access:'Unverified corridor'};
+  isolated.forEach(area=>{
+    const card=document.createElement('button'); card.type='button'; card.className='access-card';
+    const kind=document.createElement('div'); kind.className='kind'; kind.textContent=(kindLabel[area.kind]||area.kind).toUpperCase(); card.appendChild(kind);
+    const title=document.createElement('h3'); title.textContent=area.title||'Area'; card.appendChild(title);
+    const badge=document.createElement('span'); badge.className='pill '+(area.evidence_basis==='verified_blockage'?'verified':area.evidence_basis==='simulated'?'simulated':area.evidence_basis==='unknown_segments'?'unknown':'unverified'); badge.textContent=basisLabel[area.evidence_basis]||area.evidence_basis; card.appendChild(badge);
+    const meta=document.createElement('div'); meta.className='notice'; meta.textContent=area.node_count+' junctions'; card.appendChild(meta);
+    card.onclick=()=>{
+      pane.querySelectorAll('.access-card').forEach(el=>el.classList.remove('active'));
+      card.classList.add('active');
+      const ids=[...(area.hinge_segment_ids||[]),...(area.cut_segment_ids||[]),...(area.segment_ids||[])];
+      selectedRoadId=ids[0]||null;
+      applyRoadStyles();
+      if(ids.length){
+        highlightRoads(ids, area.kind==='blocked_off'?'#ff6679':'#d7c4ff');
+        const layers=ids.map(seg=>roadIndex[seg]).filter(Boolean);
+        if(layers.length){
+          const pad=mapPadding();
+          map.fitBounds(L.featureGroup(layers).getBounds().pad(0.35),{paddingTopLeft:[36,48],paddingBottomRight:pad});
+        }
+      } else if(area.centroid) map.flyTo([area.centroid.lat, area.centroid.lng], 14);
+    };
+    pane.appendChild(card);
+  });
+  const urgentTitle=document.createElement('h3'); urgentTitle.textContent='Roads to verify'; pane.appendChild(urgentTitle);
+  const urgent=(analysis.urgent||[]).slice(0,6);
+  if(!urgent.length){const empty=document.createElement('p'); empty.className='notice'; empty.textContent='No segment is waiting on an unverified report or a single remaining link.'; pane.appendChild(empty)}
+  urgent.forEach(item=>{
+    const row=document.createElement('button'); row.type='button'; row.className='urgent-row';
+    const flag=document.createElement('span'); flag.className='pill '+(item.priority==='high'?'high':'unknown'); flag.textContent=item.priority==='high'?'Urgent':'Check next'; row.appendChild(flag);
+    const klass=document.createElement('span'); klass.className='pill '+(item.data_class==='simulated'?'simulated':item.data_class==='unknown'?'unknown':'unverified'); klass.textContent=item.data_class==='unknown'?'Unknown':item.data_class==='unverified_report'?'Unverified':item.data_class==='simulated'?'Simulated':'Verified'; row.appendChild(klass);
+    const name=document.createElement('b'); name.textContent=item.name||'Unnamed OSM segment'; row.appendChild(name);
+    row.onclick=()=>focusSegment(item.segment_id);
+    pane.appendChild(row);
+  });
+  const stats=document.createElement('details'); stats.className='stats'; if(statsOpen) stats.open=true;
+  const summary=document.createElement('summary'); summary.textContent='Network statistics'; stats.appendChild(summary);
+  const full=document.createElement('div');
+  const pills=document.createElement('div');
+  [['unknown','Unknown',counts.unknown],['unverified','Unverified passable',counts.reported_passable_unverified],['high','Unverified blocked',counts.reported_blocked_unverified],['verified','Verified passable',counts.verified_passable],['verified','Verified blocked',counts.verified_blocked],['simulated','AI / simulated',counts.simulated]].forEach(([cls,label,value])=>{
+    const pill=document.createElement('span'); pill.className='pill '+cls; pill.textContent=label+' '+(value??0); pills.appendChild(pill);
+  });
+  full.appendChild(pills);
+  if(analysis.policy){const p=document.createElement('p'); p.className='notice'; p.textContent=analysis.policy; full.appendChild(p)}
+  if(analysis.access){const p=document.createElement('p'); p.className='notice'; p.textContent=analysis.access.description||''; full.appendChild(p)}
+  if(dominant){const p=document.createElement('p'); p.className='notice'; p.textContent=dominant.summary||''; full.appendChild(p)}
+  isolated.forEach(area=>{const p=document.createElement('p'); p.className='notice'; p.textContent=(area.title||'Area')+': '+(area.summary||''); (area.nearby_incidents||[]).forEach(incident=>{p.textContent+=' Nearby demo SOS '+incident.id+' · '+(incident.place||'')+' · '+incident.people+' people.';}); full.appendChild(p)});
+  (analysis.urgent||[]).forEach(item=>{const p=document.createElement('p'); p.className='notice'; p.textContent=(item.name||'Segment')+': '+(item.detail||''); full.appendChild(p)});
+  if((analysis.simulated_reports||[]).length){
+    const p=document.createElement('p'); p.className='notice'; p.textContent=analysis.simulation_applied?'Simulated markings are purple. This drill includes those blockages in the analysis and keeps them labeled simulated.':'Simulated markings are purple. Turn the drill on to include them in access analysis.'; full.appendChild(p);
+    analysis.simulated_reports.forEach(item=>{
+      const row=document.createElement('button'); row.type='button'; row.className='urgent-row';
+      const flag=document.createElement('span'); flag.className='pill simulated'; flag.textContent='Simulated'; row.appendChild(flag);
+      const name=document.createElement('b'); name.textContent=(item.name||'Unnamed segment')+' · '+item.condition; row.appendChild(name);
+      row.onclick=()=>focusSegment(item.segment_id);
+      full.appendChild(row);
+    });
+  }
+  (analysis.limitations||[]).forEach(line=>{const item=document.createElement('div'); item.className='notice'; item.textContent=line; full.appendChild(item)});
+  if(analysis.disclaimer){const p=document.createElement('p'); p.className='notice'; p.textContent=analysis.disclaimer; full.appendChild(p)}
+  stats.appendChild(full);
+  pane.appendChild(stats);
+  if(scroller) scroller.scrollTop=scroll;
+}
+$('tabIncident').onclick=()=>{detailTab='incident'; panel=true; updatePanel()};
+$('tabAccess').onclick=()=>{detailTab='access'; panel=true; updatePanel(); renderAccess()};
+$('openAccess').onclick=()=>{detailTab='access'; panel=true; updatePanel(); renderAccess()};
+fetch('/api/road-segments').then(response=>response.ok?response.json():null).then(data=>{
+  (data&&data.segments||[]).forEach(seg=>{segmentMeta[seg.id]=seg});
+  if(roadAnalysis) renderAccess();
+}).catch(()=>{});
+fetch('/assets/roads.geojson')
+  .then(response=>{if(!response.ok) throw new Error('Road file unavailable'); return response.json()})
+  .then(data=>{
+    roadLayer=L.geoJSON(data,{
+      style:feature=>styleFor(feature.id,false),
+      onEachFeature:(feature,layer)=>{
+        roadIndex[feature.id]=layer;
+        layer.on('mouseover',()=>layer.setStyle(styleFor(feature.id,true)));
+        layer.on('mouseout',()=>layer.setStyle(styleFor(feature.id,false)));
+        layer.bindPopup(()=>roadPopup(feature.id),{maxWidth:260,minWidth:200,keepInView:true,autoPanPaddingTopLeft:[24,24],autoPanPaddingBottomRight:[24,24]});
+        layer.on('popupopen',()=>{selectedRoadId=feature.id; applyRoadStyles()});
+        layer.on('popupclose',()=>{if(selectedRoadId===feature.id){selectedRoadId=null; highlightRoads([]); applyRoadStyles()}});
+      }
+    }).addTo(map);
+    drawMap();
+    if(!roadsFitted){map.fitBounds(roadLayer.getBounds(),{padding:[20,20]}); roadsFitted=true}
+    applyRoadStyles();
+    map.on('zoomend', applyRoadStyles);
+    console.log('SOSora: loaded', data.features.length, 'road segments');
+  })
+  .catch(error=>{console.error('SOSora roads:', error); if($('mapstatus').textContent.indexOf('Backend')!==0) $('mapstatus').textContent='Road geometry unavailable'});
+
+
+</script></body></html>
