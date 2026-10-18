@@ -1,5 +1,6 @@
 "use client";
 
+import { useLivingRoutes } from "@/components/map/useLivingRoutes";
 import { cinematicStyle } from "@/components/map/cinematicStyle";
 import { roadAccess } from "@/lib/access";
 
@@ -112,6 +113,8 @@ export function RescueMap({
     roads: false,
     helene: false,
   });
+
+  useLivingRoutes(mapRef, epoch, incidents, state.closures, overlays.routes);
 
   onSelectRef.current = onSelect;
   onClickRef.current = onMapClick;
