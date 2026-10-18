@@ -37,13 +37,13 @@ JIA: It does two real jobs: turning radio chatter into structured reports, and r
 
 ## WHY vLLM (2:55–3:30)  [lower-third: RED HAT vLLM; show the serve command + numbers]
 RIA: vLLM isn't bolted on. It's how Command runs. It serves Lightning on one H100 with the native tool parser and the Nemotron reasoning parser, prefix caching for our long system prompt, and continuous batching.
-JIA: One agent step went from 24 to 55 seconds on the hosted API to 0.85 seconds. [X]% of prompt tokens came straight from the prefix cache.
-RIA: And in a storm, reports arrive all at once. When we fired [X] radio reports at the same time, vLLM cleared them all in [X] seconds.
+JIA: One agent step went from 24 to 55 seconds on the hosted API to 0.85 seconds.
+RIA: And in a storm, reports arrive all at once. We fired 100 radio reports at the same time, and vLLM's continuous batching cleared all of them in 21 seconds. One at a time, that took 85.
 JIA: Across thirty live runs, it found the right bridge twenty out of twenty times.
 
 ## WHY NeMo GYM (3:30–4:05)  [lower-third: NeMo GYM; show the results table]
 RIA: To make the agent better, we needed a score. So we built a NeMo Gym environment: seven kinds of rescue tasks, real tools, and a verifier that grades every attempt.
-JIA: Baseline Lightning passed 36 percent of 42 sealed scenarios it had never seen. We changed one thing at a time. A rewritten system prompt took it to 71 percent. [X: An argument-repair layer for its malformed calls took it to X percent.]
+JIA: On a sealed exam of 42 scenarios it had never seen, baseline Lightning passed 31 percent. We changed one thing at a time. A rewritten system prompt took it to 71. Then the Gym showed us exactly what was still failing: malformed arguments, like writing the word "None" instead of null. A small repair layer fixed those, and it hit 98 percent.
 RIA: Same tasks, same settings, three runs each, every run published.
 
 ## CLOSE (4:05–4:25)  [both on camera]
