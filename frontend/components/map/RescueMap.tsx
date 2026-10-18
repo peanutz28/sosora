@@ -625,11 +625,6 @@ export function RescueMap({
         <RadioTower ref={beaconIconRef} size={16} />
       </span>
       <div className="mapbar">
-        <div className="mapbar-title">
-          <span className="text-accent">◉</span>
-          <b>Swannanoa</b>
-          <small>Roads · incidents · access</small>
-        </div>
         <div className="mapbar-actions">
           {(["street", "satellite", "hybrid"] as const).map((mode) => (
             <button
@@ -716,7 +711,7 @@ export function RescueMap({
           ) : null}
         </div>
 
-        <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
+        <div className="map-controls absolute top-3 right-3 z-10 flex flex-col gap-2">
           <div className="flex flex-col overflow-hidden rounded-md border border-line bg-surface/95">
             <IconButton
               label="Zoom in"
@@ -793,7 +788,8 @@ export function RescueMap({
           ) : null}
         </div>
       </div>
-      <div className="mapfoot">
+      <details className="mapfoot" open>
+        <summary>MAP KEY <span className="pill simulated">[SIMULATED]</span></summary>
         <div className="map-legend">
           <span>
             <i className="legend-unit" />
@@ -826,7 +822,7 @@ export function RescueMap({
         <span className="font-mono map-provenance">
           OSM GRAPH · SIMULATED REPORTS
         </span>
-      </div>
+      </details>
     </div>
   );
 }
@@ -1086,7 +1082,7 @@ function fit(
       [east, north],
     ],
     {
-      padding: { top: 64, bottom: 96, left: 48, right: 56 },
+      padding: { top: 100, bottom: 160, left: window.innerWidth > 1100 ? 370 : 48, right: window.innerWidth > 1100 ? 470 : 56 },
       pitch: 50, bearing: -20,
       duration: 800,
       maxZoom: 14.5,

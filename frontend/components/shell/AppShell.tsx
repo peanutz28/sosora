@@ -210,22 +210,6 @@ export function AppShell() {
         )}
 
         <div className="ops-workspace">
-          <div className="workspace-heading">
-            <div>
-              <p className="eyebrow">FIELD EVIDENCE → ROAD ACCESS</p>
-              <h1 className="font-display">Rescue access overview</h1>
-              <p>
-                Swannanoa, North Carolina <span>·</span> Hurricane Helene drill
-              </p>
-            </div>
-            <div className="workspace-badge">
-              <i
-                className={`status-dot ${agentWorking ? "text-live" : "text-accent"}`}
-              />
-              {agentWorking ? "Assessing field report" : "Local command"}
-              <span className="pill simulated">SIMULATED</span>
-            </div>
-          </div>
           <div className="workspace-content">
             <section className="relative min-h-0 min-w-0 flex-1">
               <RescueMap

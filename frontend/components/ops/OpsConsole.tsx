@@ -32,6 +32,7 @@ export function OpsConsole({
   onAction: (action: DrillAction) => void;
   onConfirm: (candidate: BridgeCandidate, radioId: string) => void;
 }) {
+  const [collapsed, setCollapsed] = useState(false);
   const [controls, setControls] = useState(true);
   const [history, setHistory] = useState(false);
   const [inputs, setInputs] = useState(false);
@@ -105,13 +106,13 @@ export function OpsConsole({
     return () => window.removeEventListener("keydown", key);
   }, [working, busy, seeded]);
   return (
-    <aside className="ops-console" aria-label="Operations console">
+    <aside className={`ops-console ${collapsed ? "console-collapsed" : ""}`} aria-label="Operations console">
       <div className="console-heading">
         <div>
           <p className="eyebrow">COMMAND INTELLIGENCE</p>
           <h2 className="font-display">Every report. One picture.</h2>
         </div>
-        <Radio size={19} className="text-live" />
+        <button className="icon-control" aria-label={collapsed ? "Expand intelligence" : "Collapse intelligence"} onClick={() => setCollapsed(!collapsed)}><ChevronDown size={17} className={collapsed ? "" : "rotate-180"} /></button>
       </div>
       <div className="summary-grid">
         <Kpi

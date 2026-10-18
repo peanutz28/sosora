@@ -1694,3 +1694,56 @@ kbd {
   white-space: nowrap;
   pointer-events: none;
 }
+
+/* Cinematic command: the valley remains the canvas, panels float above it. */
+.ops-body { position: relative; isolation: isolate; }
+.ops-workspace, .workspace-content { position: absolute; inset: 0; padding: 0; display: block; }
+.workspace-content > section { position: absolute; inset: 0; }
+.map-shell { border: 0; border-radius: 0; background: #090b0e; }
+.map-canvas { background: #090b0e; }
+.incident-rail, .ops-console, .intel-panel, .mapfoot, .mapbar {
+  background: rgba(14,27,37,.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #29404c; border-radius: 16px; box-shadow: 0 16px 60px #0005;
+}
+.incident-rail { position: absolute; z-index: 5; top: 22px; left: 22px; bottom: auto; width: 310px; max-height: calc(100% - 44px); padding: 18px 12px 0; }
+.ops-console, .detail-column { position: absolute; z-index: 5; top: 22px; right: 22px; bottom: 22px; width: 390px; }
+.detail-column .intel-panel { width: 100%; }
+.ops-console { padding-bottom: 10px; }
+.console-collapsed { bottom: auto; }
+.console-collapsed > :not(.console-heading) { display: none; }
+.ops-body > button { position: absolute; left: 16px; top: 22px; z-index: 6; height: 44px; border-radius: 12px; }
+.rail-heading h1 { font-size: 21px; margin-bottom: 12px; }
+.incident-scroll { gap: 5px; padding: 8px 0; }
+.incident-card, .incident-card.critical { padding: 10px 11px; border: 1px solid #29404c; border-radius: 10px; background: #0e1b255c; }
+.incident-card:hover, .incident-card.selected { background: #1c3e47a8; border-color: #3ee0cf77; }
+.incident-top { margin: 0; }
+.incident-top > .pill { font-size: 6px; }
+.incident-card h2 { font-size: 12px; margin: 4px 0 5px; }
+.incident-meta { margin: 0; justify-content: space-between; font-size: 9px; }
+.access-chip { padding: 2px 6px; border-radius: 4px; background: #3ee0cf0c; }
+.access-chip.access-lost { background: #ff3b3018; color: #ff6d64; }
+.rail-footer { padding: 10px 0 12px; }
+.rail-footer p { font-size: 8px; }
+.mapbar { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); z-index: 4; min-height: 40px; padding: 4px 8px; }
+.map-controls { right: 434px; top: 82px; }
+.mapfoot { position: absolute; left: 354px; right: 434px; bottom: 22px; z-index: 4; min-height: 0; padding: 12px 16px; }
+.mapfoot summary { font: 500 9px var(--font-mono); letter-spacing: 1px; color: #7d95a2; cursor: pointer; }
+.mapfoot summary .pill { float: right; font-size: 7px; }
+.mapfoot[open] .map-legend { margin-top: 10px; }
+.map-provenance { margin-top: 8px; }
+.maplibregl-ctrl-bottom-right { margin: 0 434px 4px 0; }
+.summary-grid { gap: 8px; }
+.kpi { background: #0e1b2566; }
+.console-heading h2 { font-size: 19px; }
+@media (max-width: 1100px) {
+ .incident-rail { width: 270px; left: 12px; }
+ .ops-console, .detail-column { width: 310px; right: 12px; }
+ .map-controls { right: 334px; }
+ .mapfoot { left: 20px; right: 334px; }
+ .mapbar { left: 20px; transform: none; }
+}
+@media (max-height: 850px) { .incident-card { padding: 6px 10px; } .incident-rail { max-height: calc(100% - 30px); top: 15px; } }
+.incident-card, .incident-card.critical { padding: 7px 11px; margin: 3px 0; box-shadow: none; }
+.incident-card h2 { line-height: 16px; margin: 2px 0; }
+.incident-top { line-height: 13px; }
+.incident-meta { line-height: 14px; }

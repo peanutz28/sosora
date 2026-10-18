@@ -104,38 +104,13 @@ export function IncidentSidebar({
             >
               <div className="incident-top">
                 <b className="font-mono">{incident.id}</b>
-                <span className={`priority ${incident.urgency}`}>
-                  ● {incident.urgency}
-                </span>
+                <span className="pill simulated">[SIMULATED]</span>
               </div>
-              <h2>{incident.title.replace(/^\[SIMULATED\]\s*/i, "")}</h2>
-              <p className="incident-message">
-                {incident.message
-                  .replace(/^\[SIMULATED\]\s*/i, "")
-                  .split(". ")
-                  .slice(1)
-                  .join(". ") ||
-                  incident.message.replace(/^\[SIMULATED\]\s*/i, "")}
-              </p>
+              <h2>{incident.location || incident.title.replace(/^\[SIMULATED\]\s*/i, "")}</h2>
               <div className="incident-meta">
-                <span>
-                  <Users size={12} />
-                  {peopleLabel(incident.people_affected)}
-                </span>
-                <time>{scenarioTime(incident.created_at)}</time>
+                <span><Users size={12} />{peopleLabel(incident.people_affected)}</span>
+                <span className={`access-chip access-${access.status}`}>{access.label}</span>
               </div>
-              <div className="incident-access">
-                <span className={`access-${access.status}`}>
-                  {access.status === "lost"
-                    ? "⊘"
-                    : access.status === "available"
-                      ? "↗"
-                      : "○"}{" "}
-                  {access.label}
-                </span>
-                <ArrowUpRight size={13} />
-              </div>
-              <span className="pill simulated">SIMULATED</span>
             </button>
           );
         })}
