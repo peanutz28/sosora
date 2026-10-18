@@ -1,0 +1,14 @@
+{
+  "at_utc": "2026-10-18T08:01:03.815532+00:00",
+  "git_head": "12f321ec64aa99c0acbb7b131947198d362632dd",
+  "sha256": {
+    "backend/app/agent.py": "be3aa5959657ab80ce7fe394dbb6ca9eea0034564fba4d28e4b8eec00702772f",
+    "backend/app/radio_api.py": "afe66e758e3fdb0ecb5462e0f5f92fd50ec3731bdfe24e3f5ec9fead8bb0902d",
+    "backend/app/routing.py": "13e887babd9ddd216991bee12e4cb7d735fb618af1626fa159bbe0602467de4a",
+    "backend/app/factory.py": "b8f9fa7d8117c1617804f5bfbeb13b2f6c7ad409b75c8ce29c090b8247b5f7c6",
+    "backend/app/scenario.py": "025ef5638d7bc633465870a43fd0bf29ef5884eff798808aab28c1f84f8d4088",
+    "ml/inference/radio.py": "1e8b14a93d5aaa3226633526735563ee7c33382044061139a0f621b05dc0d9c9",
+    "ml/inference/incident.py": "fa075b6d9f557bbb8fe43bcc7f5ce3ce72266dbe89612a45186f1e0740faef5c",
+    "scripts/vllm/benchmark_reliability.py": "222c980cbf2193ef40f95081d0e47cc86e5fbee99be9c5924df9d6167cfcd1ff"
+  }
+}

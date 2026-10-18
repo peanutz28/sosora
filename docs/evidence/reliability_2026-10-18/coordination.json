@@ -1,0 +1,9 @@
+{
+  "checked_utc": "2026-10-18T07:56:39.262411+00:00",
+  "user_authorized_coordination": true,
+  "contacted_chat_title": "Build SOSora AI infrastructure",
+  "response": "No Parakeet serving or H100 workload in coordinating chat. No separate Codex E service identified in current chat inventory.",
+  "hardware_start": "One vLLM EngineCore compute process and one sosora-vllm container.",
+  "latency_window_verification": "GPU process/container captures before, during and after measurements required.",
+  "scope": "Does not claim ASR was tested or included in text-radio E2E."
+}

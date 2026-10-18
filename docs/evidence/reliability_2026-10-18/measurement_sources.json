@@ -1,0 +1,34 @@
+{
+  "frozen_utc": "2026-10-18T08:02:31.309145+00:00",
+  "git_head": "12f321ec64aa99c0acbb7b131947198d362632dd",
+  "source_scope": "Exact local backend source snapshot, including pre-existing mobile changes; no application code changed for benchmark. Runtime copied before latency window to prevent cross-chat edits.",
+  "backend_runtime_sha256": {
+    "app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "app/agent.py": "be3aa5959657ab80ce7fe394dbb6ca9eea0034564fba4d28e4b8eec00702772f",
+    "app/asr.py": "978b9b9b5b81c13778a063296a40652122929ca70434bc2801caf3f2723932fa",
+    "app/factory.py": "b8f9fa7d8117c1617804f5bfbeb13b2f6c7ad409b75c8ce29c090b8247b5f7c6",
+    "app/geo.py": "c9a5e59ad15ec25b7a702c60821a3097d2a146c0f1fa83d0b56cd7760198896a",
+    "app/main.py": "3391cb0fbac772bdf95c3f93690ce6b3d633394dfc5601074a6b934fecbbefaa",
+    "app/ml_client.py": "90806a35b49c849a224f23fa3d477d73ec9044afac5a58b0886257cdb81641bc",
+    "app/mobile_api.py": "8d20c49dae257e3b591b689f99927a43770e52094a223c04a870202a7169d629",
+    "app/radio_api.py": "afe66e758e3fdb0ecb5462e0f5f92fd50ec3731bdfe24e3f5ec9fead8bb0902d",
+    "app/routing.py": "13e887babd9ddd216991bee12e4cb7d735fb618af1626fa159bbe0602467de4a",
+    "app/scenario.py": "025ef5638d7bc633465870a43fd0bf29ef5884eff798808aab28c1f84f8d4088",
+    "app/store.py": "1abfe052939798db5b5944e58781bb444bcf67ebe4ee41104936ec79837992e9",
+    "data/anchors.json": "93193ce2bbeb30742e7e8faade64c82d1a266f4fbf20f853098ecd3be4a7be79",
+    "data/graph.json": "57a505eda3f694839e1644a73e53a7b73d5135fb5b4611c4321a6aca5fc313b1",
+    "data/roads.geojson": "dca5e7d8f3839dfd972119a56516d3788c3cd3d7afda205cce6fe815d1213710"
+  },
+  "ml_service_source_sha256": {
+    "ml/inference/app.py": "41f4deb34999968760f05b605b86fd65e547d415a22b5e13c024b169ac9f719f",
+    "ml/inference/incident.py": "fa075b6d9f557bbb8fe43bcc7f5ce3ce72266dbe89612a45186f1e0740faef5c",
+    "ml/inference/radio.py": "1e8b14a93d5aaa3226633526735563ee7c33382044061139a0f621b05dc0d9c9",
+    "ml/inference/schemas.py": "2b5e40213ce025bf7a6f5e42ff4fa362126601bc3142ec5d6604c0d0dd4530ac"
+  },
+  "benchmark_sha256": "9a00d2805ca5ec657ec7cb519e740dddec6e7266af47247f34717629ac2d5c19",
+  "timing_scopes": {
+    "agent_calls": "individual RadioAgent.completion requests, includes original retries",
+    "agent_request": "radio_api.run_report: agent construction, loop, tools and graph work; excludes ML parse",
+    "end_to_end": "full text /api/radio request including parse and state response; excludes seed"
+  }
+}

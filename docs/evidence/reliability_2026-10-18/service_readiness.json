@@ -1,0 +1,14 @@
+{
+  "checked_utc": "2026-10-18T08:14:11.462659+00:00",
+  "authenticated_models_status": 200,
+  "models": [
+    "nvidia/nemotron-3.5-lightning-30b-a3b"
+  ],
+  "local_ml_status": 200,
+  "local_ml_health": {
+    "status": "ok",
+    "service": "sosora-ml",
+    "vision_loaded": false,
+    "note": "Liveness only; model loads on first prediction."
+  }
+}

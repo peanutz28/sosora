@@ -1,0 +1,8 @@
+{
+  "recorded_utc": "2026-10-18T08:03:56.404238+00:00",
+  "instance": "sosora-lightning-vllm",
+  "compute_quote_usd_hour": 5.4,
+  "model_ready": "probe.json authenticated model identity + valid strict tool call",
+  "restart_notes": "Brev initial STARTING/UNHEALTHY and conflicting console lifecycle view delayed SSH aliases; start completed and refreshed tunnel connected. No stop command issued in this session. Retained container unchanged, checkpoint restored after RAM cache loss.",
+  "keep_running": "User requests ready for filming at 07:00 America/New_York on 2026-10-18; no automatic stop scheduled."
+}

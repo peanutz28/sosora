@@ -177,3 +177,62 @@ python -m pytest ml/nemo_gym/tests -q
 A new live system comparison needs fresh simulated evaluation cases, the adapter
 applied equally to both policies, and a separately reported protocol. Neither
 benchmark reasoning improvement nor a new 14/14 test result has been measured.
+
+## Repeated four-way ablation — Oct 18
+
+Frozen in commit **625bda8 before evaluation**. This compares exactly the original
+baseline prompt/descriptions, grounded_v2 descriptions alone, grounded_v2 system
+prompt alone, and grounded_v2 with both. The existing execution loop is unchanged:
+a temporary config root selects each frozen JSON through its existing file loader;
+the raw runner label is `grounded_v2` for every arm, while `ablation_run.json` records
+the actual arm. Only prompt/tool-description contents differ. Parameter schemas,
+verifier, task bytes, model checkpoint, sampling and serving settings are identical.
+The optional nullable argument adapter is explicitly **off** for every run.
+
+Three complete runs per policy per split: all 12 validation runs finished before
+all 12 test runs. Arm order rotates by repetition, sequentially; no selective retries,
+policy revisions or selection after test. The test split was evaluated previously,
+including the earlier grounded_v2 experiment: **this is a spent benchmark, not a
+fresh blinded holdout**. Model prefix caching stayed enabled. All scenarios are
+simulated; repeated identical cases are not 42 independent emergency scenarios.
+
+| Split | Policy | Passes in three runs /14 | Mean /14 | Range /14 | Mean % | Provider errors |
+|---|---|---|---:|---|---:|---|
+| validation | baseline | 5, 5, 8 | 6.00 | 5–8 | 42.9% | 0, 0, 0 |
+| validation | tool_descriptions_only | 10, 10, 10 | 10.00 | 10–10 | 71.4% | 0, 0, 0 |
+| validation | system_prompt_only | 10, 9, 10 | 9.67 | 9–10 | 69.0% | 0, 0, 0 |
+| validation | grounded_v2 | 10, 10, 10 | 10.00 | 10–10 | 71.4% | 0, 0, 0 |
+| test | baseline | 6, 7, 8 | 7.00 | 6–8 | 50.0% | 0, 0, 0 |
+| test | tool_descriptions_only | 8, 10, 9 | 9.00 | 8–10 | 64.3% | 0, 0, 0 |
+| test | system_prompt_only | 10, 10, 10 | 10.00 | 10–10 | 71.4% | 0, 0, 0 |
+| test | grounded_v2 | 10, 10, 10 | 10.00 | 10–10 | 71.4% | 0, 0, 0 |
+
+All **336 scenario attempts** completed, with **zero provider errors**. Test mean
+improves from 7/14 (50.0%) baseline to 10/14 (71.4%) with prompt-only or both:
+**+21.4 percentage points**. Descriptions alone average 9/14 (64.3%). Combining
+both changes shows no further test gain over prompt-only in these three runs.
+This is evidence of configuration-sensitive tool behavior on this small benchmark,
+not a weight-training/RL result or broad rescue accuracy claim. The conservative
+all-human-review policy remains unpenalized for unnecessary operator workload.
+The full policy still fails the two tool-failure and two missing-location cases;
+the separate null-compatibility replay is not included in these scores.
+
+Evidence: `ml/nemo_gym/evidence/ablation_reliability_2026-10-18/`. It includes
+frozen policy files/hashes, original source hashes, the test-opening marker,
+24 raw trace/metrics/config directories, session log and family/verifier counts.
+Every run requests the same 14 cases with temperature 1.0, max_tokens 1024,
+parallel_tool_calls=false, 12 turns and a 60-second HTTP timeout. Same H100,
+Lightning BF16 revision `a9904d24bcc1d289a1950fa9d2b978c47cf903b9` and upstream
+vLLM v0.27.1; this is not a verified Red Hat distribution.
+
+Reproduce with private LLM environment exported and official pinned NeMo Gym
+on PYTHONPATH (fresh output directory):
+
+```sh
+python scripts/vllm/run_ablation.py --prepare --output /path/to/fresh/ablation
+python scripts/vllm/run_ablation.py --output /path/to/fresh/ablation
+python scripts/vllm/summarize_ablation.py --evidence /path/to/fresh/ablation
+```
+
+The companion 20-beacon/10-ambiguous live reliability measurements and timing
+scope are reported in `docs/VLLM_RESULTS.md`, separately from Gym scores.

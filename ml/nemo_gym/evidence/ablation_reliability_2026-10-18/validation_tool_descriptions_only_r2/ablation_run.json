@@ -1,0 +1,7 @@
+{
+  "arm": "tool_descriptions_only",
+  "split": "validation",
+  "repeat": 2,
+  "started_utc": "2026-10-18T07:57:07.716073+00:00",
+  "configuration_sha256": "8cfcaa134d2c0d5b3bdf2a67cf57c7b5928dc829e0738311f93de3d5bb59fed5"
+}

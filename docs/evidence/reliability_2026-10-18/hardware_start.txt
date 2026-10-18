@@ -1,0 +1,6 @@
+name, memory.total [MiB], driver_version
+NVIDIA H100 80GB HBM3, 81559 MiB, 580.173.02
+sosora-vllm vllm/vllm-openai:v0.27.1
+pid, process_name, used_gpu_memory [MiB]
+4356, VLLM::EngineCore, 72340 MiB
+sosora-lightning-vllm

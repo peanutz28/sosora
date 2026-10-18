@@ -1,0 +1,19 @@
+{
+  "checked_utc": "2026-10-18T08:14:11.003835+00:00",
+  "instance": {
+    "name": "sosora-lightning-vllm",
+    "id": "m11k1tjxq",
+    "status": "RUNNING",
+    "build_status": "COMPLETED",
+    "shell_status": "READY",
+    "health_status": "HEALTHY",
+    "instance_type": "gpu-h100-sxm.1gpu-16vcpu-200gb",
+    "instance_kind": "gpu",
+    "gpu": "H100"
+  },
+  "keep_running_for": "2026-10-18 07:00 America/New_York",
+  "compute_usd_hour": 5.4,
+  "console_display_total_usd_hour": 5.42,
+  "storage_retained_billable": true,
+  "stopped_after_measurement": false
+}

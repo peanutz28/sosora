@@ -13,6 +13,7 @@ from pathlib import Path
 import statistics
 import time
 from fastapi.testclient import TestClient
+from app import radio_api
 from app.agent import RadioAgent
 from app.factory import create_app
 from app.routing import load_anchors,load_graph
@@ -27,7 +28,7 @@ def summarize(rows):
     result={}
     for kind in ['beacon','ambiguous_responder']:
         group=[r for r in rows if r['kind']==kind]
-        result[kind]={'attempts':len(group),'live_successes':sum(r['live_success'] for r in group),'correct_segment':sum(r.get('correct_segment',False) for r in group),'correct_ambiguity':sum(r.get('correct_ambiguity',False) for r in group),'five_cut_off_correct':sum(r.get('five_cut_off_correct',False) for r in group),'end_to_end':quantile([r['end_to_end_ms'] for r in group if 'end_to_end_ms' in r]),'agent_calls':quantile([t['latency_ms'] for r in group for t in r['turns']]),'agent_call_sum_per_request':quantile([sum(t['latency_ms'] for t in r['turns']) for r in group]),'end_to_end_successful_only':quantile([r['end_to_end_ms'] for r in group if r['live_success']])}
+        result[kind]={'attempts':len(group),'live_successes':sum(r['live_success'] for r in group),'correct_segment':sum(r.get('correct_segment',False) for r in group),'correct_ambiguity':sum(r.get('correct_ambiguity',False) for r in group),'five_cut_off_correct':sum(r.get('five_cut_off_correct',False) for r in group),'agent_request':quantile([r['agent_request_ms'] for r in group if 'agent_request_ms' in r]),'end_to_end':quantile([r['end_to_end_ms'] for r in group if 'end_to_end_ms' in r]),'agent_calls':quantile([t['latency_ms'] for r in group for t in r['turns']]),'agent_call_sum_per_request':quantile([sum(t['latency_ms'] for t in r['turns']) for r in group]),'end_to_end_successful_only':quantile([r['end_to_end_ms'] for r in group if r['live_success']])}
     return result
 
 def main():
@@ -38,20 +39,24 @@ def main():
     out.parent.mkdir(parents=True,exist_ok=True)
     graph=load_graph();expected={d['id'] for _,_,d in graph.edges(data=True) if str(d.get('way_id'))==WAY}
     assert expected,'Expected bridge absent from real graph'
-    app=create_app(graph,load_anchors(),':memory:');original=RadioAgent.completion;turns=[]
+    app=create_app(graph,load_anchors(),':memory:');original=RadioAgent.completion;original_run_report=radio_api.run_report;turns=[];agent_requests=[]
     async def measured(self,messages):
         started=time.perf_counter();t={'index':len(turns)+1}
         try:
             result=await original(self,messages);t['tools']=[c['function']['name'] for c in result.get('tool_calls') or []];return result
         except Exception as exc:t['error_type']=type(exc).__name__;raise
         finally:t['latency_ms']=(time.perf_counter()-started)*1000;turns.append(t)
-    RadioAgent.completion=measured;rows=[];started_utc=now()
+    async def measured_run_report(request,report):
+        before=time.perf_counter()
+        try:return await original_run_report(request,report)
+        finally:agent_requests.append((time.perf_counter()-before)*1000)
+    RadioAgent.completion=measured;radio_api.run_report=measured_run_report;rows=[];started_utc=now()
     meta={'simulated_input':True,'cached_llm':False,'expected_way_id':WAY,'expected_edge_ids':sorted(expected),'expected_lost_incidents':sorted(NORTH),'order':'20 beacon then 10 ambiguous, sequential','timing_scope':'local in-process HTTP text /api/radio including live ML parse, agent loop, graph computation and serialization; excludes seed/loading, ASR/audio and physical radio transport','cache':'server prefix cache enabled, no flush between identical requests','failed_attempts':'retained in denominator; no benchmark retries; internal provider retries remain original application behavior'}
     def save():out.write_text(json.dumps({'started_utc':started_utc,'updated_utc':now(),'metadata':meta,'runs':rows,'summary':summarize(rows)},indent=2)+'\n')
     try:
         with TestClient(app) as client:
             for index in range(30):
-                kind='beacon' if index<20 else 'ambiguous_responder';turns.clear();row={'run':index+1,'kind':kind,'turns':[],'live_success':False,'started_utc':now()}
+                kind='beacon' if index<20 else 'ambiguous_responder';turns.clear();agent_requests.clear();row={'run':index+1,'kind':kind,'turns':[],'live_success':False,'started_utc':now()}
                 try:
                     before=time.perf_counter();seed_response=client.post('/api/radio/demo/seed');seed_response.raise_for_status();seed=seed_response.json();row['seed_ms']=(time.perf_counter()-before)*1000
                     assert len(seed['state']['incidents'])==9 and all(i['reachable'] for i in seed['state']['incidents'])
@@ -72,7 +77,10 @@ def main():
                         row['correct_ambiguity']=ambiguity_observed and assessment.get('needs_human_review') is True and not closed and not lost and assessment.get('affected_incident_ids')==[]
                         row['live_success']=live and row['correct_ambiguity']
                 except Exception as exc:row['error_type']=type(exc).__name__
+                if agent_requests:row['agent_request_ms']=sum(agent_requests)
                 row['turns']=list(turns);rows.append(row);save();print(json.dumps({k:row[k] for k in ['run','kind','live_success']}),flush=True)
-    finally:RadioAgent.completion=original
+    finally:
+        RadioAgent.completion=original
+        radio_api.run_report=original_run_report
     save()
 if __name__=='__main__':main()

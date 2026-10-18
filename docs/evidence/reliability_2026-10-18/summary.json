@@ -1,0 +1,147 @@
+{
+  "completed_utc": "2026-10-18T08:12:14.456720+00:00",
+  "simulated_input": true,
+  "attempts": 30,
+  "fresh_seed_before_every_request": true,
+  "live_successes": 30,
+  "correct_beacon_segment": {
+    "numerator": 20,
+    "denominator": 20
+  },
+  "exact_five_cut_off": {
+    "numerator": 20,
+    "denominator": 20
+  },
+  "guarded_final_ambiguity": {
+    "numerator": 10,
+    "denominator": 10
+  },
+  "strict_ambiguity_no_mutation_attempt": {
+    "numerator": 1,
+    "denominator": 10
+  },
+  "ambiguous_mutation_attempt_runs_rejected_by_code": [
+    21,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "timings": {
+    "beacon": {
+      "attempts": 20,
+      "live_successes": 20,
+      "correct_segment": 20,
+      "correct_ambiguity": 0,
+      "five_cut_off_correct": 20,
+      "agent_request": {
+        "n": 20,
+        "median_ms": 6922.024395491462,
+        "p95_ms": 8431.136667029932,
+        "p95_method": "nearest rank ceil(0.95*n)",
+        "min_ms": 6490.6121250241995,
+        "max_ms": 10490.915791946463
+      },
+      "end_to_end": {
+        "n": 20,
+        "median_ms": 7912.067687488161,
+        "p95_ms": 9782.023124978878,
+        "p95_method": "nearest rank ceil(0.95*n)",
+        "min_ms": 7341.572167002596,
+        "max_ms": 11332.053165999241
+      },
+      "agent_calls": {
+        "n": 120,
+        "median_ms": 628.019270952791,
+        "p95_ms": 1632.8592910431325,
+        "p95_method": "nearest rank ceil(0.95*n)",
+        "min_ms": 376.19958294089884,
+        "max_ms": 1766.4099170360714
+      },
+      "agent_call_sum_per_request": {
+        "n": 20,
+        "median_ms": 4908.878334041219,
+        "p95_ms": 5228.812208166346,
+        "p95_method": "nearest rank ceil(0.95*n)",
+        "min_ms": 4562.891210080124,
+        "max_ms": 5413.178247865289
+      },
+      "end_to_end_successful_only": {
+        "n": 20,
+        "median_ms": 7912.067687488161,
+        "p95_ms": 9782.023124978878,
+        "p95_method": "nearest rank ceil(0.95*n)",
+        "min_ms": 7341.572167002596,
+        "max_ms": 11332.053165999241
+      }
+    },
+    "ambiguous_responder": {
+      "attempts": 10,
+      "live_successes": 10,
+      "correct_segment": 0,
+      "correct_ambiguity": 10,
+      "five_cut_off_correct": 0,
+      "agent_request": {
+        "n": 10,
+        "median_ms": 6344.579916505609,
+        "p95_ms": 7813.124417094514,
+        "p95_method": "nearest rank ceil(0.95*n)",
+        "min_ms": 5176.956832990982,
+        "max_ms": 7813.124417094514
+      },
+      "end_to_end": {
+        "n": 10,
+        "median_ms": 7454.661499999929,
+        "p95_ms": 8670.82895792555,
+        "p95_method": "nearest rank ceil(0.95*n)",
+        "min_ms": 6009.422000031918,
+        "max_ms": 8670.82895792555
+      },
+      "agent_calls": {
+        "n": 59,
+        "median_ms": 667.5093329977244,
+        "p95_ms": 1578.7822500569746,
+        "p95_method": "nearest rank ceil(0.95*n)",
+        "min_ms": 383.5540829459205,
+        "max_ms": 2415.856499923393
+      },
+      "agent_call_sum_per_request": {
+        "n": 10,
+        "median_ms": 4978.290415892843,
+        "p95_ms": 5815.122791100293,
+        "p95_method": "nearest rank ceil(0.95*n)",
+        "min_ms": 3823.3180408133194,
+        "max_ms": 5815.122791100293
+      },
+      "end_to_end_successful_only": {
+        "n": 10,
+        "median_ms": 7454.661499999929,
+        "p95_ms": 8670.82895792555,
+        "p95_method": "nearest rank ceil(0.95*n)",
+        "min_ms": 6009.422000031918,
+        "max_ms": 8670.82895792555
+      }
+    }
+  },
+  "isolation": {
+    "gpu_process_samples": 59,
+    "observed_only_vllm": true,
+    "vllm_success_counter_delta": 209.0,
+    "agent_calls": 179,
+    "parse_calls": 30,
+    "expected_total_requests": 209,
+    "running_requests_before_after": [
+      0.0,
+      0.0
+    ],
+    "waiting_requests_before_after": [
+      0.0,
+      0.0
+    ]
+  },
+  "important_limit": "Final guarded state correctness is not model-only ambiguity compliance. Nine ambiguous runs attempted to report both bridges; deterministic code rejected them. Some summaries loosely describe rejected reports as recorded; narrative faithfulness was not scored."
+}

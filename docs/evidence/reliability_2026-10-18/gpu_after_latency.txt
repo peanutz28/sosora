@@ -1,0 +1,5 @@
+2026-10-18T08:12:57Z
+sosora-vllm vllm/vllm-openai:v0.27.1
+pid, process_name, used_gpu_memory [MiB]
+4356, VLLM::EngineCore, 72556 MiB
+sosora-lightning-vllm

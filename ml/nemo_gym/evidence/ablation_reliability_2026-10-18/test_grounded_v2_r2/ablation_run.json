@@ -1,0 +1,7 @@
+{
+  "arm": "grounded_v2",
+  "split": "test",
+  "repeat": 2,
+  "started_utc": "2026-10-18T08:04:24.363397+00:00",
+  "configuration_sha256": "3f07030aed69074f5add45b2d8bd00c4195d42538168fc0989374ff0e68f8633"
+}

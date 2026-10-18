@@ -1,0 +1,7 @@
+{
+  "observed_utc": "2026-10-18T07:47:10.541362+00:00",
+  "catalog_compute_usd_hour": 5.4,
+  "console_display_total_usd_hour": 5.42,
+  "retained_disk_usd_gb_month": 0.12264,
+  "source": "Authenticated Brev console instance list; display includes retained storage, not measured invoice"
+}

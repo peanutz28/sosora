@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": [
+    "24 complete unique Gym runs, 336 scenarios, frozen policy hashes and prompt selections, adapter off, metric consistency",
+    "1944 Gym calls; no provider errors",
+    "20 exact bridge + five-incident outcomes and10 guarded ambiguity outcomes; all fresh-seed requests live",
+    "median and nearest-rank p95 recomputed from every raw timing",
+    "strict model abstention caveat retained;209 generation request counter match",
+    "frozen backend archive matches source manifest"
+  ]
+}

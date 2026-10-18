@@ -1,0 +1,315 @@
+{
+  "validation_baseline": {
+    "families": {
+      "bridge_closed": {
+        "passed": 4,
+        "attempts": 6
+      },
+      "two_roads_closed": {
+        "passed": 5,
+        "attempts": 6
+      },
+      "alternate_route": {
+        "passed": 5,
+        "attempts": 6
+      },
+      "isolated": {
+        "passed": 2,
+        "attempts": 6
+      },
+      "tool_failure": {
+        "passed": 0,
+        "attempts": 6
+      },
+      "conflicting_evidence": {
+        "passed": 2,
+        "attempts": 6
+      },
+      "missing_location": {
+        "passed": 0,
+        "attempts": 6
+      }
+    },
+    "overlapping_verifier_issue_counts": {
+      "invalid_tool_arguments": 15,
+      "unsupported_path": 10,
+      "missing_required_tools": 7,
+      "require_exactly_one_recommendation": 6,
+      "route_tool_before_current_status": 6,
+      "stale_graph_version": 6,
+      "incorrect_reachability": 6,
+      "invented_graph_version": 6,
+      "missing_human_review": 6,
+      "incorrect_graph_version": 1
+    }
+  },
+  "validation_tool_descriptions_only": {
+    "families": {
+      "bridge_closed": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "two_roads_closed": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "alternate_route": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "isolated": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "tool_failure": {
+        "passed": 0,
+        "attempts": 6
+      },
+      "conflicting_evidence": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "missing_location": {
+        "passed": 0,
+        "attempts": 6
+      }
+    },
+    "overlapping_verifier_issue_counts": {
+      "invalid_tool_arguments": 12,
+      "missing_required_tools": 12,
+      "require_exactly_one_recommendation": 12
+    }
+  },
+  "validation_system_prompt_only": {
+    "families": {
+      "bridge_closed": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "two_roads_closed": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "alternate_route": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "isolated": {
+        "passed": 5,
+        "attempts": 6
+      },
+      "tool_failure": {
+        "passed": 0,
+        "attempts": 6
+      },
+      "conflicting_evidence": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "missing_location": {
+        "passed": 0,
+        "attempts": 6
+      }
+    },
+    "overlapping_verifier_issue_counts": {
+      "invalid_tool_arguments": 12,
+      "missing_required_tools": 12,
+      "require_exactly_one_recommendation": 12,
+      "incorrect_reachability": 1
+    }
+  },
+  "validation_grounded_v2": {
+    "families": {
+      "bridge_closed": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "two_roads_closed": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "alternate_route": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "isolated": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "tool_failure": {
+        "passed": 0,
+        "attempts": 6
+      },
+      "conflicting_evidence": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "missing_location": {
+        "passed": 0,
+        "attempts": 6
+      }
+    },
+    "overlapping_verifier_issue_counts": {
+      "invalid_tool_arguments": 12,
+      "missing_required_tools": 12,
+      "require_exactly_one_recommendation": 12
+    }
+  },
+  "test_baseline": {
+    "families": {
+      "bridge_closed": {
+        "passed": 4,
+        "attempts": 6
+      },
+      "two_roads_closed": {
+        "passed": 5,
+        "attempts": 6
+      },
+      "alternate_route": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "isolated": {
+        "passed": 4,
+        "attempts": 6
+      },
+      "tool_failure": {
+        "passed": 0,
+        "attempts": 6
+      },
+      "conflicting_evidence": {
+        "passed": 2,
+        "attempts": 6
+      },
+      "missing_location": {
+        "passed": 0,
+        "attempts": 6
+      }
+    },
+    "overlapping_verifier_issue_counts": {
+      "unsupported_path": 9,
+      "incorrect_graph_version": 2,
+      "incorrect_reachability": 8,
+      "route_tool_before_current_status": 6,
+      "stale_graph_version": 6,
+      "invented_graph_version": 6,
+      "invalid_tool_arguments": 7,
+      "missing_required_tools": 5,
+      "require_exactly_one_recommendation": 4,
+      "missing_human_review": 9
+    }
+  },
+  "test_tool_descriptions_only": {
+    "families": {
+      "bridge_closed": {
+        "passed": 5,
+        "attempts": 6
+      },
+      "two_roads_closed": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "alternate_route": {
+        "passed": 5,
+        "attempts": 6
+      },
+      "isolated": {
+        "passed": 5,
+        "attempts": 6
+      },
+      "tool_failure": {
+        "passed": 0,
+        "attempts": 6
+      },
+      "conflicting_evidence": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "missing_location": {
+        "passed": 0,
+        "attempts": 6
+      }
+    },
+    "overlapping_verifier_issue_counts": {
+      "invalid_tool_arguments": 13,
+      "missing_required_tools": 10,
+      "require_exactly_one_recommendation": 10,
+      "invented_graph_version": 2,
+      "unsupported_path": 1
+    }
+  },
+  "test_system_prompt_only": {
+    "families": {
+      "bridge_closed": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "two_roads_closed": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "alternate_route": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "isolated": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "tool_failure": {
+        "passed": 0,
+        "attempts": 6
+      },
+      "conflicting_evidence": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "missing_location": {
+        "passed": 0,
+        "attempts": 6
+      }
+    },
+    "overlapping_verifier_issue_counts": {
+      "invalid_tool_arguments": 12,
+      "missing_required_tools": 12,
+      "require_exactly_one_recommendation": 12
+    }
+  },
+  "test_grounded_v2": {
+    "families": {
+      "bridge_closed": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "two_roads_closed": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "alternate_route": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "isolated": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "tool_failure": {
+        "passed": 0,
+        "attempts": 6
+      },
+      "conflicting_evidence": {
+        "passed": 6,
+        "attempts": 6
+      },
+      "missing_location": {
+        "passed": 0,
+        "attempts": 6
+      }
+    },
+    "overlapping_verifier_issue_counts": {
+      "invalid_tool_arguments": 12,
+      "missing_required_tools": 12,
+      "require_exactly_one_recommendation": 12
+    }
+  }
+}

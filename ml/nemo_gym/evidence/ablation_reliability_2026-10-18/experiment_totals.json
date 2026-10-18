@@ -1,0 +1,10 @@
+{
+  "scenario_attempts": 336,
+  "model_calls": 1944,
+  "provider_errors": 0,
+  "pretest_freeze_commit": "625bda8",
+  "test_mean_pass_gain_both_vs_baseline": 3,
+  "test_mean_percentage_point_gain": 21.428571428571427,
+  "no_policy_edits_after_test": true,
+  "test_split_previously_used": true
+}

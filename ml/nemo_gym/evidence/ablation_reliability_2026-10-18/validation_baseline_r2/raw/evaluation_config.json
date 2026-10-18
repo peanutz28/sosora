@@ -1,0 +1,10 @@
+{
+  "split": "validation",
+  "policy": "grounded_v2",
+  "limit": 14,
+  "max_turns": 12,
+  "max_seconds": 14400.0,
+  "prompt": "Assess this simulated rescue incident using the available tools. Finish by calling submit_recommendation. Candidate graph routes are not safety clearances.",
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "argument_adapter": "none"
+}

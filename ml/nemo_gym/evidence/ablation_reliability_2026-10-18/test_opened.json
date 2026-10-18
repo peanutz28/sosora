@@ -1,0 +1,10 @@
+{
+  "opened_utc": "2026-10-18T08:01:11.533616+00:00",
+  "policy_hashes": {
+    "baseline": "6b15bea75f32d3d44b1cc97ba0784c469246753e2d5c1f9823a31f85b378f4da",
+    "tool_descriptions_only": "8cfcaa134d2c0d5b3bdf2a67cf57c7b5928dc829e0738311f93de3d5bb59fed5",
+    "system_prompt_only": "8f3f7977440d64b98195f80f90684750374f20922bbfad56e98a12495751882b",
+    "grounded_v2": "3f07030aed69074f5add45b2d8bd00c4195d42538168fc0989374ff0e68f8633"
+  },
+  "all_validation_complete": true
+}

@@ -1,0 +1,7 @@
+{
+  "arm": "system_prompt_only",
+  "split": "test",
+  "repeat": 3,
+  "started_utc": "2026-10-18T08:05:25.311259+00:00",
+  "configuration_sha256": "8f3f7977440d64b98195f80f90684750374f20922bbfad56e98a12495751882b"
+}
