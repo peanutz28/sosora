@@ -43,3 +43,17 @@ Predict requests use `image_id` and `threshold`. Geographic detections use EPSG:
 With `DEMO_MODE=true` (the default) the scenario uses a local fixture and says so. It does not call the model service. Set `DEMO_MODE=false` to try the live service. If that service does not answer, routing still runs and the panel says the model is unavailable.
 
 Do not edit `ml/`. That tree belongs to the model work.
+
+## Radio, Beacon and agent (added Oct 17, 23:15)
+
+- `POST /api/radio/demo/seed` -> resets and seeds 9 SIMULATED SOS incidents on real roads.
+  Returns `hero_message`, `open_report`, `beacon_position`.
+- `POST /api/radio` `{message, source_type: responder_radio|beacon|resident, unit?, lon?, lat?}`
+  -> `{radio_id, parse, assessment, statuses, state}`. Runs Lightning parse + tool-calling agent.
+- `POST /api/radio/confirm` `{radio_id, lon, lat}` -> operator resolves an ambiguous location.
+- `POST /api/radio/audio` multipart `file, source_type, beacon_id?, unit?` -> speech to text, then as `/api/radio`.
+- `POST /api/beacon/{beacon_id}/reading` `{water_level_cm, threshold_cm?, measured_at?}`.
+- `GET /api/radio/status`, `GET /api/beacons`.
+- WebSocket `/ws/events` adds `{"type":"agent_event"}` (tool calls/results) and
+  `{"type":"radio_event"}` (radio_received, radio_parsed, voice_transcribed, sensor_reading,
+  radio_location_confirmed).

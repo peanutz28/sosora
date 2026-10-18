@@ -14,7 +14,7 @@ def demo_mode() -> bool:
 
 
 def ml_base_url() -> str:
-    return os.environ.get("ML_SERVICE_BASE_URL", "http://127.0.0.1:8001").rstrip("/")
+    return os.environ.get("ML_SERVICE_BASE_URL", "http://127.0.0.1:8002").rstrip("/")
 
 
 def fixture_detection(anchors: dict) -> dict:

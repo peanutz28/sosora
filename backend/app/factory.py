@@ -76,6 +76,9 @@ def create_app(graph, anchors: dict, db_path: str) -> FastAPI:
     hub = Hub()
     app.state.engine = engine
     app.state.hub = hub
+    from app.radio_api import router as radio_router
+
+    app.include_router(radio_router)
 
     @app.get("/health")
     def health():

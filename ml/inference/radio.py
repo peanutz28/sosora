@@ -34,6 +34,10 @@ class RadioParse(BaseModel):
 
 # All messages and cached interpretations below are SIMULATED, not field reports.
 DEMO_FIXTURES = [
+    dict(message="[SIMULATED] Command, Engine 4... the bridge on Warren Wilson Road is gone, river took it... three families on the far side, we can't get across. Over.",
+         event_type='bridge_collapse', road_name='Warren Wilson Road', road_ref=None, landmark=None, location_text='bridge on Warren Wilson Road', people_count=3, urgency='critical'),
+    dict(message='[SIMULATED] Command, DOT crew... Warren Wilson Road bridge is open, inspected and clear. Over.',
+         event_type='road_open', road_name='Warren Wilson Road', road_ref=None, landmark=None, location_text='Warren Wilson Road bridge', people_count=None, urgency='low'),
     dict(message='[SIMULATED] Base, unit two... kssh... bridge on Old US 70 over Swannanoa River is DOWN. Both lanes gone, cannot cross. Over.',
          event_type='bridge_collapse', road_name='Old US 70', road_ref=None, landmark='Swannanoa River', location_text='bridge on Old US 70 over Swannanoa River', people_count=None, urgency='critical'),
     dict(message='[SIMULATED] Swannanoa patrol... Bee Tree Road, past Bee Tree Creek... road washed out, repeat washed out. Static... no way through.',
