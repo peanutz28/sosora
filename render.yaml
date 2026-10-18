@@ -1,0 +1,21 @@
+# Public cached replay only. Free CPU; no model service or secrets.
+services:
+  - type: web
+    name: sosora-command-demo
+    runtime: docker
+    plan: free
+    region: virginia
+    branch: integration
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    autoDeployTrigger: off
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "7860"
+      - key: DEMO_MODE
+        value: "true"
+      - key: HOSTED_DEMO
+        value: "true"
+      - key: APP_CORS_ORIGINS
+        value: https://sosora-command-demo.vercel.app
