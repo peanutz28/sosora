@@ -1,76 +1,161 @@
 {
-  "note": "Real Pi microphone recording of a SIMULATED exercise. Live local ASR succeeded. First Command trial used cached DEMO_MODE: unknown wording remained unverified and no SOS access changed. Live Nemotron trial pending explicit transcript-to-Brev approval. Upload was from Mac; physical Pi upload pending.",
-  "elapsed_seconds": 2.283,
+  "note": "Real Pi USB mic recording of a SIMULATED exercise; user approved transcript transmission to Brev. Audio recorded earlier and uploaded from Mac; physical Pi live upload pending.",
+  "elapsed_seconds": 7.891,
   "result": {
     "transcript": {
       "text": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable.",
       "mode": "live",
       "model": "tiny.en"
     },
-    "radio_id": "radio-01988036",
+    "radio_id": "radio-1ba22645",
     "parse": {
-      "event_type": "other",
-      "road_name": null,
+      "event_type": "bridge_collapse",
+      "road_name": "Warren Wilson Roadbridge",
       "road_ref": null,
       "landmark": null,
-      "location_text": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable.",
+      "location_text": "",
       "people_count": null,
-      "urgency": "low",
+      "urgency": "high",
       "needs_review": true,
       "raw": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable.",
-      "parse_mode": "demo_unknown_message"
+      "parse_mode": "nemotron_lightning"
     },
     "assessment": {
-      "summary": "Simulated cached radio assessment. Road evidence and reachability evaluated in code.",
-      "affected_incident_ids": [],
-      "recommended_actions": [
-        "Review field report and access routes"
+      "summary": "Field beacon report (credible, unverified) states Warren Wilson Roadbridge collapsed, road impassable. Two OSM segments (549633356:0:b, 549633356:0:f) resolved to Warren Wilson Road near -82.42702,35.61258. After reporting the impassable claim, both segments status changed to blocked. Reachability recomputation shows five SOS incidents (SOS-001 through SOS-005) just lost road access; remaining incidents (SOS-006 onward) still reachable.",
+      "affected_incident_ids": [
+        "SOS-001",
+        "SOS-002",
+        "SOS-003",
+        "SOS-004",
+        "SOS-005"
       ],
-      "confidence": 0.5,
-      "needs_human_review": true,
-      "simulated": true
+      "recommended_actions": [
+        "Dispatch emergency assessment teams to SOS-001..SOS-005 via alternative routes.",
+        "Prioritize bridge inspection or temporary crossing for Warren Wilson Road.",
+        "Monitor for verified official clearance before reopening."
+      ],
+      "confidence": 0.92,
+      "needs_human_review": false,
+      "simulated": false
     },
     "statuses": {
       "549633356:0:b": {
-        "status": "unverified",
+        "status": "blocked",
         "sources": [
           {
             "type": "beacon",
-            "time": "2026-10-18T08:24:40.894179+00:00",
+            "time": "2026-10-18T08:33:00.594623+00:00",
             "text": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable.",
             "credible": true,
             "verified": false,
-            "simulated": true,
-            "claim": "unverified"
+            "simulated": false,
+            "claim": "impassable"
           }
         ]
       },
       "549633356:0:f": {
-        "status": "unverified",
+        "status": "blocked",
         "sources": [
           {
             "type": "beacon",
-            "time": "2026-10-18T08:24:40.894179+00:00",
+            "time": "2026-10-18T08:33:00.594623+00:00",
             "text": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable.",
             "credible": true,
             "verified": false,
-            "simulated": true,
-            "claim": "unverified"
+            "simulated": false,
+            "claim": "impassable"
           }
         ]
       }
     },
     "agent_runtime": {
-      "cached": true,
-      "model_id": null,
-      "serving_backend": null,
-      "last_call_latency_ms": null
+      "cached": false,
+      "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "serving_backend": "vLLM",
+      "last_call_latency_ms": 1447.5249169627205
     }
   },
-  "asr_http_check": {
-    "model": "tiny.en",
-    "mode": "live",
-    "seconds": 0.387,
-    "text": "Field report, Warren Wilson Roadbridge has collapsed, the road is impassable."
+  "state_summary": {
+    "incidents": [
+      {
+        "id": "SOS-001",
+        "reachable": false,
+        "access_status": null
+      },
+      {
+        "id": "SOS-002",
+        "reachable": false,
+        "access_status": null
+      },
+      {
+        "id": "SOS-003",
+        "reachable": false,
+        "access_status": null
+      },
+      {
+        "id": "SOS-004",
+        "reachable": false,
+        "access_status": null
+      },
+      {
+        "id": "SOS-005",
+        "reachable": false,
+        "access_status": null
+      },
+      {
+        "id": "SOS-006",
+        "reachable": true,
+        "access_status": null
+      },
+      {
+        "id": "SOS-007",
+        "reachable": true,
+        "access_status": null
+      },
+      {
+        "id": "SOS-008",
+        "reachable": true,
+        "access_status": null
+      },
+      {
+        "id": "SOS-009",
+        "reachable": true,
+        "access_status": null
+      }
+    ],
+    "closures": [
+      {
+        "id": "549633356:0:f",
+        "name": "Warren Wilson Road",
+        "highway": "tertiary",
+        "geometry": [
+          [
+            -82.42687,
+            35.6126
+          ],
+          [
+            -82.42717,
+            35.61256
+          ]
+        ],
+        "source": "simulation"
+      },
+      {
+        "id": "549633356:0:b",
+        "name": "Warren Wilson Road",
+        "highway": "tertiary",
+        "geometry": [
+          [
+            -82.42717,
+            35.61256
+          ],
+          [
+            -82.42687,
+            35.6126
+          ]
+        ],
+        "source": "simulation"
+      }
+    ]
   }
 }
