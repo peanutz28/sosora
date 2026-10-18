@@ -1,0 +1,16 @@
+Observed tool output excerpts, not a complete remote log:
+
+SSH to sosora-lora-f was not available after 3 attempts: ssh: connect to host 89.169.108.149 port 22: Connection refused
+
+Runtime hardware: NVIDIA H100 80GB HBM3, GPU-11f1de99-9627-81f3-3315-b87ceb04b809, 81559 MiB, driver 580.173.02
+Root disk: 116G total (despite --min-disk 200 request)
+
+Official image: nvcr.io/nvidia/nemo-automodel:26.08
+Pull attempt through brev exec:
+unexpected EOF
+exit status 1
+
+Stop attempt:
+rpc error: code = Internal desc = invalid environment status transition from "building" to "stopping"
+
+Fallback: brev delete sosora-lora-f accepted; deletion verification recorded separately.

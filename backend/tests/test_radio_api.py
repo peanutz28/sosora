@@ -113,3 +113,13 @@ def test_imagery_outage_records_error_but_still_blocks_bridge_safely(client):
     assert evidence['result'] == []
     client.post('/api/radio/demo/imagery', json={'offline': True})
     assert client.post('/api/radio/demo/seed').json()['state']['imagery']['offline'] is False
+
+
+def test_seed_exposes_new_generation_and_clears_previous_take(client):
+    before = client.post('/api/radio/demo/seed').json()['state']
+    after = client.post('/api/radio/demo/seed').json()['state']
+    assert after['reset_generation'] == before['reset_generation'] + 1
+    assert after['revision'] > before['revision']
+    assert len(after['incidents']) == 9
+    assert after['closures'] == []
+    assert not any(e['kind'].startswith('agent_') for e in after['events'])

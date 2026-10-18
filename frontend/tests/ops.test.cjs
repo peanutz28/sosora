@@ -198,3 +198,13 @@ test("trace badge uses only backend provenance and never invents latency", async
   assert.equal(agentTraceBadge([{ ...item, agent_runtime: { ...runtime, cached: true } }], false).label, "cached replay");
   assert.match(agentTraceBadge([{ ...item, agent_runtime: { ...runtime, model_id: "actual/other-id" } }], false).label, /^actual\/other-id/);
 });
+
+test('external seed drops prior take counts and tool history while normal snapshots retain streamed events', async () => {
+  const {reconcileEvents,accessCounters}=await modulePromise;
+  const old=[event(12,'agent_tool_result',{tool:'report_segment',result:{'bridge:f':{status:'blocked'}}}),event(13,'agent_tool_result',{tool:'recompute_reachability',result:{routes:{'SOS-001':{status:'unreachable'}}}})];
+  const seed=[event(1,'situation')];
+  const fresh=reconcileEvents(old,seed,true);
+  assert.deepEqual(fresh,seed);
+  assert.deepEqual(accessCounters({incidents:[{id:'SOS-001',reachable:true}],closures:[]},fresh),{cutOff:0,reachable:1,blocked:0});
+  assert.equal(reconcileEvents(old,seed,false).length,3);
+});

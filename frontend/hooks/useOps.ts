@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { API_BASE, api, fetchRoads, readState } from "@/lib/api";
-import { mergeEvents } from "@/lib/ops";
+import { mergeEvents, reconcileEvents } from "@/lib/ops";
 import type {
   AppState,
   Beacon,
@@ -38,13 +38,20 @@ export function useOps() {
   const inFlight = useRef(false);
   const seedEpoch = useRef(0);
   const revision = useRef(-1);
+  const resetGeneration = useRef<number | undefined>(undefined);
   const seedRef = useRef<DrillSeed | null>(null);
 
   const apply = useCallback((next: AppState) => {
     if (next.revision < revision.current) return;
+    const reset = next.reset_generation !== undefined && next.reset_generation !== resetGeneration.current;
+    resetGeneration.current = next.reset_generation;
+    if (reset) {
+      setAgentWorking(false);
+      assessmentComplete.current = false;
+    }
     revision.current = next.revision;
     setState((prev) => (!prev || next.revision > prev.revision ? next : prev));
-    setStream((prev) => mergeEvents(prev, next.events as OpsEvent[]));
+    setStream((prev) => reconcileEvents(prev, next.events as OpsEvent[], reset));
   }, []);
   const refresh = useCallback(async () => {
     apply(await api<AppState>("/api/state"));

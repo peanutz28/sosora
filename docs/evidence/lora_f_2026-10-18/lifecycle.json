@@ -1,0 +1,30 @@
+{
+  "checked_utc": "2026-10-18T08:42:49.566206+00:00",
+  "catalog": {
+    "workspaces": [
+      {
+        "name": "sosora-lightning-vllm",
+        "id": "m11k1tjxq",
+        "status": "RUNNING",
+        "build_status": "COMPLETED",
+        "shell_status": "READY",
+        "health_status": "HEALTHY",
+        "instance_type": "gpu-h100-sxm.1gpu-16vcpu-200gb",
+        "instance_kind": "gpu",
+        "gpu": "H100"
+      },
+      {
+        "name": "sosora-vision",
+        "id": "dg7rqu2sc",
+        "status": "STOPPED",
+        "build_status": "COMPLETED",
+        "shell_status": "NOT READY",
+        "health_status": "HEALTHY",
+        "instance_type": "g2-standard-4:nvidia-l4:1",
+        "instance_kind": "gpu",
+        "gpu": "L4"
+      }
+    ]
+  },
+  "optional_gpu_deleted_verified": true
+}

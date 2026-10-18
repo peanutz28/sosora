@@ -1,0 +1,7 @@
+PASS vLLM health
+PASS vLLM model id: nvidia/nemotron-3.5-lightning-30b-a3b
+PASS backend live mode and road graph
+PASS frontend HTTP
+PASS ASR ready tiny.en
+PASS WebSocket initial state
+PASS seed: 9 SOS reachable, 0 cut off

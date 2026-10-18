@@ -1,15 +1,44 @@
 # SOSora
 
+**The rescue map that keeps working when the towers and the roads don't.**
+
+**Video:** TODO — add the final submission video link.
+
 **Hosted demo:** [SOSora Command](https://sosora-command-demo.vercel.app) ·
 [Backend API](https://sosora-command-demo.onrender.com)
 ([health](https://sosora-command-demo.onrender.com/health)).
 Cached replay on free CPU; the first load may need a cold start.
 [Deployment and verification](docs/HOSTED_DEMO.md).
 
-**The rescue map that keeps working when the towers and the roads don't.**
+NVIDIA x Red Hat Small Models Hackathon (Raleigh, Oct 2026), built by two sisters (Team SOSora).
+**Track:** Tool-Calling. **Bounties:** Best Use of Nemotron Lightning · Best Model Improvement with NeMo Gym · Best Use of Red Hat vLLM.
 
-NVIDIA x Red Hat Small Models Hackathon (Raleigh, Oct 2026). Track: **tool-calling**.
-Built by two sisters in one weekend.
+**What it is:** one GPU box in a county's emergency command truck, no internet required. Radio reports, a Raspberry Pi
+water/voice beacon and an offline-first SOS app feed **NVIDIA Nemotron 3.5 Lightning**, served with **vLLM**, which calls
+six tools over the real OpenStreetMap road graph and shows dispatchers who can still be reached. Code, not the model,
+decides what changes on the map.
+
+| Result (all simulated scenarios) | Measurement | Evidence |
+|---|---|---|
+| **NeMo Gym, sealed fresh exam 2** (42 unseen scenarios × 3 runs) | Baseline **31%** (39/126) → rewritten system prompt **71%** (90/126) → + argument repair **98%** (123/126); one change at a time | [GYM_RESULTS.md](docs/GYM_RESULTS.md) · [click-through of every attempt](docs/gym/index.html) |
+| **vLLM agent step latency** | Hosted API 24–55 s per agent step → **0.85 s** on vLLM (one H100, BF16) | [VLLM_RESULTS.md](docs/VLLM_RESULTS.md) |
+| **vLLM surge** | 100 simultaneous radio reports cleared in **20.6 s** vs 84.8 s one at a time (100/100 ok) | [surge.json](docs/evidence/vllm_2026-10-17/surge.json) |
+| **Live reliability** (30 runs, fresh seed each) | Right bridge + exact five cut off **20/20**; ambiguous reports held for a human **10/10** (the model attempted a closure 9/10 times; code rejected all 9) | [summary.json](docs/evidence/reliability_2026-10-18/summary.json) |
+| **Parameter budget** | Everything served (Nemotron with all experts + MTP, SegFormer, Whisper tiny.en) = **32.95B of 33B** | [PARAM_BUDGET.md](docs/PARAM_BUDGET.md) |
+| **Vision hub layer** | Sealed 38-tile test: served v2 F1 0.31; retrained V3 0.27, so not promoted. Imagery is treated as a clue, never proof | [V3_RESULTS.md](docs/ml/V3_RESULTS.md) |
+
+Notes: Gym gains come from instructions and an audited argument-repair layer (string `"None"` → null, 36 edits), not
+weight training; the remaining three failures are reasoning errors. Served with vLLM v0.27.1 (upstream open-source vLLM).
+Evidence notebook: [`notebooks/SOSora_Evidence.ipynb`](notebooks/SOSora_Evidence.ipynb).
+
+## Features
+
+- Beacon voice and water-sensor reports, durable retry outbox and offline SOS queue.
+- Nemotron report parsing and tool calls grounded in real Swannanoa road geometry.
+- Code-enforced road trust rules, ambiguity review and recoverable imagery outage drill.
+- Graph reachability and a streamed command map showing affected simulated incidents.
+- Key-free cached demo with real local graph/tool execution; live vLLM and ASR hooks.
+- Reproducible NeMo Gym evaluations and fine-tuned aerial flood evidence.
 
 > New contributor or AI agent? Read [`docs/CONTEXT.md`](docs/CONTEXT.md) first. It is the
 > living source of truth for status, decisions and next steps.
@@ -56,7 +85,7 @@ avoided until verified.
 | Radio / Beacon intake, hero flow | `backend/app/radio_api.py` | FastAPI |
 | Tool-calling agent + trust rule | `backend/app/agent.py` | Nemotron 3.5 Lightning, OpenAI-compatible tool calls |
 | Radio parser | `ml/inference/radio.py` | Nemotron 3.5 Lightning, JSON mode, grounding check |
-| Speech to text hook | `backend/app/asr.py` | NVIDIA ASR via OpenAI-compatible endpoint |
+| Speech to text hook | `backend/app/asr.py` | OpenAI-compatible endpoint; local tiny.en in the measured setup |
 | Routing + reachability | `backend/app/routing.py` | NetworkX on the real OSM graph (43,590 nodes / 86,254 edges) |
 | Agent evaluation | `ml/nemo_gym/` | NVIDIA NeMo Gym resource server + verifier |
 | Aerial flood evidence | `ml/vision/` | Fine-tuned NVIDIA SegFormer-B0 |
@@ -72,37 +101,13 @@ avoided until verified.
 - **NeMo Gym** gives fixed tasks and a verifier, so we can measure whether the agent improves.
 - **Small models** are the point: the state's own review asks for 72 hours with no comms.
 
-## Results (measured; see evidence folders)
+## Results and limitations
 
-**NeMo Gym, clean Brev vLLM runs:** frozen simulated tasks and policies, using the
-pinned tools/verifier. No weights changed and no RL was performed.
-
-| Split | Policy | Pass / requested | Provider errors | Mean recorded request ms |
-|---|---|---:|---:|---:|
-| validation | baseline | 8/14 | 0 | 427.4 |
-| validation | evidence_first | 2/14 | 0 | 532.1 |
-| test | baseline | 7/14 | 0 | 403.4 |
-| test | evidence_first | 4/14 | 0 | 520.6 |
-
-Baseline outperformed the frozen evidence-first prompt on both splits. These scores
-do **not** establish real-world rescue safety or an evidence-first improvement.
-The earlier hosted runs had transport failures and are not the headline policy result.
-[Full comparison, methodology and caveats](docs/GYM_RESULTS.md).
-
-**Live vLLM speed:** earlier hosted API observations were **24–55 seconds per agent
-turn**. On the NVIDIA H100 vLLM deployment, the final five live hero runs all passed:
-**mean agent call 0.852 seconds** across 30 calls and **mean hero API run 12.442 seconds**,
-including parsing and graph work. Gym request means above use a different task protocol;
-these serving configurations are not a controlled hardware-only comparison.
-[Hero measurements](docs/VLLM_RESULTS.md#final-hero-measurements) ·
-[Earlier hosted observations](docs/briefs/BREV_VLLM_CODEX.md).
-
-- **Vision fine-tune** (SegFormer-B0, 3.7M params), frozen cross-event check on 6 unseen
-  Germany flood tiles: F1 0.23 -> 0.47 versus the same model before fine-tuning.
-  [`docs/ml/FROZEN_EXTERNAL_EVALUATION.md`](docs/ml/FROZEN_EXTERNAL_EVALUATION.md)
-- **Hero scenario** on real Swannanoa roads: the eastern Warren Wilson Road bridge is the only
-  crossing in our map area for the neighborhoods north of it; blocking it makes 5 of 9 simulated
-  SOS incidents unreachable. Covered by `backend/tests/test_radio_api.py`.
+The headline table above uses saved evidence. [Gym methodology and historical
+comparisons](docs/GYM_RESULTS.md), [live serving measurements](docs/VLLM_RESULTS.md),
+and [vision evaluation](docs/ml/FROZEN_EXTERNAL_EVALUATION.md) retain the full
+protocols and limitations. Experimental V3 lost its sealed comparison and is not
+served; see [V3 results](docs/ml/V3_RESULTS.md).
 
 ## What is real and what is simulated
 Real: OpenStreetMap / NCDOT roads, the routing graph, Nemotron model calls, NeMo Gym evals,
@@ -136,21 +141,68 @@ covers the Beacon, ambiguity/confirmation, DOT and sensor paths. A production bu
 beside the dev server with `SOSORA_NEXT_DIST_DIR=.next-build npm run build`.
 
 ## Run it
+
+Prerequisites: Git, **Python 3.12** (`python3.12`), Node.js and npm (verified with
+Node 25.8.2 / npm 11.11.1). Dependency installation needs internet access. Cached
+parsing/agent replay needs no API keys or ML service; map tiles need network/cache.
+Run each block in a separate terminal, starting from the repository root.
+
 ```bash
-# Backend (DEMO_MODE=true needs no API keys; uses cached parses and a cached agent trace)
-cd backend && python -m venv .venv && .venv/bin/pip install -r requirements.txt
-DEMO_MODE=true .venv/bin/uvicorn app.main:app --port 8000
-# Dashboard
-cd frontend && npm install && npm run dev        # http://localhost:3000
-# Try the hero flow
-curl -X POST localhost:8000/api/radio/demo/seed
-curl -X POST localhost:8000/api/radio -H 'content-type: application/json' \
-  -d '{"message":"<hero_message from the seed response>","source_type":"beacon","lon":-82.42702,"lat":35.61258}'
+# First clone, then open the checkout in each terminal below.
+git clone https://github.com/peanutz28/sosora.git
+cd sosora
+# Before integration is merged into main:
+git checkout integration
 ```
+
+Terminal 1 — backend (leave running):
+
+```bash
+cd backend
+python3.12 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+DEMO_MODE=true .venv/bin/uvicorn app.main:app --port 8000
+```
+
+Terminal 2 — command dashboard (leave running):
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open [localhost:3000](http://localhost:3000) and select **Run demo**. The frontend
+uses `http://127.0.0.1:8000` by default. If either port is occupied, stop that server
+or choose another port: backend `--port 18000`; frontend
+`NEXT_PUBLIC_APP_API_URL=http://127.0.0.1:18000 npm run dev -- --port 13000`.
+
+Terminal 3 — verify the hero flow using the actual seed message:
+
+```bash
+curl --fail http://127.0.0.1:8000/health
+curl --fail -X POST http://127.0.0.1:8000/api/radio/demo/seed -o /tmp/sosora-seed.json
+python3.12 - <<'PYCODE' > /tmp/sosora-radio.json
+import json
+with open('/tmp/sosora-seed.json') as f:
+    seed = json.load(f)
+print(json.dumps(dict(message=seed['hero_message'], source_type='beacon',
+                      lon=-82.42702, lat=35.61258)))
+PYCODE
+curl --fail -X POST http://127.0.0.1:8000/api/radio \
+  -H 'content-type: application/json' --data-binary @/tmp/sosora-radio.json
+```
+
+Expected: nine simulated incidents seeded; `assessment.affected_incident_ids`
+contains SOS-001 through SOS-005. Seeding resets the drill. Stop servers with Ctrl-C.
+
+Tests from the repository root:
+`(cd backend && .venv/bin/python -m pytest -q)` and
+`node --test frontend/tests/*.test.cjs`.
+[Fresh-clone verification and environment notes](docs/QUICKSTART_VERIFICATION.md).
+
 Live models: set `DEMO_MODE=false` and `NVIDIA_API_KEY` (hosted) or `LLM_BASE_URL` /
 `LLM_MODEL` / `LLM_API_KEY` (your vLLM server). ML service: see `docs/ml/` (Python 3.12).
-
-Tests: `cd backend && pytest -q`.
 
 ## Repository map
 `backend/` app API, agent, radio + beacon endpoints · `ml/` model service, Gym, vision ·
@@ -166,7 +218,7 @@ Two additional applications live beside the agent stack. They do not replace `ba
 | Operations dashboard | `dashboard/` | FastAPI plus a Leaflet map for Swannanoa. SOS incidents, road reports, access analysis, the Helene best track, and current weather. |
 | Native iOS app | `ios-app/` | SwiftUI field app. Residents queue an SOS offline. Operators can review incidents and send a road report. |
 
-The iOS app talks only to the operations dashboard, not to the Next.js app in `frontend/`. Its default base URL is `http://127.0.0.1:3000`, which is also the port in `dashboard/run.py`. Run one of those two servers at a time: the Next.js dashboard in the section above also uses port 3000.
+The iOS app supports the Command mobile adapters; its current default is `http://192.168.68.80:8000`. Set the server URL for your own machine in Sync settings; see [iOS setup](ios-app/README.md). The separate operations dashboard uses port 3000, so run it separately from the Next.js dashboard.
 
 Shared HTTP contract:
 

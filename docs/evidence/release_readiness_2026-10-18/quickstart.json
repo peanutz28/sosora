@@ -1,0 +1,33 @@
+{
+  "checked_at_utc": "2026-10-18T12:00:03.158566+00:00",
+  "clone": "/private/tmp/sosora-quickstart-resume-20261018",
+  "head": "bc5184f2d001de28e0611c1c7f37f514d508d5b8",
+  "health": {
+    "status": "ok",
+    "demo_mode": true,
+    "graph_nodes": 43590,
+    "graph_edges": 86254,
+    "ml": {
+      "mode": "mock",
+      "detail": "Demo mode is on. The model service is not called."
+    }
+  },
+  "seeded": 9,
+  "affected_incident_ids": [
+    "SOS-001",
+    "SOS-002",
+    "SOS-003",
+    "SOS-004",
+    "SOS-005"
+  ],
+  "simulated": true,
+  "backend_port": 18000,
+  "frontend_port": 13000,
+  "frontend_http_status": 200,
+  "backend_tests_passed": 41,
+  "frontend_tests_passed": 16,
+  "python": "3.12",
+  "node": "25.8.2",
+  "npm": "11.11.1",
+  "revised_readme_curl_commands_passed": true
+}

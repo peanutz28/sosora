@@ -41,3 +41,9 @@ ios-app/**/xcuserdata/
 
 # Separate production build output while the dashboard dev server is running
 frontend/.next-build/
+
+# Isolated filming frontend cache
+frontend/.next-filming/
+
+# SQLite rollback/WAL sidecars
+backend/data/*.db-*

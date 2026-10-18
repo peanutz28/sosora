@@ -1,0 +1,45 @@
+{
+  "status": "stopped_at_feasibility_gate",
+  "started_utc": "2026-10-18T08:29:12Z",
+  "feasibility_deadline_utc": "2026-10-18T08:59:12Z",
+  "guard_stop_utc": "2026-10-18T08:57:00Z",
+  "hard_stop_utc": "2026-10-18T13:00:00Z",
+  "instance": "sosora-lora-f",
+  "instance_id": "7va41egen",
+  "gpu": "H100 80GB",
+  "compute_usd_per_hour": 5.4,
+  "disk_usd_per_gb_month": 0.12264,
+  "quoted_before_launch": true,
+  "protected_instance": "sosora-lightning-vllm",
+  "protected_instance_id": "m11k1tjxq",
+  "training_path": "NVIDIA NeMo AutoModel 26.08, single GPU LoRA recipe; H100 fit not yet confirmed",
+  "vllm_version": "0.27.1",
+  "vllm_static_support": true,
+  "vllm_runtime_support_confirmed": false,
+  "single_gpu_training_confirmed": false,
+  "test_previously_used": true,
+  "evaluation_if_feasible": {
+    "arms": [
+      "base+grounded_v2",
+      "LoRA+grounded_v2"
+    ],
+    "repetitions_per_split": 3,
+    "split_order": [
+      "validation",
+      "test"
+    ],
+    "same_ablation_runner_sampling_tools_verifier": true
+  },
+  "data_if_feasible": "New Gym-generated synthetic scenarios only, new seeds, disjoint from held-out rows; grounded_v2 trajectories retained only on verifier pass",
+  "claim_gate": "No README/video claim unless improvement on both validation and test",
+  "failure_class": "infrastructure_setup_failure",
+  "failure": "AutoModel image pull through brev exec ended unexpected EOF, exit status 1; preceding startup SSH reset. A direct SSH pull retry had not completed when experiment was terminated.",
+  "training_steps": 0,
+  "adapters_created": 0,
+  "new_training_scenarios": 0,
+  "verifier_filtered_trajectories": 0,
+  "evaluation_runs": 0,
+  "readme_video_claim_added": false,
+  "final_lifecycle": "deleted_verified",
+  "termination_verified_utc": "2026-10-18T08:42:49.566206+00:00"
+}

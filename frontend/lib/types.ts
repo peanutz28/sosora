@@ -107,6 +107,7 @@ export type ImageryLayer = {
 };
 
 export type AppState = {
+  reset_generation?: number;
   revision: number;
   scenario: {
     id: string;

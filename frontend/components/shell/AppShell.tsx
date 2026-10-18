@@ -67,15 +67,19 @@ export function AppShell() {
 
   useEffect(() => {
     const key = (event: KeyboardEvent) => {
-      if (event.repeat || event.metaKey || event.ctrlKey || event.altKey || event.key.toLowerCase() !== "p") return;
+      if (event.repeat || event.metaKey || event.ctrlKey || event.altKey || !["p", "a"].includes(event.key.toLowerCase())) return;
       if (event.target instanceof HTMLElement && (event.target.isContentEditable || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName))) return;
       event.preventDefault();
+      if (event.key.toLowerCase() === "a") {
+        if (!busy && !agentWorking) void acknowledge();
+        return;
+      }
       setPresentation(current => !current);
       setIntelOpen(false);
     };
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
-  }, []);
+  }, [acknowledge, busy, agentWorking]);
 
   useEffect(() => {
     const onResize = () => setWidth(window.innerWidth);

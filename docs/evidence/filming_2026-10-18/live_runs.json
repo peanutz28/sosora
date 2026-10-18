@@ -1,0 +1,574 @@
+[
+  {
+    "take": 1,
+    "beats": [
+      {
+        "beat": "beacon",
+        "seconds": 16.011,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "Field report from Engine 4 (beacon, credible) states the bridge on Warren Wilson Road is gone, river took it. Three families on far side cannot cross. After find_segments resolved two segments (549633356:0:b and 549633356:0:f) matching the road name and location, get_segment_status showed both unverified. Imagery evidence was empty. report_segment recorded the impassable claim, updating both segments to status \"blocked\". recompute_reachability shows five SOS incidents (SOS-001 through SOS-005) just lost road access; all other incidents remain reachable.",
+          "affected_incident_ids": [
+            "SOS-001",
+            "SOS-002",
+            "SOS-003",
+            "SOS-004",
+            "SOS-005"
+          ],
+          "recommended_actions": [
+            "Dispatch rescue units to SOS-001 through SOS-005 via alternate routes; verify bridge status with official sources if possible.",
+            "Prioritize airlift or temporary crossing for the three families reported on the far side of the bridge.",
+            "Consider marking the bridge segments as blocked until official repair confirmation."
+          ],
+          "confidence": 0.92,
+          "needs_human_review": false,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1655.652750050649
+        },
+        "tool_errors": []
+      },
+      {
+        "beat": "dot",
+        "seconds": 11.382,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "Radio report claims Warren Wilson Road bridge is open and clear. However, two segments of Warren Wilson Road (549633356:0:b and 549633356:0:f) are currently marked blocked based on a credible earlier beacon report of bridge loss. The DOT crew report has not been applied because the system requires human review for location resolution (four candidate segments across two distinct locations). Imagery evidence is empty. Due to the conflicting claims and the existing blocked status from a credible source, the road cannot be reopened without human review.",
+          "affected_incident_ids": [],
+          "recommended_actions": [
+            "Request human review to resolve which Warren Wilson Road segment the DOT report refers to.",
+            "Verify bridge condition on the ground before reopening any segment.",
+            "Re-evaluate reachability after human review resolves segment identity."
+          ],
+          "confidence": 0.65,
+          "needs_human_review": true,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1369.0420419443399
+        },
+        "tool_errors": [
+          {
+            "error": {
+              "type": "ValueError",
+              "message": "location unresolved; human review required",
+              "recoverable": true
+            }
+          }
+        ]
+      },
+      {
+        "beat": "ambiguity",
+        "seconds": 8.513,
+        "cut_off": 0,
+        "reachable": 9,
+        "assessment": {
+          "summary": "Report of bridge loss on Warren Wilson Road (bridge_only). Four segment candidates across two locations matched; needs_human_review was true, so human review requested. After reporting claim, tool returned location unresolved error, indicating the report cannot be automatically assigned to a specific segment without human clarification. Reachability recomputation shows all SOS incidents currently still have road access (no newly unreachable incidents). No imagery evidence available.",
+          "affected_incident_ids": [],
+          "recommended_actions": [
+            "Request human review to resolve which Warren Wilson Road segment the report pertains to.",
+            "Coordinate with Engine 4 to verify exact location of bridge failure and confirm families' status.",
+            "Once segment is resolved, re\u2011report impassable claim and recompute reachability."
+          ],
+          "confidence": 0.6,
+          "needs_human_review": true,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1120.3727499814704
+        },
+        "tool_errors": [
+          {
+            "error": {
+              "type": "ValueError",
+              "message": "location unresolved; human review required",
+              "recoverable": true
+            }
+          }
+        ]
+      },
+      {
+        "beat": "confirm",
+        "seconds": 7.587,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "A credible responder radio report from Engine 4 states the bridge on Warren Wilson Road (bridge\u2011only) was destroyed by river flow. The report was recorded for segments 549633356:0:b and 549633356:0:f, both now marked blocked. Reachability recomputation shows five SOS incidents (SOS\u2011001 through SOS\u2011005) have just lost road access.",
+          "affected_incident_ids": [
+            "SOS-001",
+            "SOS-002",
+            "SOS-003",
+            "SOS-004",
+            "SOS-005"
+          ],
+          "recommended_actions": [
+            "Dispatch emergency bridging or alternative route assessment for the affected families",
+            "Prioritize rescue routes to SOS\u2011001 through SOS\u2011005",
+            "Consider aerial delivery of supplies if ground route remains blocked"
+          ],
+          "confidence": 0.92,
+          "needs_human_review": false,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1372.3780000582337
+        },
+        "tool_errors": [
+          {
+            "error": {
+              "type": "ValueError",
+              "message": "location unresolved; human review required",
+              "recoverable": true
+            }
+          }
+        ]
+      },
+      {
+        "beat": "water",
+        "seconds": 8.399,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "Report of impassable condition at Warren Wilson Road bridge (Beacon beacon-ww-bridge: water level 45 cm, threshold 30 cm). The bridge segment (549633356:0:b and 549633356:0:f) is now marked blocked based on a credible beacon sensor report. Reachability recomputation shows five SOS incidents (SOS-001 through SOS-005) just lost road access; three other incidents (SOS-006\u2013SOS-009) remain reachable.",
+          "affected_incident_ids": [
+            "SOS-001",
+            "SOS-002",
+            "SOS-003",
+            "SOS-004",
+            "SOS-005"
+          ],
+          "recommended_actions": [
+            "Dispatch ground verification to Warren Wilson Road bridge",
+            "Consider alternate routing for SOS-001 to SOS-005",
+            "Monitor beacon sensor for water-level changes",
+            "If bridge clearance is restored, reopen segments and recompute reachability"
+          ],
+          "confidence": 0.92,
+          "needs_human_review": false,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1452.637291047722
+        },
+        "tool_errors": []
+      },
+      {
+        "beat": "imagery",
+        "seconds": 0.328,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": null,
+        "runtime": null,
+        "tool_errors": []
+      },
+      {
+        "beat": "acknowledge",
+        "seconds": 0.178,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": null,
+        "runtime": null,
+        "tool_errors": []
+      }
+    ],
+    "passed": true
+  },
+  {
+    "take": 2,
+    "beats": [
+      {
+        "beat": "beacon",
+        "seconds": 8.877,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "Report of bridge loss on Warren Wilson Road (bridge_only=true). Field beacon Engine 4 claimed impassable due to river taking the bridge; three families stranded far side. Both resolved segments 549633356:0:b and 549633356:0:f status set to blocked based on credible beacon report. Reachability recomputation shows five SOS incidents (SOS-001 through SOS-005) just lost road access; routes now unreachable.",
+          "affected_incident_ids": [
+            "SOS-001",
+            "SOS-002",
+            "SOS-003",
+            "SOS-004",
+            "SOS-005"
+          ],
+          "recommended_actions": [
+            "Dispatch alternative routes or airlift for stranded families on far side of Warren Wilson Road bridge",
+            "Prioritize rescue routes for SOS-001 to SOS-005",
+            "Monitor for official verification or bridge repair updates",
+            "Consider temporary ferry or aerial evacuation given high urgency and verified credible beacon"
+          ],
+          "confidence": 0.92,
+          "needs_human_review": false,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1404.4016250409186
+        },
+        "tool_errors": []
+      },
+      {
+        "beat": "dot",
+        "seconds": 7.361,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "Report claims Warren Wilson Road bridge is open, but existing beacon reports mark both candidate segments (275005074:0:b, 275005074:0:f, 549633356:0:b, 549633356:0:f) as blocked. The DOT crew report is credible but not verified, and no imagery is available. Current road graph shows the bridge segments as blocked, preventing access for incidents SOS-001 through SOS-005. The new report does not override the existing blocked status.",
+          "affected_incident_ids": [],
+          "recommended_actions": [
+            "Treat the bridge as blocked until a verified official source confirms it is open.",
+            "Prioritize a verified DOT or engineering inspection report to update segment status."
+          ],
+          "confidence": 0.78,
+          "needs_human_review": true,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1416.7836250271648
+        },
+        "tool_errors": []
+      },
+      {
+        "beat": "ambiguity",
+        "seconds": 7.948,
+        "cut_off": 0,
+        "reachable": 9,
+        "assessment": {
+          "summary": "Simulated radio report from Engine 4 states bridge on Warren Wilson Road is gone; river took it, three families stranded far side. find_segments returned four candidates across two distinct locations with needs_human_review=true; all segments currently unverified; no imagery available. report_segment failed with 'location unresolved; human review required', so claim could not be recorded automatically. recompute_reachability shows all SOS incidents still reachable (no new unreachable incidents). No road status change confirmed in system.",
+          "affected_incident_ids": [],
+          "recommended_actions": [
+            "Request human review to resolve which Warren Wilson Road segment the report refers to and record the impassable claim.",
+            "Prioritise locating the exact bridge location and confirming imagery or alternate routes for the three families."
+          ],
+          "confidence": 0.45,
+          "needs_human_review": true,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1150.9409170830622
+        },
+        "tool_errors": [
+          {
+            "error": {
+              "type": "ValueError",
+              "message": "location unresolved; human review required",
+              "recoverable": true
+            }
+          }
+        ]
+      },
+      {
+        "beat": "confirm",
+        "seconds": 7.895,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "Field radio from Engine 4 (credible, operator\u2011confirmed location) reports the bridge on Warren Wilson Road washed out. find_segments resolved two bridge\u2011only segments (549633356:0:b and 549633356:0:f) at the reported coordinates. After reporting the impassable claim, both segments status changed to blocked. Reachability recomputation shows five SOS incidents (SOS\u2011001 through SOS\u2011005) just lost road access; all other incidents remain reachable.",
+          "affected_incident_ids": [
+            "SOS-001",
+            "SOS-002",
+            "SOS-003",
+            "SOS-004",
+            "SOS-005"
+          ],
+          "recommended_actions": [
+            "Dispatch alternative routes or air\u2011lift for the five newly unreachable incidents.",
+            "Coordinate with Engine 4 to verify family locations on the far side of the washed\u2011out bridge.",
+            "Prioritize bridge repair or temporary ferry setup on Warren Wilson Road."
+          ],
+          "confidence": 0.92,
+          "needs_human_review": false,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1436.247167061083
+        },
+        "tool_errors": [
+          {
+            "error": {
+              "type": "ValueError",
+              "message": "location unresolved; human review required",
+              "recoverable": true
+            }
+          }
+        ]
+      },
+      {
+        "beat": "water",
+        "seconds": 8.227,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "A credible beacon sensor report (45 cm water level at Warren Wilson Road bridge, Swannanoa River, threshold 30 cm) has been recorded. Both bridge segments (549633356:0:b and 549633356:0:f) are now marked blocked. Reachability recomputation shows five SOS incidents (SOS-001 through SOS-005) just lost road access, while SOS-006 through SOS-009 remain reachable.",
+          "affected_incident_ids": [
+            "SOS-001",
+            "SOS-002",
+            "SOS-003",
+            "SOS-004",
+            "SOS-005"
+          ],
+          "recommended_actions": [
+            "Dispatch emergency teams to SOS-001 through SOS-005 via alternative routes.",
+            "Monitor water levels and update road status when conditions change.",
+            "Verify alternate routing for critical supply lines."
+          ],
+          "confidence": 0.92,
+          "needs_human_review": false,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1339.315416989848
+        },
+        "tool_errors": []
+      },
+      {
+        "beat": "imagery",
+        "seconds": 0.365,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": null,
+        "runtime": null,
+        "tool_errors": []
+      },
+      {
+        "beat": "acknowledge",
+        "seconds": 0.154,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": null,
+        "runtime": null,
+        "tool_errors": []
+      }
+    ],
+    "passed": true
+  },
+  {
+    "take": 3,
+    "beats": [
+      {
+        "beat": "beacon",
+        "seconds": 8.674,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "Field report from Engine 4 (beacon, credible) states bridge on Warren Wilson Road is gone, river took it; three families on far side, cannot cross. The bridge-only segment Warren Wilson Road (ids 549633356:0:b and 549633356:0:f) was resolved as impassable and now status is blocked. Reachability recomputation shows five SOS incidents (SOS-001 through SOS-005) just lost road access; they are now unreachable. No imagery available. Bridge is the only crossing; without it the segment is blocked.",
+          "affected_incident_ids": [
+            "SOS-001",
+            "SOS-002",
+            "SOS-003",
+            "SOS-004",
+            "SOS-005"
+          ],
+          "recommended_actions": [
+            "Dispatch alternative route or air asset to SOS-001 through SOS-005",
+            "Prioritize bridge repair or temporary ferry for Warren Wilson Road",
+            "Notify families on far side of blocked crossing",
+            "Validate bridge status with official engineering once conditions permit"
+          ],
+          "confidence": 0.92,
+          "needs_human_review": false,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1529.368209070526
+        },
+        "tool_errors": []
+      },
+      {
+        "beat": "dot",
+        "seconds": 9.427,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "Two distinct Warren Wilson Road bridge locations exist. At location 549633356, a credible beacon report from Engine 4 states the bridge is gone and the road is impassable; the segment status is already blocked. At location 275005074, a DOT radio claims the bridge is open, but the system requires human review because the location is unresolved and the claim conflicts with the existing blocked status at the other location. Imagery evidence is empty for both sets of segments. Multiple SOS incidents are currently unreachable across the network.",
+          "affected_incident_ids": [],
+          "recommended_actions": [
+            "Request human review to resolve which Warren Wilson Road bridge location the radio report applies to.",
+            "Verify road status at both bridge locations before assigning reachability.",
+            "Update segment claims with verified sources only."
+          ],
+          "confidence": 0.7,
+          "needs_human_review": true,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1470.3636670019478
+        },
+        "tool_errors": [
+          {
+            "error": {
+              "type": "ValueError",
+              "message": "location unresolved; human review required",
+              "recoverable": true
+            }
+          },
+          {
+            "error": {
+              "type": "ValueError",
+              "message": "location unresolved; human review required",
+              "recoverable": true
+            }
+          }
+        ]
+      },
+      {
+        "beat": "ambiguity",
+        "seconds": 7.689,
+        "cut_off": 0,
+        "reachable": 9,
+        "assessment": {
+          "summary": "Four road segments for Warren Wilson Road (two locations) were identified as bridge-only. The reported impassable claim from Engine 4 (credible radio report) could not be recorded because the segment locations could not be resolved to a single definite road, triggering a 'location unresolved; human review required' error. No reachability change was detected for the eight SOS incidents examined.",
+          "affected_incident_ids": [],
+          "recommended_actions": [
+            "Request human review to disambiguate which Warren Wilson Road bridge segment the report pertains to.",
+            "Obtain additional location details (near_lon/near_lat) from the responder to resolve segment ambiguity."
+          ],
+          "confidence": 0.65,
+          "needs_human_review": true,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1053.2852499745786
+        },
+        "tool_errors": [
+          {
+            "error": {
+              "type": "ValueError",
+              "message": "location unresolved; human review required",
+              "recoverable": true
+            }
+          }
+        ]
+      },
+      {
+        "beat": "confirm",
+        "seconds": 11.563,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "Radio report from Engine 4 (credible, operator-confirmed location) states the bridge on Warren Wilson Road is gone, river took it, three families on far side, cannot cross. The report was matched to two segments (549633356:0:b and 549633356:0:f) of Warren Wilson Road near -82.42702, 35.61258. Both segments status updated to blocked after recording the impassable claim. Reachability recomputation shows five SOS incidents (SOS-001 through SOS-005) newly unreachable; routes to SOS-006 onward remain OK.",
+          "affected_incident_ids": [
+            "SOS-001",
+            "SOS-002",
+            "SOS-003",
+            "SOS-004",
+            "SOS-005"
+          ],
+          "recommended_actions": [
+            "Dispatch rescue teams to SOS-001 through SOS-005 to assess need for airlift or alternate routing.",
+            "Coordinate with engineering to evaluate temporary bridge or ferry options for Warren Wilson Road.",
+            "Monitor for any official verification or additional reports that could change status."
+          ],
+          "confidence": 0.92,
+          "needs_human_review": false,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1652.0630409941077
+        },
+        "tool_errors": [
+          {
+            "error": {
+              "type": "ValueError",
+              "message": "location unresolved; human review required",
+              "recoverable": true
+            }
+          }
+        ]
+      },
+      {
+        "beat": "water",
+        "seconds": 9.807,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": {
+          "summary": "A credible beacon sensor report (45 cm water level at Warren Wilson Road bridge, Swannanoa River, threshold 30 cm) was parsed and matched to two road segments (549633356:0:b and 549633356:0:f) of Warren Wilson Road, a bridge\u2011only route. Both segments are now marked blocked. Reachability recomputation shows that five SOS incidents (SOS-001 through SOS-005) have just lost road access, while SOS-006 to SOS-009 remain reachable.",
+          "affected_incident_ids": [
+            "SOS-001",
+            "SOS-002",
+            "SOS-003",
+            "SOS-004",
+            "SOS-005"
+          ],
+          "recommended_actions": [
+            "Deploy alternative routes or air\u2011lift resources to SOS-001 through SOS-005.",
+            "Verify bridge condition on the ground before any traffic restoration.",
+            "Monitor water levels; if they fall below 30 cm, consider re\u2011opening after official verification."
+          ],
+          "confidence": 0.92,
+          "needs_human_review": false,
+          "simulated": false
+        },
+        "runtime": {
+          "cached": false,
+          "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "serving_backend": "vLLM",
+          "last_call_latency_ms": 1494.601291953586
+        },
+        "tool_errors": []
+      },
+      {
+        "beat": "imagery",
+        "seconds": 0.314,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": null,
+        "runtime": null,
+        "tool_errors": []
+      },
+      {
+        "beat": "acknowledge",
+        "seconds": 0.148,
+        "cut_off": 5,
+        "reachable": 4,
+        "assessment": null,
+        "runtime": null,
+        "tool_errors": []
+      }
+    ],
+    "passed": true
+  }
+]

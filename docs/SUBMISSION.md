@@ -51,14 +51,13 @@ accounting and the local ASR checkpoint hash are in [PARAM_BUDGET.md](PARAM_BUDG
 
 NVIDIA use is concrete: Nemotron inference on a Brev H100, plus the genuine pinned
 NeMo Gym resource server and verifier for tool-use evaluation. Serving uses the
-official upstream `vllm/vllm-openai:v0.27.1` image. The OpenAI-compatible adapter is
-named `redhat_vllm`; **a Red Hat-distributed image, OpenShift deployment, and Red Hat
-bounty eligibility are not established by this deployment**. We claim measured
-vLLM integration, not verified Red Hat distribution use.
+official upstream `vllm/vllm-openai:v0.27.1` image (open-source vLLM) on one H100, with the
+native tool-call parser, the Nemotron reasoning parser, prefix caching, async scheduling and
+up to 32 concurrent sequences. vLLM is the serving layer for every Nemotron call in the system.
 
 ## Measured results
 
-### Fresh live tool-calling exam
+### Fresh live tool-calling exam 1 — prompt/tool policy
 
 The 42-case `test_fresh` split and three policy files were committed before any
 live model run (seal commit `5b80c79`). Each policy ran three times in rotated
@@ -89,9 +88,9 @@ Per-family counts are passes / evaluated attempts across three runs (planned18 e
 Baseline averaged **35.7%**, system-prompt-only **70.6%**, and grounded_v2 **71.4%**.
 The clearer prompt explains nearly all the observed gain; adding tool-description
 changes yielded only one additional pass across 126 attempts versus prompt-only.
-Missing-location and tool-failure cases still fail in every repetition; these
-results do not establish reliable recovery. This is prompt/tool-policy improvement,
-not a Nemotron weight update or RL.
+With the adapter off in this first exam, missing-location and tool-failure cases
+failed in every repetition; these results do not establish reliable recovery. This
+is prompt/tool-policy improvement, not a Nemotron weight update or RL.
 
 The split uses larger synthetic graphs (13–18 nodes) in the same seven families,
 not a new real-world task distribution. Two size-17 error-handling topologies had
@@ -100,6 +99,58 @@ model exam. The original test split had already been used in earlier experiments
 [Raw results and summary](../ml/nemo_gym/evidence/test_fresh_2026-10-18/summary.md)
 and [integrity receipt](../ml/nemo_gym/evidence/test_fresh_2026-10-18/integrity_check.json)
 record the sealed provenance and complete outcomes.
+
+
+### Fresh live tool-calling exam 2 — compatibility repair, not RL
+
+The second sealed split, `test_fresh2`, contains **42 synthetic cases**: all seven
+families at node counts **19–24**. Commit `b4b4cc6` sealed the data, hash, three arms
+and zero-model-call opening marker before evaluation. All four earlier split hashes
+remain unchanged. The `grounded_v2` arms use identical policy bytes; only the third
+enables the existing audited **nullable-null-v1** argument adapter, with no edits
+to the adapter or verifier. Sampling and serving settings match the first fresh exam.
+
+Three repetitions per arm ran in rotated order. The authorized live relaunch
+completed all **378 scenario attempts** at **08:18:41 AM ET on October 18**, using
+**2,227 recorded model calls**. One baseline `RemoteProtocolError` remains counted
+in its 42-case denominator and was not retried; neither grounded arm had provider errors.
+
+| Arm | Passes /42 | Mean /42 | Range /42 |
+|---|---|---:|---|
+| baseline | 15, 11, 13 | 13.00 | 11–15 |
+| grounded_v2 | 30, 30, 30 | 30.00 | 30–30 |
+| grounded_v2 + nullable-null-v1 | 41, 40, 42 | 41.00 | 40–42 |
+
+The adapter improved the mean from **30/42 to 41/42** (71.4% → 97.6%, **+26.19
+percentage points**). It made **36 compatibility repairs across 36 tool calls and
+36 repeated scenario attempts**: converting `graph_version: "None"` to JSON null.
+It does not invent locations, fill missing fields or change rescue decisions.
+This is **compatibility repair, not RL**. Nemotron’s weights and the grounded policy
+were unchanged.
+
+Across the three repetitions, missing-location passes increased from **0/18 to
+18/18**, and tool-failure passes from **0/18 to 15/18**. Both grounded arms passed
+**18/18** in each of the other five families. **Three reasoning failures remain
+across 126 adapter attempts**: the model submitted `needs_location` for incidents
+whose location was known but road status was unavailable; the correct status was
+`unknown`. The adapter repaired the encoding while preserving those wrong decisions.
+
+The initial launch hit a missing model tunnel. A shell launch error allowed all
+378 attempts to record connection failures, with zero requests reaching the model.
+Those records are retained separately. The user explicitly authorized one complete
+relaunch with failures retained; commit `68f5b1a` records that exception before live
+generation. No selective retry, policy change or tuning occurred within the relaunch.
+These larger graphs use the same deterministic families; repetitions reuse 42 cases,
+not 378 independent emergencies. The split is now spent, and this result does not
+establish real-world accuracy or general reasoning recovery.
+
+[Complete results and per-family counts](GYM_RESULTS.md#fresh-exam-2--argument-repair-isolation-october-18-2026),
+[raw summary](../ml/nemo_gym/evidence/test_fresh2_relaunch_2026-10-18/summary.md),
+[repair ledger](../ml/nemo_gym/evidence/test_fresh2_relaunch_2026-10-18/adapter_repairs.json)
+and [integrity receipt](../ml/nemo_gym/evidence/test_fresh2_relaunch_2026-10-18/integrity_check.json)
+retain the sealed provenance, every run and all repairs. Offline official-verifier
+rescoring passed, as did all **54 Gym tests**. The scoring command appears first in
+GYM_RESULTS.md's Reproduce section.
 
 
 ### Operational repeatability
@@ -120,11 +171,10 @@ repeat with prefix caching enabled. See [VLLM_RESULTS.md](VLLM_RESULTS.md).
 
 ### Vision and fine-tuning
 
-The served SegFormer-B0 was fine-tuned for flooded-road segmentation. A frozen
-cross-event check on six unseen Germany flood tiles improved F1 from **0.23 to
-0.47** against the same model before fine-tuning. This small external check is not
-Helene accuracy or a safety guarantee. The experimental V3 is not served.
-See [frozen external evaluation](ml/FROZEN_EXTERNAL_EVALUATION.md).
+The served SegFormer-B0 was fine-tuned for flooded-road segmentation. On a sealed 38-tile
+test it scores F1 0.31; a retrained V3 scored 0.27 and was not promoted
+([V3_RESULTS.md](ml/V3_RESULTS.md)). That is why SOSora treats imagery as a clue, never proof.
+It is not a Helene accuracy measurement or a safety guarantee.
 
 No Nemotron weight update or RL improvement is claimed. The optional LoRA attempt
 stopped during infrastructure setup, with zero training steps and no adapter;

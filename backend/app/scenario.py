@@ -68,6 +68,7 @@ class ScenarioEngine:
         self.reset()
 
     def reset(self) -> None:
+        self.reset_generation = getattr(self, "reset_generation", 0) + 1
         self.step = 0
         self.clock = START
         self.revision += 1
@@ -339,6 +340,7 @@ class ScenarioEngine:
         destination = self.anchors["destination"]
         return {
             "revision": self.revision,
+            "reset_generation": self.reset_generation,
             "scenario": {
                 "id": "helene-swannanoa",
                 "name": "Hurricane Helene — Swannanoa corridor",

@@ -1,0 +1,26 @@
+[
+  {
+    "level": "warn",
+    "message": "You are using the same source for a hillshade layer and for 3D terrain. Please consider using two separate sources to improve rendering quality.",
+    "timestamp": "2026-10-18T09:21:18.268Z",
+    "url": "http://127.0.0.1:13000/_next/static/chunks/90dc0_maplibre-gl_dist_maplibre-gl_21f52096.js"
+  },
+  {
+    "level": "warn",
+    "message": "cannot calculate elevation if elevation maxzoom > source.maxzoom",
+    "timestamp": "2026-10-18T09:22:18.801Z",
+    "url": "http://127.0.0.1:13000/_next/static/chunks/90dc0_maplibre-gl_dist_maplibre-gl_21f52096.js"
+  },
+  {
+    "level": "warn",
+    "message": "You are using the same source for a hillshade layer and for 3D terrain. Please consider using two separate sources to improve rendering quality.",
+    "timestamp": "2026-10-18T09:24:57.887Z",
+    "url": "http://127.0.0.1:13000/_next/static/chunks/90dc0_maplibre-gl_dist_maplibre-gl_21f52096.js"
+  },
+  {
+    "level": "warn",
+    "message": "cannot calculate elevation if elevation maxzoom > source.maxzoom",
+    "timestamp": "2026-10-18T09:25:26.214Z",
+    "url": "http://127.0.0.1:13000/_next/static/chunks/90dc0_maplibre-gl_dist_maplibre-gl_21f52096.js"
+  }
+]

@@ -1,0 +1,24 @@
+✔ broken route ends at the matching physical closure and retains the base side (3.680542ms)
+✔ isolation hull includes only verified unreachable coordinates with a 400 m buffer (14.574125ms)
+✔ shared route sections draw once without losing individual SOS branches (0.270042ms)
+✔ hosted banner is absent for local defaults and an explicit false flag (6.7945ms)
+✔ hosted flag shows the exact disclosure (3.650833ms)
+✔ hosted trace cannot display a model identity or latency (0.32875ms)
+✔ socket and persisted events merge without duplicate tool rows (25.631417ms)
+✔ ambiguous bridges are deduped across directions and retain real centroids (0.712583ms)
+✔ latest assessment and trace summaries use structured fields, not guessed prose (1.440666ms)
+✔ blocked roads count physical segments, not their forward/backward directions (0.53225ms)
+✔ successful sign-off is teal; only ambiguity and contested roads are yellow (2.052833ms)
+✔ all three counters advance on reachability result before the final state arrives (2.128167ms)
+✔ trace badge uses only backend provenance and never invents latency (0.97325ms)
+✔ bridge closure changes only the five disconnected incidents; reset clears it (194.50575ms)
+✔ missing access and map snap failures are unknown, including synthetic queue items (40.116708ms)
+✔ route status is a fallback only when the backend boolean is absent (11.418291ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 732.164333

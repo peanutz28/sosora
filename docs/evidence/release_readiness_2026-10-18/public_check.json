@@ -1,0 +1,15 @@
+{
+  "frontend": {
+    "url": "https://sosora-command-demo-peanutz28s-projects.vercel.app",
+    "http_status": 200
+  },
+  "backend": {
+    "url": "https://sosora-command-demo.onrender.com/health",
+    "http_status": 200
+  },
+  "primary_frontend": {
+    "url": "https://sosora-command-demo.vercel.app",
+    "http_status": 200,
+    "checked_at_utc": "2026-10-18T12:18:03.494486+00:00"
+  }
+}

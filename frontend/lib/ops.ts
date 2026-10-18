@@ -9,6 +9,10 @@ export function mergeEvents(...groups: OpsEvent[][]): OpsEvent[] {
     .sort((a, b) => a.at.localeCompare(b.at) || a.id - b.id)
     .slice(-240);
 }
+/** A reset snapshot replaces events from the previous take, including streamed results. */
+export function reconcileEvents(previous: OpsEvent[], snapshot: OpsEvent[], reset: boolean): OpsEvent[] {
+  return reset ? mergeEvents(snapshot) : mergeEvents(previous, snapshot);
+}
 export function latestAssessment(stream: OpsEvent[]): Assessment | null {
   const event = [...stream]
     .reverse()
