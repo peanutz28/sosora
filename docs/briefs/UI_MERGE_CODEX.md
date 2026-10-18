@@ -12,7 +12,7 @@ There are two dashboards. We ship **one**:
   detail panel, pills. Open her file and copy the feel closely.
 - **Do not delete or modify** `dashboard/` or `ios-app/` (Jia's work, separate deliverables).
 
-## Already done by Claude (uncommitted in the working tree; verify, then build on it)
+## Already done by Claude (committed on `integration`; verify, then build on it)
 - `frontend/app/globals.css`: `@theme` tokens replaced with Jia's palette
   (bg #090b0e, surface #0e1b25, elevated #152631, card #182f3c, ink #f4f7f8, muted #b4c7d0,
   faint #7d95a2, line #29404c, accent/route teal #3ee0cf, on-accent #08252a, critical #ff6d78,
@@ -22,16 +22,13 @@ There are two dashboards. We ship **one**:
 - Teal buttons now use `text-on-accent` (dark text on teal) in AppShell, RescueMap, IncidentSidebar.
 - `frontend/public/helene-best-track.geojson`: real NHC best-track points for Helene (25 Points,
   properties include time, class_label, wind_kt). Copied from Jia's dashboard.
-- Also uncommitted: Beacon work in `beacon/` from another Codex task. Commit it separately
-  first (`git add beacon && git commit -m "Beacon device"`) so the UI merge is a clean diff.
 
-## Step 0: git
-1. On branch `integration`. Commit the Beacon work separately (above).
-2. `git merge origin/main` (brings in Jia's `dashboard/` + `ios-app/`). Expected conflicts only in
-   `README.md` / `.gitignore`: keep our README as the main body and add a short section
-   "Also in this repo: `dashboard/` (Jia's standalone ops dashboard) and `ios-app/` (native
-   SwiftUI resident + responder app)". Keep both .gitignore sides.
-3. Run `cd frontend && npm install && npm run build` and `cd backend && pytest -q`. Both must pass.
+## Step 0: git (DONE by Claude at 00:30, skip)
+Beacon work and the UI groundwork are committed, and `origin/main` (Jia's `dashboard/` +
+`ios-app/`) is merged into local `integration` with no conflicts. The remote `integration`
+branch was deleted after PR #1; push this branch again (`git push -u origin integration`)
+and work on it. First run `cd frontend && npm install && npm run build` and
+`cd backend && pytest -q`; both must pass before Step 1.
 
 ## Step 1: header (frontend/components/shell/Header.tsx)
 Match Jia's header: 70px, bg #101114, bottom border. Left: 39px teal rounded-13px tile with "≋"
