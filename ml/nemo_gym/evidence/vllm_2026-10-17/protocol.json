@@ -1,0 +1,30 @@
+{
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "checkpoint": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+  "checkpoint_revision": "a9904d24bcc1d289a1950fa9d2b978c47cf903b9",
+  "vllm": "0.27.1",
+  "tool_parser": "qwen3_coder",
+  "reasoning_parser": "nemotron_v3",
+  "enable_thinking": false,
+  "enforce_strict_tool_calling": false,
+  "request_tool_schemas_changed": false,
+  "policies_changed": false,
+  "weights_updated": false,
+  "test_used_for_tuning": false,
+  "validation_used_for": "infrastructure diagnosis only; preserve interrupted strict-grammar attempt separately",
+  "scenario_count": 56,
+  "language_model_calls": 343,
+  "provider_errors": 0,
+  "source_sha256": {
+    "ml/nemo_gym/evaluate_agent.py": "36a8dbb1e690971ed5523cb5d270676848ad48ce2b842a88c04dc8b5006699d6",
+    "ml/nemo_gym/app.py": "7f3df73d2315605270d6294292dbfee79582701bb0c20768acedef9230d1f126",
+    "ml/nemo_gym/core.py": "e59eb6752e796568896e07bf4d33c833b8bceb6c2bac129affa04a5f6e188696",
+    "ml/nemo_gym/scenarios.py": "e451682e5791d8e77eec410278aca276ffac42b920c81e7f7ddf0dd56d2def26",
+    "ml/nemo_gym/data/validation.jsonl": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650",
+    "ml/nemo_gym/data/test.jsonl": "2b86c0e594b586f733a03f23ae5e607dfaa02a5182e4a1111a921945a8587e3b"
+  },
+  "reproduce": "bash scripts/vllm/run_gym.sh",
+  "server_config": "scripts/vllm/serve_brev.sh",
+  "simulated_scenarios": true,
+  "prior_diagnostic": "ml/nemo_gym/evidence/vllm_strict_diagnostic_2026-10-17"
+}

@@ -1,0 +1,53 @@
+{
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "quoted_compute_usd_per_hour": 5.4,
+  "hero_passes": 5,
+  "hero_runs": 5,
+  "hero_mean_total_ms": 12441.956858406775,
+  "hero_mean_agent_call_ms": 852.2930111658449,
+  "gym_scenarios": 56,
+  "gym_provider_errors": 0,
+  "gym_scores": {
+    "validation_baseline": {
+      "mean_reward": 0.5714285714285714,
+      "count": 14
+    },
+    "test_evidence_first": {
+      "mean_reward": 0.2857142857142857,
+      "count": 14
+    },
+    "validation_evidence_first": {
+      "mean_reward": 0.14285714285714285,
+      "count": 14
+    },
+    "test_baseline": {
+      "mean_reward": 0.5,
+      "count": 14
+    }
+  },
+  "surge": [
+    {
+      "concurrency": 1,
+      "requests": 100,
+      "successes": 100,
+      "elapsed_seconds": 84.7656818330288,
+      "successful_messages_per_second": 1.1797227113323965,
+      "p50_ms_all_attempts": 776.8123339628801,
+      "p95_ms_all_attempts": 1149.2237080819905
+    },
+    {
+      "concurrency": 100,
+      "requests": 100,
+      "successes": 100,
+      "elapsed_seconds": 20.609189333976246,
+      "successful_messages_per_second": 4.852204440430866,
+      "p50_ms_all_attempts": 16981.426250073127,
+      "p95_ms_all_attempts": 19800.674541969784
+    }
+  ],
+  "local_ml_api_stopped": true,
+  "cloud_stop_requested": true,
+  "recorded_at_et": "2026-10-17T23:50:09.504847-04:00",
+  "cloud_status": "STOPPED",
+  "cloud_stop_verified_at_et": "2026-10-17T23:51:19.312609-04:00"
+}

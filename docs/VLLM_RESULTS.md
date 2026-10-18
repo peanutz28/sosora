@@ -1,6 +1,6 @@
 # Brev / vLLM execution evidence
 
-Status: authenticated serving verified; five final hero runs passed; Gym rerun in progress.
+Status: complete. Five final hero runs passed, all Gym/throughput requests recorded, and H100 shutdown verified.
 
 ## Provisioning
 
@@ -100,4 +100,68 @@ calls and a provider timeout, before opening test. Partial traces remain at
 comparison. The final run uses native parsing, with no change to the runner,
 tasks, policies, tool schemas, or verifier.
 
-Pending: final Gym results, surge results, shutdown verification.
+## Gym comparison
+
+All 56 final scenarios completed, with 343 model calls and zero provider errors.
+Validation: baseline 8/14; evidence_first 2/14. Test: baseline 7/14;
+evidence_first 4/14. The frozen evidence-first prompt did not improve on baseline.
+These are simulated-task verifier scores, not real rescue safety accuracy.
+No weights changed and no RL was performed. Full hosted-versus-vLLM tables,
+latency caveats, failure counts and commands are in [`GYM_RESULTS.md`](GYM_RESULTS.md).
+Frozen source hashes and server settings are in
+`ml/nemo_gym/evidence/vllm_2026-10-17/protocol.json`.
+
+## Parse throughput surge
+
+100 requests per batch to the real `/ml/radio/parse`, seven repeated simulated
+fixture texts, no response cache. Sequential ran first with prefix caching enabled;
+concurrent requests therefore benefit from warm prefixes. Latencies include queue
+time after each request starts, but sequential requests wait outside that timer.
+This measures throughput and HTTP/parse completion, not semantic extraction accuracy.
+
+| Client concurrency | Successful / attempted | Elapsed seconds | Messages/s | p50 seconds | p95 seconds |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 100/100 | 84.766 | 1.180 | 0.777 | 1.149 |
+| 100 | 100/100 | 20.609 | 4.852 | 16.981 | 19.801 |
+
+The server schedules at most 32 sequences at once; client concurrency 100 includes
+the model queue. Higher throughput comes with higher per-request burst latency.
+All attempt latencies and statuses: [`surge.json`](evidence/vllm_2026-10-17/surge.json).
+
+```sh
+PYTHONPATH="$PWD" ml/.venv312/bin/python scripts/vllm/benchmark_surge.py \
+  --output docs/evidence/vllm_2026-10-17/surge.json
+```
+
+## Shutdown
+
+Brev reported the H100 **STOPPED** at 2026-10-17 23:51:19 EDT, before
+the brief's 2026-10-18 10:00 AM ET cutoff. The temporary local ML API exited.
+The disk is retained and continues to incur storage charges; no invoice total
+was measured. The RAM-backed model cache is lost on stop.
+Evidence: [`shutdown.json`](evidence/vllm_2026-10-17/shutdown.json).
+
+## Resume and stop (local workstation)
+
+The generated `.env.vllm` is local, ignored, and mode 0600. It contains the model
+API token and loopback tunnel configuration. Source it without printing it.
+The remote token file persists on the stopped VM; no token needs to be committed.
+
+```sh
+ml/tools/brev start sosora-lightning-vllm
+ml/tools/brev exec sosora-lightning-vllm @scripts/vllm/serve_brev.sh
+# Keep the tunnel in its own terminal:
+ml/tools/brev port-forward sosora-lightning-vllm -p 18080:8000
+# In the application terminal:
+set -a
+source .env.vllm
+set +a
+ml/.venv312/bin/python -m uvicorn ml.inference.app:app --host 127.0.0.1 --port 18002
+# Run the application/benchmarks from another terminal with the same private env.
+# Stop the cloud VM as soon as it is idle:
+ml/tools/brev stop sosora-lightning-vllm
+```
+
+The deployment script recreates the temporary model-cache directory before
+starting the retained container. Wait for `/health` and a successful authenticated
+probe before the demo. Stopping compute retains the disk and its storage charge.

@@ -1,0 +1,12 @@
+{
+  "instance_name": "sosora-lightning-vllm",
+  "gpu": "H100",
+  "cloud_status": "STOPPED",
+  "verified_at_et": "2026-10-17T23:51:19.312609-04:00",
+  "deadline_et": "2026-10-18T10:00:00-04:00",
+  "stopped_before_deadline": true,
+  "local_ml_api_stopped": true,
+  "model_cache_survives_stop": false,
+  "persistent_disk_retained": true,
+  "billing_note": "GPU reported stopped; persistent storage remains. No invoice amount measured."
+}

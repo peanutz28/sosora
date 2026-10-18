@@ -1,0 +1,16 @@
+{
+  "status": "evaluated",
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "provider": "redhat_vllm",
+  "policy": "evidence_first",
+  "split": "validation",
+  "language_model_calls": 85,
+  "scenarios_completed": 14,
+  "requested_limit": 14,
+  "mean_reward": 0.14285714285714285,
+  "error_count": 0,
+  "elapsed_seconds": 46.44677066698205,
+  "harness": "custom chat-completions agent using official NeMo Gym resource-server HTTP tools and verify; not full Gym CLI",
+  "upstream_commit": "3045a793346a31291d7ea4ae6af3f94a35036ce5",
+  "improvement_claim": false
+}

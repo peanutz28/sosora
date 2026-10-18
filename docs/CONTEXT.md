@@ -78,27 +78,32 @@ Bounties: Nemotron Lightning, NeMo Gym model improvement, Red Hat vLLM.
 | Radio parse (Lightning) | Works live, 2.7-4.1 s/message | live run 2026-10-17 ~23:00 |
 | Agent + trust rule, real OSM graph | Works in demo replay; live Lightning resolves the right bridge | `backend/tests/test_radio_api.py` |
 | Live agent speed | H100 vLLM: five hero runs passed; mean total 12.442 s, mean agent call 0.852 s | `docs/VLLM_RESULTS.md`, `docs/evidence/vllm_2026-10-17/hero_final_native.json` |
-| Beacon sensor + audio endpoints | Endpoints done, hardware not started | `backend/app/radio_api.py` |
+| Beacon sensor + audio endpoints | Command endpoints ready; Beacon client implemented with fake sensor, replay, durable outbox and retry | `backend/app/radio_api.py`, `beacon/beacon.py` |
+| Beacon client verification | 12 unit checks pass; fake sensor + replay each block bridge and cut off 5 SOS incidents; reconnect sends one report; Pi pending | `beacon/evidence/unit_tests.xml`, `beacon/evidence/demo_verification.json` |
 | ASR model | Not chosen/served | `backend/app/asr.py` TODO |
-| Gym results | test: baseline 1/14 -> evidence_first 4/14, **polluted by 18 HTTP errors + 5 timeouts** | `ml/nemo_gym/evidence/rollouts_2026-10-17/summary.md` |
-| vLLM on Brev | Serving Lightning BF16; authenticated private route + SSH tunnel; Gym rerun active | `docs/VLLM_RESULTS.md`, `docs/evidence/vllm_2026-10-17/hardware.json` |
+| Gym results | Clean vLLM: validation 8/14 baseline vs 2/14 evidence_first; test 7/14 vs 4/14; zero provider errors across 56 scenarios | `docs/GYM_RESULTS.md`, `ml/nemo_gym/evidence/vllm_2026-10-17/protocol.json` |
+| vLLM on Brev | Complete; Lightning BF16 H100 verified; GPU STOPPED, disk retained | `docs/VLLM_RESULTS.md`, `docs/evidence/vllm_2026-10-17/hardware.json` |
 | Dashboard wired to radio flow | Not started | |
 | Video | Not started | |
 
 ## Open issues / gotchas
-- Brev H100 task active: keep instance running only during serving/evaluation; stop when idle and before 10:00 AM ET. Private endpoint; local ignored `.env.vllm` uses an SSH tunnel. Requested disk size differs from observed root filesystem; see saved hardware evidence.
+- Beacon delivery is at-least-once: UUIDs and Idempotency-Key persist, but Command audio/reading endpoints do not deduplicate. Lost acknowledgements can duplicate events. Use `--flush` to resume an offline replay without enqueuing it again.
+- Fake sensor must target Command with `DEMO_MODE=true`: the backend currently ignores the posted simulated flag and derives source labels from its own demo setting. Real Pi mic/sensor/button and physical Wi-Fi unplug are unverified.
+- Brev H100 is STOPPED. Restart with `docs/VLLM_RESULTS.md` instructions before a live demo; model weights must download again because the cache was in RAM. Local ignored `.env.vllm` holds the token and loopback tunnel configuration. Disk is retained and still incurs storage charges.
 - Python 3.12 required for `ml/` (uses `asyncio.timeout`). Two `ml/tests/test_radio.py`
   provider tests fail on 3.10 only.
 - Live agent: model batched tool calls with blank ids -> fixed (one tool per turn,
   `parallel_tool_calls: false`). Beacon position is injected by code, not the model.
 - Private Brev vLLM is verified for the hero flow. `.env.vllm` is local and ignored; never commit it. Upstream vLLM image is used, not a verified Red Hat distribution. Model cache is in RAM and must download again after instance stop.
-- Gym vLLM rerun is active with the original runner, fixed tasks/policies and verifier. Wait for all validation and test outputs before comparing; strict recommendation calls remain slower than hero calls.
+- Clean Gym results do **not** support an evidence_first improvement claim. Frozen baseline outperformed it on validation and test. No weights changed or RL ran. Native parsing removed strict-grammar latency; all partial diagnostic attempts remain saved separately.
 - `backend/data/sosora.db-journal` is a stray file from a sandbox run; safe to delete.
 - Video: never show a phone with signal bars when claiming "no signal".
 - Each radio report takes ~5-7 s even in DEMO_MODE: reachability runs one shortest-path
   query per incident on the 86k-edge graph. Optimization: one single-source Dijkstra from the base.
 
 ## Changelog (newest first)
+- 23:51 Codex: Job A done: H100 Lightning BF16 vLLM; final hero 5/5, mean 12.442 s; clean Gym test baseline 7/14 vs evidence_first 4/14, no provider errors across 56 scenarios; surge 200/200; GPU STOPPED. Results, commands and restart instructions in `docs/VLLM_RESULTS.md` and `docs/GYM_RESULTS.md`. Do not claim evidence_first improvement or a verified Red Hat-distributed image.
+- 23:50 Codex: Beacon client implemented with fake sensor, WAV replay, lazy GPIO/mic, durable outbox/backoff/receipts and `--flush`. 12 unit tests pass; isolated HTTP verification confirms fake sensor and cached replay each block the bridge and cut off 5 of 9 SOS pins; disconnected/restarted queue produces one received report. Evidence in `beacon/evidence/`. Pi hardware and exactly-once backend deduplication remain pending.
 - 23:36 Codex: private H100 Lightning BF16 vLLM serving; five live hero runs passed. Fixed vLLM native tool decoding and bounded model-facing route context (full UI geometry preserved); 30 backend + 25 Gym tests pass. Gym rerun active; shutdown still required.
 - 23:15 Claude: agent fixes (Lightning-only default, landmark matching, bridge direction
   grouping, retries, real tool descriptions, one tool per turn, trusted beacon position);

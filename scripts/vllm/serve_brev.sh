@@ -4,7 +4,9 @@ set -euo pipefail
 umask 077
 command -v docker >/dev/null
 nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv
-mkdir -p "$HOME/.config/sosora" "$HOME/.cache/huggingface"
+# Restore the tmpfs target before following a retained cache symlink on resume.
+mkdir -p "$HOME/.config/sosora" /dev/shm/sosora-hf
+mkdir -p "$HOME/.cache/huggingface"
 if [ ! -s "$HOME/.config/sosora/vllm.env" ]; then
   python3 - <<'PY'
 from pathlib import Path
