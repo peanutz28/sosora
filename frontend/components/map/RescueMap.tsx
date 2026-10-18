@@ -1,5 +1,7 @@
 "use client";
 
+import { useTerrainBudget } from "@/components/map/useTerrainBudget";
+import { useIsolationZone } from "@/components/map/useIsolationZone";
 import { useLivingRoutes } from "@/components/map/useLivingRoutes";
 import { cinematicStyle } from "@/components/map/cinematicStyle";
 import { roadAccess } from "@/lib/access";
@@ -115,6 +117,8 @@ export function RescueMap({
   });
 
   useLivingRoutes(mapRef, epoch, incidents, state.closures, overlays.routes);
+  useIsolationZone(mapRef, epoch, incidents);
+  useTerrainBudget(mapRef, epoch);
 
   onSelectRef.current = onSelect;
   onClickRef.current = onMapClick;
