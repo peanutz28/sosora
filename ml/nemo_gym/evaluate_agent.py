@@ -17,12 +17,14 @@ BASELINE='Assess this simulated rescue incident using the available tools. Finis
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--split',choices=['validation','test'],default='validation')
-    parser.add_argument('--policy',choices=['baseline','evidence_first'],required=True)
+    parser.add_argument('--policy',choices=['baseline','evidence_first','grounded_v2'],required=True)
     parser.add_argument('--output',required=True)
     parser.add_argument('--limit',type=int,default=3)
     parser.add_argument('--max-turns',type=int,default=12)
     parser.add_argument('--max-seconds',type=float,default=180)
     args=parser.parse_args()
+    policy_config = json.loads((Path(__file__).parent/'policies'/'grounded_v2.json').read_text()) if args.policy == 'grounded_v2' else {}
+    prompt = policy_config.get('prompt', SYSTEM if args.policy == 'evidence_first' else BASELINE)
     if args.limit<1 or args.max_turns<1 or args.max_seconds<=0:raise SystemExit('Limits must be positive')
     provider=os.getenv('LLM_PROVIDER','nvidia_api')
     if provider not in {'nvidia_api','redhat_vllm'}:raise SystemExit('Unsupported LLM_PROVIDER')
@@ -43,8 +45,11 @@ def main():
             task.cookies.clear()
             task.post('/seed_session',json={'scenario_id':row['scenario_id']}).raise_for_status()
             params=row['responses_create_params']
-            messages=[{'role':'system','content':SYSTEM if args.policy=='evidence_first' else BASELINE},params['input'][-1]]
+            messages=[{'role':'system','content':prompt},params['input'][-1]]
             tools=[{'type':'function','function':{k:v for k,v in t.items() if k!='type'}} for t in params['tools']]
+            for tool in tools:
+                if tool['function']['name'] in policy_config.get('tool_descriptions', {}):
+                    tool['function']['description'] = policy_config['tool_descriptions'][tool['function']['name']]
             trajectory=[];latencies=[];usage=[];error=None
             for turn in range(args.max_turns):
                 if time.monotonic()-started>=args.max_seconds:break
@@ -78,6 +83,6 @@ def main():
             with (out/'rollouts.jsonl').open('a') as handle:handle.write(json.dumps(result)+'\n')
     summary={'status':'evaluated' if results else 'not_evaluated','model':model,'provider':provider,'policy':args.policy,'split':args.split,'language_model_calls':calls_made,'scenarios_completed':len(results),'requested_limit':args.limit,'mean_reward':sum(r['reward'] for r in results)/len(results) if results else None,'error_count':sum(r['error_type'] is not None for r in results),'elapsed_seconds':time.monotonic()-started,'harness':'custom chat-completions agent using official NeMo Gym resource-server HTTP tools and verify; not full Gym CLI','upstream_commit':'3045a793346a31291d7ea4ae6af3f94a35036ce5','improvement_claim':False}
     (out/'metrics.json').write_text(json.dumps(summary,indent=2))
-    (out/'evaluation_config.json').write_text(json.dumps({'split':args.split,'policy':args.policy,'limit':args.limit,'max_turns':args.max_turns,'max_seconds':args.max_seconds,'prompt':SYSTEM if args.policy=='evidence_first' else BASELINE,'model':model},indent=2))
+    (out/'evaluation_config.json').write_text(json.dumps({'split':args.split,'policy':args.policy,'limit':args.limit,'max_turns':args.max_turns,'max_seconds':args.max_seconds,'prompt':prompt,'model':model},indent=2))
     print(json.dumps(summary))
 if __name__=='__main__':main()

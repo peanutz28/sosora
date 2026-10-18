@@ -13,7 +13,8 @@ def test_missing_credentials_makes_no_output_or_calls(monkeypatch,tmp_path):
     assert not out.exists()
 
 
-def test_runner_uses_real_task_and_verifier_with_mocked_provider(monkeypatch,tmp_path):
+@pytest.mark.parametrize("policy", ["baseline", "grounded_v2"])
+def test_runner_uses_real_task_and_verifier_with_mocked_provider(monkeypatch,tmp_path,policy):
     """Only provider responses are fixtures; Gym tools and verifier really run."""
     monkeypatch.setenv('LLM_PROVIDER','nvidia_api')
     monkeypatch.setenv('NVIDIA_API_KEY','fake-key-never-save')
@@ -28,6 +29,14 @@ def test_runner_uses_real_task_and_verifier_with_mocked_provider(monkeypatch,tmp
         def post(self,url,headers,json):
             assert headers['Authorization']=='Bearer fake-key-never-save'
             assert url=='https://integrate.api.nvidia.com/v1/chat/completions'
+            if policy == 'grounded_v2':
+                assert 'Every assistant turn must call exactly ONE tool' in json['messages'][0]['content']
+                assert json['tools'][0]['function']['description'].startswith('FIRST tool.')
+                assert json['tools'][0]['function']['strict'] is True
+                assert json['tools'][0]['function']['parameters']['additionalProperties'] is False
+            else:
+                assert json['messages'][0]['content'] == evaluate_agent.BASELINE
+                assert json['tools'][0]['function']['description'] == 'Get reported incident and stale initial route.'
             name,args=calls[self.index];self.index+=1
             text=__import__('json').dumps(args)
             payload={'choices':[{'message':{'role':'assistant','content':None,'tool_calls':[{'id':f'call_{self.index}','type':'function','function':{'name':name,'arguments':text}}]}}],'usage':{'total_tokens':10}}
@@ -36,7 +45,7 @@ def test_runner_uses_real_task_and_verifier_with_mocked_provider(monkeypatch,tmp
                 def json(self):return payload
             return Response()
     monkeypatch.setattr(evaluate_agent.httpx,'Client',Provider)
-    monkeypatch.setattr(sys,'argv',['evaluate_agent','--policy','baseline','--split','validation','--limit','1','--output',str(out)])
+    monkeypatch.setattr(sys,'argv',['evaluate_agent','--policy',policy,'--split','validation','--limit','1','--output',str(out)])
     evaluate_agent.main()
     metrics=json.loads((out/'metrics.json').read_text())
     assert metrics['mean_reward']==1 and metrics['language_model_calls']==5
