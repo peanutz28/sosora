@@ -1,0 +1,24 @@
+{
+  "backend_url": "https://sosora-command-demo.onrender.com",
+  "service_id": "srv-dbab6j5g1s2s73bf8uc0",
+  "render_dashboard": "https://dashboard.render.com/web/srv-dbab6j5g1s2s73bf8uc0",
+  "source_commit": "5fca5c6000aa5a50115e63f5f9c564493c33ed2c",
+  "plan": "free",
+  "region": "virginia",
+  "cpu": 0.1,
+  "memory_mb": 512,
+  "auto_deploy": false,
+  "docker_context": "backend",
+  "dockerfile": "backend/Dockerfile",
+  "port": 7860,
+  "health_probe": "default TCP",
+  "credentials_or_model_keys_configured": false,
+  "evidence": [
+    "render_setup.txt",
+    "render_build_started.txt",
+    "render_tcp_settings.txt",
+    "render_final_deploy.txt"
+  ],
+  "websocket_ping_interval_seconds": 30,
+  "websocket_ping_timeout_seconds": 120
+}

@@ -1,0 +1,14 @@
+{
+  "verified_at_utc": "2026-10-18T12:32:21.939317+00:00",
+  "frontend_url": "https://sosora-command-demo.vercel.app",
+  "backend_url": "https://sosora-command-demo.onrender.com",
+  "frontend_origins": [
+    "https://sosora-command-demo.vercel.app",
+    "https://sosora-command-demo-peanutz28s-projects.vercel.app",
+    "https://sosora-command-demo-gn0phkgf8-peanutz28s-projects.vercel.app"
+  ],
+  "cors_verified_origins": [
+    "https://sosora-command-demo.vercel.app"
+  ],
+  "websocket_url": "wss://sosora-command-demo.onrender.com/ws/events"
+}

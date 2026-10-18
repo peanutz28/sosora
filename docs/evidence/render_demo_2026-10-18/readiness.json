@@ -1,0 +1,109 @@
+{
+  "recorded_at_utc": "2026-10-18T12:36:05.889439+00:00",
+  "public_deployment": true,
+  "urls": {
+    "verified_at_utc": "2026-10-18T12:32:21.939317+00:00",
+    "frontend_url": "https://sosora-command-demo.vercel.app",
+    "backend_url": "https://sosora-command-demo.onrender.com",
+    "frontend_origins": [
+      "https://sosora-command-demo.vercel.app",
+      "https://sosora-command-demo-peanutz28s-projects.vercel.app",
+      "https://sosora-command-demo-gn0phkgf8-peanutz28s-projects.vercel.app"
+    ],
+    "cors_verified_origins": [
+      "https://sosora-command-demo.vercel.app"
+    ],
+    "websocket_url": "wss://sosora-command-demo.onrender.com/ws/events"
+  },
+  "render": {
+    "backend_url": "https://sosora-command-demo.onrender.com",
+    "service_id": "srv-dbab6j5g1s2s73bf8uc0",
+    "render_dashboard": "https://dashboard.render.com/web/srv-dbab6j5g1s2s73bf8uc0",
+    "source_commit": "5fca5c6000aa5a50115e63f5f9c564493c33ed2c",
+    "plan": "free",
+    "region": "virginia",
+    "cpu": 0.1,
+    "memory_mb": 512,
+    "auto_deploy": false,
+    "docker_context": "backend",
+    "dockerfile": "backend/Dockerfile",
+    "port": 7860,
+    "health_probe": "default TCP",
+    "credentials_or_model_keys_configured": false,
+    "evidence": [
+      "render_setup.txt",
+      "render_build_started.txt",
+      "render_tcp_settings.txt",
+      "render_final_deploy.txt"
+    ],
+    "websocket_ping_interval_seconds": 30,
+    "websocket_ping_timeout_seconds": 120
+  },
+  "frontend_source_commit": "bc5184f2d001de28e0611c1c7f37f514d508d5b8",
+  "public_api_websocket": {
+    "passed": true,
+    "checks": {
+      "cors": true,
+      "websocket_initial_state": true,
+      "seed": true,
+      "beacon_hero_and_websocket_broadcast": true,
+      "dot_open_keeps_closure": true,
+      "responder_review_and_confirm": true,
+      "websocket_through_responder_and_confirm": true,
+      "websocket_alive_after_complete_flow": true
+    },
+    "evidence": "public_smoke.json.gz"
+  },
+  "browser": {
+    "passed": true,
+    "checks": 11,
+    "console_errors": 0,
+    "evidence": "browser_qa.json",
+    "final_rebuild_reload_passed": true
+  },
+  "diagnostics": {
+    "initial_http_health_timeout": "Resolved with default TCP probe; render_failure_events.txt",
+    "smoke_client_backpressure": "Resolved by continuous read thread; previous failed diagnostics retained",
+    "idle_ping_pong": "idle_ws_control_probe.json; direct_ws_control_probe.json"
+  },
+  "local_services_changed": false,
+  "frozen_ui_styling_changed": false,
+  "gpu_launched": false,
+  "paid_plan_purchased": false,
+  "model_credentials_uploaded": false,
+  "deployment_status": {
+    "checked_at_utc": "2026-10-18T12:31:38.946535+00:00",
+    "backend": {
+      "url": "https://sosora-command-demo.onrender.com",
+      "health": {
+        "status": "ok",
+        "demo_mode": true,
+        "graph_nodes": 43590,
+        "graph_edges": 86254,
+        "ml": {
+          "mode": "mock",
+          "detail": "Demo mode is on. The model service is not called."
+        }
+      }
+    },
+    "vercel": {
+      "id": "dpl_GxJ4PZXxRkG5B1CmF44Q1H4uVCEi",
+      "url": "sosora-command-demo-gn0phkgf8-peanutz28s-projects.vercel.app",
+      "readyState": "READY",
+      "alias": [
+        "sosora-command-demo.vercel.app",
+        "sosora-command-demo-peanutz28s-projects.vercel.app"
+      ],
+      "errorCode": null,
+      "errorMessage": null
+    }
+  },
+  "frontend_rebuild_parity": "frontend_rebuild_parity.json",
+  "vercel_project": {
+    "project_id": "prj_3rAvMeAZZ255hdzY7DLTgdB3Fb4i",
+    "git_connected": true,
+    "root_directory": "frontend",
+    "git_production_branch": "main",
+    "framework": "nextjs"
+  }
+}

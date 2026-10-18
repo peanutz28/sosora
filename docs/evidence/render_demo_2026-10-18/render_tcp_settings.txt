@@ -1,0 +1,373 @@
+- banner:
+  - link "Render":
+    - /url: /
+    - img "Render"
+  - button "M My Workspace":
+    - generic: M
+    - generic "My Workspace"
+  - navigation "Breadcrumbs":
+    - list:
+      - link "Projects":
+        - /url: /
+        - generic: Projects
+      - link "sosora-command-demo":
+        - /url: /web/srv-dbab6j5g1s2s73bf8uc0
+        - generic: sosora-command-demo
+      - button "Switch Service":
+      - generic: Settings
+      - button "Switch page":
+  - button "Search Command + K":
+    - text: Search
+    - generic: Command
+    - generic: +
+    - generic: K
+    - generic: K
+  - button "New":
+    - generic: New
+  - button "Upgrade":
+    - generic: Upgrade
+  - button "Help":
+    - img "Help"
+  - button "Account menu":
+    - generic: r
+- navigation:
+  - separator "Resize sidebar"
+  - link "Dashboard":
+    - /url: /
+    - generic: Dashboard
+  - generic: sosora-command-demo
+  - list:
+    - link "Deploys":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/deploys
+      - generic: Deploys
+    - link "Settings":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/settings
+      - generic: Settings
+  - generic: Monitor
+  - list "Monitor":
+    - link "Events":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/events
+      - generic: Events
+    - link "Logs":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/logs
+      - generic: Logs
+    - link "Metrics":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/metrics
+      - generic: Metrics
+  - generic: Manage
+  - list "Manage":
+    - link "Compute":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/compute
+      - generic: Compute
+    - link "Environment":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/env
+      - generic: Environment
+    - link "Shell":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/shell
+      - generic: Shell
+      - status:
+    - link "Previews":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/previews
+      - generic: Previews
+    - link "Disk":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/disks
+      - generic: Disk
+      - status:
+    - link "One-Off Jobs":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/jobs
+      - generic: One-Off Jobs
+      - status:
+  - alert:
+    - generic: Introducing Workflows
+    - generic: An orchestration and execution engine for long-running, distributed tasks.
+    - link "Learn more":
+      - /url: https://render.com/workflows
+      - text: Learn more
+    - button "Close notification":
+  - list "Footer navigation":
+    - link "Changelog":
+      - /url: https://render.com/changelog
+      - generic: Changelog
+  - link "Status":
+    - /url: https://status.render.com
+    - generic: Status
+  - button "Collapse":
+    - generic: Collapse
+- banner:
+  - generic: Web Service
+  - heading "sosora-command-demo Docker Free Upgrade your instance" [level=1]:
+    - generic: sosora-command-demo
+    - generic: Docker
+    - link "Free":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/compute
+      - generic: Free
+    - link "Upgrade your instance":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/compute
+      - text: Upgrade your instance
+  - button "Connect":
+    - generic: Connect
+  - button "Manual Deploy":
+    - generic: Manual Deploy
+  - generic: "Service ID:"
+  - generic "Service ID:":
+    - generic: srv-dbab6j5g1s2s73bf8uc0
+    - button "Copy":
+  - img "GitHub"
+  - link "peanutz28 / sosora integration":
+    - /url: https://github.com/peanutz28/sosora/tree/integration
+    - generic: peanutz28 / sosora
+    - generic: integration
+  - link "Last successfully deployed commit":
+    - /url: https://github.com/peanutz28/sosora/commit/bc5184f2d001de28e0611c1c7f37f514d508d5b8
+    - generic: bc5184f
+  - link "Live":
+    - /url: /web/srv-dbab6j5g1s2s73bf8uc0/deploys/dep-dbab6jlg1s2s73bf91q0
+    - text: Live
+  - generic "Copy":
+    - link "https://sosora-command-demo.onrender.com":
+      - /url: https://sosora-command-demo.onrender.com
+    - button "Copy":
+- main:
+  - heading "Settings" [level=2]
+  - heading "General" [level=4]
+  - generic: Name
+  - generic: A unique name for your Web Service.
+  - textbox "Name": sosora-command-demo
+  - button "Edit":
+    - text: Edit
+  - generic: Region
+  - text: Your services in the same
+  - link "region":
+    - /url: https://render.com/docs/regions
+  - text: can communicate over a
+  - link "private network.":
+    - /url: https://render.com/docs/private-network
+  - textbox: Virginia (US East)
+  - generic: Instance Type
+  - alert:
+    - text: Instance Type is now
+    - link "Compute Plan":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/compute
+    - text: . Read the
+    - link "announcement":
+      - /url: https://render.com/blog/new-compute-plans-for-memory-intensive-applications
+    - text: .
+  - alert:
+    - text: See
+    - link "remaining free usage":
+      - /url: /billing#free-usage
+    - text: ", or learn about"
+    - link "free service limits":
+      - /url: https://render.com/docs/free
+    - text: .
+  - heading "Build" [level=4]
+  - generic: Source
+  - generic: The build source for your Web Service
+  - img "GitHub"
+  - link "peanutz28 / sosora":
+    - /url: https://github.com/peanutz28/sosora
+    - generic: peanutz28 / sosora
+  - button "Edit":
+    - text: Edit
+  - generic: Branch
+  - generic: The Git branch to build and deploy.
+  - combobox:
+    - generic: Branch
+    - textbox "Branch":
+      - /placeholder: Search
+      - text: integration
+  - button "Edit":
+    - text: Edit
+  - generic: Root DirectoryOptional
+  - text: If set, Render runs commands from this directory instead of the repository root. Additionally, code changes outside of this directory do not trigger an auto-deploy. Most commonly used with a
+  - link "monorepo.":
+    - /url: https://render.com/docs/monorepo-support#setting-a-root-directory
+  - combobox:
+    - textbox "Root DirectoryOptional": backend
+  - button "Edit":
+    - text: Edit
+  - generic: Registry Credential
+  - text: If your service pulls private Docker images from a registry, specify a credential that can access those images. Manage your credentials in
+  - link "Settings.":
+    - /url: /w/tea-d3pvg3odl3ps73bhuj7g/settings#registry-credentials
+  - button "Registry Credential" [disabled]:
+    - text: No credential
+  - button "Edit":
+    - text: Edit
+  - generic: Dockerfile Path
+  - text: The path to your service’s Dockerfile, relative to the repo root. Defaults to
+  - code: ./Dockerfile
+  - text: .
+  - combobox:
+    - generic: backend/
+    - textbox "Dockerfile Path":
+      - /placeholder: ""
+      - text: Dockerfile
+  - button "Edit":
+    - text: Edit
+  - generic: Docker Build Context Directory
+  - text: The path to your service’s
+  - link "Docker build context,":
+    - /url: https://docs.docker.com/engine/reference/builder/#usage
+  - text: relative to the repo root. Defaults to the root.
+  - generic: backend/
+  - textbox "Docker Build Context Directory": .
+  - button "Edit":
+    - text: Edit
+  - generic: Git Credentials
+  - generic: User providing the credentials to pull the repository.
+  - textbox "Git Credentials": [account omitted]
+  - button "Use My Credentials" [disabled]
+  - generic: Build Filters
+  - text: Include or ignore specific paths in your repo when determining whether to trigger an auto-deploy. Paths are relative to your repo’s root directory.
+  - link "Learn more.":
+    - /url: https://render.com/docs/monorepo-support#setting-build-filters
+  - button "Edit":
+    - text: Edit
+  - heading "Included Paths" [level=6]
+  - paragraph: Changes that match these paths will trigger a new build.
+  - button "Add Included Path" [disabled]:
+    - text: Add Included Path
+  - heading "Ignored Paths" [level=6]
+  - paragraph:
+    - text: Changes that match these paths will
+    - strong: not
+    - text: trigger a new build.
+  - button "Add Ignored Path" [disabled]:
+    - text: Add Ignored Path
+  - heading "Deploy" [level=4]
+  - generic: Docker Command
+  - text: Optionally override your Dockerfile's
+  - code: CMD
+  - text: and
+  - code: ENTRYPOINT
+  - text: instructions with a different command to start your service.
+  - textbox "Docker Command"
+  - button "Edit":
+    - text: Edit
+  - generic: Pre-Deploy CommandOptional
+  - generic: Render runs this command before the start command. Useful for database migrations and static asset uploads.
+  - generic: backend/ $
+  - textbox "Pre-Deploy CommandOptional" [disabled]
+  - img "Gated feature"
+  - button "Edit" [disabled]:
+    - text: Edit
+  - generic: Auto-Deploy
+  - text: By default, Render automatically deploys your service whenever you update its code or configuration. Disable to handle deploys manually.
+  - link "Learn more.":
+    - /url: https://render.com/docs/deploys#automatic-deploys
+  - generic: autoDeployTrigger
+  - button "autoDeployTrigger Off" [disabled]:
+    - generic: "Off"
+  - button "Edit":
+    - text: Edit
+  - generic: Deploy Hook
+  - generic: Your private URL to trigger a deploy for this server. Remember to keep this a secret.
+  - textbox "Deploy Hook": [redacted]
+  - button "Show secret":
+  - button "Copy":
+  - button "Regenerate hook":
+    - text: Regenerate hook
+  - img "Loading..."
+  - generic: Loading...
+  - heading "PR Previews" [level=4]
+  - generic: Pull Request Previews
+  - text: Spin up temporary instances to test pull requests opened against the
+  - code: integration
+  - text: branch of
+  - code: peanutz28/sosora
+  - text: . Choose
+  - strong: Automatic
+  - text: to preview all PRs, or
+  - strong: Manual
+  - text: for only PRs with
+  - code: "[render preview]"
+  - text: in their title.
+  - link "Pull Request Previews":
+    - /url: https://render.com/docs/service-previews#pull-request-previews-git-backed
+  - text: create a new instance for just this service. Use
+  - link "Preview Environments":
+    - /url: https://render.com/docs/preview-environments
+  - text: to clone a group of services for every PR.
+  - generic: prPreviewsEnabled
+  - button "prPreviewsEnabled Off" [disabled]:
+    - generic: "Off"
+  - button "Edit":
+    - text: Edit
+  - heading "Networking" [level=2]
+  - heading "Edge Caching" [level=4]
+  - text: Serve static content at the edge to improve performance and reduce service load.
+  - link "Learn more.":
+    - /url: https://render.com/docs/web-service-caching
+  - generic: Cacheable File Types
+  - text: Specify which file types Render is allowed to cache for your service. You can fine-tune this behavior with
+  - code: Cache-Control
+  - text: headers.
+  - generic: Cache Profile
+  - button "Cache Profile None" [disabled]:
+    - generic: None
+  - button "Edit" [disabled]:
+    - text: Edit
+  - note:
+    - text: Paid
+    - generic: Edge Caching is only available for paid instances.
+    - link "Upgrade":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/plan
+  - heading "Notifications" [level=4]
+  - generic: Service Notifications
+  - generic: Set notifications to receive for your service. This setting will override your workspace's default settings.
+  - generic: notificationsToSend
+  - button "notificationsToSend Use workspace default (Only failure notifications)" [disabled]:
+    - generic: Use workspace default (Only failure notifications)
+  - button "Edit":
+    - text: Edit
+  - generic: Preview Environment Notifications
+  - text: Configure notifications for
+  - link "preview environments":
+    - /url: https://render.com/docs/preview-environments
+  - text: and
+  - link "service previews.":
+    - /url: https://render.com/docs/service-previews
+  - generic: previewNotificationsEnabled
+  - button "previewNotificationsEnabled Use account default (Disabled)" [disabled]:
+    - generic: Use account default (Disabled)
+  - button "Edit":
+    - text: Edit
+  - heading "Health Checks" [level=4]
+  - generic: Health Check Path
+  - text: Provide an HTTP endpoint path that Render messages periodically to monitor your service.
+  - link "Learn More.":
+    - /url: https://render.com/docs/health-checks
+  - textbox "Health Check Path"
+  - button "Edit":
+    - text: Edit
+  - heading "Maintenance Mode" [level=4]
+  - heading "Maintenance Mode" [level=6]
+  - paragraph:
+    - text: Temporarily disable public access to your service. While enabled, Render serves a static maintenance page for all incoming requests.
+    - link "Learn more." [disabled]:
+      - /url: https://render.com/docs/maintenance-mode
+  - switch "Maintenance Mode disabled" [disabled]:
+  - generic: Maintenance Mode disabled
+  - generic: Custom Maintenance PageOptional
+  - paragraph:
+    - text: If provided, Render uses the specified URL for your maintenance page instead of serving the
+    - link "default page" [disabled]:
+      - /url: https://render.com/docs/maintenance-mode
+    - text: .
+  - textbox "Custom Maintenance PageOptional" [disabled]
+  - note:
+    - text: Paid
+    - generic: Maintenance mode is only available for paid instances.
+    - link "Upgrade":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/plan
+  - button "Delete Web Service":
+    - text: Delete Web Service
+  - button "Suspend Web Service":
+    - text: Suspend Web Service
+- generic: "0 services selected:"
+- button:
+  - generic: Move
+- separator
+- button:
+- iframe [id="intercom-frame"]

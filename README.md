@@ -1,11 +1,10 @@
 # SOSora
 
-**Hosted demo:** deployment prepared, public site not published. Hugging Face
-returned HTTP 402 for free CPU Docker hosting (PRO account required); Vercel login
-is verified and the [Vercel project](https://vercel.com/peanutz28s-projects/sosora-command-demo)
-is created and linked to `frontend/`. Backend target: `https://peanutz28-sosora-command-demo.hf.space`
-**(not live)**. Frontend URL: **not allocated**. See the tested package, local
-screenshots and exact human-run commands in [docs/HOSTED_DEMO.md](docs/HOSTED_DEMO.md).
+**Hosted demo:** [SOSora Command](https://sosora-command-demo.vercel.app) ·
+[Backend API](https://sosora-command-demo.onrender.com)
+([health](https://sosora-command-demo.onrender.com/health)).
+Cached replay on free CPU; the first load may need a cold start.
+[Deployment and verification](docs/HOSTED_DEMO.md).
 
 **The rescue map that keeps working when the towers and the roads don't.**
 

@@ -1,0 +1,151 @@
+- banner:
+  - link "Render":
+    - /url: /
+    - img "Render"
+  - button "M My Workspace":
+    - generic: M
+    - generic "My Workspace"
+  - navigation "Breadcrumbs":
+    - list:
+      - link "Projects":
+        - /url: /
+        - generic: Projects
+      - link "sosora-command-demo":
+        - /url: /web/srv-dbab6j5g1s2s73bf8uc0
+        - generic: sosora-command-demo
+      - button "Switch Service":
+      - generic: Metrics
+      - button "Switch page":
+  - button "Search Command + K":
+    - text: Search
+    - generic: Command
+    - generic: +
+    - generic: K
+    - generic: K
+  - button "New":
+    - generic: New
+  - button "Upgrade":
+    - generic: Upgrade
+  - button "Help":
+    - img "Help"
+  - button "Account menu":
+    - generic: r
+- navigation:
+  - separator "Resize sidebar"
+  - link "Dashboard":
+    - /url: /
+    - generic: Dashboard
+  - generic: sosora-command-demo
+  - list:
+    - link "Deploys":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/deploys
+      - generic: Deploys
+    - link "Settings":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/settings
+      - generic: Settings
+  - generic: Monitor
+  - list "Monitor":
+    - link "Events":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/events
+      - generic: Events
+    - link "Logs":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/logs
+      - generic: Logs
+    - link "Metrics" [active]:
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/metrics
+      - generic: Metrics
+  - generic: Manage
+  - list "Manage":
+    - link "Compute":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/compute
+      - generic: Compute
+    - link "Environment":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/env
+      - generic: Environment
+    - link "Shell":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/shell
+      - generic: Shell
+      - status:
+    - link "Previews":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/previews
+      - generic: Previews
+    - link "Disk":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/disks
+      - generic: Disk
+      - status:
+    - link "One-Off Jobs":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/jobs
+      - generic: One-Off Jobs
+      - status:
+  - alert:
+    - generic: Introducing Workflows
+    - generic: An orchestration and execution engine for long-running, distributed tasks.
+    - link "Learn more":
+      - /url: https://render.com/workflows
+      - text: Learn more
+    - button "Close notification":
+  - list "Footer navigation":
+    - link "Changelog":
+      - /url: https://render.com/changelog
+      - generic: Changelog
+  - link "Status":
+    - /url: https://status.render.com
+    - generic: Status
+  - button "Collapse":
+    - generic: Collapse
+- main:
+  - alert:
+    - generic: Want to stream your metrics to another observability tool?
+    - link "Visit Integrations":
+      - /url: /observability#metrics-stream
+    - button "Close notification":
+  - button "Filter events":
+    - img "Filter events"
+  - button "Last 12 hours":
+    - generic: Last 12 hours
+  - button "Show event timeline":
+    - img "Show event timeline"
+  - heading "Network Metrics" [level=2]
+  - separator
+  - heading "Outbound Bandwidth" [level=3]
+  - button "7":
+    - generic: "7"
+  - alert:
+    - generic: This graph's resolution is fixed at one data point per hour.
+  - list:
+    - button "Usage this month 8 MB":
+      - generic: Usage this month
+      - strong: 8 MB
+  - note:
+    - text: Paid
+    - paragraph:
+      - text: Upgrade to any paid compute plan to view
+      - link "application metrics":
+        - /url: https://render.com/docs/service-metrics
+      - text: like memory and CPU usage.
+    - link "Upgrade":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/plan
+  - heading "Application Metrics" [level=2]
+  - list:
+    - tab "Percentage" [selected]
+    - tab "Total"
+  - separator
+  - heading "Memory" [level=3]
+  - link "Limit":
+    - /url: /web/srv-dbab6j5g1s2s73bf8uc0/plan
+  - text: 512 MB
+  - separator
+  - heading "CPU" [level=3]
+  - link "Limit":
+    - /url: /web/srv-dbab6j5g1s2s73bf8uc0/plan
+  - generic: 0.15 CPU
+  - paragraph:
+    - text: Want to stream your metrics to another observability tool?
+    - link "Visit Integrations":
+      - /url: /observability#metrics-stream
+- generic: "0 services selected:"
+- button:
+  - generic: Move
+- separator
+- button:
+- iframe [id="intercom-frame"]

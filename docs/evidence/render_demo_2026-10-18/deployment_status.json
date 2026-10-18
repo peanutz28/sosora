@@ -1,0 +1,27 @@
+{
+  "checked_at_utc": "2026-10-18T12:31:38.946535+00:00",
+  "backend": {
+    "url": "https://sosora-command-demo.onrender.com",
+    "health": {
+      "status": "ok",
+      "demo_mode": true,
+      "graph_nodes": 43590,
+      "graph_edges": 86254,
+      "ml": {
+        "mode": "mock",
+        "detail": "Demo mode is on. The model service is not called."
+      }
+    }
+  },
+  "vercel": {
+    "id": "dpl_GxJ4PZXxRkG5B1CmF44Q1H4uVCEi",
+    "url": "sosora-command-demo-gn0phkgf8-peanutz28s-projects.vercel.app",
+    "readyState": "READY",
+    "alias": [
+      "sosora-command-demo.vercel.app",
+      "sosora-command-demo-peanutz28s-projects.vercel.app"
+    ],
+    "errorCode": null,
+    "errorMessage": null
+  }
+}

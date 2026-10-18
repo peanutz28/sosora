@@ -1,0 +1,8 @@
+[
+  {
+    "level": "warn",
+    "message": "You are using the same source for a hillshade layer and for 3D terrain. Please consider using two separate sources to improve rendering quality.",
+    "timestamp": "2026-10-18T12:12:36.601Z",
+    "url": "https://sosora-command-demo.vercel.app/_next/static/chunks/05f6971a.d29fb8c443c49c52.js"
+  }
+]

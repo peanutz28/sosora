@@ -4,6 +4,8 @@ from datetime import datetime, timezone
 import gzip
 import json
 from pathlib import Path
+import queue
+import threading
 import time
 from urllib.parse import urlparse
 import httpx
@@ -31,7 +33,9 @@ def main(base, origin, output, manual_handoff=False, resumed_by_user=False):
         evidence['requests'].append({'path':path,'status':r.status_code,'http_seconds':time.perf_counter()-tick,'response':data});save();return data
     def next_state(socket,predicate):
         for _ in range(150):
-            frame=json.loads(socket.recv(timeout=30));evidence['websocket_frames'].append(frame)
+            frame=messages.get(timeout=30)
+            if isinstance(frame,Exception):raise frame
+            evidence['websocket_frames'].append(frame)
             if frame.get('type')=='state' and predicate(frame['state']):return frame['state']
         raise AssertionError('Expected WebSocket state not received')
     def cached(data):
@@ -44,8 +48,22 @@ def main(base, origin, output, manual_handoff=False, resumed_by_user=False):
             preflight=client.options('/api/radio/demo/seed',headers={'Origin':origin,'Access-Control-Request-Method':'POST','Access-Control-Request-Headers':'content-type'})
             assert preflight.status_code==200 and preflight.headers['access-control-allow-origin']==origin
             evidence['checks']['cors']=True
-            with connect(ws,origin=origin,open_timeout=30,max_size=8*1024**2,ping_interval=30,ping_timeout=120) as socket:
-                first=json.loads(socket.recv(timeout=30));assert first['type']=='state'
+            # State snapshots can be fragmented by the public proxy. Keep room for
+            # their frames while the synchronous HTTP client is waiting on a report.
+            with connect(ws,origin=origin,open_timeout=30,max_size=8*1024**2,max_queue=128,ping_interval=30,ping_timeout=120) as socket:
+                messages=queue.Queue()
+                stopped=threading.Event()
+                def read_stream():
+                    while not stopped.is_set():
+                        try:messages.put(json.loads(socket.recv(timeout=1)))
+                        except TimeoutError:continue
+                        except Exception as exc:messages.put(exc);return
+                # Browsers consume events while fetch() is in progress. Do the same
+                # here so backpressure from a paused test reader cannot block pongs.
+                reader=threading.Thread(target=read_stream,daemon=True);reader.start()
+                first=messages.get(timeout=30)
+                if isinstance(first,Exception):raise first
+                assert first['type']=='state'
                 evidence['websocket_frames'].append(first);evidence['checks']['websocket_initial_state']=True
                 seed=post(client,'/api/radio/demo/seed')
                 assert len(seed['state']['incidents'])==9 and all(i['reachable'] for i in seed['state']['incidents'])
@@ -57,16 +75,22 @@ def main(base, origin, output, manual_handoff=False, resumed_by_user=False):
                 evidence['checks']['beacon_hero_and_websocket_broadcast']=True
                 dot=post(client,'/api/radio',{'message':seed['open_report'],'unit':'DOT'})
                 cached(dot);assert len(client.get('/api/radio/status').json()['closed_edge_ids'])==2
+                next_state(socket,lambda state:state['revision']>=dot['state']['revision'])
                 evidence['checks']['dot_open_keeps_closure']=True
                 seed=post(client,'/api/radio/demo/seed')
+                next_state(socket,lambda state:state['revision']>=seed['state']['revision'] and all(i.get('reachable') for i in state['incidents']))
                 responder=post(client,'/api/radio',{'message':seed['hero_message'],'unit':'Engine 4'})
                 cached(responder);assert responder['assessment']['needs_human_review'] is True
                 assert client.get('/api/radio/status').json()['closed_edge_ids']==[]
+                next_state(socket,lambda state:state['revision']>=responder['state']['revision'])
                 confirm=post(client,'/api/radio/confirm',{'radio_id':responder['radio_id'],**seed['beacon_position']})
                 cached(confirm);assert confirm['assessment']['affected_incident_ids']==[f'SOS-{i:03}' for i in range(1,6)]
+                next_state(socket,lambda state:state['revision']>=confirm['state']['revision'] and sum(i.get('reachable') is False for i in state['incidents'])==5)
                 evidence['checks']['responder_review_and_confirm']=True
+                evidence['checks']['websocket_through_responder_and_confirm']=True
                 assert socket.ping().wait(timeout=30), 'WebSocket heartbeat failed after the complete flow'
                 evidence['checks']['websocket_alive_after_complete_flow']=True
+                stopped.set()
         evidence['passed']=True
     except Exception as exc:
         evidence['passed']=False;evidence['failure']={'type':type(exc).__name__,'message':str(exc)};raise

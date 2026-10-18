@@ -1,0 +1,315 @@
+- banner:
+  - link "Render":
+    - /url: /
+    - img "Render"
+  - button "M My Workspace":
+    - generic: M
+    - generic "My Workspace"
+  - navigation "Breadcrumbs":
+    - list:
+      - link "Projects":
+        - /url: /
+        - generic: Projects
+      - generic: New Web Service
+      - button "Choose a service type":
+  - button "Search Command + K":
+    - text: Search
+    - generic: Command
+    - generic: +
+    - generic: K
+    - generic: K
+  - button "New":
+    - generic: New
+  - button "Upgrade":
+    - generic: Upgrade
+  - button "Help":
+    - img "Help"
+  - button "Account menu":
+    - generic: r
+- main:
+  - heading "New Web Service" [level=1]
+  - generic: Source Code
+  - img "GitHub"
+  - link "peanutz28 / sosora":
+    - /url: https://github.com/peanutz28/sosora
+    - text: peanutz28
+    - generic: /
+    - text: sosora
+  - button "Edit":
+    - text: Edit
+- main:
+  - heading [level=1]
+  - generic: Name
+  - generic: A unique name for your web service.
+  - textbox "Name":
+    - /placeholder: example-service-name
+    - text: sosora-command-demo
+  - generic: ProjectOptional
+  - paragraph:
+    - text: Add this web service to a
+    - link "project":
+      - /url: https://render.com/docs/projects
+    - generic: once it’s created.
+  - generic: Project
+  - button "Project Select a project…":
+    - generic: Select a project…
+  - generic: /
+  - generic: Environment
+  - button "Environment Select an environment…" [disabled]:
+    - generic: Select an environment…
+  - generic: Language
+  - text: Choose the
+  - link "runtime environment":
+    - /url: https://render.com/docs/language-support
+  - text: for this service.
+  - button "Language":
+    - generic: Docker
+  - generic: Branch
+  - generic: The Git branch to build and deploy.
+  - combobox:
+    - textbox "Branch":
+      - /placeholder: Search
+      - text: integration
+    - button "Clear search input":
+  - generic: Region
+  - text: Your services in the same
+  - link "region":
+    - /url: https://render.com/docs/regions
+  - text: can communicate over a
+  - link "private network.":
+    - /url: https://render.com/docs/private-network
+  - text: You currently have services running in ohio.
+  - radiogroup "Region Selector":
+    - generic: Region Selector
+    - radio "Ohio (US East) 1 existing service":
+      - generic: Ohio (US East)
+      - generic: 1 existing service
+    - radio "Virginia (US East) No existing services" [checked]:
+      - generic: Virginia (US East)
+      - generic: No existing services
+  - button "Deploy in a new region" [active]:
+    - generic: Deploy in a new region
+  - generic: Root DirectoryOptional
+  - text: If set, Render runs commands from this directory instead of the repository root. Additionally, code changes outside of this directory do not trigger an auto-deploy. Most commonly used with a
+  - link "monorepo.":
+    - /url: https://render.com/docs/monorepo-support#setting-a-root-directory
+  - combobox:
+    - textbox "Root DirectoryOptional":
+      - /placeholder: e.g. src
+      - text: backend
+    - button "Clear search input":
+  - generic: Dockerfile Path
+  - text: The path to your service’s Dockerfile, relative to the repo root. Defaults to
+  - code: ./Dockerfile
+  - text: .
+  - combobox:
+    - generic: backend/
+    - textbox "Dockerfile Path Dockerfile Path":
+      - /placeholder: .
+      - text: Dockerfile
+    - button "Clear search input":
+  - generic: Compute
+  - generic: For more power and to get the most out of Render, we recommend using one of our paid compute plans.
+  - paragraph: "All paid compute plans support:"
+  - list:
+    - listitem: Zero Downtime
+    - listitem: SSH Access
+    - listitem: Scaling
+    - listitem: One-off jobs
+    - listitem: Support for persistent disks
+  - generic: "Selected:"
+  - generic: $0 / month
+  - generic: 0.1 CPU
+  - generic: 512 MB RAM
+  - alert:
+    - generic: Free instances spin down after periods of inactivity. They do not support SSH access, scaling, one-off jobs, or persistent disks.
+  - radiogroup:
+    - radio "$0 / month 0.1 CPU 512 MB RAM Free" [checked]:
+      - generic: $0 / month
+      - generic: 0.1 CPU
+      - generic: 512 MB RAM
+      - generic "Free"
+    - radio "$7 / month 0.5 CPU 512 MB RAM 0.5c-512mb":
+      - generic: $7 / month
+      - generic: 0.5 CPU
+      - generic: 512 MB RAM
+      - generic "0.5c-512mb"
+    - radio "$25 / month 1 CPU 2 GB RAM 1c-2g":
+      - generic: $25 / month
+      - generic: 1 CPU
+      - generic: 2 GB RAM
+      - generic "1c-2g"
+    - radio "$85 / month 2 CPU 4 GB RAM 2c-4g":
+      - generic: $85 / month
+      - generic: 2 CPU
+      - generic: 4 GB RAM
+      - generic "2c-4g"
+  - button "Show all 15 compute plans":
+    - text: Show all 15 compute plans
+  - heading "Environment Variables" [level=4]
+  - text: Set environment-specific config and secrets (such as API keys), then read those values from your code.
+  - link "Learn more.":
+    - /url: https://render.com/docs/configure-environment-variables
+  - table:
+    - rowgroup:
+      - row "Key Value Delete":
+        - columnheader "Key"
+        - columnheader "Value"
+        - columnheader "Delete":
+          - generic: Delete
+    - rowgroup:
+      - row "Key PORT Value 7860 • • • • • • • • • • • • Show secret Delete":
+        - cell "Key PORT":
+          - generic: Key
+          - textbox "Key":
+            - /placeholder: NAME_OF_VARIABLE
+            - text: PORT
+        - cell "Value 7860 • • • • • • • • • • • • Show secret":
+          - generic: Value
+          - textbox "Value":
+            - /placeholder: value
+            - text: "7860"
+          - generic: • • • • • • • • • • • •
+          - button "Show secret":
+        - cell "Delete":
+          - button "Delete":
+      - row "Key DEMO_MODE Value true • • • • • • • • • • • • Show secret Delete":
+        - cell "Key DEMO_MODE":
+          - generic: Key
+          - textbox "Key":
+            - /placeholder: NAME_OF_VARIABLE
+            - text: DEMO_MODE
+        - cell "Value true • • • • • • • • • • • • Show secret":
+          - generic: Value
+          - textbox "Value":
+            - /placeholder: value
+            - text: "true"
+          - generic: • • • • • • • • • • • •
+          - button "Show secret":
+        - cell "Delete":
+          - button "Delete":
+      - row "Key HOSTED_DEMO Value true • • • • • • • • • • • • Show secret Delete":
+        - cell "Key HOSTED_DEMO":
+          - generic: Key
+          - textbox "Key":
+            - /placeholder: NAME_OF_VARIABLE
+            - text: HOSTED_DEMO
+        - cell "Value true • • • • • • • • • • • • Show secret":
+          - generic: Value
+          - textbox "Value":
+            - /placeholder: value
+            - text: "true"
+          - generic: • • • • • • • • • • • •
+          - button "Show secret":
+        - cell "Delete":
+          - button "Delete":
+      - row "Key APP_CORS_ORIGINS Value https://sosora-command-demo.vercel.app • • • • • • • • • • • • Show secret Delete":
+        - cell "Key APP_CORS_ORIGINS":
+          - generic: Key
+          - textbox "Key":
+            - /placeholder: NAME_OF_VARIABLE
+            - text: APP_CORS_ORIGINS
+        - cell "Value https://sosora-command-demo.vercel.app • • • • • • • • • • • • Show secret":
+          - generic: Value
+          - textbox "Value":
+            - /placeholder: value
+            - text: https://sosora-command-demo.vercel.app
+          - generic: • • • • • • • • • • • •
+          - button "Show secret":
+        - cell "Delete":
+          - button "Delete":
+  - button "Add Environment Variable":
+    - text: Add Environment Variable
+  - button "Add from .env":
+    - text: Add from .env
+  - list:
+    - button "Advanced" [expanded]:
+      - generic: Advanced
+    - region "Advanced":
+      - generic: Secret Files
+      - text: Store plaintext files containing secret data (such as a
+      - code: .env
+      - text: file or a private key).
+      - text: Access during builds and at runtime from your app’s root, or from
+      - code: /etc/secrets/<filename>
+      - text: .
+      - button "Add Secret File":
+        - text: Add Secret File
+      - generic: Health Check Path
+      - text: Provide an HTTP endpoint path that Render messages periodically to monitor your service.
+      - link "Learn More.":
+        - /url: https://render.com/docs/health-checks
+      - textbox "Health Check Path":
+        - /placeholder: /healthz
+        - text: /health
+      - generic: Registry Credential
+      - paragraph: If your service pulls private Docker images from a registry, specify a credential that can access those images.
+      - paragraph:
+        - text: Manage your credentials in
+        - link "Settings.":
+          - /url: /w/tea-d3pvg3odl3ps73bhuj7g/settings#registry-credentials
+      - generic: Credential
+      - button "Credential No credential":
+        - text: No credential
+      - generic: Docker Build Context Directory
+      - text: The path to your service’s
+      - link "Docker build context,":
+        - /url: https://docs.docker.com/engine/reference/builder/#usage
+      - text: relative to the repo root. Defaults to the root.
+      - generic: backend/
+      - textbox "Docker Build Context Directory":
+        - /placeholder: .
+        - text: .
+      - generic: Dockerfile Path
+      - text: The path to your service’s Dockerfile, relative to the repo root. Defaults to
+      - code: ./Dockerfile
+      - text: .
+      - combobox:
+        - generic: backend/
+        - textbox ".": Dockerfile
+        - button "Clear search input":
+      - generic: Docker Command
+      - text: Optionally override your Dockerfile's
+      - code: CMD
+      - text: and
+      - code: ENTRYPOINT
+      - text: instructions with a different command to start your service.
+      - textbox "Docker Command":
+        - /placeholder: ""
+      - generic: Pre-Deploy Command
+      - generic: Render runs this command before the start command. Useful for database migrations and static asset uploads.
+      - textbox "Pre-Deploy Command" [disabled]
+      - img "Gated feature"
+      - generic: Auto-Deploy
+      - text: By default, Render automatically deploys your service whenever you update its code or configuration. Disable to handle deploys manually.
+      - link "Learn more.":
+        - /url: https://render.com/docs/deploys#automatic-deploys
+      - generic: autoDeployTrigger
+      - button "autoDeployTrigger Off":
+        - generic: "Off"
+      - generic: Build Filters
+      - text: Include or ignore specific paths in your repo when determining whether to trigger an auto-deploy. Paths are relative to your repo’s root directory.
+      - link "Learn more.":
+        - /url: https://render.com/docs/monorepo-support#setting-build-filters
+      - heading "Included Paths" [level=6]
+      - paragraph: Changes that match these paths will trigger a new build.
+      - button "Add Included Path":
+        - text: Add Included Path
+      - heading "Ignored Paths" [level=6]
+      - paragraph:
+        - text: Changes that match these paths will
+        - strong: not
+        - text: trigger a new build.
+      - button "Add Ignored Path":
+        - text: Add Ignored Path
+  - button "Deploy web service"
+  - button "Cancel"
+  - generic: $0 / month
+  - button "0.1 CPU"
+  - button "512 MB RAM"
+- generic: "0 services selected:"
+- button:
+  - generic: Move
+- separator
+- button:
+- iframe [id="intercom-frame"]

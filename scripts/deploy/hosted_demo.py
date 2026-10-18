@@ -170,7 +170,9 @@ def vercel():
     project=next((p for p in projects if p['name']==PROJECT),None)
     if project is None:
         project=request(base+'/v11/projects',token,'POST',{'name':PROJECT,'framework':'nextjs',
-            'buildCommand':'npm run build','installCommand':'npm ci'})
+            'buildCommand':'npm run build','installCommand':'npm ci','rootDirectory':'frontend'})
+    if project.get('rootDirectory')!='frontend':
+        project=request(base+'/v9/projects/'+project['id'],token,'PATCH',{'rootDirectory':'frontend'})
     env={'NEXT_PUBLIC_APP_API_URL':BACKEND_URL,'NEXT_PUBLIC_HOSTED_DEMO':'true'}
     for key,value in env.items():
         request(base+f"/v10/projects/{project['id']}/env?upsert=true",token,'POST',
@@ -184,12 +186,13 @@ def vercel():
                 target.write_bytes(subprocess.check_output(['git','show',SOURCE_REF+':frontend/'+name],cwd=ROOT))
                 files[name]=target
         assert_public(files)
-        packaged=[{'file':name,'data':base64.b64encode(p.read_bytes()).decode(),'encoding':'base64'} for name,p in files.items()]
+        packaged=[{'file':'frontend/'+name,'data':base64.b64encode(p.read_bytes()).decode(),'encoding':'base64'} for name,p in files.items()]
         save('frontend_package_manifest.json',{'source_ref':SOURCE_REF,'resumed_by_user':RESUMED_REQUEST,
+            'uploaded_root':'frontend',
             'files':{name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for name,p in files.items()}})
     payload={'name':PROJECT,'project':project['id'],'target':'production',
              'files':packaged,
-             'projectSettings':{'framework':'nextjs','buildCommand':'npm run build','installCommand':'npm ci'},
+             'projectSettings':{'framework':'nextjs','buildCommand':'npm run build','installCommand':'npm ci','rootDirectory':'frontend'},
              'meta':{'purpose':'SOSora hosted cached replay'}}
     deadline();deployment=request(base+'/v13/deployments',token,'POST',payload)
     result={k:deployment.get(k) for k in ('id','url','readyState','alias','createdAt')}
@@ -229,10 +232,11 @@ def status():
     output={'checked_at_utc':datetime.now(timezone.utc).isoformat()}
     try: output['backend']={'url':BACKEND_URL,'health':request(BACKEND_URL+'/health')}
     except RuntimeError as exc: output['backend']={'url':BACKEND_URL,'ready':False,'reason':str(exc)}
-    try:
-        hf=request('https://huggingface.co/api/spaces/'+SPACE)
-        output['hf']={'runtime':hf.get('runtime'),'host':hf.get('host'),'sha':hf.get('sha')}
-    except RuntimeError as exc: output['hf']={'ready':False,'reason':str(exc)}
+    if urllib.parse.urlparse(BACKEND_URL).hostname.endswith('.hf.space'):
+        try:
+            hf=request('https://huggingface.co/api/spaces/'+SPACE)
+            output['hf']={'runtime':hf.get('runtime'),'host':hf.get('host'),'sha':hf.get('sha')}
+        except RuntimeError as exc: output['hf']={'ready':False,'reason':str(exc)}
     deployment=EVIDENCE/'vercel_deployment.json'
     if deployment.exists():
         d=json.loads(deployment.read_text());v=request('https://api.vercel.com/v13/deployments/'+d['id'],vercel_token()[0])

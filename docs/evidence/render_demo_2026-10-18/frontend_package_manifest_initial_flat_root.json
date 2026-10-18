@@ -1,0 +1,162 @@
+{
+  "source_ref": "bc5184f2d001de28e0611c1c7f37f514d508d5b8",
+  "resumed_by_user": true,
+  "files": {
+    "app/globals.css": {
+      "bytes": 37890,
+      "sha256": "6a6979a5e98fafdfa90906af3a9830ef553e26b67d31d313f464855ba48270dd"
+    },
+    "app/icon.svg": {
+      "bytes": 269,
+      "sha256": "1d407e75f0ba54070ece5a2b0602ccac7c699a45852aa47651cad04025758414"
+    },
+    "app/layout.tsx": {
+      "bytes": 995,
+      "sha256": "6d04313b8e59552c0b5df1bf82ea0633ba00e1ad6cdd5de137f919d4523ac60b"
+    },
+    "app/map-test/page.tsx": {
+      "bytes": 1266,
+      "sha256": "158b82942000f80a204286bd283b2d0b901fe7dd5168f2767d33a64917d2b9d5"
+    },
+    "app/page.tsx": {
+      "bytes": 115,
+      "sha256": "7096570d31c38534e6f3101cef3a328dacc7a6dd52c621ef3e59637eba5c8ef6"
+    },
+    "components/incidents/IncidentSidebar.tsx": {
+      "bytes": 5962,
+      "sha256": "b713df97e97e9a48cbce75cb1e34c6ceb57ab9b18092659839ab467c660107c9"
+    },
+    "components/intel/IntelPanel.tsx": {
+      "bytes": 13597,
+      "sha256": "b6e47d70ba859add9d0f57e27a2a0cc59e74ac855ef3203559f80e9f6a2cb34e"
+    },
+    "components/map/RescueMap.tsx": {
+      "bytes": 34996,
+      "sha256": "6e6d3349ce58d39e97f330c4e0080cecb06c273430243316764a7271ea300623"
+    },
+    "components/map/cinematicStyle.ts": {
+      "bytes": 3041,
+      "sha256": "5aaa34092ba1387a727fb22b5e864e72f95c35f84abbf9073ca5bf86026a7efc"
+    },
+    "components/map/mapStyle.ts": {
+      "bytes": 1837,
+      "sha256": "f16502a18166fdb40f64d6df7ffce426b60e28fbfd790e77bb95c36e05e1f270"
+    },
+    "components/map/useHeroChoreography.ts": {
+      "bytes": 3993,
+      "sha256": "d61428f01d8c60b0a5932bbdcd4bf69628de9f51d7a9cfcf33e0114e0779209d"
+    },
+    "components/map/useIsolationZone.ts": {
+      "bytes": 2675,
+      "sha256": "e0db6633cb698fdeff8dba0a0f9fa32bfd32ac4e2504fab5025ad48acdef14f4"
+    },
+    "components/map/useLivingRoutes.ts": {
+      "bytes": 6200,
+      "sha256": "5023dd2504fbdc20b394eaa7606d182029a3025b1677e7c8b8a52d40dcd7d700"
+    },
+    "components/map/useTerrainBudget.ts": {
+      "bytes": 1209,
+      "sha256": "0d7722f7e61f98dd283013b002a9029d423de4cdc56265e39e12267154948428"
+    },
+    "components/ops/OpsConsole.tsx": {
+      "bytes": 14951,
+      "sha256": "a3927cfff3f21276b86ea3c090f39251d098612b4a5e1a0a9a108485666c16de"
+    },
+    "components/ops/TerminalRow.tsx": {
+      "bytes": 2152,
+      "sha256": "af6f8f6449c390dac3517a36bfccb3c61e1e61e4a2a1812cf2b9641da38de2c1"
+    },
+    "components/scenario/ScenarioDock.tsx": {
+      "bytes": 3710,
+      "sha256": "b00a7598ccdfc24da4c519ed6b552f656244287a317b9b234d4f2447e1df43e3"
+    },
+    "components/shell/AppShell.tsx": {
+      "bytes": 10691,
+      "sha256": "da316b0257aad5f73f8d7832750768141dfd59a5296d32b72d73777e36a75574"
+    },
+    "components/shell/Header.tsx": {
+      "bytes": 2778,
+      "sha256": "00cb48925519ac0a9216af5c8dd1859832d3060de286f4ccf3ba4331c52085de"
+    },
+    "components/shell/HostedDemoBanner.tsx": {
+      "bytes": 479,
+      "sha256": "ba43c114a0ba775f545725f595906221099eb7c904430994ad09141340aac8d2"
+    },
+    "css.d.ts": {
+      "bytes": 24,
+      "sha256": "35d26ea66c86da9701e4f4b467913481ffeae910761cea34c775c5dacb7f8eaa"
+    },
+    "hooks/useOps.ts": {
+      "bytes": 8850,
+      "sha256": "2ff6d46a1e5d78231100ca4a2b1b45ca61dcfe9587dcd385ac68989b4a1959a9"
+    },
+    "lib/access.ts": {
+      "bytes": 1082,
+      "sha256": "388801e634d31fa11dd4d4d718e2076973f42acb9b768d54d2bf6cc846875fea"
+    },
+    "lib/api.ts": {
+      "bytes": 1101,
+      "sha256": "2306c674804f845864ead6d76f8b2e4a5c4258b3e7ade3f9bfaecc4e3712e5d7"
+    },
+    "lib/format.ts": {
+      "bytes": 1172,
+      "sha256": "e2f5b125bb3986f787f56d2bf822f1b0d5fbd8c09e5617b95b7ca177a98b9c99"
+    },
+    "lib/ops.ts": {
+      "bytes": 8925,
+      "sha256": "a3d7bb37fd5d7d758ea95fd4d1c12bd0893740645014a1e3b17317ef56bb6e06"
+    },
+    "lib/queue.ts": {
+      "bytes": 3964,
+      "sha256": "e2009f2fa3df571fbc411357f4ee7425c7c9c45dcb11d546957e62fd674b4c27"
+    },
+    "lib/stages.ts": {
+      "bytes": 1350,
+      "sha256": "91a1ec264475f38566be0b038a22b9d91a7349ab2d4cc7fb12c324acd1890102"
+    },
+    "lib/types.ts": {
+      "bytes": 5038,
+      "sha256": "5643e5f54928482f5e9b5eecc52a91538d40de0c062b5292d5638d1b8dc62571"
+    },
+    "next.config.ts": {
+      "bytes": 210,
+      "sha256": "006aeb40f99b9b6753ed0f25482a2926475f22d26cd9a9ea0777dc50c4f13170"
+    },
+    "package-lock.json": {
+      "bytes": 75864,
+      "sha256": "e52bf73e584710926f10da9f359981a9cb758b4c2e0e3238998239f57c7c9d3f"
+    },
+    "package.json": {
+      "bytes": 647,
+      "sha256": "f39c5adcf0a441a399eb1781e60f274201bd668d633f11367152e7b2f0d97f15"
+    },
+    "postcss.config.mjs": {
+      "bytes": 94,
+      "sha256": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde"
+    },
+    "public/helene-best-track.geojson": {
+      "bytes": 8942,
+      "sha256": "a471eb3a8710a5cf0c36d79dfae900682883e2d97b16d86cac216a6fa2a91581"
+    },
+    "tests/cinematic.test.cjs": {
+      "bytes": 2204,
+      "sha256": "5ffc5e29426d2c9f76a3ad73ae1cbee8895209ca2ff4545561e7c3ff58d172f6"
+    },
+    "tests/hosted-demo.test.cjs": {
+      "bytes": 2140,
+      "sha256": "3134f5d55c33d7ecff9fe75f9d8191737c67cc8c9ff4a8a8077112e0aba4cb5c"
+    },
+    "tests/ops.test.cjs": {
+      "bytes": 7774,
+      "sha256": "8b03d8e7ee58e272d05bc5159fa65d1302bde7a87689eb08e2945e6f8b5e2086"
+    },
+    "tests/road-access.test.cjs": {
+      "bytes": 3038,
+      "sha256": "eebbc955dc9ef2d96079f194a71fcc5bf273a4cafd2fe7d2d84dd58355260c14"
+    },
+    "tsconfig.json": {
+      "bytes": 715,
+      "sha256": "dc8a9a4c373bb9051f87b4218c3c592ad884ca8016970eea538f3a86c9da0c5b"
+    }
+  }
+}

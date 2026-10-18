@@ -1,0 +1,76 @@
+{
+  "verified_at_utc": "2026-10-18T12:27:05.714210+00:00",
+  "scope": "public Vercel frontend and Render backend",
+  "frontend_url": "https://sosora-command-demo.vercel.app",
+  "checks": {
+    "seed_nine_reachable": {
+      "passed": true,
+      "evidence": "browser_01_seed.txt"
+    },
+    "seed_none_cut_off": {
+      "passed": true,
+      "evidence": "browser_01_seed.txt"
+    },
+    "beacon_five_cut_off": {
+      "passed": true,
+      "evidence": "browser_02_beacon.txt"
+    },
+    "beacon_four_reachable": {
+      "passed": true,
+      "evidence": "browser_02_beacon.txt"
+    },
+    "dot_keeps_bridge_avoided": {
+      "passed": true,
+      "evidence": "browser_03_dot.txt"
+    },
+    "responder_requires_review": {
+      "passed": true,
+      "evidence": "browser_04_responder_review.txt"
+    },
+    "responder_no_closure": {
+      "passed": true,
+      "evidence": "browser_04_responder_review.txt"
+    },
+    "confirmation_five_cut_off": {
+      "passed": true,
+      "evidence": "browser_05_responder_confirm.txt"
+    },
+    "hosted_disclosure": {
+      "passed": true,
+      "evidence": "browser_02_beacon.txt"
+    },
+    "cached_trace_badge": {
+      "passed": true,
+      "evidence": "browser_02_beacon.txt"
+    },
+    "socket_connected_after_confirmation": {
+      "passed": true,
+      "evidence": "browser_05_responder_confirm.txt"
+    }
+  },
+  "console_errors": 0,
+  "screenshots": [
+    "docs/screenshots/render_demo/01_seed.jpg",
+    "docs/screenshots/render_demo/02_beacon.jpg",
+    "docs/screenshots/render_demo/03_dot.jpg",
+    "docs/screenshots/render_demo/04_responder_review.jpg",
+    "docs/screenshots/render_demo/05_responder_confirm.jpg",
+    "docs/screenshots/render_demo/06_after_rebuild.jpg"
+  ],
+  "actions": "S, B, D, S, R shortcuts and explicit eastern bridge confirmation button",
+  "notes": [
+    "Initial automated seed click required a retry using S; the complete shortcut/confirmation flow then passed.",
+    "Existing MapLibre hillshade/terrain warning retained; no styling changes."
+  ],
+  "final_rebuild_reload": {
+    "verified_at_utc": "2026-10-18T12:36:05.888493+00:00",
+    "checks": {
+      "incident_log_loaded": true,
+      "hosted_banner": true,
+      "cached_trace": true,
+      "websocket_connected": true
+    },
+    "dom": "browser_06_after_rebuild.txt",
+    "source_parity": "frontend_rebuild_parity.json"
+  }
+}

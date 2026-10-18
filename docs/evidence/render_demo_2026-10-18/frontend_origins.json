@@ -1,0 +1,8 @@
+{
+  "frontend_url": "https://sosora-command-demo.vercel.app",
+  "origins": [
+    "https://sosora-command-demo.vercel.app",
+    "https://sosora-command-demo-peanutz28s-projects.vercel.app",
+    "https://sosora-command-demo-gn0phkgf8-peanutz28s-projects.vercel.app"
+  ]
+}

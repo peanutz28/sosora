@@ -1,0 +1,7 @@
+{
+  "source_ref": "bc5184f2d001de28e0611c1c7f37f514d508d5b8",
+  "all_file_hashes_unchanged": true,
+  "file_count": 39,
+  "new_uploaded_root": "frontend",
+  "reason": "Align Vercel project and Git monorepo root without frontend behavior changes"
+}

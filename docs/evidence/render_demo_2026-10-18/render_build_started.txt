@@ -1,0 +1,353 @@
+- banner:
+  - link "Render":
+    - /url: /
+    - img "Render"
+  - button "M My Workspace":
+    - generic: M
+    - generic "My Workspace"
+  - navigation "Breadcrumbs":
+    - list:
+      - link "Projects":
+        - /url: /
+        - generic: Projects
+      - link "sosora-command-demo":
+        - /url: /web/srv-dbab6j5g1s2s73bf8uc0
+        - generic: sosora-command-demo
+      - button "Switch Service":
+      - link "Deploys":
+        - /url: /web/srv-dbab6j5g1s2s73bf8uc0/deploys
+        - generic: Deploys
+      - button "Switch page":
+      - generic: dep-dbab6jlg1s2s73bf91q0
+      - button "Switch Deploy":
+  - button "Search Command + K":
+    - text: Search
+    - generic: Command
+    - generic: +
+    - generic: K
+    - generic: K
+  - button "New":
+    - generic: New
+  - button "Upgrade":
+    - generic: Upgrade
+  - button "Help":
+    - img "Help"
+  - button "Account menu":
+    - generic: r
+- navigation:
+  - separator "Resize sidebar"
+  - link "Dashboard":
+    - /url: /
+    - generic: Dashboard
+  - generic: sosora-command-demo
+  - list:
+    - link "Deploys":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/deploys
+      - generic: Deploys
+    - link "Settings":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/settings
+      - generic: Settings
+  - generic: Monitor
+  - list "Monitor":
+    - link "Events":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/events
+      - generic: Events
+    - link "Logs":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/logs
+      - generic: Logs
+    - link "Metrics":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/metrics
+      - generic: Metrics
+  - generic: Manage
+  - list "Manage":
+    - link "Compute":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/compute
+      - generic: Compute
+    - link "Environment":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/env
+      - generic: Environment
+    - link "Shell":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/shell
+      - generic: Shell
+      - status:
+    - link "Previews":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/previews
+      - generic: Previews
+    - link "Disk":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/disks
+      - generic: Disk
+      - status:
+    - link "One-Off Jobs":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/jobs
+      - generic: One-Off Jobs
+      - status:
+  - alert:
+    - generic: Introducing Workflows
+    - generic: An orchestration and execution engine for long-running, distributed tasks.
+    - link "Learn more":
+      - /url: https://render.com/workflows
+      - text: Learn more
+    - button "Close notification":
+  - list "Footer navigation":
+    - link "Changelog":
+      - /url: https://render.com/changelog
+      - generic: Changelog
+  - link "Status":
+    - /url: https://status.render.com
+    - generic: Status
+  - button "Collapse":
+    - generic: Collapse
+- main:
+  - alert:
+    - generic: Your free instance will spin down with inactivity, which can delay requests by 50 seconds or more.
+    - link "Upgrade now":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/plan
+  - heading "Configure free Render backend for cached demo" [level=1]
+  - term: Status
+  - definition: Deploy succeeded|Live
+  - term: Duration
+  - definition:
+    - time: 47.2s
+  - term: Deployed
+  - definition:
+    - paragraph:
+      - generic: Oct 18, 2026
+      - generic: at
+      - generic: 7:53:50 AM
+      - generic: EDT
+  - term: Trigger
+  - definition: First Deploy
+  - term: Source
+  - definition:
+    - link "bc5184f":
+      - /url: https://github.com/peanutz28/sosora/commit/bc5184f2d001de28e0611c1c7f37f514d508d5b8
+  - list
+  - button "All logs":
+    - generic: All logs
+  - generic: Search
+  - searchbox "Search"
+  - button "Live tail":
+    - generic: Live tail
+  - button "Maximize":
+    - img "Maximize"
+  - button "Options":
+    - img "Options"
+  - button "Return to Bottom":
+  - listbox:
+    - generic: Oct 18
+    - 'option "07:54:05 AM #10 2.409 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.409 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)"
+    - 'option "07:54:05 AM #10 2.413 Downloading click-8.5.0-py3-none-any.whl (125 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.413 Downloading click-8.5.0-py3-none-any.whl (125 kB)"
+    - 'option "07:54:05 AM #10 2.416 Downloading h11-0.16.0-py3-none-any.whl (37 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.416 Downloading h11-0.16.0-py3-none-any.whl (37 kB)"
+    - 'option "07:54:05 AM #10 2.418 Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.418 Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)"
+    - 'option "07:54:05 AM #10 2.421 Downloading packaging-26.3-py3-none-any.whl (129 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.421 Downloading packaging-26.3-py3-none-any.whl (129 kB)"
+    - 'option "07:54:05 AM #10 2.424 Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.424 Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)"
+    - 'option "07:54:05 AM #10 2.427 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.427 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)"
+    - 'option "07:54:05 AM #10 2.432 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 270.7 MB/s eta 0:00:00"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.432 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 270.7 MB/s eta 0:00:00"
+    - 'option "07:54:05 AM #10 2.435 Downloading starlette-0.46.2-py3-none-any.whl (72 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.435 Downloading starlette-0.46.2-py3-none-any.whl (72 kB)"
+    - 'option "07:54:05 AM #10 2.438 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.438 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)"
+    - 'option "07:54:05 AM #10 2.441 Downloading idna-3.20-py3-none-any.whl (69 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.441 Downloading idna-3.20-py3-none-any.whl (69 kB)"
+    - 'option "07:54:05 AM #10 2.444 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.444 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)"
+    - 'option "07:54:05 AM #10 2.447 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.447 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)"
+    - 'option "07:54:05 AM #10 2.450 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.450 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)"
+    - 'option "07:54:05 AM #10 2.512 Installing collected packages: websockets, typing-extensions, python-multipart, pygments, pluggy, packaging, networkx, iniconfig, idna, h11, click, certifi, annotated-types, uvicorn, typing-inspection, pytest, pydantic-core, httpcore, anyio, starlette, pydantic, httpx, fastapi"':
+      - time: 07:54:05 AM
+      - generic: "#10 2.512 Installing collected packages: websockets, typing-extensions, python-multipart, pygments, pluggy, packaging, networkx, iniconfig, idna, h11, click, certifi, annotated-types, uvicorn, typing-inspection, pytest, pydantic-core, httpcore, anyio, starlette, pydantic, httpx, fastapi"
+    - 'option "07:54:08 AM #10 5.247 Successfully installed annotated-types-0.8.0 anyio-4.15.1 certifi-2026.7.22 click-8.5.0 fastapi-0.115.14 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.20 iniconfig-2.3.1 networkx-3.2.1 packaging-26.3 pluggy-1.7.0 pydantic-2.13.5 pydantic-core-2.46.5 pygments-2.21.0 pytest-8.4.2 python-multipart-0.0.20 starlette-0.46.2 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.39.0 websockets-15.0.1"':
+      - time: 07:54:08 AM
+      - generic: "#10 5.247 Successfully installed annotated-types-0.8.0 anyio-4.15.1 certifi-2026.7.22 click-8.5.0 fastapi-0.115.14 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.20 iniconfig-2.3.1 networkx-3.2.1 packaging-26.3 pluggy-1.7.0 pydantic-2.13.5 pydantic-core-2.46.5 pygments-2.21.0 pytest-8.4.2 python-multipart-0.0.20 starlette-0.46.2 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.39.0 websockets-15.0.1"
+    - 'option "07:54:08 AM #10 5.247 WARNING: Running pip as the ''root'' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning."':
+      - time: 07:54:08 AM
+      - text: "#10 5.247 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead:"
+      - link "https://pip.pypa.io/warnings/venv.":
+        - /url: https://pip.pypa.io/warnings/venv.
+      - text: Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+    - 'option "07:54:08 AM #10 5.295"':
+      - time: 07:54:08 AM
+      - generic: "#10 5.295"
+    - 'option "07:54:08 AM #10 5.295 [notice] A new release of pip is available: 25.0.1 -> 26.2.1"':
+      - time: 07:54:08 AM
+      - generic: "#10 5.295 [notice] A new release of pip is available: 25.0.1 -> 26.2.1"
+    - 'option "07:54:08 AM #10 5.295 [notice] To update, run: pip install --upgrade pip"':
+      - time: 07:54:08 AM
+      - generic: "#10 5.295 [notice] To update, run: pip install --upgrade pip"
+    - 'option "07:54:08 AM #10 5.390 useradd: warning: the home directory /home/user already exists."':
+      - time: 07:54:08 AM
+      - generic: "#10 5.390 useradd: warning: the home directory /home/user already exists."
+    - 'option "07:54:08 AM #10 5.390 useradd: Not copying any file from skel directory into it."':
+      - time: 07:54:08 AM
+      - generic: "#10 5.390 useradd: Not copying any file from skel directory into it."
+    - 'option "07:54:09 AM #10 DONE 5.8s"':
+      - time: 07:54:09 AM
+      - generic: "#10 DONE 5.8s"
+    - option "07:54:09 AM":
+      - time: 07:54:09 AM
+    - 'option "07:54:09 AM #11 [6/7] COPY --chown=user:user app ./app"':
+      - time: 07:54:09 AM
+      - generic: "#11 [6/7] COPY --chown=user:user app ./app"
+    - 'option "07:54:09 AM #11 DONE 0.0s"':
+      - time: 07:54:09 AM
+      - generic: "#11 DONE 0.0s"
+    - option "07:54:09 AM":
+      - time: 07:54:09 AM
+    - 'option "07:54:09 AM #12 [7/7] COPY --chown=user:user data/graph.json data/anchors.json data/roads.geojson ./data/"':
+      - time: 07:54:09 AM
+      - generic: "#12 [7/7] COPY --chown=user:user data/graph.json data/anchors.json data/roads.geojson ./data/"
+    - 'option "07:54:09 AM #12 DONE 0.0s"':
+      - time: 07:54:09 AM
+      - generic: "#12 DONE 0.0s"
+    - option "07:54:09 AM":
+      - time: 07:54:09 AM
+    - 'option "07:54:09 AM #13 exporting to image"':
+      - time: 07:54:09 AM
+      - generic: "#13 exporting to image"
+    - 'option "07:54:09 AM #13 exporting layers"':
+      - time: 07:54:09 AM
+      - generic: "#13 exporting layers"
+    - 'option "07:54:09 AM #13 exporting layers 0.3s done"':
+      - time: 07:54:09 AM
+      - generic: "#13 exporting layers 0.3s done"
+    - 'option "07:54:09 AM #13 pushing layers"':
+      - time: 07:54:09 AM
+      - generic: "#13 pushing layers"
+    - 'option "07:54:11 AM #13 pushing layers 2.0s done"':
+      - time: 07:54:11 AM
+      - generic: "#13 pushing layers 2.0s done"
+    - 'option "07:54:11 AM #13 DONE 2.4s"':
+      - time: 07:54:11 AM
+      - generic: "#13 DONE 2.4s"
+    - option "07:54:11 AM":
+      - time: 07:54:11 AM
+    - 'option "07:54:11 AM #14 exporting cache to registry"':
+      - time: 07:54:11 AM
+      - generic: "#14 exporting cache to registry"
+    - 'option "07:54:11 AM #14 sending cache export"':
+      - time: 07:54:11 AM
+      - generic: "#14 sending cache export"
+    - 'option "07:54:12 AM #14 sending cache export 3.2s done"':
+      - time: 07:54:12 AM
+      - generic: "#14 sending cache export 3.2s done"
+    - 'option "07:54:12 AM #14 DONE 3.2s"':
+      - time: 07:54:12 AM
+      - generic: "#14 DONE 3.2s"
+    - option "07:54:13 AM ==> Deploying...":
+      - time: 07:54:13 AM
+      - generic: ==> Deploying...
+    - option "07:54:13 AM ==> Setting WEB_CONCURRENCY=1 by default, based on available CPUs in the instance":
+      - time: 07:54:13 AM
+      - generic: ==> Setting WEB_CONCURRENCY=1 by default, based on available CPUs in the instance
+    - 'option "07:54:33 AM [vvjd8] INFO: Started server process [1]"':
+      - time: 07:54:33 AM
+      - generic: "[vvjd8]"
+      - generic: "INFO: Started server process [1]"
+    - 'option "07:54:33 AM [vvjd8] INFO: Waiting for application startup."':
+      - time: 07:54:33 AM
+      - generic: "[vvjd8]"
+      - generic: "INFO: Waiting for application startup."
+    - 'option "07:54:33 AM [vvjd8] INFO: Application startup complete."':
+      - time: 07:54:33 AM
+      - generic: "[vvjd8]"
+      - generic: "INFO: Application startup complete."
+    - 'option "07:54:33 AM [vvjd8] INFO: Uvicorn running on http://0.0.0.0:7860 (Press CTRL+C to quit)"':
+      - time: 07:54:33 AM
+      - generic: "[vvjd8]"
+      - text: "INFO: Uvicorn running on"
+      - link "http://0.0.0.0:7860":
+        - /url: http://0.0.0.0:7860
+      - text: (Press CTRL+C to quit)
+    - 'option "07:54:34 AM [vvjd8] INFO: 127.0.0.1:53466 - \"HEAD / HTTP/1.1\" 404 Not Found"':
+      - time: 07:54:34 AM
+      - generic: "[vvjd8]"
+      - generic: "INFO: 127.0.0.1:53466 - \"HEAD / HTTP/1.1\" 404 Not Found"
+    - 'option "07:54:35 AM [vvjd8] INFO: 10.235.27.168:44904 - \"GET /health HTTP/1.1\" 200 OK"':
+      - time: 07:54:35 AM
+      - generic: "[vvjd8]"
+      - generic: "INFO: 10.235.27.168:44904 - \"GET /health HTTP/1.1\" 200 OK"
+    - option "07:54:37 AM ==> Your service is live 🎉":
+      - time: 07:54:37 AM
+      - generic: ==> Your service is live 🎉
+    - option "07:54:37 AM ==>":
+      - time: 07:54:37 AM
+      - generic: ==>
+    - option "07:54:37 AM ==> ///////////////////////////////////////////////////////////":
+      - time: 07:54:37 AM
+      - generic: ==> ///////////////////////////////////////////////////////////
+    - option "07:54:37 AM ==>":
+      - time: 07:54:37 AM
+      - generic: ==>
+    - option "07:54:37 AM ==> Available at your primary URL https://sosora-command-demo.onrender.com":
+      - time: 07:54:37 AM
+      - text: ==>
+      - text: Available at your primary URL
+      - link "https://sosora-command-demo.onrender.com":
+        - /url: https://sosora-command-demo.onrender.com
+    - option "07:54:37 AM ==>":
+      - time: 07:54:37 AM
+      - generic: ==>
+    - option "07:54:37 AM ==> ///////////////////////////////////////////////////////////":
+      - time: 07:54:37 AM
+      - generic: ==> ///////////////////////////////////////////////////////////
+    - 'option "07:54:37 AM [vvjd8] INFO: 10.235.27.168:54664 - \"GET /health HTTP/1.1\" 200 OK"':
+      - time: 07:54:37 AM
+      - generic: "[vvjd8]"
+      - generic: "INFO: 10.235.27.168:54664 - \"GET /health HTTP/1.1\" 200 OK"
+    - 'option "07:54:37 AM [vvjd8] INFO: 10.26.16.133:0 - \"GET / HTTP/1.1\" 404 Not Found"':
+      - time: 07:54:37 AM
+      - generic: "[vvjd8]"
+      - generic: "INFO: 10.26.16.133:0 - \"GET / HTTP/1.1\" 404 Not Found"
+  - paragraph:
+    - text: Need better ways to work with logs? Try the
+    - link "Render CLI":
+      - /url: https://render.com/docs/cli
+      - text: Render CLI
+    - text: ","
+    - link "Render MCP Server":
+      - /url: https://render.com/docs/mcp-server
+    - text: ", or set up a"
+    - link "log stream integration":
+      - /url: https://render.com/docs/log-streams
+      - text: log stream integration
+  - dialog:
+    - generic: /
+    - button:
+    - tablist:
+      - tab [selected]: Overview
+      - tab [disabled]: Build Logs
+      - tab [disabled]: Linked Services
+      - tab [disabled]: Commits
+    - tabpanel:
+      - generic: Build not found
+      - generic: This build may have been deleted, or the link may be incorrect.
+- generic: "0 services selected:"
+- button:
+  - generic: Move
+- separator
+- button:
+- iframe [id="intercom-frame"]

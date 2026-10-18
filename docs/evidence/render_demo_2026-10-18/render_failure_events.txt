@@ -1,0 +1,182 @@
+- banner:
+  - link "Render":
+    - /url: /
+    - img "Render"
+  - button "M My Workspace":
+    - generic: M
+    - generic "My Workspace"
+  - navigation "Breadcrumbs":
+    - list:
+      - link "Projects":
+        - /url: /
+        - generic: Projects
+      - link "sosora-command-demo":
+        - /url: /web/srv-dbab6j5g1s2s73bf8uc0
+        - generic: sosora-command-demo
+      - button "Switch Service":
+      - generic: Events
+      - button "Switch page":
+  - button "Search Command + K":
+    - text: Search
+    - generic: Command
+    - generic: +
+    - generic: K
+    - generic: K
+  - button "New":
+    - generic: New
+  - button "Upgrade":
+    - generic: Upgrade
+  - button "Help":
+    - img "Help"
+  - button "Account menu":
+    - generic: r
+- navigation:
+  - separator "Resize sidebar"
+  - link "Dashboard":
+    - /url: /
+    - generic: Dashboard
+  - generic: sosora-command-demo
+  - list:
+    - link "Deploys":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/deploys
+      - generic: Deploys
+    - link "Settings":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/settings
+      - generic: Settings
+  - generic: Monitor
+  - list "Monitor":
+    - link "Events" [active]:
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/events
+      - generic: Events
+    - link "Logs":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/logs
+      - generic: Logs
+    - link "Metrics":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/metrics
+      - generic: Metrics
+  - generic: Manage
+  - list "Manage":
+    - link "Compute":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/compute
+      - generic: Compute
+    - link "Environment":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/env
+      - generic: Environment
+    - link "Shell":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/shell
+      - generic: Shell
+      - status:
+    - link "Previews":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/previews
+      - generic: Previews
+    - link "Disk":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/disks
+      - generic: Disk
+      - status:
+    - link "One-Off Jobs":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/jobs
+      - generic: One-Off Jobs
+      - status:
+  - alert:
+    - generic: Introducing Workflows
+    - generic: An orchestration and execution engine for long-running, distributed tasks.
+    - link "Learn more":
+      - /url: https://render.com/workflows
+      - text: Learn more
+    - button "Close notification":
+  - list "Footer navigation":
+    - link "Changelog":
+      - /url: https://render.com/changelog
+      - generic: Changelog
+  - link "Status":
+    - /url: https://status.render.com
+    - generic: Status
+  - button "Collapse":
+    - generic: Collapse
+- banner:
+  - generic: Web Service
+  - heading "sosora-command-demo Docker Free Upgrade your instance" [level=1]:
+    - generic: sosora-command-demo
+    - generic: Docker
+    - link "Free":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/compute
+      - generic: Free
+    - link "Upgrade your instance":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/compute
+      - text: Upgrade your instance
+  - button "Connect":
+    - generic: Connect
+  - button "Manual Deploy":
+    - generic: Manual Deploy
+  - generic: "Service ID:"
+  - generic "Service ID:":
+    - generic: srv-dbab6j5g1s2s73bf8uc0
+    - button "Copy":
+  - img "GitHub"
+  - link "peanutz28 / sosora integration":
+    - /url: https://github.com/peanutz28/sosora/tree/integration
+    - generic: peanutz28 / sosora
+    - generic: integration
+  - link "Last successfully deployed commit":
+    - /url: https://github.com/peanutz28/sosora/commit/bc5184f2d001de28e0611c1c7f37f514d508d5b8
+    - generic: bc5184f
+  - link "Live":
+    - /url: /web/srv-dbab6j5g1s2s73bf8uc0/deploys/dep-dbab6jlg1s2s73bf91q0
+    - text: Live
+  - generic "Copy":
+    - link "https://sosora-command-demo.onrender.com":
+      - /url: https://sosora-command-demo.onrender.com
+    - button "Copy":
+- main:
+  - alert:
+    - generic: Your free instance will spin down with inactivity, which can delay requests by 50 seconds or more.
+    - link "Upgrade now":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/plan
+  - button "Filter events 35":
+    - text: Filter events
+    - generic: "35"
+  - list:
+    - generic: Service recovered
+    - generic: Recently failed instances are now reporting healthy.
+    - generic: October 18, 2026 at 7:56 AM
+    - text: "Instance failed:"
+    - code: vvjd8
+    - generic: HTTP health check failed (timed out after 5 seconds) while running your code.
+    - generic: October 18, 2026 at 7:56 AM
+    - button "Debug":
+      - generic: Debug
+    - link "Deploy":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/deploys/dep-dbab6jlg1s2s73bf91q0
+    - text: live
+    - text: for
+    - link "bc5184f":
+      - /url: https://github.com/peanutz28/sosora/commit/bc5184f2d001de28e0611c1c7f37f514d508d5b8
+    - text: ":"
+    - generic: Configure free Render backend for cached demo
+    - generic: October 18, 2026 at 7:54 AM
+    - text: First
+    - link "deploy":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/deploys/dep-dbab6jlg1s2s73bf91q0
+    - text: started for
+    - link "bc5184f":
+      - /url: https://github.com/peanutz28/sosora/commit/bc5184f2d001de28e0611c1c7f37f514d508d5b8
+    - text: ":"
+    - generic: Configure free Render backend for cached demo
+    - generic: October 18, 2026 at 7:53 AM
+  - dialog:
+    - generic: /
+    - button:
+    - tablist:
+      - tab [selected]: Overview
+      - tab [disabled]: Build Logs
+      - tab [disabled]: Linked Services
+      - tab [disabled]: Commits
+    - tabpanel:
+      - generic: Build not found
+      - generic: This build may have been deleted, or the link may be incorrect.
+- generic: "0 services selected:"
+- button:
+  - generic: Move
+- separator
+- button:
+- iframe [id="intercom-frame"]

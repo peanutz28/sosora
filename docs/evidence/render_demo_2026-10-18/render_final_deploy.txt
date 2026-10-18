@@ -1,0 +1,351 @@
+- banner:
+  - link "Render":
+    - /url: /
+    - img "Render"
+  - button "M My Workspace":
+    - generic: M
+    - generic "My Workspace"
+  - navigation "Breadcrumbs":
+    - list:
+      - link "Projects":
+        - /url: /
+        - generic: Projects
+      - link "sosora-command-demo":
+        - /url: /web/srv-dbab6j5g1s2s73bf8uc0
+        - generic: sosora-command-demo
+      - button "Switch Service":
+      - link "Deploys":
+        - /url: /web/srv-dbab6j5g1s2s73bf8uc0/deploys
+        - generic: Deploys
+      - button "Switch page":
+      - generic: dep-dbabb0bbc2fs73aopdeg
+      - button "Switch Deploy":
+  - button "Search Command + K":
+    - text: Search
+    - generic: Command
+    - generic: +
+    - generic: K
+    - generic: K
+  - button "New":
+    - generic: New
+  - button "Upgrade":
+    - generic: Upgrade
+  - button "Help":
+    - img "Help"
+  - button "Account menu":
+    - generic: r
+- navigation:
+  - separator "Resize sidebar"
+  - link "Dashboard":
+    - /url: /
+    - generic: Dashboard
+  - generic: sosora-command-demo
+  - list:
+    - link "Deploys":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/deploys
+      - generic: Deploys
+    - link "Settings":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/settings
+      - generic: Settings
+  - generic: Monitor
+  - list "Monitor":
+    - link "Events":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/events
+      - generic: Events
+    - link "Logs":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/logs
+      - generic: Logs
+    - link "Metrics":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/metrics
+      - generic: Metrics
+  - generic: Manage
+  - list "Manage":
+    - link "Compute":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/compute
+      - generic: Compute
+    - link "Environment":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/env
+      - generic: Environment
+    - link "Shell":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/shell
+      - generic: Shell
+      - status:
+    - link "Previews":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/previews
+      - generic: Previews
+    - link "Disk":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/disks
+      - generic: Disk
+      - status:
+    - link "One-Off Jobs":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/jobs
+      - generic: One-Off Jobs
+      - status:
+  - alert:
+    - generic: Introducing Workflows
+    - generic: An orchestration and execution engine for long-running, distributed tasks.
+    - link "Learn more":
+      - /url: https://render.com/workflows
+      - text: Learn more
+    - button "Close notification":
+  - list "Footer navigation":
+    - link "Changelog":
+      - /url: https://render.com/changelog
+      - generic: Changelog
+  - link "Status":
+    - /url: https://status.render.com
+    - generic: Status
+  - button "Collapse":
+    - generic: Collapse
+- main:
+  - alert:
+    - generic: Your free instance will spin down with inactivity, which can delay requests by 50 seconds or more.
+    - link "Upgrade now":
+      - /url: /web/srv-dbab6j5g1s2s73bf8uc0/plan
+  - heading "Tune Render health and WebSocket checks for free CPU" [level=1]
+  - term: Status
+  - definition: Deploy succeeded|Live
+  - term: Duration
+  - definition:
+    - time: 38.4s
+  - term: Deployed
+  - definition:
+    - paragraph:
+      - generic: Oct 18, 2026
+      - generic: at
+      - generic: 8:03:13 AM
+      - generic: EDT
+  - term: Trigger
+  - definition: Manually deployed by you via Dashboard
+  - term: Source
+  - definition:
+    - link "5fca5c6":
+      - /url: https://github.com/peanutz28/sosora/commit/5fca5c6000aa5a50115e63f5f9c564493c33ed2c
+  - list
+  - button "All logs":
+    - generic: All logs
+  - generic: Search
+  - searchbox "Search"
+  - button "Live tail":
+    - generic: Live tail
+  - button "Maximize":
+    - img "Maximize"
+  - button "Options":
+    - img "Options"
+  - button "Return to Bottom":
+  - listbox:
+    - generic: Oct 18
+    - 'option "08:03:29 AM #4 DONE 0.0s"':
+      - time: 08:03:29 AM
+      - generic: "#4 DONE 0.0s"
+    - option "08:03:29 AM":
+      - time: 08:03:29 AM
+    - 'option "08:03:29 AM #5 [internal] load build context"':
+      - time: 08:03:29 AM
+      - generic: "#5 [internal] load build context"
+    - 'option "08:03:29 AM #5 DONE 0.0s"':
+      - time: 08:03:29 AM
+      - generic: "#5 DONE 0.0s"
+    - option "08:03:29 AM":
+      - time: 08:03:29 AM
+    - 'option "08:03:29 AM #6 [1/7] FROM docker.io/library/python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1"':
+      - time: 08:03:29 AM
+      - generic: "#6 [1/7] FROM docker.io/library/python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1"
+    - 'option "08:03:29 AM #6 resolve docker.io/library/python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1 done"':
+      - time: 08:03:29 AM
+      - generic: "#6 resolve docker.io/library/python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1 done"
+    - 'option "08:03:29 AM #6 DONE 0.0s"':
+      - time: 08:03:29 AM
+      - generic: "#6 DONE 0.0s"
+    - option "08:03:29 AM":
+      - time: 08:03:29 AM
+    - 'option "08:03:29 AM #7 importing cache manifest"':
+      - time: 08:03:29 AM
+      - generic: "#7 importing cache manifest"
+    - 'option "08:03:29 AM #7 inferred cache manifest type: application/vnd.oci.image.manifest.v1+json done"':
+      - time: 08:03:29 AM
+      - generic: "#7 inferred cache manifest type: application/vnd.oci.image.manifest.v1+json done"
+    - 'option "08:03:29 AM #7 DONE 0.1s"':
+      - time: 08:03:29 AM
+      - generic: "#7 DONE 0.1s"
+    - option "08:03:29 AM":
+      - time: 08:03:29 AM
+    - 'option "08:03:29 AM #5 [internal] load build context"':
+      - time: 08:03:29 AM
+      - generic: "#5 [internal] load build context"
+    - 'option "08:03:29 AM #5 transferring context: 16.33MB 0.1s done"':
+      - time: 08:03:29 AM
+      - generic: "#5 transferring context: 16.33MB 0.1s done"
+    - 'option "08:03:29 AM #5 DONE 0.1s"':
+      - time: 08:03:29 AM
+      - generic: "#5 DONE 0.1s"
+    - option "08:03:29 AM":
+      - time: 08:03:29 AM
+    - 'option "08:03:29 AM #8 [2/7] WORKDIR /home/user/app"':
+      - time: 08:03:29 AM
+      - generic: "#8 [2/7] WORKDIR /home/user/app"
+    - 'option "08:03:29 AM #8 CACHED"':
+      - time: 08:03:29 AM
+      - generic: "#8 CACHED"
+    - option "08:03:29 AM":
+      - time: 08:03:29 AM
+    - 'option "08:03:29 AM #9 [3/7] RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata && rm -rf /var/lib/apt/lists/*"':
+      - time: 08:03:29 AM
+      - generic: "#9 [3/7] RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata && rm -rf /var/lib/apt/lists/*"
+    - 'option "08:03:29 AM #9 CACHED"':
+      - time: 08:03:29 AM
+      - generic: "#9 CACHED"
+    - option "08:03:29 AM":
+      - time: 08:03:29 AM
+    - 'option "08:03:29 AM #10 [4/7] COPY requirements.txt ./requirements.txt"':
+      - time: 08:03:29 AM
+      - generic: "#10 [4/7] COPY requirements.txt ./requirements.txt"
+    - 'option "08:03:29 AM #10 CACHED"':
+      - time: 08:03:29 AM
+      - generic: "#10 CACHED"
+    - option "08:03:29 AM":
+      - time: 08:03:29 AM
+    - 'option "08:03:29 AM #11 [5/7] RUN pip install --no-cache-dir -r requirements.txt && useradd --create-home --uid 1000 user"':
+      - time: 08:03:29 AM
+      - generic: "#11 [5/7] RUN pip install --no-cache-dir -r requirements.txt && useradd --create-home --uid 1000 user"
+    - 'option "08:03:29 AM #11 CACHED"':
+      - time: 08:03:29 AM
+      - generic: "#11 CACHED"
+    - option "08:03:29 AM":
+      - time: 08:03:29 AM
+    - 'option "08:03:29 AM #12 [6/7] COPY --chown=user:user app ./app"':
+      - time: 08:03:29 AM
+      - generic: "#12 [6/7] COPY --chown=user:user app ./app"
+    - 'option "08:03:29 AM #12 CACHED"':
+      - time: 08:03:29 AM
+      - generic: "#12 CACHED"
+    - option "08:03:29 AM":
+      - time: 08:03:29 AM
+    - 'option "08:03:29 AM #13 [7/7] COPY --chown=user:user data/graph.json data/anchors.json data/roads.geojson ./data/"':
+      - time: 08:03:29 AM
+      - generic: "#13 [7/7] COPY --chown=user:user data/graph.json data/anchors.json data/roads.geojson ./data/"
+    - 'option "08:03:29 AM #13 CACHED"':
+      - time: 08:03:29 AM
+      - generic: "#13 CACHED"
+    - option "08:03:29 AM":
+      - time: 08:03:29 AM
+    - 'option "08:03:29 AM #14 exporting to image"':
+      - time: 08:03:29 AM
+      - generic: "#14 exporting to image"
+    - 'option "08:03:29 AM #14 exporting layers done"':
+      - time: 08:03:29 AM
+      - generic: "#14 exporting layers done"
+    - 'option "08:03:29 AM #14 pushing layers"':
+      - time: 08:03:29 AM
+      - generic: "#14 pushing layers"
+    - 'option "08:03:30 AM #14 ..."':
+      - time: 08:03:30 AM
+      - generic: "#14 ..."
+    - option "08:03:30 AM":
+      - time: 08:03:30 AM
+    - 'option "08:03:30 AM #15 exporting cache to registry"':
+      - time: 08:03:30 AM
+      - generic: "#15 exporting cache to registry"
+    - 'option "08:03:30 AM #15 sending cache export 0.3s done"':
+      - time: 08:03:30 AM
+      - generic: "#15 sending cache export 0.3s done"
+    - 'option "08:03:30 AM #15 DONE 0.4s"':
+      - time: 08:03:30 AM
+      - generic: "#15 DONE 0.4s"
+    - option "08:03:30 AM":
+      - time: 08:03:30 AM
+    - 'option "08:03:30 AM #14 exporting to image"':
+      - time: 08:03:30 AM
+      - generic: "#14 exporting to image"
+    - 'option "08:03:30 AM #14 pushing layers 0.6s done"':
+      - time: 08:03:30 AM
+      - generic: "#14 pushing layers 0.6s done"
+    - 'option "08:03:30 AM #14 DONE 0.8s"':
+      - time: 08:03:30 AM
+      - generic: "#14 DONE 0.8s"
+    - option "08:03:31 AM ==> Deploying...":
+      - time: 08:03:31 AM
+      - generic: ==> Deploying...
+    - option "08:03:31 AM ==> Setting WEB_CONCURRENCY=1 by default, based on available CPUs in the instance":
+      - time: 08:03:31 AM
+      - generic: ==> Setting WEB_CONCURRENCY=1 by default, based on available CPUs in the instance
+    - option "08:03:52 AM ==> Your service is live 🎉":
+      - time: 08:03:52 AM
+      - generic: ==> Your service is live 🎉
+    - option "08:03:52 AM ==>":
+      - time: 08:03:52 AM
+      - generic: ==>
+    - option "08:03:52 AM ==> ///////////////////////////////////////////////////////////":
+      - time: 08:03:52 AM
+      - generic: ==> ///////////////////////////////////////////////////////////
+    - option "08:03:52 AM ==>":
+      - time: 08:03:52 AM
+      - generic: ==>
+    - option "08:03:52 AM ==> Available at your primary URL https://sosora-command-demo.onrender.com":
+      - time: 08:03:52 AM
+      - text: ==>
+      - text: Available at your primary URL
+      - link "https://sosora-command-demo.onrender.com":
+        - /url: https://sosora-command-demo.onrender.com
+    - option "08:03:52 AM ==>":
+      - time: 08:03:52 AM
+      - generic: ==>
+    - option "08:03:52 AM ==> ///////////////////////////////////////////////////////////":
+      - time: 08:03:52 AM
+      - generic: ==> ///////////////////////////////////////////////////////////
+    - 'option "08:03:51 AM [nl25x] INFO: Started server process [1]"':
+      - time: 08:03:51 AM
+      - generic: "[nl25x]"
+      - generic: "INFO: Started server process [1]"
+    - 'option "08:03:51 AM [nl25x] INFO: Waiting for application startup."':
+      - time: 08:03:51 AM
+      - generic: "[nl25x]"
+      - generic: "INFO: Waiting for application startup."
+    - 'option "08:03:51 AM [nl25x] INFO: Application startup complete."':
+      - time: 08:03:51 AM
+      - generic: "[nl25x]"
+      - generic: "INFO: Application startup complete."
+    - 'option "08:03:51 AM [nl25x] INFO: Uvicorn running on http://0.0.0.0:7860 (Press CTRL+C to quit)"':
+      - time: 08:03:51 AM
+      - generic: "[nl25x]"
+      - text: "INFO: Uvicorn running on"
+      - link "http://0.0.0.0:7860":
+        - /url: http://0.0.0.0:7860
+      - text: (Press CTRL+C to quit)
+    - 'option "08:03:52 AM [nl25x] INFO: 127.0.0.1:59542 - \"HEAD / HTTP/1.1\" 404 Not Found"':
+      - time: 08:03:52 AM
+      - generic: "[nl25x]"
+      - generic: "INFO: 127.0.0.1:59542 - \"HEAD / HTTP/1.1\" 404 Not Found"
+    - 'option "08:03:52 AM [nl25x] INFO: 10.26.16.133:0 - \"GET / HTTP/1.1\" 404 Not Found"':
+      - time: 08:03:52 AM
+      - generic: "[nl25x]"
+      - generic: "INFO: 10.26.16.133:0 - \"GET / HTTP/1.1\" 404 Not Found"
+  - paragraph:
+    - text: Need better ways to work with logs? Try the
+    - link "Render CLI":
+      - /url: https://render.com/docs/cli
+      - text: Render CLI
+    - text: ","
+    - link "Render MCP Server":
+      - /url: https://render.com/docs/mcp-server
+    - text: ", or set up a"
+    - link "log stream integration":
+      - /url: https://render.com/docs/log-streams
+      - text: log stream integration
+  - dialog:
+    - generic: /
+    - button:
+    - tablist:
+      - tab [selected]: Overview
+      - tab [disabled]: Build Logs
+      - tab [disabled]: Linked Services
+      - tab [disabled]: Commits
+    - tabpanel:
+      - generic: Build not found
+      - generic: This build may have been deleted, or the link may be incorrect.
+- generic: "0 services selected:"
+- button:
+  - generic: Move
+- separator
+- button:
+- iframe [id="intercom-frame"]

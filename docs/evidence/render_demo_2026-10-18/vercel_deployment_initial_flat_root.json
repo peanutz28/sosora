@@ -1,0 +1,16 @@
+{
+  "id": "dpl_E1kEaF6h6bXkdRhSMcW3RRzaC1nA",
+  "url": "sosora-command-demo-q4o3fq8c6-peanutz28s-projects.vercel.app",
+  "readyState": "INITIALIZING",
+  "alias": [
+    "sosora-command-demo-peanutz28s-projects.vercel.app"
+  ],
+  "createdAt": 1792324503851,
+  "project_id": "prj_3rAvMeAZZ255hdzY7DLTgdB3Fb4i",
+  "project_name": "sosora-command-demo",
+  "public_environment": {
+    "NEXT_PUBLIC_APP_API_URL": "https://sosora-command-demo.onrender.com",
+    "NEXT_PUBLIC_HOSTED_DEMO": "true"
+  },
+  "submitted_at_utc": "2026-10-18T11:55:04.526173+00:00"
+}

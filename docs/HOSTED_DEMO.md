@@ -1,133 +1,104 @@
-# Hosted cached demo — deployment handoff
+# Hosted cached demo — Render + Vercel
 
-Status: **not published**. On the user's resumed setup request, the
-[SOSora Vercel project](https://vercel.com/peanutz28s-projects/sosora-command-demo)
-was created in the existing Hobby account and linked to `frontend/`. Its hosted
-disclosure flag is configured; the API URL is pending a working public backend.
-No deployment was submitted. Setup evidence is in
-[`vercel_resume_2026-10-18/`](evidence/vercel_resume_2026-10-18/).
+- Frontend: **https://sosora-command-demo.vercel.app**
+- Backend API: **https://sosora-command-demo.onrender.com**
+- Backend health: https://sosora-command-demo.onrender.com/health
+- WebSocket: `wss://sosora-command-demo.onrender.com/ws/events`
+- [Vercel project](https://vercel.com/peanutz28s-projects/sosora-command-demo)
+- [Render service](https://dashboard.render.com/web/srv-dbab6j5g1s2s73bf8uc0)
 
-Vercel authentication works as `peanutz28`. Hugging Face
-accepted the account/token but returned HTTP 402 when creating a Docker Space on
-`cpu-basic`, including a retry with default hardware. The server requires a PRO
-subscription for free CPU Docker/Gradio hosting. No subscription was purchased,
-no paid hardware was requested, and no broken production frontend was published.
-Saved provider response: [`hf_failure.json`](evidence/hosted_demo_2026-10-18/hf_failure.json).
-This account eligibility requirement is also in the [HF Spaces documentation](https://huggingface.co/docs/hub/spaces-overview).
+The user chose Render's free plan after HF returned HTTP 402 for Docker CPU Space
+creation. No HF subscription, paid compute, GPU or model credentials are needed
+for this hosted replay. The original run stopped before its cutoff; the user
+subsequently returned and explicitly requested this new Render deployment.
 
-| Service | Public URL | Verification |
-|---|---|---|
-| Backend | Intended target: `https://peanutz28-sosora-command-demo.hf.space` | Not created; HTTP 402 |
-| Frontend | Not allocated | Project created and linked; deployment waits for healthy backend |
-| WebSocket | Intended target: `wss://peanutz28-sosora-command-demo.hf.space/ws/events` | Public check blocked; exact Docker image passed locally |
+Deployment identifiers, source hashes, public responses and browser captures are
+saved in [`render_demo_2026-10-18/`](evidence/render_demo_2026-10-18/).
+The complete public API/WebSocket flow passed, including a final ping/pong.
+The final verification summary is `readiness.json`; full HTTP/WebSocket exercise
+responses are `public_smoke.json.gz`. Check those files before making a full-flow
+verification claim.
 
-The original agent run stopped before **06:30 AM ET, October 18, 2026**; the user
-requested a new Vercel setup after returning. The original deployment commands
-retain their cutoff guard. If HF still
-blocks the free CPU target, drop hosting and use GitHub plus the video for judging.
-The commands below are a human handoff; `--manual-handoff` is explicit permission
-for the person running them to operate after the agent deadline.
+## Runtime and limits
 
-## Exact commands
+[`render.yaml`](../render.yaml) declares a Docker web service on **Free** compute,
+using `backend/` as its build context and the `integration` branch. Auto-deploys
+are off. The Docker process listens on port 7860 with one Uvicorn worker, so all
+visitors share one scenario and WebSocket hub. The hosted entrypoint forces
+`DEMO_MODE=true` and uses ephemeral SQLite in `/tmp`.
 
-Run from the repository root. `HF_TOKEN` stays in ignored `ml/.env`, read in memory
-only for authenticated HF actions. Vercel uses the existing terminal CLI login;
-`VERCEL_TOKEN` in `ml/.env` is an optional alternative. Never copy either token into
-a command argument, Docker build context, public environment variable or commit.
+Render's free CPU makes graph operations noticeably slower than the local demo.
+An initial test completed seed, Beacon and its WebSocket broadcast, then hit a
+502 when the HTTP health check timed out during CPU work. The service now uses
+Render's [default TCP health probe](https://render.com/docs/health-checks).
+`/health` remains available for explicit API checks. The hosted Docker WebSocket
+heartbeat allows long CPU bursts; the complete smoke test also checks a final
+ping/pong after all report flows.
 
-First resolve HF account eligibility yourself if you choose to continue. These
-commands only request `cpu-basic`; they do not buy a plan or GPU.
+Free services [sleep after inactivity](https://render.com/docs/free), so the first
+visit can take about a minute. SQLite state resets on sleep, restart or redeploy.
+Other visitors can seed the shared drill. This is a cached demonstration; the
+local offline GPU system and its measured live model results are separate.
 
-```sh
-cd /Users/peanutz/Documents/GitHub/sosora
-ml/.venv312/bin/python scripts/deploy/hosted_demo.py prepare --manual-handoff
-ml/.venv312/bin/python scripts/deploy/hosted_demo.py vercel-auth --manual-handoff
-ml/.venv312/bin/python scripts/deploy/hosted_demo.py hf --manual-handoff
-ml/.venv312/bin/python scripts/deploy/hosted_demo.py status --manual-handoff
-```
+## Configuration
 
-If `hf` returns HTTP 402, stop here. Otherwise repeat `status` until the Space
-runtime is `RUNNING`, then submit the frontend:
+Render's public settings are `PORT=7860`, `DEMO_MODE=true`, `HOSTED_DEMO=true`,
+and `APP_CORS_ORIGINS` containing the production Vercel origin. The comma-separated
+origin setting can also allow the team alias. No API keys or secret files are
+configured. The image explicitly copies application code and the existing OSM
+`graph.json`, `anchors.json` and `roads.geojson`, excluding local credentials,
+databases, weights and environments.
 
-```sh
-ml/.venv312/bin/python scripts/deploy/hosted_demo.py vercel --manual-handoff
-ml/.venv312/bin/python scripts/deploy/hosted_demo.py status --manual-handoff
-```
-
-Repeat `status` until Vercel is `READY`. Connect the actual assigned origins, fetch
-the public frontend without credentials, and smoke the public backend + WebSocket:
-
-```sh
-ml/.venv312/bin/python scripts/deploy/hosted_demo.py connect --manual-handoff
-ml/.venv312/bin/python - <<'PY'
-import json
-import subprocess
-from pathlib import Path
-p = Path('docs/evidence/hosted_demo_2026-10-18/public_urls.json')
-urls = json.loads(p.read_text())
-subprocess.run([
-    'ml/.venv312/bin/python', 'scripts/deploy/smoke_hosted.py',
-    '--base-url', urls['backend_url'], '--origin', urls['frontend_url'],
-    '--output', 'docs/evidence/hosted_demo_2026-10-18/public_smoke.json.gz',
-    '--manual-handoff',
-], check=True)
-print('Frontend:', urls['frontend_url'])
-print('Backend:', urls['backend_url'])
-PY
-```
-
-`connect` must fail if Vercel serves a login/protection redirect or omits the hosted
-banner. If protection blocks the site, use Vercel's project Deployment Protection
-settings to allow public access, then rerun `connect`. Do not call a protected page
-publicly verified. If HF rebuilds after CORS updates, wait for `RUNNING` before the
-smoke command.
-
-Open the returned frontend URL and check these exact UI actions: **S** seed
-(all reachable), **B** Beacon hero (five cut off/four reachable), **S → R**
-(asks which bridge without closing either), select the eastern bridge and confirm
-(five cut off), then **D** (unverified DOT opening leaves the bridge avoided).
-Capture screenshots with the disclosure banner and `cached replay` trace badge.
-Add the verified frontend/backend URLs to the top of `README.md` and to
-`docs/CONTEXT.md`, citing `public_urls.json` and `public_smoke.json.gz`, then commit.
-No public screenshots or verified URL claims exist in this handoff.
-
-## Package and local behavior
-
-The [Dockerfile](../backend/Dockerfile) follows the [HF Docker SDK port contract](https://huggingface.co/docs/hub/spaces-sdks-docker):
-port `7860`, unprivileged user, one Uvicorn worker and WebSockets. The dedicated
-`app.hosted:app` entrypoint forces `DEMO_MODE=true` and uses SQLite at
-`/tmp/sosora-hosted-demo.sqlite3`. The shared scenario resets on rebuild/restart,
-and another visitor can seed it. There is no live model inference in this image.
-
-The curated HF package includes Python application files, pinned requirements,
-and the existing OSM `graph.json`, `anchors.json`, `roads.geojson`. It excludes
-credentials, runtime databases, checkpoints, tests and local configuration. HF
-Space metadata is in `backend/SPACE_README.md`; the push helper maps it to the
-Space's root README. `APP_CORS_ORIGINS` is a comma-separated list of actual Vercel
-origins. No wildcard is needed for the hosted site.
-
-Frontend deployment packages only `frontend/` sources. The helper sets:
+Vercel’s project and deployment root are `frontend/`, matching the Git monorepo.
+The project’s Git production branch remains `main`; the deployment helper can
+publish an explicitly selected committed snapshot to production. It builds with:
 
 ```text
-NEXT_PUBLIC_APP_API_URL=https://peanutz28-sosora-command-demo.hf.space
+NEXT_PUBLIC_APP_API_URL=https://sosora-command-demo.onrender.com
 NEXT_PUBLIC_HOSTED_DEMO=true
 ```
 
-The existing client derives `wss://…/ws/events` from the HTTPS API base; no separate
-WebSocket variable is needed. Both are public build settings, never secrets.
-Without the hosted flag, the banner returns `null`; local API and WebSocket
-defaults remain `http://127.0.0.1:8000` and `ws://127.0.0.1:8000/ws/events`.
-Local `app.main`, its database and all GPU/model services remain unchanged.
+The existing client derives the WSS URL from the HTTPS API base. The hosted-only
+banner says “Hosted demo · cached replay · the real system runs offline on one GPU
+box”; its trace badge says `cached replay`, without model latency. Local default
+URLs, `app.main`, local SQLite state, frozen UI styling and GPU services are
+unchanged. Unfinished edits from other chats are excluded from the public build.
 
-To run the exact image locally, isolated from the active demo:
+## Redeploy and verify
+
+For a new user-authorized deployment after the original run's cutoff:
 
 ```sh
-docker build --platform linux/amd64 -t sosora-hosted-demo:20261018 backend
-docker run --rm --name sosora-hosted-demo-check -p 127.0.0.1:17860:7860 \
-  -e APP_CORS_ORIGINS=http://127.0.0.1:17863 sosora-hosted-demo:20261018
+cd /Users/peanutz/Documents/GitHub/sosora
+ml/.venv312/bin/python scripts/deploy/hosted_demo.py vercel \
+  --resumed-by-user \
+  --backend-url https://sosora-command-demo.onrender.com \
+  --source-ref integration \
+  --evidence-dir docs/evidence/render_demo_2026-10-18
+ml/.venv312/bin/python scripts/deploy/hosted_demo.py status \
+  --resumed-by-user \
+  --backend-url https://sosora-command-demo.onrender.com \
+  --evidence-dir docs/evidence/render_demo_2026-10-18
 ```
 
-See [`readiness.json`](evidence/hosted_demo_2026-10-18/readiness.json) for measured
-checks, [`docker_backend_smoke.json.gz`](evidence/hosted_demo_2026-10-18/docker_backend_smoke.json.gz)
-for saved HTTP/WebSocket responses, and [`screenshots/hosted_demo/`](screenshots/hosted_demo/)
-for isolated preview captures. These are local checks, not public deployment proof.
+After Vercel is READY, run `connect` with the same flags. It verifies the public
+page's disclosure and the production CORS preflight before writing `public_urls.json`.
+Render backend updates use **Manual Deploy → Deploy latest commit** after pushing
+the desired integration commit. Stay on the free plan; no disk or extra replicas.
+
+```sh
+/private/tmp/sosora-mobile-venv/bin/python scripts/deploy/smoke_hosted.py \
+  --resumed-by-user \
+  --base-url https://sosora-command-demo.onrender.com \
+  --origin https://sosora-command-demo.vercel.app \
+  --output docs/evidence/render_demo_2026-10-18/public_smoke.json.gz
+```
+
+The smoke sequence checks seed, Beacon hero, WebSocket broadcast, DOT opening
+safeguards, responder ambiguity and operator confirmation. Browser QA uses the
+same public site: S → B, D, S → R → confirm the eastern bridge, with screenshots.
+Do not run competing seeds while verifying: the demo state is intentionally shared.
+
+The initial HF failure evidence and earlier local-only checks remain in
+[`hosted_demo_2026-10-18/`](evidence/hosted_demo_2026-10-18/). They are historical;
+public verification belongs to the Render evidence folder.

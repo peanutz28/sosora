@@ -1,0 +1,7 @@
+{
+  "direct_connection": true,
+  "initial_message_type": "state",
+  "protocol_ping_pong_received": true,
+  "seconds": 0.022893249988555908,
+  "idle_probe": true
+}
