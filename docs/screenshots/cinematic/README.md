@@ -1,5 +1,7 @@
 # Cinematic SOSora Command demo
 
+The final UI freeze fixes and current screenshots are documented in [freeze/README.md](freeze/README.md). Earlier captures and the video below preserve the preceding cinematic checkpoint.
+
 Visual changes are confined to `frontend/`. Existing HTTP requests, WebSocket events,
 trust decisions, incident state, and demo actions are preserved. All captures use
 1920 × 1080 pixels and the existing backend in DEMO_MODE with an isolated temporary
@@ -12,7 +14,7 @@ database. They show simulated SOS reports on real roads.
 | Ambiguity: two bridges, confirmation required | [Before](before-ambiguity.png) | [After](after-ambiguity.png) |
 
 `01-` through `08-` files preserve the screenshot checkpoints committed after each
-ordered feature. The `after-` files show the delivered production UI.
+ordered feature. The `after-` files show the cinematic delivery before the final freeze corrections; see `freeze/` for the current UI.
 
 ## Video takes
 

@@ -126,7 +126,7 @@ async def run_report(request: Request, report: dict) -> dict:
     async with state.radio_lock:
         agent = RadioAgent(state.engine, state.hub, report)
         assessment = await agent.run()
-        return {"assessment": assessment, "statuses": agent.statuses}
+        return {"assessment": assessment, "statuses": agent.statuses, "agent_runtime": dict(agent.runtime)}
 
 
 async def _event(request: Request, kind: str, payload: dict) -> None:

@@ -1,4 +1,4 @@
-import type { Assessment, BridgeCandidate, OpsEvent } from "@/lib/types";
+import type { AppState, Assessment, BridgeCandidate, CalculatedRoute, OpsEvent } from "@/lib/types";
 
 export const eventKey = (event: OpsEvent) =>
   `${event.id}-${event.kind}-${event.at}`;
@@ -121,13 +121,67 @@ export function physicalClosureCount(closures: { id: string }[]): number {
     .size;
 }
 
+/** Only structured location ambiguity or an unresolved contested road is yellow. */
+export function needsReview(stream: OpsEvent[]): boolean {
+  const boundary = stream.findLastIndex(e => e.kind === "radio_received" || e.kind === "radio_location_confirmed" || (e.kind === "sensor_reading" && e.over_threshold));
+  const current = stream.slice(Math.max(0, boundary));
+  const found = [...current].reverse().find(e => e.kind === "agent_tool_result" && e.tool === "find_segments" && !e.result?.error);
+  if (found && (found.result?.needs_human_review === true || Number(found.result?.distinct_locations) > 1)) return true;
+  const statuses = new Map<string, string>();
+  for (const event of stream) {
+    if (event.kind !== "agent_tool_result" || !["report_segment", "get_segment_status"].includes(event.tool || "")) continue;
+    for (const [id, value] of Object.entries(event.result || {})) {
+      if (value && typeof value === "object" && "status" in value) statuses.set(id, String(value.status));
+    }
+  }
+  return [...statuses.values()].includes("contested");
+}
+
 export function agentStatus(
   working: boolean,
   assessment: Assessment | null,
-): "idle" | "working" | "needs review" {
-  return working
-    ? "working"
-    : assessment?.needs_human_review
-      ? "needs review"
-      : "idle";
+  stream: OpsEvent[] = [],
+): "idle" | "working" | "needs review" | "ready for operator" | "action required" {
+  if (working) return "working";
+  if (needsReview(stream)) return "needs review";
+  const submitted = [...stream].reverse().find(e => e.kind === "agent_tool_result" && e.tool === "submit_assessment");
+  const boundary = stream.findLastIndex(e => e.kind === "radio_received" || e.kind === "radio_location_confirmed" || (e.kind === "sensor_reading" && e.over_threshold));
+  const found = stream.slice(Math.max(0, boundary)).findLast(e => e.kind === "agent_tool_result" && e.tool === "find_segments");
+  if (submitted?.call_id === "fallback" || submitted?.result?.error || found?.result?.distinct_locations === 0) return "action required";
+  return assessment ? "ready for operator" : "idle";
+}
+
+export const agentStatusLabel = (status: ReturnType<typeof agentStatus>) => status[0].toUpperCase() + status.slice(1);
+
+/** Publish all three counters from the same completed reachability snapshot. */
+export function accessCounters(state: AppState, stream: OpsEvent[]) {
+  const index = stream.findLastIndex(e => e.kind === "agent_tool_result" && e.tool === "recompute_reachability" && e.result?.routes && !e.result.error);
+  const routes = index >= 0 ? stream[index].result?.routes as Record<string, CalculatedRoute> : null;
+  let cutOff = 0, reachable = 0;
+  for (const incident of state.incidents) {
+    const route = routes?.[incident.id];
+    if (route ? route.status === "ok" : incident.reachable === true) reachable++;
+    if (route ? route.status === "unreachable" : incident.reachable === false && incident.route?.status !== "snap_failed") cutOff++;
+  }
+  const blocked = new Set(state.closures.map(c => c.id.replace(/:(f|b)$/, "")));
+  for (const event of stream.slice(0, index + 1)) {
+    if (event.kind !== "agent_tool_result" || !["report_segment", "get_segment_status"].includes(event.tool || "")) continue;
+    for (const [id, value] of Object.entries(event.result || {})) {
+      if (!value || typeof value !== "object" || !("status" in value)) continue;
+      const physical = id.replace(/:(f|b)$/, "");
+      if (value.status === "blocked" || value.status === "contested") blocked.add(physical);
+      else if (value.status === "open_official") blocked.delete(physical);
+    }
+  }
+  return { cutOff, reachable, blocked: blocked.size };
+}
+
+export function agentTraceBadge(stream: OpsEvent[], demoMode: boolean) {
+  const runtime = [...stream].reverse().find(e => e.agent_runtime)?.agent_runtime;
+  if (demoMode || runtime?.cached) return { label: "cached replay", title: "Cached tool replay; no live model call or latency" };
+  if (!runtime?.model_id) return { label: "Model metadata unavailable", title: "No successful model-call metadata has arrived" };
+  const model = /nemotron[-_ ]3\.5[-_ ]lightning/i.test(runtime.model_id) ? "Nemotron 3.5 Lightning" : runtime.model_id;
+  const latency = runtime.last_call_latency_ms;
+  const timing = typeof latency === "number" && Number.isFinite(latency) && latency >= 0 ? `${(latency / 1000).toFixed(2)}s` : "latency unavailable";
+  return { label: `${model} · ${runtime.serving_backend || "serving unknown"} · ${timing}`, title: `Model: ${runtime.model_id}. Last successful model HTTP call; excludes routing and tool execution.` };
 }

@@ -162,13 +162,39 @@ test("blocked roads count physical segments, not their forward/backward directio
   );
 });
 
-test("header and console share the same three-state agent status with working taking precedence", async () => {
+test("successful sign-off is teal; only ambiguity and contested roads are yellow", async () => {
   const { agentStatus } = await modulePromise;
+  const assessment = { needs_human_review: true };
+  const resolved = event(1, "agent_tool_result", { tool: "find_segments", result: { distinct_locations: 1, needs_human_review: false } });
+  const ambiguous = event(1, "agent_tool_result", { tool: "find_segments", result: { distinct_locations: 2, needs_human_review: true } });
   assert.equal(agentStatus(false, null), "idle");
-  assert.equal(agentStatus(false, { needs_human_review: false }), "idle");
-  assert.equal(
-    agentStatus(false, { needs_human_review: true }),
-    "needs review",
-  );
-  assert.equal(agentStatus(true, { needs_human_review: true }), "working");
+  assert.equal(agentStatus(false, assessment, [resolved]), "ready for operator");
+  assert.equal(agentStatus(false, assessment, [ambiguous]), "needs review");
+  assert.equal(agentStatus(false, assessment, [ambiguous, event(2, "radio_location_confirmed"), { ...resolved, id: 3 }]), "ready for operator");
+  assert.equal(agentStatus(false, assessment, [resolved, event(2, "agent_tool_result", { tool: "report_segment", result: { bridge: { status: "contested" } } })]), "needs review");
+  assert.equal(agentStatus(true, assessment, [ambiguous]), "working");
+  assert.equal(agentStatus(false, assessment, [event(2, "agent_tool_result", { tool: "submit_assessment", call_id: "fallback" })]), "action required");
+});
+
+test("all three counters advance on reachability result before the final state arrives", async () => {
+  const { accessCounters } = await modulePromise;
+  const state = { closures: [], incidents: Array.from({ length: 9 }, (_, i) => ({ id: `SOS-${i}`, reachable: true })) };
+  const blocked = event(1, "agent_tool_result", { tool: "report_segment", result: { "bridge:f": { status: "blocked" }, "bridge:b": { status: "blocked" } } });
+  assert.deepEqual(accessCounters(state, [blocked]), { cutOff: 0, reachable: 9, blocked: 0 });
+  const routes = Object.fromEntries(state.incidents.map((i, n) => [i.id, { status: n < 5 ? "unreachable" : "ok" }]));
+  assert.deepEqual(accessCounters(state, [blocked, event(2, "agent_tool_result", { tool: "recompute_reachability", result: { routes } })]), { cutOff: 5, reachable: 4, blocked: 1 });
+});
+
+test("trace badge uses only backend provenance and never invents latency", async () => {
+  const { agentTraceBadge } = await modulePromise;
+  const runtime = { cached: false, model_id: "nvidia/nemotron-3.5-lightning-30b-a3b", serving_backend: "vLLM", last_call_latency_ms: 854 };
+  const item = event(1, "agent_tool_call", { agent_runtime: runtime });
+  assert.equal(agentTraceBadge([item], false).label, "Nemotron 3.5 Lightning · vLLM · 0.85s");
+  assert.equal(agentTraceBadge([item], true).label, "cached replay");
+  for (const latency of [null, -1, Infinity]) {
+    assert.match(agentTraceBadge([{ ...item, agent_runtime: { ...runtime, last_call_latency_ms: latency } }], false).label, /latency unavailable/);
+  }
+  assert.equal(agentTraceBadge([], false).label, "Model metadata unavailable");
+  assert.equal(agentTraceBadge([{ ...item, agent_runtime: { ...runtime, cached: true } }], false).label, "cached replay");
+  assert.match(agentTraceBadge([{ ...item, agent_runtime: { ...runtime, model_id: "actual/other-id" } }], false).label, /^actual\/other-id/);
 });

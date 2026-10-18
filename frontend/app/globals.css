@@ -1702,7 +1702,7 @@ kbd {
 .map-shell { border: 0; border-radius: 0; background: #090b0e; }
 .map-canvas { background: #090b0e; }
 .incident-rail, .ops-console, .intel-panel, .mapfoot, .mapbar {
-  background: rgba(14,27,37,.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  background: rgba(14,27,37,.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border: 1px solid #29404c; border-radius: 16px; box-shadow: 0 16px 60px #0005;
 }
 .incident-rail { position: absolute; z-index: 5; top: 22px; left: 22px; bottom: auto; width: 310px; max-height: calc(100% - 44px); padding: 18px 12px 0; }
@@ -1796,3 +1796,12 @@ kbd {
 @media (prefers-reduced-motion: reduce) { .pin-sos.pin-access-lost { animation: none; } }
 .ops-console.console-collapsed > :not(.console-heading) { display: none; }
 .pin-sos.pin-access-lost { animation: none; }
+
+/* Final demo freeze: readable glass and evidence-backed model metadata. */
+.trace-model-badge { margin-top: 7px; padding: 4px 7px; border: 1px solid #29404c; border-radius: 5px; color: #7d95a2; font: 400 9px var(--font-mono); letter-spacing: 0; overflow-wrap: anywhere; }
+.operator-signoff { color: #3ee0cf; border-color: #3ee0cf66; background: #3ee0cf12; }
+.kpi .agent-kpi { text-transform: none; line-height: 1.4; }
+.presentation .mapfoot { display: none !important; }
+.header-status.text-accent { color: #3ee0cf; }
+.header-status.text-warning { color: #f0b429; }
+.header-status.text-critical { color: var(--color-critical); }

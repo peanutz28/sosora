@@ -1,0 +1,598 @@
+{
+  "checks": [
+    {
+      "name": "Glass opacity is 0.85",
+      "pass": true
+    },
+    {
+      "name": "Response exposes cached metadata without fabricated model or latency",
+      "pass": true
+    },
+    {
+      "name": "Count-up begins within 300 ms of streamed reachability",
+      "pass": true
+    },
+    {
+      "name": "Reachable and blocked counters advance with reachability",
+      "pass": true
+    },
+    {
+      "name": "Count-up completes around 800 ms with no choreography delay",
+      "pass": true
+    },
+    {
+      "name": "Hero shows teal Ready for operator in tile",
+      "pass": true
+    },
+    {
+      "name": "Header shows teal Ready for operator",
+      "pass": true
+    },
+    {
+      "name": "Operator sign-off replaces blanket human review",
+      "pass": true
+    },
+    {
+      "name": "Cached badge reports replay only",
+      "pass": true
+    },
+    {
+      "name": "Presentation hides map key",
+      "pass": true
+    },
+    {
+      "name": "Contested road keeps Needs review",
+      "pass": true
+    },
+    {
+      "name": "Real bridge ambiguity remains yellow Needs review",
+      "pass": true
+    },
+    {
+      "name": "Confirmed bridge returns to Ready for operator",
+      "pass": true
+    },
+    {
+      "name": "Water flow returns to Ready for operator",
+      "pass": true
+    },
+    {
+      "name": "Primary Run demo returns to Ready for operator",
+      "pass": true
+    },
+    {
+      "name": "Zero console errors through full development flow",
+      "pass": true
+    },
+    {
+      "name": "Zero runtime exceptions through full development flow",
+      "pass": true
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "warnings": [
+    "Expected value to be of type number, but found null instead.",
+    "Expected value to be of type number, but found null instead.",
+    "Expected value to be of type number, but found null instead.",
+    "You are using the same source for a hillshade layer and for 3D terrain. Please consider using two separate sources to improve rendering quality."
+  ],
+  "cachedRuntime": {
+    "cached": true,
+    "model_id": null,
+    "serving_backend": null,
+    "last_call_latency_ms": null
+  },
+  "counterSamples": [
+    {
+      "ms": 10.700000023840403,
+      "cutOff": "00",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 27.300000023842586,
+      "cutOff": "00",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 44.00000002384331,
+      "cutOff": "01",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 60.7000000238404,
+      "cutOff": "01",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 77.40000002384113,
+      "cutOff": "01",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 94.00000002384331,
+      "cutOff": "01",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 110.7000000238404,
+      "cutOff": "01",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 127.40000002384113,
+      "cutOff": "01",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 144.0000000238433,
+      "cutOff": "01",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 160.7000000238404,
+      "cutOff": "01",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 177.40000002384113,
+      "cutOff": "01",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 194.0000000238433,
+      "cutOff": "01",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 210.7000000238404,
+      "cutOff": "02",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 227.30000002384259,
+      "cutOff": "02",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 244.0000000238433,
+      "cutOff": "02",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 260.7000000238404,
+      "cutOff": "02",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 277.40000002384113,
+      "cutOff": "02",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 294.0000000238433,
+      "cutOff": "02",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 310.7000000238404,
+      "cutOff": "02",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 327.40000002384113,
+      "cutOff": "02",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 344.10000002384186,
+      "cutOff": "02",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 360.7000000238404,
+      "cutOff": "03",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 377.3000000238426,
+      "cutOff": "03",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 394.0000000238433,
+      "cutOff": "03",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 410.60000002384186,
+      "cutOff": "03",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 427.3000000238426,
+      "cutOff": "03",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 444.0000000238433,
+      "cutOff": "03",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 460.7000000238404,
+      "cutOff": "03",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 477.40000002384113,
+      "cutOff": "03",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 494.10000002384186,
+      "cutOff": "03",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 510.7000000238404,
+      "cutOff": "03",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 527.3000000238426,
+      "cutOff": "04",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 544.0000000238433,
+      "cutOff": "04",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 560.7000000238404,
+      "cutOff": "04",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 577.3000000238426,
+      "cutOff": "04",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 594.0000000238433,
+      "cutOff": "04",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 610.7000000238404,
+      "cutOff": "04",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 627.4000000238411,
+      "cutOff": "04",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 644.0000000238433,
+      "cutOff": "04",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 660.7000000238404,
+      "cutOff": "04",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 677.3000000238426,
+      "cutOff": "04",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 694.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 710.7000000238404,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 727.3000000238426,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 744.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 760.7000000238404,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 777.3000000238426,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 794.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 810.7000000238404,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 827.3000000238426,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 844.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 860.6000000238419,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 877.3000000238426,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 894.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 910.6000000238419,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 927.3000000238426,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 944.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 960.7000000238404,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 977.4000000238411,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 994.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1010.7000000238404,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1027.3000000238426,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1044.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1060.6000000238419,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1077.3000000238426,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1094.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1110.7000000238404,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1127.3000000238426,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1144.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1160.7000000238404,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1177.4000000238411,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1194.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1210.7000000238404,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1227.3000000238426,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1243.9000000238411,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1260.6000000238419,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1277.3000000238426,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1294.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1310.7000000238404,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1327.4000000238411,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1344.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1360.7000000238404,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1377.4000000238411,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1394.0000000238433,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    },
+    {
+      "ms": 1410.7000000238404,
+      "cutOff": "05",
+      "reachable": "04",
+      "blocked": "01"
+    }
+  ]
+}

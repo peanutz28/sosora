@@ -5,7 +5,9 @@ import { TerminalRow } from "@/components/ops/TerminalRow";
 import { Radio, ChevronDown, Activity, ShieldCheck } from "lucide-react";
 import {
   agentStatus,
-  physicalClosureCount,
+  accessCounters,
+  agentStatusLabel,
+  agentTraceBadge,
   eventKey,
   latestAssessment,
   reviewCandidates,
@@ -44,18 +46,13 @@ export function OpsConsole({
   const [inputs, setInputs] = useState(false);
   const [wave, setWave] = useState(false);
   const assessment = latestAssessment(stream);
-  const status = agentStatus(working, assessment);
+  const status = agentStatus(working, assessment, stream);
+  const traceBadge = agentTraceBadge(stream, state.system.demo_mode);
   const candidates = reviewCandidates(stream, assessment);
   const radioId = [...stream]
     .reverse()
     .find((event) => event.kind === "radio_received")?.radio_id;
-  const cutOff = state.incidents.filter(
-    (incident) =>
-      incident.reachable === false && incident.route?.status !== "snap_failed",
-  ).length;
-  const reachable = state.incidents.filter(
-    (incident) => incident.reachable === true,
-  ).length;
+  const { cutOff, reachable, blocked } = accessCounters(state, stream);
   const feed = stream
     .filter((event) =>
       [
@@ -130,16 +127,16 @@ export function OpsConsole({
         <Kpi label="SOS reachable" value={reachable} tone="text-accent" />
         <Kpi
           label="Roads blocked"
-          value={physicalClosureCount(state.closures)}
+          value={blocked}
           tone="text-ink"
         />
         <div className="kpi">
           <span>Agent</span>
           <b
-            className={`agent-kpi capitalize ${status === "working" ? "text-live" : status === "needs review" ? "text-warning" : "text-accent"}`}
+            className={`agent-kpi ${status === "working" ? "text-live" : status === "needs review" ? "text-warning" : status === "action required" ? "text-critical" : "text-accent"}`}
           >
             <i className={`status-dot ${working ? "working" : ""}`} />
-            {status}
+            {agentStatusLabel(status)}
           </b>
           <small>
             {state.system.demo_mode
@@ -316,6 +313,7 @@ export function OpsConsole({
               : "AWAITING REPORT"}
           </button>
         </div>
+        <div className="trace-model-badge" title={traceBadge.title}>{traceBadge.label}</div>
         {!calls.length && (
           <p className="empty-note">
             Resolve location → check evidence → update road → recompute access.
@@ -347,6 +345,11 @@ export function OpsConsole({
             <ShieldCheck size={14} />
             LATEST ASSESSMENT
           </span>
+          {assessment && (
+            <span className={`pill ${status === "needs review" ? "unverified" : status === "action required" ? "high" : "operator-signoff"}`}>
+              {status === "needs review" ? "Human review required" : status === "action required" ? "Assessment incomplete" : "Operator sign-off"}
+            </span>
+          )}
         </div>
         <p>
           {assessment?.summary ||
@@ -361,9 +364,7 @@ export function OpsConsole({
                 </span>
               ))}
             </div>
-            {assessment.needs_human_review && (
-              <span className="pill unverified">Human review required</span>
-            )}
+
           </>
         )}
       </section>
@@ -388,28 +389,25 @@ function Kpi({
 }) {
   const [shown, setShown] = useState(value);
   useEffect(() => {
-    if (!animate) {
-      setShown(value);
-      return;
-    }
+    if (!animate) return;
+    if (value === 0) { setShown(0); return; }
     let frame = 0;
     setShown(0);
-    const timer = setTimeout(() => {
-      const start = performance.now();
-      const tick = (now: number) => {
-        const progress = Math.min(1, (now - start) / 800);
-        setShown(Math.round(value * progress));
-        if (progress < 1) frame = requestAnimationFrame(tick);
-      };
-      frame = requestAnimationFrame(tick);
-    }, value > 0 ? 2450 : 0);
-    return () => { clearTimeout(timer); cancelAnimationFrame(frame); };
+    const start = performance.now();
+    const tick = (now: number) => {
+      const progress = Math.min(1, (now - start) / 800);
+      setShown(Math.ceil(value * progress));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
   }, [value, animate]);
+  const displayed = animate ? shown : value;
   return (
     <div className={`kpi ${animate && shown > 0 ? "kpi-alert" : ""}`}>
       <span>{label}</span>
-      <b className={`font-display ${shown === 0 ? "text-faint" : tone}`} aria-label={`${label}: ${value}`}>
-        {shown.toString().padStart(2, "0")}
+      <b className={`font-display ${displayed === 0 ? "text-faint" : tone}`} aria-label={`${label}: ${value}`}>
+        {displayed.toString().padStart(2, "0")}
       </b>
       <small>
         {label === "Families cut off"

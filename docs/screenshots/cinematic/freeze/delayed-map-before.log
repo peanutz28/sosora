@@ -1,0 +1,88 @@
+error Cannot update a component (`%s`) while rendering a different component (`%s`). To locate the bad setState() call inside `%s`, follow the stack trace as described in https://react.dev/link/setstate-in-render AppShell RescueMap RescueMap
+warning Expected value to be of type number, but found null instead.
+warning Expected value to be of type number, but found null instead.
+warning Expected value to be of type number, but found null instead.
+warning You are using the same source for a hillshade layer and for 3D terrain. Please consider using two separate sources to improve rendering quality.
+06
+[SIMULATED]
+Grovemont Avenue
+3 people
+Route available
+SOS-009
+[SIMULATED]
+Lake Eden Road
+1 person
+Route available
+SOS-007
+[SIMULATED]
+Patton Cove Road
+1 person
+Route available
+SOS-008
+[SIMULATED]
+Old US Highway 70
+2 people
+Route available
+Create drill SOS
+
+Simulated reports. Real road geometry.
+Operator review before any response.
+
+Street
+Satellite
+Hybrid
+Helene Track
+Beacon
+Elevation © Mapzen / AWS Open Data | OpenFreeMap © OpenMapTiles Data from OpenStreetMap
+MAP KEY
+[SIMULATED]
+Rescue unit
+SOS reachable
+!
+SOS cut off
+Beacon
+Blocked road
+Contested
+Helene track
+OSM GRAPH · SIMULATED REPORTS
+
+COMMAND INTELLIGENCE
+
+Every report. One picture.
+Families cut off
+00
+SOS reachable
+09
+Roads blocked
+00
+Agent
+Idle
+DRILL CONTROLS
+SIMULATED
+S
+Seed drill
+B
+Beacon report
+R
+Responder radio
+D
+DOT says open
+W
+Water spike
+RADIO FEED
+Connected
+
+Listening for field reports
+
+Seed the drill, then send a Beacon report.
+AGENT TRACE
+AWAITING REPORT
+
+Resolve location → check evidence → update road → recompute access.
+
+LATEST ASSESSMENT
+
+The map is ready. A field report will trigger a new access assessment.
+
+Decision support, never automatic dispatch.
+Road access is calculated; field safety is unverified.

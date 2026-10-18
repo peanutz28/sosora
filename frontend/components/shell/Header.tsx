@@ -1,5 +1,6 @@
 "use client";
 
+import { agentStatusLabel } from "@/lib/ops";
 import { Play } from "lucide-react";
 import type { AppState, MapPhase } from "@/lib/types";
 
@@ -59,13 +60,14 @@ export function Header({
           title={state.ml.detail}
         />
         <Status
-          label={`Agent: ${agentState}`}
+          label={`Agent: ${agentStatusLabel(agentState)}`}
+          textTone={agentState === "needs review" ? "text-warning" : agentState === "action required" ? "text-critical" : agentState === "ready for operator" ? "text-accent" : ""}
           tone={
             agentState === "working"
               ? "bg-live animate-pulse"
               : agentState === "needs review"
                 ? "bg-warning"
-                : "bg-route"
+                : agentState === "action required" ? "bg-critical" : "bg-route"
           }
           title="Radio agent processing status"
         />
@@ -85,13 +87,15 @@ function Status({
   label,
   tone,
   title,
+  textTone = "",
 }: {
+  textTone?: string;
   label: string;
   tone: string;
   title: string;
 }) {
   return (
-    <span title={title} className="header-status">
+    <span title={title} className={`header-status ${textTone}`}>
       <i className={`h-1.5 w-1.5 rounded-full ${tone}`} />
       {label}
     </span>

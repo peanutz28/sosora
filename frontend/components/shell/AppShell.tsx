@@ -166,7 +166,7 @@ export function AppShell() {
         state={state}
         mapPhase={mapPhase}
         busy={busy}
-        agentState={agentStatus(agentWorking, assessment)}
+        agentState={agentStatus(agentWorking, assessment, stream)}
         onRun={() => void run()}
       />
       {error ? (

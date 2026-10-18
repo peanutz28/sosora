@@ -12,6 +12,7 @@ import os
 from datetime import datetime, timezone
 from difflib import SequenceMatcher
 from typing import Literal
+from time import perf_counter
 
 import httpx
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -97,6 +98,8 @@ class RadioAgent:
     def __init__(self, engine, hub, report):
         self.engine, self.hub, self.report = engine, hub, report
         self.simulated = demo_mode()
+        self.runtime = {"cached": self.simulated, "model_id": None,
+                        "serving_backend": None, "last_call_latency_ms": None}
         self.edges = {d["id"]: d for _, _, d in engine.graph.edges(data=True)}
         # build_graph currently drops ref and landmark tags; preserve raw OSM tags.
         path = DATA_DIR / "graph.json"
@@ -134,7 +137,7 @@ class RadioAgent:
     async def emit(self, kind, payload):
         event = {"id": len(self.engine.events) + 1, "at": datetime.now(timezone.utc).isoformat(),
                  "kind": kind, "step": self.engine.step, "message": json.dumps(payload),
-                 "simulated": self.simulated, **payload}
+                 "simulated": self.simulated, "agent_runtime": dict(self.runtime), **payload}
         self.engine.events.append(event)
         self.engine.store.save_event(event)
         await self.hub.broadcast({"type": "agent_event", "event": event})
@@ -274,13 +277,22 @@ class RadioAgent:
         url = os.getenv("LLM_BASE_URL", "https://integrate.api.nvidia.com/v1").rstrip("/") + "/chat/completions"
         async with httpx.AsyncClient(timeout=60) as client:
             for attempt in range(3):
+                started = perf_counter()
                 response = await client.post(url, headers={"Authorization": "Bearer " + key}, json=body)
                 # Retry only provider-side throttling/outages; every attempt is the same request.
                 if response.status_code in (429, 500, 502, 503, 504) and attempt < 2:
                     await asyncio.sleep(1.5 * (attempt + 1))
                     continue
                 response.raise_for_status()
-                return response.json()["choices"][0]["message"]
+                data = response.json()
+                provider = os.getenv("LLM_PROVIDER", "")
+                serving = {"redhat_vllm": "vLLM", "vllm": "vLLM", "nvidia_api": "NVIDIA API"}.get(provider)
+                if not serving:
+                    serving = provider or ("NVIDIA API" if not os.getenv("LLM_BASE_URL") else "OpenAI-compatible")
+                self.runtime = {"cached": False, "model_id": data.get("model") or model,
+                                "serving_backend": serving,
+                                "last_call_latency_ms": (perf_counter() - started) * 1000}
+                return data["choices"][0]["message"]
 
     async def replay(self):
         """Embedded cached tool trace; only location and result slots are substituted."""

@@ -180,7 +180,15 @@ export type FeatureCollection = {
   }[];
 };
 
+export type AgentRuntime = {
+  cached: boolean;
+  model_id: string | null;
+  serving_backend: string | null;
+  last_call_latency_ms: number | null;
+};
+
 export type OpsEvent = ScenarioEvent & {
+  agent_runtime?: AgentRuntime;
   simulated?: boolean;
   radio_id?: string;
   source_type?: string;

@@ -104,6 +104,8 @@ export function RescueMap({
   const satelliteFallbackRef = useRef(false);
   const [epoch, setEpoch] = useState(0);
   const [phase, setPhase] = useState<MapPhase>("loading");
+  const phaseRef = useRef<MapPhase>("loading");
+  phaseRef.current = phase;
   const [detail, setDetail] = useState<string | null>(null);
   const [imageryNote, setImageryNote] = useState<string | null>(null);
   const closureIds = useRef(new Set<string>());
@@ -216,11 +218,10 @@ export function RescueMap({
     const observer = new ResizeObserver(() => mapRef.current?.resize());
     observer.observe(node);
     const slow = window.setTimeout(() => {
-      setPhase((current) => {
-        if (current !== "loading") return current;
-        onPhaseRef.current("error", "The street style did not finish loading.");
-        return "error";
-      });
+      if (phaseRef.current !== "loading") return;
+      setPhase("error");
+      // Notify the parent outside a React state updater: updaters may run during render.
+      onPhaseRef.current("error", "The street style did not finish loading.");
       setDetail(
         (current) => current ?? "The street style did not finish loading.",
       );
