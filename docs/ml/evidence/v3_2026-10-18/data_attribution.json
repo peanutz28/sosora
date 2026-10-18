@@ -1,0 +1,240 @@
+{
+  "recorded_at_utc": "2026-10-18T06:54:37.670329+00:00",
+  "dataset": "SpaceNet8 public Louisiana-East and Germany training datasets",
+  "creators": "SpaceNet Partners / Maxar Technologies",
+  "dataset_page": "https://spacenet.ai/sn8-challenge/",
+  "license": "Creative Commons Attribution-ShareAlike 4.0 International",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "license_scope": "SpaceNet imagery/annotations and the derived proof image; unrelated code is not relicensed by this record.",
+  "changes": "Post-event RGB warped to the corresponding pre-event grid; road reference lines buffered/rasterized with unknown/conflict masks; model predictions displayed as class maps; panels resized and annotated. Exact capture dates remain unverified.",
+  "source_images": [
+    {
+      "source_image_id": "10400100684A4B00_1_6_97",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_6_97.tif",
+      "image_sha256": "3f7911be1dc9597f5ce84a77afe5fe1515f9a5b6b1580346da4ba2078fb0f1a8",
+      "mask_sha256": "1c835cc655d5a321d42642ed05647b4b0c16478bcd8edcdd479b45b887dda2c2"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_5_98",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_5_98.tif",
+      "image_sha256": "598e90388a3a38a3981c9d85481053b0d8ddc6f8abcbde07a1e00c7cd3f04c58",
+      "mask_sha256": "ccaca08f4de4e7902c1f8fb6eeee23f4f1f07a80f65581e941b2da5af5dd8228"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_7_95",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_7_95.tif",
+      "image_sha256": "b1a2839bba36f4b7c09908c5dcb203430f84f3b6d878b1f5f0dfc3676c9418bc",
+      "mask_sha256": "0b0744483729f9ed8be07b6800987873b92c43dd1145c722e4ec5d51d015dd77"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_9_98",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_9_98.tif",
+      "image_sha256": "6c0a162f311518ba8bb50d0d43884fe565676fd0193ef926b146251d0da6bc1b",
+      "mask_sha256": "95bfc858cce489d13e1b2308a339e4b8fb8c6bd199ee9ee1919b41fed80fe442"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_9_99",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_9_99.tif",
+      "image_sha256": "d778615c6b304afd34e461bfda4dc4cfdfb20167576f84e53ea805106fc8b38f",
+      "mask_sha256": "4e22d6ec7f1c9c24c65f4121b506ab6b0a4b627fff27790d974735a29057472f"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_7_98",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_7_98.tif",
+      "image_sha256": "019921d575345c16253b5b61c13bf8235a45868dd0892392266f0c4e569260af",
+      "mask_sha256": "f335072b5ffe5305e0331c005bcc113b4ad9c51e7d612feae0f0e76e240569d1"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_6_96",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_6_96.tif",
+      "image_sha256": "483755d2d8aa7d26c3ed25c02eff3420c6376cdc054a9aa4b2bcc698af5bd556",
+      "mask_sha256": "602857970bb90c556e5ea8f18e66d0abf110e31f70507539139e64518c60be78"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_5_95",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_5_95.tif",
+      "image_sha256": "a353a210e9a55d6e49b239ae78ff667fdde9b84df6a33c08f39e717fa238257e",
+      "mask_sha256": "8add2dddb3274778718b9ca8c1e73853af8969cd6205ec2294867c635b8fd54c"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_5_99",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_5_99.tif",
+      "image_sha256": "08485a0e79f473dfeccd0964d21b074f85f1ffc5c3c51d5e52b894d0fee7b073",
+      "mask_sha256": "507cda5118e39126871728a76369a641ba5f7a5b28cf048193c60103c5a0310e"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_9_97",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_9_97.tif",
+      "image_sha256": "23488e8dbaec8c9cd2931784a639b7ec97e5bb2080c81cfbefcaf4e7758f55dc",
+      "mask_sha256": "1ff4a2eb88aa7f269826bc8ceb272a235ba0ca4cab6a4419fe566c47887c7a48"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_7_96",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_7_96.tif",
+      "image_sha256": "e7d201d0335256956c15bc72e4c8ca9e82c92e7bdd2ecc059fa513cf0ff3845c",
+      "mask_sha256": "fd259ee7419ead1942b81db8ce5d757b3ebff583a8f66e4e7e67715db4606915"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_5_97",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_5_97.tif",
+      "image_sha256": "247035b697dc17237dfc5f144a607b520931801f04250ae213e89054d2885ee6",
+      "mask_sha256": "1274944ce11299823e81fb67eba17afe89b6c2ad94ee7cd2b651a48bc18fc5f3"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_8_95",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_8_95.tif",
+      "image_sha256": "48b798d89b8398f0b30da073b9ac8b5449b1f6b8f72b33b1c851bfdad0a21fa4",
+      "mask_sha256": "1ba904622247a792d528fb19ce525bc4c73964394f97516cde1db5755a822fb6"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_8_99",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_8_99.tif",
+      "image_sha256": "2593b3e1984e70d4adc255ee86fac01f83f62d1f4e7127067f09a7651851461c",
+      "mask_sha256": "561218d48d9e07011736831d98669bbfcd3646fa24841f2c14a11658575c9213"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_6_98",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_6_98.tif",
+      "image_sha256": "1953716b3638645b54953a6c0f01c2dd7e4cbabd79de77a54fb5e3a1545ec288",
+      "mask_sha256": "8a02f443d2b81a7b7ca5d440be65d104b087c8e12ebbe41041002be957a7abe0"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_5_96",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_5_96.tif",
+      "image_sha256": "e41c31c66d8900b09aa485bbe69fd56a711aaacf77ebb1c054fa38b0a5a3ed51",
+      "mask_sha256": "51eb738435b890863483d1f91bdad32409830b94af94a63589141dec20681f3d"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_8_98",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_8_98.tif",
+      "image_sha256": "7eb77a43e27246bddb4fef55e8e3255ff6f5481b325b6e3a8d3916c4b42288d8",
+      "mask_sha256": "86732a6cb57101211e738b9426ffe24c8563b894942ecf088104bfc6c0f4075d"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_6_99",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_6_99.tif",
+      "image_sha256": "44676ee0075c6ede7d20a75a04c05db88c225bdc8f92efba020a2cfc59e2ef78",
+      "mask_sha256": "10a11dfeaf11172a2771ca46f6c0d8544fc2e27c185113ccb2ddecca6b9ac63e"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_6_95",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_6_95.tif",
+      "image_sha256": "67cbbdcf5f30975382a8c353e855cd1f7cc0da30a4bd5bc733a6e0716c96ca9f",
+      "mask_sha256": "93690a49dd52ef142f921e4f6030ba6a86b17c78041fe70005a79d739c2c94fb"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_9_96",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_9_96.tif",
+      "image_sha256": "e68ad232d3df65c1f682b7e9b2f0e9cf5368f51be216d5f9fb27bb3c5d8a5c4a",
+      "mask_sha256": "9660ef32bbf2eb3e354f5d515c754045594a131d2de9c3d547547435493c2dd8"
+    },
+    {
+      "source_image_id": "10400100684A4B00_1_7_97",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_1_7_97.tif",
+      "image_sha256": "e3d37d4b3cc380ad41867ca0468c500e2581b86129e770a71170e9e8fcd26bff",
+      "mask_sha256": "75233092f3877108d244ba468180e65f288ded442600970df339b95109624cca"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_28_67",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_28_67.tif",
+      "image_sha256": "9874e534587f6e6cdc9a324c601844cf6b274e131b1fd50aa3b79aca9655e981",
+      "mask_sha256": "562b78d974fad7e5ee1f76e2cbf9e06a908f66d6a5dea213674b6658bc41ad83"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_25_69",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_25_69.tif",
+      "image_sha256": "5a2700906f9343f7d769f38c4b35004182df72f8525dccf244ff5ae05c64d9cc",
+      "mask_sha256": "647d2ac74701a070b50f0adc16328a373e17fe61b174efabc17549172faa418d"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_27_68",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_27_68.tif",
+      "image_sha256": "768d5d5dc75675f773ca6e7e7af2249c1974a2b057db16aee512d37730688025",
+      "mask_sha256": "eaaf885838ac5ef79ed459d157b8964f025be46adf3c9dcd545c18d6719067fb"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_29_69",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_29_69.tif",
+      "image_sha256": "72c690e5dab88237ccd88642979b0005e593f7b0f7a384111b37fa88e38dc3aa",
+      "mask_sha256": "70382cb55c67c5a8894c1be4302ce5df37186dbe025d7012c49296829870ef60"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_27_69",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_27_69.tif",
+      "image_sha256": "85f7bb0e2d3587b7050b0b4165fc299faea3b4889d53258a2177b8dbe57d16f4",
+      "mask_sha256": "5c9bdcf6bab4980f91b55f2d7205253a6b68458f6268796c64afc7df389d286b"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_29_68",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_29_68.tif",
+      "image_sha256": "73e2d13a4ef7ddead896a6cc52ec3f4a71940a9ebf1d3883f8619c742864ec8b",
+      "mask_sha256": "052626384bead33f9a30f6f6bd3861cc1958a3e83fe170ab1bf18040a5f9dc0b"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_26_67",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_26_67.tif",
+      "image_sha256": "0ee81690a5c291cd1a609da8f413c5f11fe8fe8e649cc67e36a92c4cc62a0df9",
+      "mask_sha256": "6b4c94d719fb99336bfdbb9577a70f6943a138c24409c5a59a57cde09baf780d"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_28_66",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_28_66.tif",
+      "image_sha256": "1f5aacb32731cf2d4f21c16d93020f9c5029c3468163f8d0b2d2c6cdaacb7ff7",
+      "mask_sha256": "6bc8c72294178202860c3606eaf443c19a499a305fc4af9e03ddc5d39c1b7531"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_25_68",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_25_68.tif",
+      "image_sha256": "45ea584ef80e2d222ec3834a99ace339ca1cd617f6c51db1369f596e98d39c83",
+      "mask_sha256": "874294e957a2e2303b9a1829a0422737056935da615f610c8f8a6c041f9f399c"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_27_67",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_27_67.tif",
+      "image_sha256": "05d1de21826b5e99ba622e54dcee1f086f69556f648d177632a167653791be30",
+      "mask_sha256": "93464693ea540405cde2ad1b6e52a292f18ced29c7df930f5db717fb4dc11257"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_29_66",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_29_66.tif",
+      "image_sha256": "0380ffb21fce6b3df4fefa501a7b5b6d3a95ccd227acd8ba1a0a2d1631437d52",
+      "mask_sha256": "b409c0206cd00b8f317b93c4e39c4bf072901bc2bdd2b42a0584f12963df641c"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_26_69",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_26_69.tif",
+      "image_sha256": "01aa2e794b6b139060a4c6e9fb5e52472c5876316ad2d2c67abd9d1a9f59283a",
+      "mask_sha256": "d3573c0adce18cef4d776c6623749224776d5aef26790a9a0cbfaf3e681aeba2"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_28_68",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_28_68.tif",
+      "image_sha256": "da7ac86b868e8c5f61d58d06bf04b5637b2b34bd71e61d49d1994e8aa8ab323d",
+      "mask_sha256": "342b05a26fbf6376dc33bb402562ea6a4d4be70928c721c2473a36c236cb7cb3"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_25_67",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_25_67.tif",
+      "image_sha256": "46599cc2a38ddeeb9ee264a6a2e3a6911c6132e06c1901962ae1b044a7eaec7b",
+      "mask_sha256": "7f80ccf86ff57f361f8af3ba420cea7a5273179079770d02372da8b677e07c43"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_26_68",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_26_68.tif",
+      "image_sha256": "02910f232d1103e57a9c3176a1dd073af5c85d8947c2612f44a66807614d465b",
+      "mask_sha256": "36d6121fb6fc4c24e887887861aaca68d643b435434c8ff3aa992367c21c6bf8"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_27_66",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/1040050035DC3B00_0_27_66.tif",
+      "image_sha256": "70e84a341b62bfb01bbaa987bf6d542904e82d4aed09b913cab95ed182e7de59",
+      "mask_sha256": "cb5346149e923910a45e7524842f2c60096b6538b5c84f799442793bd0559fa4"
+    },
+    {
+      "source_image_id": "10500500C4DD7000_0_29_67",
+      "post_source_url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Germany_Training_Public/POST-event/10500500E6DD3C00_0_29_67.tif",
+      "image_sha256": "b17b4745e908c2d934553e613d8b70d2ee3c469dbabb8e4a67a6c60a72b97c9e",
+      "mask_sha256": "137f297e6a7bef4d991ab0d57f933a99d133b8c126b34bc12252582ed2a4488d"
+    }
+  ]
+}

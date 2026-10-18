@@ -1,0 +1,23 @@
+{
+  "status": "complete",
+  "request": {
+    "phase": "evaluate",
+    "selection": {
+      "selection_commit": "f161cb00e631bff5d4c525adb0c4146e5b4f02fa",
+      "selection_sha256": "348324cb92d493075a65518716989d63a077e65c2f1197efa74b4dcba9630b8b"
+    },
+    "manifest_sha256": "e9f2d15bc3b7dadc3d56d16f8683f3a8e7ba68605a6ce90e5efa0419db7dff4a",
+    "source_sha256": "0d4d5e1e9c2f6af7910a77a421d4198b5a61e8142362fc02c899a22fa7046f66",
+    "metric_source_sha256": "e4b401bc695679b3083b54e85ca5351323a7cb2bdcb1e8fa1f23b98c9b5785f8",
+    "tiled_source_sha256": "b2af7fa937b63fb97639fd4ec236c56d341bde61679665bab362e745ec894944",
+    "device": "cpu",
+    "tile_size": 256,
+    "stride": 256,
+    "decision": "binary argmax, fixed threshold 0.5"
+  },
+  "request_sha256": "271abca5a36cce713a35d5f7457b7ee95f194309d6e01a5a87bfa620197b5543",
+  "started_at_utc": "2026-10-18T06:52:33.686683+00:00",
+  "attempt": 1,
+  "previous_failure": null,
+  "finished_at_utc": "2026-10-18T06:58:56.228458+00:00"
+}

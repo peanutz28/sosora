@@ -1,0 +1,12 @@
+{
+  "promoted": false,
+  "reason": "Selected V3 final F1 did not exceed unchanged native v2 final F1.",
+  "v2_f1": 0.30645906908144044,
+  "v3_f1": 0.2735772680371458,
+  "default_model_changed": false,
+  "serving_files_changed": false,
+  "service_restarted": false,
+  "selection_commit": "f161cb00e631bff5d4c525adb0c4146e5b4f02fa",
+  "final_evaluation_sha256": "255ff001b15414a24788ba821aa097a54ca83b21b3c4e4e9c41d4688756ef81d",
+  "no_further_final_evaluation_or_selection": true
+}

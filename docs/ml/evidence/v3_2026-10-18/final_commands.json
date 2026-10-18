@@ -1,0 +1,9 @@
+{
+  "selection_commit": "f161cb00e631bff5d4c525adb0c4146e5b4f02fa",
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 OMP_NUM_THREADS=2 ml/.venv312/bin/python -u -m scripts.ml.run_v3_final prepare",
+    "PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 OMP_NUM_THREADS=2 ml/.venv312/bin/python -u -m scripts.ml.run_v3_final evaluate",
+    "PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 OMP_NUM_THREADS=2 ml/.venv312/bin/python -u -m scripts.ml.run_v3_final proof"
+  ],
+  "retry_policy": "Only a logged failed identical command/configuration may retry; completed stages refuse reruns."
+}

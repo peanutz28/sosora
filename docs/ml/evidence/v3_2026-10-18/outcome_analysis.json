@@ -1,0 +1,55 @@
+{
+  "method": "Descriptive aggregation of saved per-tile confusion counts only; no model inference, threshold tuning or reselection.",
+  "final_f1_delta_v3_minus_v2": -0.03288180104429461,
+  "empty_supervision_tile_count": 1,
+  "by_region": {
+    "Germany_Training_Public": {
+      "tile_count": 17,
+      "empty_supervision_tile_count": 1,
+      "v2": {
+        "tp": 48725,
+        "fp": 65978,
+        "fn": 74826,
+        "valid_pixels": 409452,
+        "iou": 0.2570846677817115,
+        "precision": 0.42479272556079617,
+        "recall": 0.39437155506632887,
+        "f1": 0.4090172672861736
+      },
+      "v3": {
+        "tp": 60319,
+        "fp": 72698,
+        "fn": 63232,
+        "valid_pixels": 409452,
+        "iou": 0.30735952794663923,
+        "precision": 0.4534683536690799,
+        "recall": 0.488211345921927,
+        "f1": 0.4701989336160394
+      }
+    },
+    "Louisiana-East_Training_Public": {
+      "tile_count": 21,
+      "empty_supervision_tile_count": 0,
+      "v2": {
+        "tp": 0,
+        "fp": 79733,
+        "fn": 0,
+        "valid_pixels": 412905,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      },
+      "v3": {
+        "tp": 0,
+        "fp": 184397,
+        "fn": 0,
+        "valid_pixels": 412905,
+        "iou": 0.0,
+        "precision": 0.0,
+        "recall": null,
+        "f1": 0.0
+      }
+    }
+  }
+}

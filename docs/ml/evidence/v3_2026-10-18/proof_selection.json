@@ -1,0 +1,16 @@
+{
+  "regression_found": true,
+  "regression_criterion": "lower F1",
+  "rule": "Worst lower F1; otherwise higher FP/FN; then best F1 delta and another-region tile. No regression is fabricated if none exists.",
+  "tile_ids": [
+    "10500500C4DD7000_0_27_68",
+    "10500500C4DD7000_0_29_66",
+    "10400100684A4B00_1_6_97"
+  ],
+  "image_sha256": "c423833d8dcd171ef44458674d568a07176838f9fc60fc7fe3499b44f74555af",
+  "size": [
+    1920,
+    1080
+  ],
+  "inference_repeated": false
+}

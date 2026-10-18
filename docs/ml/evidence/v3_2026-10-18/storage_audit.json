@@ -1,0 +1,13 @@
+{
+  "checked_at_utc": "2026-10-18T07:00:22.620938+00:00",
+  "bytes": {
+    "preparation_and_saved_predictions": 1571036918,
+    "all_development_runs": 45599865,
+    "public_evidence_and_proof": 1601040,
+    "transport_archives": 97688389
+  },
+  "total_tracked_task_data_bytes": 1715926212,
+  "public_data_cap_bytes": 2147483648,
+  "runtime_dependencies_excluded": true,
+  "note": "Conservative final snapshot includes duplicate transport archives, all run artifacts and the proof image. Runtime dependencies are excluded."
+}

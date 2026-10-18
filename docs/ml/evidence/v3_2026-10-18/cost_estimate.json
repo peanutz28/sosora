@@ -1,0 +1,8 @@
+{
+  "elapsed_start_request_to_verified_stop_seconds": 1511.536729,
+  "quoted_compute_usd_per_hour": 0.845421,
+  "estimated_compute_usd": 0.3549680258244191,
+  "authorized_total_usd": 5,
+  "storage_usd_per_gb_month": 0.14965,
+  "caveat": "Elapsed-time estimate, not a provider invoice; retained storage is charged separately. Existing L4 disk retained."
+}
