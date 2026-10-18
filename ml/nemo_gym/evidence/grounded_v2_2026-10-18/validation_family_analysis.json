@@ -1,0 +1,241 @@
+{
+  "validation_baseline": {
+    "families": {
+      "bridge_closed": {
+        "passed": 1,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 1
+        }
+      },
+      "two_roads_closed": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "alternate_route": {
+        "passed": 1,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 1
+        }
+      },
+      "isolated": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "unsupported_path": 2
+        }
+      },
+      "tool_failure": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 1,
+          "missing_required_tools": 2,
+          "require_exactly_one_recommendation": 2,
+          "route_tool_before_current_status": 2,
+          "stale_graph_version": 2
+        }
+      },
+      "conflicting_evidence": {
+        "passed": 1,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 1
+        }
+      },
+      "missing_location": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "incorrect_reachability": 2,
+          "invented_graph_version": 2,
+          "missing_human_review": 2,
+          "unsupported_path": 2
+        }
+      }
+    },
+    "verifier_issues": {
+      "invalid_tool_arguments": 4,
+      "unsupported_path": 4,
+      "missing_required_tools": 2,
+      "require_exactly_one_recommendation": 2,
+      "route_tool_before_current_status": 2,
+      "stale_graph_version": 2,
+      "incorrect_reachability": 2,
+      "invented_graph_version": 2,
+      "missing_human_review": 2
+    }
+  },
+  "validation_grounded_v2_r01": {
+    "families": {
+      "bridge_closed": {
+        "passed": 1,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 1
+        }
+      },
+      "two_roads_closed": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 2
+        }
+      },
+      "alternate_route": {
+        "passed": 1,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 1
+        }
+      },
+      "isolated": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "tool_failure": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 2,
+          "missing_required_tools": 2,
+          "require_exactly_one_recommendation": 2
+        }
+      },
+      "conflicting_evidence": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 1,
+          "missing_human_review": 2
+        }
+      },
+      "missing_location": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "incorrect_reachability": 1,
+          "invented_graph_version": 1,
+          "invalid_tool_arguments": 1,
+          "missing_required_tools": 1,
+          "require_exactly_one_recommendation": 1
+        }
+      }
+    },
+    "verifier_issues": {
+      "invalid_tool_arguments": 8,
+      "missing_required_tools": 3,
+      "require_exactly_one_recommendation": 3,
+      "missing_human_review": 2,
+      "incorrect_reachability": 1,
+      "invented_graph_version": 1
+    }
+  },
+  "validation_grounded_v2_r02": {
+    "families": {
+      "bridge_closed": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "two_roads_closed": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "alternate_route": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "isolated": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "tool_failure": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 2,
+          "missing_required_tools": 2,
+          "require_exactly_one_recommendation": 2
+        }
+      },
+      "conflicting_evidence": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "missing_location": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 2,
+          "missing_required_tools": 2,
+          "require_exactly_one_recommendation": 2
+        }
+      }
+    },
+    "verifier_issues": {
+      "invalid_tool_arguments": 4,
+      "missing_required_tools": 4,
+      "require_exactly_one_recommendation": 4
+    }
+  },
+  "validation_grounded_v2_r03": {
+    "families": {
+      "bridge_closed": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "two_roads_closed": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "alternate_route": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "isolated": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "tool_failure": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 2,
+          "missing_required_tools": 2,
+          "require_exactly_one_recommendation": 2
+        }
+      },
+      "conflicting_evidence": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "missing_location": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 2,
+          "missing_required_tools": 2,
+          "require_exactly_one_recommendation": 2
+        }
+      }
+    },
+    "verifier_issues": {
+      "invalid_tool_arguments": 4,
+      "missing_required_tools": 4,
+      "require_exactly_one_recommendation": 4
+    }
+  }
+}

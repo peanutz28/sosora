@@ -1,0 +1,13 @@
+{
+  "name": "sosora-lightning-vllm",
+  "id": "m11k1tjxq",
+  "status": "STOPPED",
+  "build_status": "COMPLETED",
+  "shell_status": "NOT READY",
+  "health_status": "HEALTHY",
+  "instance_type": "gpu-h100-sxm.1gpu-16vcpu-200gb",
+  "instance_kind": "gpu",
+  "gpu": "H100",
+  "verified_at_utc": "2026-10-18T06:20:13.556491+00:00",
+  "storage_retained_billable": true
+}

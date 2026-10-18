@@ -1,0 +1,6 @@
+{
+  "both_pass": 6,
+  "policy_only_pass": 4,
+  "baseline_only_pass": 0,
+  "both_fail": 4
+}

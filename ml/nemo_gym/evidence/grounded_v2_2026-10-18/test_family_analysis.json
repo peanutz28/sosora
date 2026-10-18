@@ -1,0 +1,131 @@
+{
+  "baseline": {
+    "families": {
+      "bridge_closed": {
+        "passed": 1,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 1
+        }
+      },
+      "two_roads_closed": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "alternate_route": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "isolated": {
+        "passed": 1,
+        "total": 2,
+        "issues": {
+          "unsupported_path": 1
+        }
+      },
+      "tool_failure": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "incorrect_graph_version": 1,
+          "invalid_tool_arguments": 2,
+          "route_tool_before_current_status": 2,
+          "stale_graph_version": 2,
+          "unsupported_path": 1,
+          "missing_required_tools": 1,
+          "require_exactly_one_recommendation": 1
+        }
+      },
+      "conflicting_evidence": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "missing_human_review": 1,
+          "invalid_tool_arguments": 1
+        }
+      },
+      "missing_location": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "incorrect_reachability": 2,
+          "invented_graph_version": 2,
+          "unsupported_path": 2,
+          "missing_human_review": 1
+        }
+      }
+    },
+    "issues": {
+      "unsupported_path": 4,
+      "incorrect_graph_version": 1,
+      "invalid_tool_arguments": 4,
+      "route_tool_before_current_status": 2,
+      "stale_graph_version": 2,
+      "missing_human_review": 2,
+      "incorrect_reachability": 2,
+      "invented_graph_version": 2,
+      "missing_required_tools": 1,
+      "require_exactly_one_recommendation": 1
+    },
+    "passed": 6,
+    "total": 14,
+    "provider_errors": 0
+  },
+  "grounded_v2": {
+    "families": {
+      "bridge_closed": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "two_roads_closed": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "alternate_route": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "isolated": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "tool_failure": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 2,
+          "missing_required_tools": 2,
+          "require_exactly_one_recommendation": 2
+        }
+      },
+      "conflicting_evidence": {
+        "passed": 2,
+        "total": 2,
+        "issues": {}
+      },
+      "missing_location": {
+        "passed": 0,
+        "total": 2,
+        "issues": {
+          "invalid_tool_arguments": 2,
+          "missing_required_tools": 2,
+          "require_exactly_one_recommendation": 2
+        }
+      }
+    },
+    "issues": {
+      "invalid_tool_arguments": 4,
+      "missing_required_tools": 4,
+      "require_exactly_one_recommendation": 4
+    },
+    "passed": 10,
+    "total": 14,
+    "provider_errors": 0
+  }
+}
