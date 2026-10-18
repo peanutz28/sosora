@@ -1,0 +1,88 @@
+{
+  "simulated": true,
+  "asr": "filename-based cached transcript; silent test WAV, not speech recognition",
+  "backend_mode": "DEMO_MODE=true",
+  "cases": {
+    "fake_sensor": {
+      "unreachable_ids": [
+        "SOS-001",
+        "SOS-002",
+        "SOS-003",
+        "SOS-004",
+        "SOS-005"
+      ],
+      "segment_statuses": [
+        "blocked"
+      ],
+      "log": [
+        "Beacon ready. Enter records 8 seconds; Ctrl-C stops. Pending items survive restart.",
+        "QUEUED reading-a4aa4eae-99ac-474f-9e86-361230afc2e0 [SIMULATED] 1 items",
+        "SENSOR [SIMULATED] water=0.0 cm threshold=30.0 cm",
+        "SENT reading-a4aa4eae-99ac-474f-9e86-361230afc2e0 200",
+        "SENSOR [SIMULATED] water=5.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=10.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=15.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=20.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=25.0 cm threshold=30.0 cm",
+        "QUEUED reading-83549bc7-b2ac-4ea0-a760-fdac6c6b7932 [SIMULATED] 1 items",
+        "SENSOR [SIMULATED] water=30.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=35.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=40.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=45.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=50.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=55.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "QUEUED reading-eb28ece7-17a0-4fea-b6e8-c64dcf39123a [SIMULATED] 2 items",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENSOR [SIMULATED] water=60.0 cm threshold=30.0 cm",
+        "SENT reading-83549bc7-b2ac-4ea0-a760-fdac6c6b7932 200",
+        "Stopping; unsent items remain in outbox."
+      ]
+    },
+    "replay": {
+      "unreachable_ids": [
+        "SOS-001",
+        "SOS-002",
+        "SOS-003",
+        "SOS-004",
+        "SOS-005"
+      ],
+      "segment_statuses": [
+        "blocked"
+      ],
+      "log": [
+        "QUEUED voice-4aa707ac-9552-4ebd-b26a-f196847c325e [SIMULATED] 1 items",
+        "Beacon ready. Enter records 8 seconds; Ctrl-C stops. Pending items survive restart.",
+        "SENT voice-4aa707ac-9552-4ebd-b26a-f196847c325e 200"
+      ]
+    },
+    "reconnect": {
+      "unreachable_ids": [
+        "SOS-001",
+        "SOS-002",
+        "SOS-003",
+        "SOS-004",
+        "SOS-005"
+      ],
+      "segment_statuses": [
+        "blocked"
+      ],
+      "radio_received_count": 1,
+      "client_id_preserved": true
+    }
+  }
+}
