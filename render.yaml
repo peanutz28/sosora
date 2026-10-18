@@ -9,7 +9,6 @@ services:
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     autoDeployTrigger: off
-    healthCheckPath: /health
     envVars:
       - key: PORT
         value: "7860"
@@ -18,4 +17,4 @@ services:
       - key: HOSTED_DEMO
         value: "true"
       - key: APP_CORS_ORIGINS
-        value: https://sosora-command-demo.vercel.app
+        value: https://sosora-command-demo.vercel.app,https://sosora-command-demo-peanutz28s-projects.vercel.app

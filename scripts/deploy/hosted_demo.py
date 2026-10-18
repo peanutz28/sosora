@@ -23,10 +23,13 @@ DEADLINE = datetime(2026, 10, 18, 10, 30, tzinfo=timezone.utc)
 SPACE = 'peanutz28/sosora-command-demo'
 PROJECT = 'sosora-command-demo'
 MANUAL_HANDOFF = False
+RESUMED_REQUEST = False
+BACKEND_URL = 'https://peanutz28-sosora-command-demo.hf.space'
+SOURCE_REF = None
 
 
 def deadline():
-    if datetime.now(timezone.utc) >= DEADLINE and not MANUAL_HANDOFF:
+    if datetime.now(timezone.utc) >= DEADLINE and not (MANUAL_HANDOFF or RESUMED_REQUEST):
         raise RuntimeError('06:30 AM ET hard stop reached; no further deployment work')
 
 
@@ -160,7 +163,7 @@ def hf_cors(origin):
 def vercel():
     deadline()
     # Do not publish a production frontend pointing at a missing backend.
-    health=request('https://peanutz28-sosora-command-demo.hf.space/health')
+    health=request(BACKEND_URL+'/health')
     if health.get('demo_mode') is not True: raise RuntimeError('Hosted cached backend is not ready')
     token, _ = vercel_token(); base='https://api.vercel.com'
     projects=request(base+'/v9/projects?limit=100',token)['projects']
@@ -168,13 +171,24 @@ def vercel():
     if project is None:
         project=request(base+'/v11/projects',token,'POST',{'name':PROJECT,'framework':'nextjs',
             'buildCommand':'npm run build','installCommand':'npm ci'})
-    env={'NEXT_PUBLIC_APP_API_URL':'https://peanutz28-sosora-command-demo.hf.space','NEXT_PUBLIC_HOSTED_DEMO':'true'}
+    env={'NEXT_PUBLIC_APP_API_URL':BACKEND_URL,'NEXT_PUBLIC_HOSTED_DEMO':'true'}
     for key,value in env.items():
         request(base+f"/v10/projects/{project['id']}/env?upsert=true",token,'POST',
                 {'key':key,'value':value,'type':'plain','target':['production','preview']})
-    files=frontend_files(); assert_public(files)
+    files=frontend_files()
+    # A committed snapshot keeps other chats' unfinished local edits out of the public build.
+    with tempfile.TemporaryDirectory(prefix='sosora-vercel-public-') as staging:
+        if SOURCE_REF:
+            for name in files:
+                target=Path(staging)/name;target.parent.mkdir(parents=True,exist_ok=True)
+                target.write_bytes(subprocess.check_output(['git','show',SOURCE_REF+':frontend/'+name],cwd=ROOT))
+                files[name]=target
+        assert_public(files)
+        packaged=[{'file':name,'data':base64.b64encode(p.read_bytes()).decode(),'encoding':'base64'} for name,p in files.items()]
+        save('frontend_package_manifest.json',{'source_ref':SOURCE_REF,'resumed_by_user':RESUMED_REQUEST,
+            'files':{name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for name,p in files.items()}})
     payload={'name':PROJECT,'project':project['id'],'target':'production',
-             'files':[{'file':name,'data':base64.b64encode(p.read_bytes()).decode(),'encoding':'base64'} for name,p in files.items()],
+             'files':packaged,
              'projectSettings':{'framework':'nextjs','buildCommand':'npm run build','installCommand':'npm ci'},
              'meta':{'purpose':'SOSora hosted cached replay'}}
     deadline();deployment=request(base+'/v13/deployments',token,'POST',payload)
@@ -190,7 +204,14 @@ def connect_origins():
     if state.get('readyState')!='READY': raise RuntimeError('Vercel deployment is not READY')
     aliases=state.get('alias') or []
     origins=list(dict.fromkeys('https://'+host for host in [*aliases,state['url']]))
-    hf_cors(','.join(origins))
+    save('frontend_origins.json',{'frontend_url':origins[0],'origins':origins})
+    if urllib.parse.urlparse(BACKEND_URL).hostname.endswith('.hf.space'):
+        hf_cors(','.join(origins))
+    preflight=urllib.request.Request(BACKEND_URL+'/api/radio/demo/seed',method='OPTIONS',headers={
+        'Origin':origins[0],'Access-Control-Request-Method':'POST','Access-Control-Request-Headers':'content-type'})
+    with urllib.request.urlopen(preflight,timeout=45) as response:
+        if response.headers.get('Access-Control-Allow-Origin')!=origins[0]:
+            raise RuntimeError('Set APP_CORS_ORIGINS on the backend to '+origins[0])
     # Fetch the production page without authentication to catch deployment protection.
     with urllib.request.urlopen(origins[0],timeout=45) as response:
         final_host=urllib.parse.urlparse(response.geturl()).hostname
@@ -198,14 +219,16 @@ def connect_origins():
         if response.status!=200 or final_host!=urllib.parse.urlparse(origins[0]).hostname or 'Hosted demo' not in html:
             raise RuntimeError('Frontend is not publicly accessible with the hosted disclosure')
     result={'verified_at_utc':datetime.now(timezone.utc).isoformat(),'frontend_url':origins[0],
-            'backend_url':'https://peanutz28-sosora-command-demo.hf.space','frontend_origins':origins,
-            'websocket_url':'wss://peanutz28-sosora-command-demo.hf.space/ws/events'}
+            'backend_url':BACKEND_URL,'frontend_origins':origins,'cors_verified_origins':[origins[0]],
+            'websocket_url':BACKEND_URL.replace('https://','wss://')+'/ws/events'}
     save('public_urls.json',result);print(json.dumps(result))
 
 
 def status():
     deadline()
     output={'checked_at_utc':datetime.now(timezone.utc).isoformat()}
+    try: output['backend']={'url':BACKEND_URL,'health':request(BACKEND_URL+'/health')}
+    except RuntimeError as exc: output['backend']={'url':BACKEND_URL,'ready':False,'reason':str(exc)}
     try:
         hf=request('https://huggingface.co/api/spaces/'+SPACE)
         output['hf']={'runtime':hf.get('runtime'),'host':hf.get('host'),'sha':hf.get('sha')}
@@ -222,8 +245,17 @@ if __name__ == '__main__':
     parser.add_argument('action',choices=['prepare','hf','hf-cors','vercel-auth','vercel','connect','status'])
     parser.add_argument('--frontend-origin',default='https://sosora-command-demo.vercel.app')
     parser.add_argument('--manual-handoff',action='store_true',help='Human-run handoff only: explicitly allow commands after the agent deadline')
+    parser.add_argument('--resumed-by-user',action='store_true',help='New deployment run explicitly requested by the user after the original cutoff')
+    parser.add_argument('--backend-url',default=BACKEND_URL)
+    parser.add_argument('--source-ref',help='Publish committed frontend source at this Git ref')
+    parser.add_argument('--evidence-dir',type=Path,default=EVIDENCE)
     args=parser.parse_args()
     MANUAL_HANDOFF=args.manual_handoff
+    RESUMED_REQUEST=args.resumed_by_user
+    BACKEND_URL=args.backend_url.rstrip('/')
+    if urllib.parse.urlparse(BACKEND_URL).scheme!='https': parser.error('Public backend must use HTTPS')
+    SOURCE_REF=args.source_ref
+    EVIDENCE=args.evidence_dir
     try:
         if args.action=='prepare': prepare()
         elif args.action=='hf': deploy_hf(args.frontend_origin)

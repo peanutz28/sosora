@@ -20,4 +20,4 @@ COPY --chown=user:user data/graph.json data/anchors.json data/roads.geojson ./da
 USER user
 
 EXPOSE 7860
-CMD ["uvicorn", "app.hosted:app", "--host", "0.0.0.0", "--port", "7860", "--workers", "1", "--ws", "websockets"]
+CMD ["uvicorn", "app.hosted:app", "--host", "0.0.0.0", "--port", "7860", "--workers", "1", "--ws", "websockets", "--ws-ping-interval", "30", "--ws-ping-timeout", "120"]
