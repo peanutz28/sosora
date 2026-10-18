@@ -68,7 +68,7 @@ struct SyncStatusView: View {
 
                     VStack(alignment: .leading, spacing: 8) {
                         FieldLabel(text: "Server address")
-                        DarkField(placeholder: "http://127.0.0.1:3000", text: $draftURL)
+                        DarkField(placeholder: "http://192.168.68.80:8000", text: $draftURL)
                             .textInputAutocapitalization(.never)
                             .autocorrectionDisabled()
                             .keyboardType(.URL)

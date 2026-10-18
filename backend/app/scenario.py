@@ -119,6 +119,8 @@ class ScenarioEngine:
             "lon": payload["lon"],
             "lat": payload["lat"],
             "message": payload.get("message") or "",
+            "place": payload.get("place", ""),
+            "status": "Received",
             "people_affected": payload.get("people_affected"),
             "medical": payload.get("medical"),
             "mobility": payload.get("mobility"),

@@ -94,7 +94,7 @@ final class AppStore {
               scheme == "http" || scheme == "https",
               components.host != nil
         else {
-            return "Use a full address such as http://127.0.0.1:3000."
+            return "Use a full address such as http://192.168.68.80:8000."
         }
         apiBaseURL = trimmed
         serverReachable = nil

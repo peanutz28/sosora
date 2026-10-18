@@ -254,7 +254,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsLocalNetworking = YES;
+				INFOPLIST_FILE = "SOSora-Info.plist";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "SOSora attaches your location to demonstration SOS and road reports. This app does not contact emergency services.";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -301,7 +301,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsLocalNetworking = YES;
+				INFOPLIST_FILE = "SOSora-Info.plist";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "SOSora attaches your location to demonstration SOS and road reports. This app does not contact emergency services.";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

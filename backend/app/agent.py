@@ -146,6 +146,13 @@ class RadioAgent:
         return self.statuses.setdefault(sid, {"status": "blocked" if sid in self.engine.closed_ids else "unverified", "sources": []})
 
     def find(self, args):
+        # Exact catalog selection is trusted server input, never model authority.
+        if self.report.get("segment_id") in self.edges:
+            sid = self.report["segment_id"]
+            physical = sid.rsplit(":", 1)[0] if sid.endswith((":f", ":b")) else sid
+            self.allowed = {key for key in self.edges if key == physical or key in {physical + ":f", physical + ":b"}}
+            self.ambiguous = False
+            return {"candidates": [{"id": key} for key in sorted(self.allowed)], "distinct_locations": 1, "needs_human_review": False}
         candidates = []
         for sid, edge in self.edges.items():
             if args.bridge_only and edge.get("bridge") not in (True, "yes", "true", 1):
@@ -310,6 +317,16 @@ class RadioAgent:
             "confidence": .5 if ids else 0., "needs_human_review": True}, "demo-6")
 
     async def run(self):
+        if self.report.get("segment_id") in self.edges:
+            await self.call("find_segments", {"near_lon": self.report["near_lon"], "near_lat": self.report["near_lat"]}, "mobile-1")
+            ids = sorted(self.allowed)
+            await self.call("get_segment_status", {"segment_ids": ids}, "mobile-2")
+            await self.call("report_segment", {"segment_ids": ids, "claim": self.report["claim"], "source": self.source}, "mobile-3")
+            await self.call("recompute_reachability", {}, "mobile-4")
+            return await self.call("submit_assessment", {
+                "summary": "Selected road report evaluated using the trust rule.",
+                "affected_incident_ids": self.changed, "recommended_actions": ["Review field evidence"],
+                "confidence": 1.0, "needs_human_review": self.report["claim"] != "impassable"}, "mobile-5")
         if self.simulated:
             return await self.replay()
         messages = [{"role": "system", "content": SYSTEM}, {"role": "user", "content": json.dumps(self.report)}]

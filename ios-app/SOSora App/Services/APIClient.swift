@@ -2,14 +2,14 @@
 //  APIClient.swift
 //  SOSora App
 //
-//  Client for the existing SOSora FastAPI demo. This file does not start a server
+//  Client for SOSora Command on port 8000. This file does not start a server
 //  and does not implement radio transport.
 //
 
 import Foundation
 
 struct APIClient {
-    static let defaultBaseURL = "http://127.0.0.1:3000"
+    static let defaultBaseURL = "http://192.168.68.80:8000"
 
     var baseURLString: String
     private let session: URLSession
@@ -17,7 +17,7 @@ struct APIClient {
     init(baseURLString: String) {
         self.baseURLString = baseURLString
         let configuration = URLSessionConfiguration.ephemeral
-        configuration.timeoutIntervalForRequest = 6
+        configuration.timeoutIntervalForRequest = 120
         configuration.waitsForConnectivity = false
         session = URLSession(configuration: configuration)
     }
@@ -27,7 +27,7 @@ struct APIClient {
     }
 
     func state() async throws -> StateDTO {
-        try await get("api/state")
+        try await get("api/mobile/state")
     }
 
     func roadCatalog() async throws -> [ServerRoadSegment] {
@@ -117,7 +117,7 @@ struct APIClient {
         let url = try endpoint(path)
         var request = URLRequest(url: url)
         request.httpMethod = method
-        request.timeoutInterval = 6
+        request.timeoutInterval = 120
         if let body {
             request.httpBody = body
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")

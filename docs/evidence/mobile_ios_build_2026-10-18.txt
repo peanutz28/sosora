@@ -1,0 +1,12 @@
+
+Validate /tmp/sosora-mobile-build-final/Build/Products/Debug-iphonesimulator/SOSora\ App.app (in target 'SOSora App' from project 'SOSora App')
+    cd /Users/peanutz/Documents/GitHub/sosora/ios-app
+    builtin-validationUtility /tmp/sosora-mobile-build-final/Build/Products/Debug-iphonesimulator/SOSora\ App.app -shallow-bundle -infoplist-subpath Info.plist
+
+Touch /tmp/sosora-mobile-build-final/Build/Products/Debug-iphonesimulator/SOSora\ App.app (in target 'SOSora App' from project 'SOSora App')
+    cd /Users/peanutz/Documents/GitHub/sosora/ios-app
+    /usr/bin/touch -c /tmp/sosora-mobile-build-final/Build/Products/Debug-iphonesimulator/SOSora\ App.app
+
+note: Disabling hardened runtime with ad-hoc codesigning. (in target 'SOSora App' from project 'SOSora App')
+** BUILD SUCCEEDED **
+

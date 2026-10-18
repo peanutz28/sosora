@@ -9,7 +9,7 @@ from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import Response
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import AliasChoices, BaseModel, Field
 
 from app.ml_client import probe_ml
 from app.scenario import ScenarioEngine
@@ -20,10 +20,11 @@ DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 class IncidentIn(BaseModel):
     client_id: str
     source_id: str = "unknown"
-    lon: float
-    lat: float
+    lon: float = Field(validation_alias=AliasChoices("lon", "lng"), ge=-180, le=180, allow_inf_nan=False)
+    lat: float = Field(ge=-90, le=90, allow_inf_nan=False)
     message: str = ""
-    people_affected: Optional[int] = None
+    people_affected: Optional[int] = Field(default=None, validation_alias=AliasChoices("people_affected", "people"))
+    place: str = Field(default="", max_length=180)
     medical: Optional[str] = None
     mobility: Optional[str] = None
 
@@ -79,6 +80,8 @@ def create_app(graph, anchors: dict, db_path: str) -> FastAPI:
     from app.radio_api import router as radio_router
 
     app.include_router(radio_router)
+    from app.mobile_api import router as mobile_router
+    app.include_router(mobile_router)
 
     @app.get("/health")
     def health():
@@ -140,7 +143,8 @@ def create_app(graph, anchors: dict, db_path: str) -> FastAPI:
             )
         state_out = engine.public_state()
         await hub.broadcast({"type": "state", "state": state_out})
-        return {"incident": result["incident"], "duplicate": result["duplicate"], "state": state_out}
+        from app.mobile_api import incident_dto
+        return {**incident_dto(result["incident"]), "incident": result["incident"], "duplicate": result["duplicate"], "state": state_out}
 
     @app.get("/api/roads")
     def roads():
