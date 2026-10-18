@@ -262,7 +262,11 @@ class RadioAgent:
     async def completion(self, messages):
         # Nemotron 3.5 Lightning is the only generative LLM (hackathon 33B total cap).
         model = os.getenv("LLM_MODEL", MODEL)
-        body = {"model": model, "messages": messages, "tools": TOOLS, "tool_choice": "required",
+        # vLLM's required mode uses constrained JSON decoding; Lightning's native
+        # qwen3_coder parser emits compact tool calls with auto (measured on H100).
+        # The loop still permits only validated tools and requires an assessment.
+        choice = "auto" if os.getenv("LLM_PROVIDER") == "redhat_vllm" else "required"
+        body = {"model": model, "messages": messages, "tools": TOOLS, "tool_choice": choice,
                 "parallel_tool_calls": False, "temperature": 0, "max_tokens": 1024}
         if model == MODEL:
             body.update(temperature=1.0, top_p=0.95, chat_template_kwargs={"enable_thinking": False})

@@ -139,15 +139,19 @@ def test_imagery_failure_returns_empty(monkeypatch):
     assert run(agent.call("get_imagery_evidence", {"segment_ids": ["bc"]}, "1")) == []
 
 
-def test_completion_uses_configured_endpoint_and_tools(monkeypatch):
+@pytest.mark.parametrize("provider,choice", [("nvidia_api", "required"), ("redhat_vllm", "auto")])
+def test_completion_uses_configured_endpoint_and_tools(monkeypatch, provider, choice):
     agent = make(monkeypatch)
     monkeypatch.setenv("LLM_BASE_URL", "http://localhost:9000/v1/")
     monkeypatch.setenv("LLM_MODEL", "local-small-model")
+    monkeypatch.setenv("LLM_PROVIDER", provider)
     monkeypatch.setenv("LLM_API_KEY", "test-only")
     async def respond(client, url, **kwargs):
         assert url == "http://localhost:9000/v1/chat/completions"
         assert kwargs["json"]["model"] == "local-small-model"
         assert len(kwargs["json"]["tools"]) == 6
+        assert kwargs["json"]["tool_choice"] == choice
+        assert kwargs["json"]["parallel_tool_calls"] is False
         assert kwargs["headers"]["Authorization"] == "Bearer test-only"
         return httpx.Response(200, json={"choices": [{"message": {"role": "assistant", "content": "ok"}}]},
                               request=httpx.Request("POST", url))
