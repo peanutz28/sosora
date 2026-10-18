@@ -1,0 +1,13 @@
+{
+  "recorded_at_utc": "2026-10-18T11:35:23.798225+00:00",
+  "linked_directory": "frontend/",
+  "project_id": "prj_3rAvMeAZZ255hdzY7DLTgdB3Fb4i",
+  "organization_id": "team_E2dK4B86OzrSjFJ93X8j1myF",
+  "link_file": "frontend/.vercel/project.json",
+  "link_file_ignored": true,
+  "cli_generated_env_keys": [
+    "VERCEL_OIDC_TOKEN"
+  ],
+  "cli_oidc_only_env_removed": true,
+  "existing_local_api_defaults_changed": false
+}

@@ -166,8 +166,8 @@ def vercel():
     projects=request(base+'/v9/projects?limit=100',token)['projects']
     project=next((p for p in projects if p['name']==PROJECT),None)
     if project is None:
-        project=request(base+'/v10/projects',token,'POST',{'name':PROJECT,'framework':'nextjs',
-            'buildCommand':'npm run build','installCommand':'npm ci','nodeVersion':'22.x'})
+        project=request(base+'/v11/projects',token,'POST',{'name':PROJECT,'framework':'nextjs',
+            'buildCommand':'npm run build','installCommand':'npm ci'})
     env={'NEXT_PUBLIC_APP_API_URL':'https://peanutz28-sosora-command-demo.hf.space','NEXT_PUBLIC_HOSTED_DEMO':'true'}
     for key,value in env.items():
         request(base+f"/v10/projects/{project['id']}/env?upsert=true",token,'POST',

@@ -1,0 +1,10 @@
+{
+  "recorded_at_utc": "2026-10-18T11:34:36.828623+00:00",
+  "project_id": "prj_3rAvMeAZZ255hdzY7DLTgdB3Fb4i",
+  "configured_public_env": {
+    "NEXT_PUBLIC_HOSTED_DEMO": "true"
+  },
+  "backend_api_url_configured": false,
+  "reason": "Public backend still unavailable; waiting for user backend choice",
+  "deployment_created": false
+}

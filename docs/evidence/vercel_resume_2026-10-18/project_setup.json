@@ -1,0 +1,20 @@
+{
+  "id": "prj_3rAvMeAZZ255hdzY7DLTgdB3Fb4i",
+  "name": "sosora-command-demo",
+  "accountId": "team_E2dK4B86OzrSjFJ93X8j1myF",
+  "framework": "nextjs",
+  "rootDirectory": null,
+  "buildCommand": "npm run build",
+  "installCommand": "npm ci",
+  "nodeVersion": "24.x",
+  "recorded_at_utc": "2026-10-18T11:33:57.188175+00:00",
+  "created": true,
+  "plan": "hobby",
+  "dashboard_url": "https://vercel.com/peanutz28s-projects/sosora-command-demo",
+  "deployment_created": false,
+  "production_url": null,
+  "backend_health_http_status": 404,
+  "resumed_by_user": true,
+  "credential_source": "existing Vercel CLI login",
+  "credentials_uploaded": false
+}

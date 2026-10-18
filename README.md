@@ -2,7 +2,8 @@
 
 **Hosted demo:** deployment prepared, public site not published. Hugging Face
 returned HTTP 402 for free CPU Docker hosting (PRO account required); Vercel login
-is verified. Backend target: `https://peanutz28-sosora-command-demo.hf.space`
+is verified and the [Vercel project](https://vercel.com/peanutz28s-projects/sosora-command-demo)
+is created and linked to `frontend/`. Backend target: `https://peanutz28-sosora-command-demo.hf.space`
 **(not live)**. Frontend URL: **not allocated**. See the tested package, local
 screenshots and exact human-run commands in [docs/HOSTED_DEMO.md](docs/HOSTED_DEMO.md).
 

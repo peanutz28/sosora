@@ -1,6 +1,13 @@
 # Hosted cached demo — deployment handoff
 
-Status: **not published**. Vercel authentication works as `peanutz28`. Hugging Face
+Status: **not published**. On the user's resumed setup request, the
+[SOSora Vercel project](https://vercel.com/peanutz28s-projects/sosora-command-demo)
+was created in the existing Hobby account and linked to `frontend/`. Its hosted
+disclosure flag is configured; the API URL is pending a working public backend.
+No deployment was submitted. Setup evidence is in
+[`vercel_resume_2026-10-18/`](evidence/vercel_resume_2026-10-18/).
+
+Vercel authentication works as `peanutz28`. Hugging Face
 accepted the account/token but returned HTTP 402 when creating a Docker Space on
 `cpu-basic`, including a retry with default hardware. The server requires a PRO
 subscription for free CPU Docker/Gradio hosting. No subscription was purchased,
@@ -11,10 +18,12 @@ This account eligibility requirement is also in the [HF Spaces documentation](ht
 | Service | Public URL | Verification |
 |---|---|---|
 | Backend | Intended target: `https://peanutz28-sosora-command-demo.hf.space` | Not created; HTTP 402 |
-| Frontend | Not allocated | Vercel CLI account verified; deployment waits for healthy backend |
+| Frontend | Not allocated | Project created and linked; deployment waits for healthy backend |
 | WebSocket | Intended target: `wss://peanutz28-sosora-command-demo.hf.space/ws/events` | Public check blocked; exact Docker image passed locally |
 
-The agent stops all deployment work by **06:30 AM ET, October 18, 2026**. If HF still
+The original agent run stopped before **06:30 AM ET, October 18, 2026**; the user
+requested a new Vercel setup after returning. The original deployment commands
+retain their cutoff guard. If HF still
 blocks the free CPU target, drop hosting and use GitHub plus the video for judging.
 The commands below are a human handoff; `--manual-handoff` is explicit permission
 for the person running them to operate after the agent deadline.

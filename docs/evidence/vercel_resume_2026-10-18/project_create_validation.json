@@ -1,0 +1,6 @@
+{
+  "http_status": 400,
+  "rejected_field": "nodeVersion",
+  "reason": "Create API rejects nodeVersion in request; omitted it and used supported project defaults",
+  "resolved": true
+}

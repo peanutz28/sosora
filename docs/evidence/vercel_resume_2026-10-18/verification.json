@@ -1,0 +1,14 @@
+{
+  "verified_at_utc": "2026-10-18T11:35:51.623126+00:00",
+  "project_id": "prj_3rAvMeAZZ255hdzY7DLTgdB3Fb4i",
+  "framework": "nextjs",
+  "build_command": "npm run build",
+  "install_command": "npm ci",
+  "node_version": "24.x",
+  "hosted_disclosure_flag": true,
+  "configured_env_names": [
+    "NEXT_PUBLIC_HOSTED_DEMO"
+  ],
+  "api_url_pending": true,
+  "deployments": 0
+}
