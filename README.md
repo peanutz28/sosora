@@ -60,16 +60,37 @@ avoided until verified.
 ## Why these technologies
 - **Nemotron 3.5 Lightning** is the only generative LLM (hackathon cap: 33B total). It is fast
   enough for an agent loop and strong at structured tool calls.
-- **Red Hat vLLM** serves it on one GPU, so the whole system can run in a command vehicle
-  with no internet and handle many radio channels at once.
+- **vLLM on one NVIDIA H100** serves Lightning through the configured `redhat_vllm` adapter.
+  The verified deployment used upstream vLLM, not a verified Red Hat-distributed image.
+  [Serving evidence](docs/VLLM_RESULTS.md).
 - **NeMo Gym** gives fixed tasks and a verifier, so we can measure whether the agent improves.
 - **Small models** are the point: the state's own review asks for 72 hours with no comms.
 
 ## Results (measured; see evidence folders)
-- **Agent policy, NeMo Gym, 14 held-out test scenarios** (Nemotron Lightning, hosted API):
-  baseline 1/14 -> evidence-first prompting 4/14. Caveat: these runs had 18 provider HTTP
-  errors and 5 timeouts, counted as failures. Rerun on vLLM pending.
-  [`ml/nemo_gym/evidence/rollouts_2026-10-17/summary.md`](ml/nemo_gym/evidence/rollouts_2026-10-17/summary.md)
+
+**NeMo Gym, clean Brev vLLM runs:** frozen simulated tasks and policies, using the
+pinned tools/verifier. No weights changed and no RL was performed.
+
+| Split | Policy | Pass / requested | Provider errors | Mean recorded request ms |
+|---|---|---:|---:|---:|
+| validation | baseline | 8/14 | 0 | 427.4 |
+| validation | evidence_first | 2/14 | 0 | 532.1 |
+| test | baseline | 7/14 | 0 | 403.4 |
+| test | evidence_first | 4/14 | 0 | 520.6 |
+
+Baseline outperformed the frozen evidence-first prompt on both splits. These scores
+do **not** establish real-world rescue safety or an evidence-first improvement.
+The earlier hosted runs had transport failures and are not the headline policy result.
+[Full comparison, methodology and caveats](docs/GYM_RESULTS.md).
+
+**Live vLLM speed:** earlier hosted API observations were **24–55 seconds per agent
+turn**. On the NVIDIA H100 vLLM deployment, the final five live hero runs all passed:
+**mean agent call 0.852 seconds** across 30 calls and **mean hero API run 12.442 seconds**,
+including parsing and graph work. Gym request means above use a different task protocol;
+these serving configurations are not a controlled hardware-only comparison.
+[Hero measurements](docs/VLLM_RESULTS.md#final-hero-measurements) ·
+[Earlier hosted observations](docs/briefs/BREV_VLLM_CODEX.md).
+
 - **Vision fine-tune** (SegFormer-B0, 3.7M params), frozen cross-event check on 6 unseen
   Germany flood tiles: F1 0.23 -> 0.47 versus the same model before fine-tuning.
   [`docs/ml/FROZEN_EXTERNAL_EVALUATION.md`](docs/ml/FROZEN_EXTERNAL_EVALUATION.md)
@@ -93,6 +114,7 @@ fixtures; tool execution and reachability run against the real graph.
 
 [1920×1080 hero view](docs/screenshots/ui-hero-1920x1080.png) ·
 [Ambiguous bridge review](docs/screenshots/ui-ambiguity-1440x900.png) ·
+[1920×1080 bridge review](docs/screenshots/ui-ambiguity-1920x1080.png) ·
 [NHC Helene track](docs/screenshots/ui-helene-1920x1080.png) ·
 [Incident details](docs/screenshots/ui-incident-1920x1080.png)
 
@@ -122,7 +144,7 @@ curl -X POST localhost:8000/api/radio -H 'content-type: application/json' \
 Live models: set `DEMO_MODE=false` and `NVIDIA_API_KEY` (hosted) or `LLM_BASE_URL` /
 `LLM_MODEL` / `LLM_API_KEY` (your vLLM server). ML service: see `docs/ml/` (Python 3.12).
 
-Tests: `cd backend && pytest` (28 tests).
+Tests: `cd backend && pytest -q`.
 
 ## Repository map
 `backend/` app API, agent, radio + beacon endpoints · `ml/` model service, Gym, vision ·

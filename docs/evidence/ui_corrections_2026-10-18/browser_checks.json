@@ -1,0 +1,46 @@
+{
+  "mode": "DEMO_MODE=true",
+  "checks": [
+    {
+      "phase": "working",
+      "header": "working",
+      "console": "working",
+      "beaconLabel": "Beacon",
+      "iconClass": "lucide-radio-tower"
+    },
+    {
+      "beaconLabel": "Beacon",
+      "blockedRoads": "01",
+      "consoleAgent": "needs review",
+      "cutOffPins": 5,
+      "header": "Agent: needs review",
+      "phase": "hero",
+      "radioIcon": true,
+      "reachablePins": 4,
+      "viewport": [
+        1440,
+        900
+      ],
+      "nextjsPortalPresent": true,
+      "devIndicatorsConfig": false,
+      "visibleDevToolButtons": []
+    },
+    {
+      "consoleAgent": "idle",
+      "header": "Agent: idle",
+      "phase": "seeded"
+    },
+    {
+      "beaconLabel": "Beacon",
+      "candidateLetters": [
+        "A",
+        "B"
+      ],
+      "consoleAgent": "needs review",
+      "cutOffPins": 0,
+      "header": "Agent: needs review",
+      "phase": "ambiguity",
+      "reachablePins": 9
+    }
+  ]
+}

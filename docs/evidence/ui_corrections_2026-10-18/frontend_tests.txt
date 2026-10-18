@@ -1,0 +1,16 @@
+✔ socket and persisted events merge without duplicate tool rows (14.485792ms)
+✔ ambiguous bridges are deduped across directions and retain real centroids (0.997209ms)
+✔ latest assessment and trace summaries use structured fields, not guessed prose (0.906792ms)
+✔ blocked roads count physical segments, not their forward/backward directions (0.323042ms)
+✔ header and console share the same three-state agent status with working taking precedence (0.203542ms)
+✔ bridge closure changes only the five disconnected incidents; reset clears it (69.890625ms)
+✔ missing access and map snap failures are unknown, including synthetic queue items (28.837916ms)
+✔ route status is a fallback only when the backend boolean is absent (10.828875ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 461.375708
