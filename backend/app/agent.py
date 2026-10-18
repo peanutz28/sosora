@@ -94,10 +94,16 @@ near_lon/near_lat, pass them to find_segments. Finish by calling submit_assessme
 No dispatch is authorized."""
 
 
+class ImageryUnavailable(RuntimeError):
+    pass
+
+
 class RadioAgent:
     def __init__(self, engine, hub, report):
         self.engine, self.hub, self.report = engine, hub, report
         self.simulated = demo_mode()
+        self.imagery_offline = engine.imagery_offline
+        self.imagery_unavailable = False
         self.runtime = {"cached": self.simulated, "model_id": None,
                         "serving_backend": None, "last_call_latency_ms": None}
         self.edges = {d["id"]: d for _, _, d in engine.graph.edges(data=True)}
@@ -201,6 +207,8 @@ class RadioAgent:
         if name == "get_segment_status":
             return {sid: self.status(sid) for sid in args.segment_ids}
         if name == "get_imagery_evidence":
+            if self.imagery_offline:
+                raise ImageryUnavailable("Imagery is unavailable (simulated outage). Use field reports and graph access; missing imagery does not mean a clear road.")
             detections = list(self.engine.detections)
             if not self.simulated:
                 try:
@@ -244,11 +252,21 @@ class RadioAgent:
                 self.engine.store.save_incident(incident)
             self.engine.revision += 1
             return {"newly_unreachable_incident_ids": self.changed, "routes": routes}
+        # A provider may skip an evidence tool after an outage. Make the simulated
+        # failure visible even then, and code-enforce the missing-evidence caveat.
+        if self.imagery_offline and not self.imagery_unavailable and self.allowed:
+            await self.call("get_imagery_evidence", {"segment_ids": sorted(self.allowed)}, "imagery-outage")
         result = args.model_dump()
+        if self.imagery_unavailable or self.imagery_offline:
+            result["summary"] = ("Imagery is unavailable; assessment uses field reports and the road graph without imagery confirmation. "
+                                 + result["summary"])
+            result["needs_human_review"] = True
+            result["confidence"] = min(result["confidence"], .5)
+            result["recommended_actions"] = [*result["recommended_actions"], "Verify road conditions with field responders; imagery unavailable"]
         # Recompute even if the model skipped the tool; affected ids are code-owned.
         await self.dispatch("recompute_reachability", {})
         result.update(affected_incident_ids=self.changed,
-                      needs_human_review=args.needs_human_review or self.ambiguous or not self.allowed,
+                      needs_human_review=result["needs_human_review"] or self.ambiguous or not self.allowed,
                       simulated=self.simulated)
         self.engine.agent_assessment = result
         await self.hub.broadcast({"type": "state", "state": self.engine.public_state()})
@@ -260,6 +278,8 @@ class RadioAgent:
             result = await self.dispatch(name, arguments)
             result = json.loads(json.dumps(result))  # snapshot mutable status/provenance
         except Exception as exc:
+            if name == "get_imagery_evidence":
+                self.imagery_unavailable = True
             result = {"error": {"type": type(exc).__name__, "message": str(exc), "recoverable": True}}
         await self.emit("agent_tool_result", {"tool": name, "result": result, "call_id": call_id})
         return result

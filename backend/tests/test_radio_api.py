@@ -84,3 +84,32 @@ def test_audio_without_asr_and_unknown_file_is_503(client, monkeypatch):
     monkeypatch.delenv("ASR_BASE_URL", raising=False)
     response = client.post("/api/radio/audio", files={"file": ("live.wav", b"RIFF-fake", "audio/wav")})
     assert response.status_code == 503
+
+
+def test_imagery_outage_records_error_but_still_blocks_bridge_safely(client):
+    seed = client.post('/api/radio/demo/seed').json()
+    toggled = client.post('/api/radio/demo/imagery', json={'offline': True})
+    assert toggled.status_code == 200
+    assert toggled.json()['state']['imagery']['offline'] is True
+    out = client.post('/api/radio', json={'message': seed['hero_message'], 'source_type': 'beacon',
+                                        **seed['beacon_position']}).json()
+    events = out['state']['events']
+    failed = next(e for e in events if e.get('tool') == 'get_imagery_evidence' and e['kind'] == 'agent_tool_result')
+    assert failed['result']['error']['type'] == 'ImageryUnavailable'
+    assert failed['result']['error']['recoverable'] is True
+    assert 'simulated outage' in failed['result']['error']['message']
+    assert out['assessment']['affected_incident_ids'] == NORTH
+    assert 'imagery is unavailable' in out['assessment']['summary'].lower()
+    assert out['assessment']['needs_human_review'] is True
+    assert out['assessment']['confidence'] <= .5
+    assert {s['status'] for s in out['statuses'].values()} == {'blocked'}
+    assert [i['id'] for i in out['state']['incidents'] if not i['reachable']] == NORTH
+    final = next(e for e in events if e.get('tool') == 'submit_assessment' and e['kind'] == 'agent_tool_result')
+    assert final['id'] > failed['id'] and 'error' not in final['result']
+    assert client.post('/api/radio/demo/imagery', json={'offline': False}).json()['state']['imagery']['offline'] is False
+    restored = client.post('/api/radio', json={'message': seed['hero_message'], 'source_type': 'beacon',
+                                             **seed['beacon_position']}).json()
+    evidence = [e for e in restored['state']['events'] if e.get('tool') == 'get_imagery_evidence' and e['kind'] == 'agent_tool_result'][-1]
+    assert evidence['result'] == []
+    client.post('/api/radio/demo/imagery', json={'offline': True})
+    assert client.post('/api/radio/demo/seed').json()['state']['imagery']['offline'] is False

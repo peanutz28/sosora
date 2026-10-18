@@ -82,6 +82,7 @@ class ScenarioEngine:
         self.alternate = None
         self.route_status = "none"
         self.imagery_on = False
+        self.imagery_offline = False
         self.ml_mode = "mock" if demo_mode() else "unchecked"
         self.ml_detail = (
             "Demo mode is on. The model service is not called."
@@ -381,6 +382,7 @@ class ScenarioEngine:
             "ml": {"mode": self.ml_mode, "detail": self.ml_detail},
             "imagery": {
                 "selected": self.imagery_on,
+                "offline": self.imagery_offline,
                 "before": IMAGERY["before"],
                 "after": IMAGERY["after"],
                 "alignment_note": IMAGERY["alignment_note"],

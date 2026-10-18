@@ -30,6 +30,7 @@ export function AppShell() {
     flyToken,
     seedDrill,
     radioAction,
+    toggleImageryOffline,
     error,
     roadsError,
     busy,
@@ -120,6 +121,7 @@ export function AppShell() {
   };
 
   const act = (action: DrillAction) => {
+    if (action === "imagery") { void toggleImageryOffline(); return; }
     setSelectedId(null);
     setIntelOpen(false);
     if (action === "seed") void seedDrill();

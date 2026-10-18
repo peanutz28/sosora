@@ -156,6 +156,7 @@ export type AppState = {
   ml: { mode: string; detail: string };
   imagery: {
     selected: boolean;
+    offline?: boolean;
     before: ImageryLayer;
     after: ImageryLayer;
     alignment_note: string;

@@ -198,6 +198,15 @@ export function useOps() {
       setBusy(false);
     }
   }, [apply, clear]);
+  const toggleImageryOffline = useCallback(async () => {
+    if (inFlight.current) return;
+    inFlight.current = true;
+    try {
+      return await mutate("/api/radio/demo/imagery", { offline: !state?.imagery.offline });
+    } finally {
+      inFlight.current = false;
+    }
+  }, [mutate, state?.imagery.offline]);
   const radioAction = useCallback(
     async (
       action: "beacon" | "responder" | "dot" | "water",
@@ -269,6 +278,7 @@ export function useOps() {
     flyToken,
     seedDrill,
     radioAction,
+    toggleImageryOffline,
     reset,
     goto: useCallback(
       (step: number) => mutate("/api/scenarios/goto", { step }),

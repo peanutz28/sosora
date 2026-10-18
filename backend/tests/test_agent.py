@@ -182,3 +182,23 @@ def test_model_gets_route_summary_while_events_keep_full_geometry(monkeypatch):
     event = next(e for e in agent.engine.events if e.get("tool") == "recompute_reachability" and e["kind"] == "agent_tool_result")
     assert event["result"]["routes"]["SOS-001"]["geometry"]
     assert event["result"]["routes"]["SOS-001"]["edge_ids"] == ["ab", "bc"]
+
+
+def test_live_assessment_cannot_omit_simulated_imagery_failure(monkeypatch):
+    agent = make(monkeypatch)
+    agent.imagery_offline = True
+    script = [('find_segments', {'road_name': 'Test Bridge'}),
+              ('report_segment', {'segment_ids': ['bc'], 'claim': 'impassable', 'source': {}}),
+              ('submit_assessment', assessment())]
+    async def fake(messages):
+        name, arguments = script.pop(0)
+        return {'role': 'assistant', 'tool_calls': [{'id': str(len(script)), 'type': 'function',
+                'function': {'name': name, 'arguments': json.dumps(arguments)}}]}
+    agent.completion = fake
+    result = run(agent.run())
+    assert result['affected_incident_ids'] == ['SOS-001']
+    assert result['needs_human_review'] is True
+    assert result['confidence'] <= .5
+    assert 'imagery is unavailable' in result['summary'].lower()
+    error = next(e for e in agent.engine.events if e.get('tool') == 'get_imagery_evidence' and e['kind'] == 'agent_tool_result')
+    assert error['result']['error']['type'] == 'ImageryUnavailable'

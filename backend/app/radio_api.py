@@ -190,6 +190,24 @@ def radio_status(request: Request):
                            "people_affected", "reachable")} for i in engine.incidents]}
 
 
+class ImageryOutageIn(BaseModel):
+    offline: bool
+
+
+@router.post("/api/radio/demo/imagery")
+async def imagery_outage(body: ImageryOutageIn, request: Request):
+    """Simulated evidence-service outage; the basemap/imagery layers are unchanged."""
+    engine = request.app.state.engine
+    engine.imagery_offline = body.offline
+    engine.revision += 1
+    await _event(request, "imagery_outage", {
+        "offline": body.offline, "simulated": True,
+        "message": "[SIMULATED] Imagery offline" if body.offline else "[SIMULATED] Imagery restored"})
+    state = engine.public_state()
+    await request.app.state.hub.broadcast({"type": "state", "state": state})
+    return {"state": state}
+
+
 @router.post("/api/radio/demo/seed")
 async def seed(request: Request):
     """Reset to the radio demo: 9 SIMULATED SOS incidents on real Swannanoa roads."""

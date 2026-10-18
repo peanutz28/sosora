@@ -1,0 +1,15 @@
+{
+  "url": "http://127.0.0.1:3005/",
+  "backend": "isolated temporary database on port 8005; DEMO_MODE=true",
+  "checks": [
+    "S seeds 9 incidents",
+    "I changes Imagery offline to ON",
+    "B runs Beacon hero while offline",
+    "get_imagery_evidence shows recoverable ImageryUnavailable in trace",
+    "submit_assessment completes and explicitly says Imagery is unavailable",
+    "5 incidents lose road access; 4 keep routes",
+    "clicking Imagery offline restores it to OFF"
+  ],
+  "consoleErrors": [],
+  "note": "Initial preview requests timed out; isolated backend restarted before successful verification. No production process or database changed."
+}

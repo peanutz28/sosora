@@ -15,7 +15,7 @@ import {
 } from "@/lib/ops";
 import type { AppState, BridgeCandidate, OpsEvent } from "@/lib/types";
 
-export type DrillAction = "seed" | "beacon" | "responder" | "dot" | "water";
+export type DrillAction = "seed" | "beacon" | "responder" | "dot" | "water" | "imagery";
 export function OpsConsole({
   state,
   stream,
@@ -98,9 +98,10 @@ export function OpsConsole({
           r: "responder",
           d: "dot",
           w: "water",
+          i: "imagery",
         } as Record<string, DrillAction>
       )[event.key.toLowerCase()];
-      if (action && !working && !busy && (seeded || action === "seed")) {
+      if (action && !working && !busy && (seeded || action === "seed" || action === "imagery")) {
         event.preventDefault();
         actions.current(action);
       }
@@ -165,15 +166,17 @@ export function OpsConsole({
                 ["R", "Responder radio", "responder"],
                 ["D", "DOT says open", "dot"],
                 ["W", "Water spike", "water"],
+                ["I", "Imagery offline", "imagery"],
               ] as const
             ).map(([key, label, action]) => (
               <button
                 key={key}
-                disabled={busy || working || (!seeded && action !== "seed")}
+                disabled={busy || working || (!seeded && action !== "seed" && action !== "imagery")}
+                aria-pressed={action === "imagery" ? !!state.imagery.offline : undefined}
                 onClick={() => onAction(action)}
               >
                 <kbd>{key}</kbd>
-                {label}
+                {label}{action === "imagery" && state.imagery.offline ? " · ON" : ""}
               </button>
             ))}
           </div>
