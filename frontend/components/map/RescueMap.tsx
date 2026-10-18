@@ -1,5 +1,6 @@
 "use client";
 
+import { cinematicStyle } from "@/components/map/cinematicStyle";
 import { roadAccess } from "@/lib/access";
 
 import { useEffect, useRef, useState } from "react";
@@ -134,7 +135,9 @@ export function RescueMap({
           container: nodeRef.current,
           style: STREET_STYLE,
           center: ASHVILLE,
-          zoom: 11.15,
+          zoom: 12.8,
+          pitch: 50,
+          bearing: -20,
           attributionControl: { compact: true },
         });
         mapRef.current = map;
@@ -142,6 +145,8 @@ export function RescueMap({
         const markReady = () => {
           if (cancelled || !map || !map.isStyleLoaded()) return;
           try {
+            if (map.getLayer("sos-focus")) return;
+            if (basemapRef.current === "street") cinematicStyle(map);
             if (!addLayers(map)) return;
           } catch {
             return;
@@ -452,7 +457,7 @@ export function RescueMap({
     if (!map || epoch === 0 || !flyToken || seenFly.current === flyToken)
       return;
     seenFly.current = flyToken;
-    map.flyTo({ center: [-82.412, 35.614], zoom: 12.25, duration: 1100 });
+    map.flyTo({ center: [-82.412, 35.614], zoom: 12.8, pitch: 50, bearing: -20, duration: 1100 });
   }, [flyToken, epoch]);
 
   useEffect(() => {
@@ -1082,6 +1087,7 @@ function fit(
     ],
     {
       padding: { top: 64, bottom: 96, left: 48, right: 56 },
+      pitch: 50, bearing: -20,
       duration: 800,
       maxZoom: 14.5,
     },
