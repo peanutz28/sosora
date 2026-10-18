@@ -1,0 +1,21 @@
+{
+  "viewport": [
+    1920,
+    1080
+  ],
+  "sourceFps": 25,
+  "sourceHeroSeconds": 53.648999999999994,
+  "editedSeconds": 14.96,
+  "playbackSpeed": 1,
+  "edits": [
+    {
+      "heroStartSeconds": 0,
+      "durationSeconds": 3
+    },
+    {
+      "heroStartSeconds": 41.648999999999994,
+      "durationSeconds": 12
+    }
+  ],
+  "note": "Middle waiting interval removed; opening camera and final closure choreography play at original speed. Recording overhead is not backend latency evidence."
+}

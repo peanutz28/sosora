@@ -10,7 +10,7 @@ function load(file) {
   mod._compile(ts.transpileModule(fs.readFileSync(name,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020,esModuleInterop:true}}).outputText,name);
   return mod.exports;
 }
-const {routeStub}=load('../components/map/useLivingRoutes.ts');
+const {routeStub,routeNetwork}=load('../components/map/useLivingRoutes.ts');
 const {isolationZone}=load('../components/map/useIsolationZone.ts');
 test('broken route ends at the matching physical closure and retains the base side',()=>{
   const route={edge_ids:['bridge:f'],geometry:[[0,0],[1,0],[2,0],[3,0]]};
@@ -26,4 +26,10 @@ test('isolation hull includes only verified unreachable coordinates with a 400 m
   assert.ok(ring.every(p=>p[0]<-82 && p[1]>35));
   assert.equal(isolationZone([]).features.length,0);
   assert.equal(isolationZone([incident('a',-82.42,35.62,false)]).features.length,1);
+});
+
+test('shared route sections draw once without losing individual SOS branches',()=>{
+  const base=[0,0], bridge=[1,0], a=[2,1], b=[2,-1];
+  assert.deepEqual(routeNetwork([[base,bridge,a],[base,bridge,b]]),[[base,bridge,a],[bridge,b]]);
+  assert.deepEqual(routeNetwork([[a,bridge,base],[base,bridge,b]]),[[a,bridge,base],[bridge,b]]);
 });

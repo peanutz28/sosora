@@ -1,0 +1,102 @@
+{
+  "viewport": [
+    1920,
+    1080
+  ],
+  "build": "production",
+  "checks": [
+    {
+      "name": "Seed: nine reachable incidents",
+      "pass": true
+    },
+    {
+      "name": "Intelligence panel collapses completely",
+      "pass": true
+    },
+    {
+      "name": "Zero count uses muted ink",
+      "pass": true
+    },
+    {
+      "name": "P in search does not toggle presentation",
+      "pass": true
+    },
+    {
+      "name": "P hides demo controls and incident log",
+      "pass": true
+    },
+    {
+      "name": "P preserves simulated label",
+      "pass": true
+    },
+    {
+      "name": "Hero: five cut off, four reachable",
+      "pass": true
+    },
+    {
+      "name": "Hero pin status matches backend",
+      "pass": true
+    },
+    {
+      "name": "Terminal last row fully visible",
+      "pass": true
+    },
+    {
+      "name": "Unverified reopen keeps five isolated",
+      "pass": true
+    },
+    {
+      "name": "Ambiguity asks before blocking",
+      "pass": true
+    },
+    {
+      "name": "Eastern bridge confirmation preserves hero outcome",
+      "pass": true
+    },
+    {
+      "name": "Water spike cuts off five",
+      "pass": true
+    },
+    {
+      "name": "Primary Run demo still completes hero",
+      "pass": true
+    },
+    {
+      "name": "No page errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "idleFrames": {
+    "frames": 296,
+    "seconds": 5.016399999999998,
+    "fps": 59.00645881508654,
+    "p95Ms": 16.799999999999272,
+    "terrainFallback": true,
+    "budgetFps": "60"
+  },
+  "heroFrames": {
+    "mode": "production, full hero, normal panels, no encoder",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "frames": 1284,
+    "seconds": 22.5491,
+    "fps": 56.94240568359713,
+    "p95Ms": 16.80000000000291,
+    "longFrames": 44,
+    "terrainFallback": true,
+    "isolated": 5,
+    "errors": []
+  },
+  "trace": {
+    "rows": 6,
+    "scrollTop": 209,
+    "scrollHeight": 361,
+    "height": 152,
+    "lastBottom": 829.3125,
+    "listBottom": 847.53125
+  },
+  "finalVisualPass": "Shared route overdraw reduced; decorative POI/shield/casing/extrusion layers hidden. Final three requested states retaken."
+}

@@ -3,7 +3,29 @@ import type { RefObject } from "react";
 import type { GeoJSONSource, Map as MlMap } from "maplibre-gl";
 import type { CalculatedRoute, Closure, FeatureCollection, LngLat, QueueIncident } from "@/lib/types";
 
-const collection = (routes: LngLat[][]): FeatureCollection => ({ type: "FeatureCollection", features: routes.filter(r => r.length > 1).map(coordinates => ({ type: "Feature", properties: {}, geometry: { type: "LineString", coordinates } })) });
+/** Shared road sections are drawn once, while preserving every SOS branch. */
+export function routeNetwork(routes: LngLat[][]): LngLat[][] {
+  const seen = new Set<string>(), network: LngLat[][] = [];
+  for (const route of routes) {
+    let piece: LngLat[] = [];
+    for (let i = 0; i < route.length - 1; i++) {
+      const a = route[i], b = route[i + 1];
+      const ends = [a.join(","), b.join(",")].sort();
+      const key = ends.join("|");
+      if (seen.has(key)) {
+        if (piece.length > 1) network.push(piece);
+        piece = [];
+      } else {
+        seen.add(key);
+        if (!piece.length) piece.push(a);
+        piece.push(b);
+      }
+    }
+    if (piece.length > 1) network.push(piece);
+  }
+  return network;
+}
+const collection = (routes: LngLat[][]): FeatureCollection => ({ type: "FeatureCollection", features: routeNetwork(routes).map(coordinates => ({ type: "Feature", properties: {}, geometry: { type: "LineString", coordinates } })) });
 const physical = (id: string) => id.replace(/:(f|b)$/, "");
 
 /** Project the closure onto the last known route, keeping the base side only. */
@@ -69,15 +91,22 @@ export function useLivingRoutes(mapRef: RefObject<MlMap | null>, epoch: number, 
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !epoch || !visible) return;
-    let frame = 0, last = 0;
+    let frame = 0, last = 0, dashIndex = -1, flashing = false;
     const dashes = [[0, 2, 3], [.5, 2, 2.5], [1, 2, 2], [1.5, 2, 1.5], [2, 2, 1], [2.5, 2, .5], [3, 2, 0]];
     const tick = (now: number) => {
       if (now - last > 48 && !document.hidden) {
         last = now;
-        if (map.getLayer("sos-living")) map.setPaintProperty("sos-living", "line-dasharray", dashes[Math.floor(now / 95) % dashes.length]);
+        const index = Math.floor(now / 95) % dashes.length;
+        if (index !== dashIndex && map.getLayer("sos-living")) {
+          map.setPaintProperty("sos-living", "line-dasharray", dashes[index]);
+          dashIndex = index;
+        }
         if (map.getLayer("sos-route-flash")) {
           const remaining = flashUntil.current - now;
-          map.setPaintProperty("sos-route-flash", "line-opacity", remaining > 0 ? Math.min(1, remaining / 500) * (.55 + .45 * Math.sin(now / 65)) : 0);
+          if (remaining > 0 || flashing) {
+            map.setPaintProperty("sos-route-flash", "line-opacity", remaining > 0 ? Math.min(1, remaining / 500) * (.55 + .45 * Math.sin(now / 65)) : 0);
+            flashing = remaining > 0;
+          }
         }
       }
       frame = requestAnimationFrame(tick);

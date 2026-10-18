@@ -1,0 +1,15 @@
+{
+  "mode": "production, full hero, normal panels, no encoder",
+  "viewport": [
+    1920,
+    1080
+  ],
+  "frames": 1284,
+  "seconds": 22.5491,
+  "fps": 56.94240568359713,
+  "p95Ms": 16.80000000000291,
+  "longFrames": 44,
+  "terrainFallback": true,
+  "isolated": 5,
+  "errors": []
+}

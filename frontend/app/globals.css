@@ -1794,3 +1794,5 @@ kbd {
 .presentation .tool-list { max-height: none; }
 .presentation .maplibregl-ctrl-bottom-right { margin-right: 434px; }
 @media (prefers-reduced-motion: reduce) { .pin-sos.pin-access-lost { animation: none; } }
+.ops-console.console-collapsed > :not(.console-heading) { display: none; }
+.pin-sos.pin-access-lost { animation: none; }

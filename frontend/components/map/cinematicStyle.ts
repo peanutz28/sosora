@@ -5,6 +5,11 @@ export function cinematicStyle(map: MlMap) {
   for (const layer of map.getStyle().layers) {
     if (layer.id.startsWith("sos-")) continue;
     const id = layer.id;
+    // Keep the road/river hierarchy clear and avoid costly decorative buckets at hero zoom.
+    if ((layer.type === "symbol" && /poi|shield|airport|one_way/.test(id)) || layer.type === "fill-extrusion" || (layer.type === "line" && /casing|hatching/.test(id))) {
+      map.setLayoutProperty(id, "visibility", "none");
+      continue;
+    }
     if (layer.type === "background") map.setPaintProperty(id, "background-color", "#090b0e");
     if (layer.type === "raster") map.setPaintProperty(id, "raster-opacity", 0.08);
     if (layer.type === "fill") {
@@ -12,7 +17,6 @@ export function cinematicStyle(map: MlMap) {
       if (/park|landcover/.test(id)) map.setPaintProperty(id, "fill-opacity", 0.18);
       if (/pattern/.test(id)) map.setPaintProperty(id, "fill-pattern", null);
     }
-    if (layer.type === "fill-extrusion") map.setPaintProperty(id, "fill-extrusion-color", "#132632");
     if (layer.type === "line") {
       map.setPaintProperty(id, "line-color", /water/.test(id) ? "#0f3346" : /motorway|trunk|primary|secondary/.test(id) ? "#29404c" : "#1c2f3a");
       if (/park/.test(id)) map.setPaintProperty(id, "line-opacity", 0.1);
