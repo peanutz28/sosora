@@ -1,0 +1,23 @@
+{
+  "graphics": "All 11 cards reviewed in graphics-contact-sheet.jpg; text bounds passed at 1920x1080.",
+  "video": "All six clips decoded; opening/middle/ending actual video frames reviewed in broll-contact-sheet.jpg.",
+  "checks": [
+    "No loading screen in delivery openings",
+    "Presentation mode retained in six clips",
+    "Fresh seed confirmed in each response trace",
+    "No cached agent replay in inference beats",
+    "Beacon/responder-confirm/water/outage preserve expected five cut-off/four reachable",
+    "DOT does not reopen blocked bridge",
+    "Four lower-thirds verified with alpha 0 outside overlay and opaque text",
+    "No browser page errors or console errors in recorded sessions"
+  ],
+  "exceptions": "Seed is code-only and needs no inference. Actual serving is upstream vLLM. No associated vision image for scenario lookups; simulated outage is explicitly visible in its beat.",
+  "clipSeconds": {
+    "broll/01-seed.mp4": 11.33,
+    "broll/02-beacon-hero.mp4": 16.67,
+    "broll/03-responder-confirm-A.mp4": 29.57,
+    "broll/04-dot-open.mp4": 22.77,
+    "broll/05-imagery-offline.mp4": 20.2,
+    "broll/06-water-spike.mp4": 15.03
+  }
+}

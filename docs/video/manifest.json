@@ -1,0 +1,199 @@
+{
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "graphics": [
+    {
+      "file": "graphics/01-title.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false
+    },
+    {
+      "file": "graphics/02-stat-cell-sites.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false
+    },
+    {
+      "file": "graphics/03-stat-damaged-sites.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false
+    },
+    {
+      "file": "graphics/04-stat-72-hours.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false
+    },
+    {
+      "file": "graphics/05-system-diagram.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false
+    },
+    {
+      "file": "graphics/06-lower-tool-calling.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true
+    },
+    {
+      "file": "graphics/07-lower-nemotron.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true
+    },
+    {
+      "file": "graphics/08-lower-redhat-vllm.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true
+    },
+    {
+      "file": "graphics/09-lower-nemo-gym.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": true
+    },
+    {
+      "file": "graphics/10-results.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false
+    },
+    {
+      "file": "graphics/11-end-card.png",
+      "width": 1920,
+      "height": 1080,
+      "transparent": false
+    }
+  ],
+  "videos": [
+    {
+      "file": "broll/01-seed.mp4",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "durationSeconds": 11.33,
+      "bytes": 4026630,
+      "decoded": true,
+      "presentationMode": true,
+      "freshSeed": true,
+      "liveVllm": false,
+      "note": "Seeding is code-only; no model call is needed.",
+      "frames": [
+        "01-seed-frame-1.jpg",
+        "01-seed-frame-2.jpg",
+        "01-seed-frame-3.jpg"
+      ]
+    },
+    {
+      "file": "broll/02-beacon-hero.mp4",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "durationSeconds": 16.67,
+      "bytes": 6856346,
+      "decoded": true,
+      "presentationMode": true,
+      "freshSeed": true,
+      "liveVllm": true,
+      "note": "Live parser/agent metadata retained in matching evidence JSON.",
+      "frames": [
+        "02-beacon-hero-frame-1.jpg",
+        "02-beacon-hero-frame-2.jpg",
+        "02-beacon-hero-frame-3.jpg"
+      ]
+    },
+    {
+      "file": "broll/03-responder-confirm-A.mp4",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "durationSeconds": 29.57,
+      "bytes": 11331795,
+      "decoded": true,
+      "presentationMode": true,
+      "freshSeed": true,
+      "liveVllm": true,
+      "note": "Live parser/agent metadata retained in matching evidence JSON.",
+      "frames": [
+        "03-responder-confirm-A-frame-1.jpg",
+        "03-responder-confirm-A-frame-2.jpg",
+        "03-responder-confirm-A-frame-3.jpg"
+      ]
+    },
+    {
+      "file": "broll/04-dot-open.mp4",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "durationSeconds": 22.77,
+      "bytes": 6411951,
+      "decoded": true,
+      "presentationMode": true,
+      "freshSeed": true,
+      "liveVllm": true,
+      "note": "Live parser/agent metadata retained in matching evidence JSON.",
+      "frames": [
+        "04-dot-open-frame-1.jpg",
+        "04-dot-open-frame-2.jpg",
+        "04-dot-open-frame-3.jpg"
+      ]
+    },
+    {
+      "file": "broll/05-imagery-offline.mp4",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "durationSeconds": 20.2,
+      "bytes": 7159615,
+      "decoded": true,
+      "presentationMode": true,
+      "freshSeed": true,
+      "liveVllm": true,
+      "note": "Live parser/agent metadata retained in matching evidence JSON.",
+      "frames": [
+        "05-imagery-offline-frame-1.jpg",
+        "05-imagery-offline-frame-2.jpg",
+        "05-imagery-offline-frame-3.jpg"
+      ]
+    },
+    {
+      "file": "broll/06-water-spike.mp4",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "durationSeconds": 15.03,
+      "bytes": 4909308,
+      "decoded": true,
+      "presentationMode": true,
+      "freshSeed": true,
+      "liveVllm": true,
+      "note": "Live parser/agent metadata retained in matching evidence JSON.",
+      "frames": [
+        "06-water-spike-frame-1.jpg",
+        "06-water-spike-frame-2.jpg",
+        "06-water-spike-frame-3.jpg"
+      ]
+    }
+  ],
+  "playbackSpeed": 1,
+  "edits": "Only setup/loading and prerequisite actions trimmed; no wait removal within beats and no speed changes.",
+  "palette": "frontend/app/globals.css",
+  "fonts": [
+    "Manrope",
+    "DM Sans",
+    "IBM Plex Mono"
+  ],
+  "stack": {
+    "frontend": 13008,
+    "command": 18008,
+    "ml": 18028,
+    "vllmForward": 18088,
+    "database": "/tmp/sosora-video-command.db"
+  }
+}

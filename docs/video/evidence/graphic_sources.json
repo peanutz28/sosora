@@ -1,0 +1,29 @@
+{
+  "stats": {
+    "cell_sites": {
+      "url": "https://docs.fcc.gov/public/attachments/DOC-405893A1.pdf",
+      "corroboration": "https://wirelessestimator.com/wp-content/uploads/2024/09/Hurricane.Helene.Cell_.Tower_.Status.pdf",
+      "note": "FCC Sep 28 2024, 9 AM EDT, 21-county NC reporting area; rounded to 74%. Sep 29 report p16 corroborates prior 74.3%; direct primary fetch was blocked."
+    },
+    "damaged_sites": {
+      "url": "https://www.ncdot.gov/news/press-releases/Pages/2024/2024-11-01-this-week-ncdot-now.aspx",
+      "note": "More than 8,100 damaged sites, not distinct roads; Nov 1 2024."
+    },
+    "72_hours": {
+      "url": "https://www.ncdps.gov/tropical-storm-helene-after-action-review",
+      "note": "NCEM/McChrystal Group recommendation for local emergency managers, not a demonstrated SOSora runtime."
+    }
+  },
+  "results": [
+    "docs/GYM_RESULTS.md",
+    "docs/VLLM_RESULTS.md",
+    "docs/PARAM_BUDGET.md"
+  ],
+  "fonts": {
+    "Manrope": "4c9affa5bc8f420e-s.p.woff2",
+    "DM Sans": "13971731025ec697-s.p.woff2",
+    "IBM Plex Mono": "98e207f02528a563-s.p.woff2"
+  },
+  "palette_source": "frontend/app/globals.css",
+  "serving_qualification": "Red Hat vLLM is an integration target; actual capture uses upstream vLLM."
+}

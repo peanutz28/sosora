@@ -1,0 +1,79 @@
+[
+  {
+    "file": "01-title.svg",
+    "width": 1920,
+    "height": 1080,
+    "hasAlpha": false,
+    "overflow": []
+  },
+  {
+    "file": "02-stat-cell-sites.svg",
+    "width": 1920,
+    "height": 1080,
+    "hasAlpha": false,
+    "overflow": []
+  },
+  {
+    "file": "03-stat-damaged-sites.svg",
+    "width": 1920,
+    "height": 1080,
+    "hasAlpha": false,
+    "overflow": []
+  },
+  {
+    "file": "04-stat-72-hours.svg",
+    "width": 1920,
+    "height": 1080,
+    "hasAlpha": false,
+    "overflow": []
+  },
+  {
+    "file": "05-system-diagram.svg",
+    "width": 1920,
+    "height": 1080,
+    "hasAlpha": false,
+    "overflow": []
+  },
+  {
+    "file": "06-lower-tool-calling.svg",
+    "width": 1920,
+    "height": 1080,
+    "hasAlpha": true,
+    "overflow": []
+  },
+  {
+    "file": "07-lower-nemotron.svg",
+    "width": 1920,
+    "height": 1080,
+    "hasAlpha": true,
+    "overflow": []
+  },
+  {
+    "file": "08-lower-redhat-vllm.svg",
+    "width": 1920,
+    "height": 1080,
+    "hasAlpha": true,
+    "overflow": []
+  },
+  {
+    "file": "09-lower-nemo-gym.svg",
+    "width": 1920,
+    "height": 1080,
+    "hasAlpha": true,
+    "overflow": []
+  },
+  {
+    "file": "10-results.svg",
+    "width": 1920,
+    "height": 1080,
+    "hasAlpha": false,
+    "overflow": []
+  },
+  {
+    "file": "11-end-card.svg",
+    "width": 1920,
+    "height": 1080,
+    "hasAlpha": false,
+    "overflow": []
+  }
+]
