@@ -5,13 +5,12 @@ POST /api/radio/audio; this module turns it into text for the radio pipeline.
 
 Configuration (all optional):
   ASR_BASE_URL   OpenAI-compatible server exposing POST {base}/audio/transcriptions
-                 (e.g. an NVIDIA ASR NIM / Parakeet served on our Brev GPU).
-  ASR_MODEL      model name sent with the request.
+                 (the local faster-whisper tiny.en service in the demo).
+  ASR_MODEL      model name sent with the request (default: tiny.en).
   ASR_API_KEY    bearer token if the server needs one.
 
-TODO(beacon/ASR owner): confirm with organizers that the ASR model does not count toward
-the 33B generative-LM cap (it is a speech recognizer, not a generative LM), then serve it
-on Brev next to Nemotron Lightning and record latency in docs/VLLM_RESULTS.md.
+The served ASR is faster-whisper tiny.en. Its parameters are included conservatively
+in docs/PARAM_BUDGET.md alongside the complete Nemotron checkpoint and SegFormer.
 """
 from __future__ import annotations
 
@@ -42,7 +41,7 @@ async def transcribe(audio: bytes, filename: str = "audio.wav") -> dict:
             return {"text": DEMO_TRANSCRIPTS[stem], "mode": "cached_demo_transcript", "model": None}
         raise ASRUnavailable("ASR_BASE_URL is not configured")
     headers = {"Authorization": "Bearer " + os.environ["ASR_API_KEY"]} if os.getenv("ASR_API_KEY") else {}
-    data = {"model": os.getenv("ASR_MODEL", "nvidia/parakeet-tdt-0.6b-v2"), "response_format": "json"}
+    data = {"model": os.getenv("ASR_MODEL", "tiny.en"), "response_format": "json"}
     try:
         async with httpx.AsyncClient(timeout=60) as client:
             response = await client.post(base + "/audio/transcriptions", headers=headers, data=data,

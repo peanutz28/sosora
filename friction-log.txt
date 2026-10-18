@@ -1,0 +1,86 @@
+SOSora — NVIDIA Brev / vLLM friction log
+Written 2026-10-18. All times America/New_York (EDT, UTC−04:00).
+Exact timestamps are given only where a receipt provides one. Time windows below
+are bounds, not invented event times. Rates quoted are not invoices.
+
+2026-10-17, provisioning/serving session (exact event time not retained)
+Issue: Requested 200 GB disk on gpu-h100-sxm.1gpu-16vcpu-200gb, but observed a
+120 GB block device and 116G root filesystem, with 98G available before deploy.
+This mismatch also recurred on the separate Oct 18 LoRA instance.
+Impact: Durable space was insufficient for the chosen model-cache workflow.
+Workaround: Put the BF16 model cache in the VM's 99G /dev/shm tmpfs. This consumes
+host RAM and is volatile, despite the instance disk being retained.
+Suggestion: Validate requested versus delivered disk at provisioning, report the
+actual filesystem capacity explicitly, and offer an attached persistent model
+volume/cache with a clear sizing check before download.
+Evidence: docs/evidence/vllm_2026-10-17/hardware.json;
+docs/VLLM_RESULTS.md, Provisioning.
+
+2026-10-17 23:51:19.312609 EDT; restart restored by 2026-10-18 04:14:11 EDT
+Issue: Brev verified the serving H100 STOPPED at the first timestamp. The RAM-backed
+model cache does not survive stop. On restart, weights had to be restored; the
+retained disk/container alone could not make the model ready.
+Impact: Re-downloading weights added startup work and made stop/start less useful
+for a deadline-driven demo. No exact re-download duration was measured here.
+Suggestion: Persist Hugging Face cache separately from /dev/shm and provide a
+restart preflight that identifies missing weights and estimates download time.
+Evidence: docs/evidence/vllm_2026-10-17/shutdown.json;
+docs/evidence/reliability_2026-10-18/filming_readiness.json;
+docs/VLLM_RESULTS.md, Oct 18 restart notes.
+
+2026-10-17, vLLM integration session, completed before 23:51:19 EDT
+Issue: Getting Lightning BF16 to usable tool calling required model-specific Mamba
+flags, qwen3_coder tool parsing, reasoning configuration, a 16,384-token window,
+and native tool_choice=auto for the vLLM adapter. Initial forced-decoding hero
+attempt was interrupted without a completed accuracy run. Frozen strict-tool
+structural grammar later produced slow recommendation calls and a provider
+timeout; that validation-only diagnostic was stopped before test.
+Workaround: Set VLLM_ENFORCE_STRICT_TOOL_CALLING=false for native model tool markup;
+retain Pydantic/tool validation and code-enforced trust. Frozen task/tool schemas
+were not changed for the final comparison.
+Suggestion: Publish a tested single-H100 recipe for this exact checkpoint/version,
+including parser, reasoning and strict-tool settings, with a minimal authenticated
+tool-call health probe and guidance about grammar compilation/timeout behavior.
+Evidence: scripts/vllm/serve_brev.sh; docs/VLLM_RESULTS.md;
+docs/evidence/vllm_2026-10-17/aborted_required_hero.json;
+ml/nemo_gym/evidence/vllm_strict_diagnostic_2026-10-17/.
+
+2026-10-17, same vLLM integration session (exact event time not retained)
+Issue: First five complete native hero runs applied the bridge closure and isolated
+five incidents, but the final model request failed because full route geometry
+made the context too large for the configured window. All five remain failures.
+Workaround: Return compact incident status/length/edge counts to the model; retain
+full route geometry and edge IDs in backend state/tool events for the UI. After
+this change, the five final runs passed (mean 12.442 seconds).
+Suggestion: Provide token/context diagnostics for tool responses and fail early
+with actionable context-size information. Application tools should bound payloads.
+Evidence: docs/evidence/vllm_2026-10-17/hero_before_context_fix.json;
+docs/evidence/vllm_2026-10-17/hero_final_native.json; docs/VLLM_RESULTS.md.
+
+2026-10-18 04:29:12 EDT to approximately 04:35 EDT — optional LoRA feasibility gate
+Issue: Separate sosora-lora-f H100 instance initially refused SSH on port 22 after
+three attempts. It later became reachable and reported H100 80GB hardware, but
+again only a 116G root filesystem despite --min-disk 200. The official
+nvcr.io/nvidia/nemo-automodel:26.08 image pull encountered a connection reset;
+the retried brev exec runtime command ended with unexpected EOF, exit status 1.
+A direct SSH pull retry was incomplete when termination was requested.
+Impact: Zero training steps, no adapter, no training/evaluation scores. This is
+infrastructure setup failure, not proof of an architecture or LoRA incompatibility.
+Suggestion: Gate SSH readiness on a successful connection rather than instance
+state alone; make image pulls resumable; retain remote logs and distinguish image
+pull errors from SSH transport errors in brev exec output.
+Evidence: docs/LORA_F_RESULTS.md; docs/evidence/lora_f_2026-10-18/protocol.json;
+docs/evidence/lora_f_2026-10-18/failure_excerpt.txt. Individual errors have no finer
+saved timestamps; the interval is the documented attempt window.
+
+2026-10-18 approximately 04:35 EDT; deletion verified 04:42:49.566206 EDT
+Issue: Stop request failed: invalid environment status transition from "building"
+to "stopping". The disposable LoRA instance was therefore deleted instead.
+Deletion was verified in the catalog; the separate filming H100 remained RUNNING
+and HEALTHY. The local cost guard was disarmed only after verification.
+Suggestion: Support cancel/stop during BUILDING, show whether compute is billing,
+and provide an idempotent cancellation path that does not require deletion to
+bound spend. Surface the difference between VM readiness and build state.
+Evidence: docs/evidence/lora_f_2026-10-18/failure_excerpt.txt;
+docs/evidence/lora_f_2026-10-18/lifecycle.json;
+docs/evidence/lora_f_2026-10-18/guard_stopped.json.
