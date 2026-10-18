@@ -45,6 +45,7 @@ export function AppShell() {
   const radioId = [...stream]
     .reverse()
     .find((event) => event.kind === "radio_received")?.radio_id;
+  const [presentation, setPresentation] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [intelOpen, setIntelOpen] = useState(false);
   const [railOpen, setRailOpen] = useState(true);
@@ -61,6 +62,18 @@ export function AppShell() {
 
   const incidents = useMemo(() => (state ? buildQueue(state) : []), [state]);
   const selected = incidents.find((item) => item.id === selectedId) ?? null;
+
+  useEffect(() => {
+    const key = (event: KeyboardEvent) => {
+      if (event.repeat || event.metaKey || event.ctrlKey || event.altKey || event.key.toLowerCase() !== "p") return;
+      if (event.target instanceof HTMLElement && (event.target.isContentEditable || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName))) return;
+      event.preventDefault();
+      setPresentation(current => !current);
+      setIntelOpen(false);
+    };
+    window.addEventListener("keydown", key);
+    return () => window.removeEventListener("keydown", key);
+  }, []);
 
   useEffect(() => {
     const onResize = () => setWidth(window.innerWidth);
@@ -148,7 +161,7 @@ export function AppShell() {
   }
 
   return (
-    <main className="flex h-dvh flex-col overflow-hidden bg-bg text-ink">
+    <main className={`command-shell flex h-dvh flex-col overflow-hidden bg-bg text-ink ${presentation ? "presentation" : ""}`}>
       <Header
         state={state}
         mapPhase={mapPhase}

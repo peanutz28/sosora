@@ -1777,3 +1777,20 @@ kbd {
 .terminal-cursor { color: #3ee0cf; animation: terminal-blink .8s steps(2) infinite; }
 .tool-completion { min-width: 14px; }
 @keyframes terminal-blink { 50% { opacity: 0; } }
+
+/* Keep the terminal's final line in its own scroll area at demo resolution. */
+.ops-console { display: flex; flex-direction: column; }
+.ops-console > * { flex-shrink: 0; }
+.ops-console .trace-section { flex: 1 1 auto; min-height: 170px; display: flex; flex-direction: column; overflow: hidden; }
+.ops-console .tool-list { flex: 1 1 auto; min-height: 0; max-height: 290px; }
+.ops-console .assessment-card { max-height: 145px; overflow-y: auto; }
+.ops-console .console-disclaimer { padding-top: 8px; padding-bottom: 8px; }
+.presentation .incident-rail, .presentation .incident-search, .presentation .ops-body > button,
+.presentation .drill-section, .presentation .header-actions > button,
+.presentation .map-controls, .presentation .mapbar, .presentation .mapfoot,
+.presentation .console-heading, .presentation .assessment-card, .presentation .console-disclaimer { display: none; }
+.presentation .ops-console { padding-top: 18px; }
+.presentation .trace-section { min-height: 180px; }
+.presentation .tool-list { max-height: none; }
+.presentation .maplibregl-ctrl-bottom-right { margin-right: 434px; }
+@media (prefers-reduced-motion: reduce) { .pin-sos.pin-access-lost { animation: none; } }

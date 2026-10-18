@@ -36,7 +36,7 @@ export function OpsConsole({
   const traceRef = useRef<HTMLDivElement>(null);
   const scrollTrace = useCallback(() => {
     const list = traceRef.current;
-    if (list) list.scrollTop = list.scrollHeight;
+    if (list) requestAnimationFrame(() => { list.scrollTop = list.scrollHeight; });
   }, []);
   const [collapsed, setCollapsed] = useState(false);
   const [controls, setControls] = useState(true);
@@ -300,7 +300,7 @@ export function OpsConsole({
           </button>
         )}
       </section>
-      <section className="console-section">
+      <section className="console-section trace-section">
         <div className="section-heading">
           <span>
             <Activity size={13} />
