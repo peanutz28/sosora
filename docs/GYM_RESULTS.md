@@ -32,6 +32,16 @@ Do not attribute all score changes to transport or call this RL.
 ## Reproduce
 
 ```sh
+PYTHONPATH="$PWD:$GYM_OFFICIAL" "$GYM_PYTHON" scripts/vllm/score_fresh_exam2.py --evidence ml/nemo_gym/evidence/test_fresh2_2026-10-18
+```
+
+This scores saved trajectories offline using the pinned official verifier, audits the
+seal and adapter edits, and rebuilds the fresh-exam-2 tables; it makes no model calls.
+Set `GYM_PYTHON` and `GYM_OFFICIAL` to the prepared runtime (here
+`/private/tmp/sosora_nemo_gym_runtime/venv/bin/python` and
+`/private/tmp/sosora_nemo_gym_runtime/official`). Completed exam data must be present.
+
+```sh
 # Export private LLM configuration and these existing runtime paths:
 # GYM_PYTHON, GYM_OFFICIAL, GYM_OUTPUT (fresh directory).
 bash scripts/vllm/run_gym.sh

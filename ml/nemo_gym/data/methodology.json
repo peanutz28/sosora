@@ -37,6 +37,17 @@
         18
       ],
       "scenarios": 42
+    },
+    "test_fresh2": {
+      "node_counts": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "scenarios": 42
     }
   },
   "limitations": [
@@ -48,6 +59,7 @@
     "train.jsonl": "6259d74f38ab28f446193584856dca9979e4c8d9c407e1837f4a23bd67d78875",
     "validation.jsonl": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650",
     "test.jsonl": "2b86c0e594b586f733a03f23ae5e607dfaa02a5182e4a1111a921945a8587e3b",
-    "test_fresh.jsonl": "37162bed13593d17438f7352173be649b486adff7c78328c4ff2206268cfd0e8"
+    "test_fresh.jsonl": "37162bed13593d17438f7352173be649b486adff7c78328c4ff2206268cfd0e8",
+    "test_fresh2.jsonl": "eab007ad30e6025accaba84a18b5770591b896c012dc21398920596d108c5816"
   }
 }

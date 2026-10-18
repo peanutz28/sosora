@@ -15,7 +15,7 @@ class Edge(StrictModel):
 class Scenario(StrictModel):
     scenario_id: str
     family: str
-    split: Literal['train','validation','test','test_fresh']
+    split: Literal['train','validation','test','test_fresh','test_fresh2']
     graph_version: int
     rescue_node: str
     incident_node: str | None
