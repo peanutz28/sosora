@@ -1747,3 +1747,6 @@ kbd {
 .incident-card h2 { line-height: 16px; margin: 2px 0; }
 .incident-top { line-height: 13px; }
 .incident-meta { line-height: 14px; }
+.kpi-alert { border-color: #ff3b3077; box-shadow: 0 0 26px #ff3b3026, inset 0 0 25px #ff3b3012; transition: box-shadow .6s, border-color .6s; }
+.candidate-pin { animation: candidate-pulse 1.6s ease-out infinite; }
+@keyframes candidate-pulse { 0%,100% { box-shadow: 0 0 0 4px #f0b42920; } 50% { box-shadow: 0 0 0 16px #f0b42900, 0 0 22px #f0b42955; } }

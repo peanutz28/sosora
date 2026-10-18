@@ -16,7 +16,7 @@ export function isolationZone(incidents: QueueIncident[]) {
   return featureCollection(buffered ? [buffered] : []);
 }
 
-export function useIsolationZone(mapRef: RefObject<MlMap | null>, epoch: number, incidents: QueueIncident[]) {
+export function useIsolationZone(mapRef: RefObject<MlMap | null>, epoch: number, incidents: QueueIncident[], reveal = true) {
   const key = incidents.filter(i => i.reachable === false && i.route?.status !== "snap_failed").map(i => `${i.id}:${i.lon}:${i.lat}`).sort().join("|");
   // Geometry work happens only when the isolated point set changes.
   const zone = useMemo(() => isolationZone(incidents), [key]);
@@ -30,7 +30,11 @@ export function useIsolationZone(mapRef: RefObject<MlMap | null>, epoch: number,
       map.addLayer({ id: "sos-isolation-edge", type: "line", source: "sos-isolation", paint: { "line-color": "#FF3B30", "line-width": 1, "line-dasharray": [4, 3], "line-opacity": 0, "line-opacity-transition": { duration: 600 } } }, before);
     }
     (map.getSource("sos-isolation") as GeoJSONSource).setData(zone);
-    map.setPaintProperty("sos-isolation-fill", "fill-opacity", zone.features.length ? .12 : 0);
-    map.setPaintProperty("sos-isolation-edge", "line-opacity", zone.features.length ? .8 : 0);
-  }, [mapRef, epoch, zone]);
+    const timer = setTimeout(() => {
+      if (!map.getLayer("sos-isolation-fill")) return;
+      map.setPaintProperty("sos-isolation-fill", "fill-opacity", zone.features.length && reveal ? .12 : 0);
+      map.setPaintProperty("sos-isolation-edge", "line-opacity", zone.features.length && reveal ? .8 : 0);
+    }, zone.features.length && reveal ? 650 : 0);
+    return () => clearTimeout(timer);
+  }, [mapRef, epoch, zone, reveal]);
 }

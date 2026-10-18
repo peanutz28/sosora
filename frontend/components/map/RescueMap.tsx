@@ -1,5 +1,6 @@
 "use client";
 
+import { useHeroChoreography } from "@/components/map/useHeroChoreography";
 import { useTerrainBudget } from "@/components/map/useTerrainBudget";
 import { useIsolationZone } from "@/components/map/useIsolationZone";
 import { useLivingRoutes } from "@/components/map/useLivingRoutes";
@@ -42,6 +43,7 @@ const ASHVILLE: LngLat = [-82.42, 35.618];
 
 type Props = {
   state: AppState;
+  stream: OpsEvent[];
   roads: FeatureCollection | null;
   beacons: Beacon[];
   candidates: BridgeCandidate[];
@@ -65,6 +67,7 @@ type Props = {
 
 export function RescueMap({
   state,
+  stream,
   roads,
   beacons,
   candidates,
@@ -116,8 +119,9 @@ export function RescueMap({
     helene: false,
   });
 
+  const revealIsolation = useHeroChoreography(mapRef, epoch, stream, beacons, candidates, state.closures, flyToken);
   useLivingRoutes(mapRef, epoch, incidents, state.closures, overlays.routes);
-  useIsolationZone(mapRef, epoch, incidents);
+  useIsolationZone(mapRef, epoch, incidents, revealIsolation);
   useTerrainBudget(mapRef, epoch);
 
   onSelectRef.current = onSelect;

@@ -412,14 +412,21 @@ function Kpi({
       setShown(value);
       return;
     }
-    const timer = setInterval(
-      () => setShown((prev) => (prev < value ? prev + 1 : value)),
-      90,
-    );
-    return () => clearInterval(timer);
+    let frame = 0;
+    setShown(0);
+    const timer = setTimeout(() => {
+      const start = performance.now();
+      const tick = (now: number) => {
+        const progress = Math.min(1, (now - start) / 800);
+        setShown(Math.round(value * progress));
+        if (progress < 1) frame = requestAnimationFrame(tick);
+      };
+      frame = requestAnimationFrame(tick);
+    }, value > 0 ? 2450 : 0);
+    return () => { clearTimeout(timer); cancelAnimationFrame(frame); };
   }, [value, animate]);
   return (
-    <div className="kpi">
+    <div className={`kpi ${animate && shown > 0 ? "kpi-alert" : ""}`}>
       <span>{label}</span>
       <b className={`font-display ${tone}`} aria-label={`${label}: ${value}`}>
         {shown.toString().padStart(2, "0")}

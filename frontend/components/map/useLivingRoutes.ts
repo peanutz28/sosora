@@ -60,7 +60,7 @@ export function useLivingRoutes(mapRef: RefObject<MlMap | null>, epoch: number, 
     data("sos-living", live); data("sos-broken", broken);
     if (changed) {
       data("sos-route-flash", flashes);
-      flashUntil.current = performance.now() + 1400;
+      flashUntil.current = performance.now() + 3200;
       closureKey.current = key;
     }
     for (const id of ["sos-living-glow", "sos-living", "sos-broken", "sos-route-flash"]) map.setLayoutProperty(id, "visibility", visible ? "visible" : "none");

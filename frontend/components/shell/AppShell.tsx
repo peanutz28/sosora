@@ -214,6 +214,7 @@ export function AppShell() {
             <section className="relative min-h-0 min-w-0 flex-1">
               <RescueMap
                 state={state}
+                stream={stream}
                 beacons={beacons}
                 candidates={candidates}
                 onConfirmCandidate={confirmBridge}
