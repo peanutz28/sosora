@@ -1,0 +1,45 @@
+{
+  "created_utc": "2026-10-18T07:44:40.424915+00:00",
+  "simulated": true,
+  "arms": [
+    "baseline",
+    "tool_descriptions_only",
+    "system_prompt_only",
+    "grounded_v2"
+  ],
+  "repetitions_per_split": 3,
+  "split_order": [
+    "validation",
+    "test"
+  ],
+  "run_order": "rotate arm order by repeat index; sequential, no concurrent requests",
+  "test_previously_used": true,
+  "policy_changes_after_test": false,
+  "development_or_selection_in_this_experiment": false,
+  "argument_adapter": "none",
+  "runner_policy_label": "grounded_v2 for every arm; actual arm in ablation_run.json",
+  "configuration_selection": "Only __file__ config-root lookup differs; unchanged main() reads same-name JSON and byte-identical task files. No execution, schema, sampling or verifier patch.",
+  "sampling": {
+    "temperature": 1.0,
+    "max_tokens": 1024,
+    "parallel_tool_calls": false,
+    "max_turns": 12,
+    "per_call_timeout_seconds": 60
+  },
+  "source_sha256": {
+    "ml/nemo_gym/evaluate_agent.py": "89361408a1d822dce8013bbcac7486225190eb48e0d45499a8f668483422799e",
+    "ml/nemo_gym/tool_arguments.py": "35dadb940fce81f6822efaace52fe820bc0388208dc84086e25bb9ebcc9875f0",
+    "ml/nemo_gym/core.py": "e59eb6752e796568896e07bf4d33c833b8bceb6c2bac129affa04a5f6e188696",
+    "ml/nemo_gym/app.py": "7f3df73d2315605270d6294292dbfee79582701bb0c20768acedef9230d1f126",
+    "ml/nemo_gym/scenarios.py": "e451682e5791d8e77eec410278aca276ffac42b920c81e7f7ddf0dd56d2def26",
+    "ml/nemo_gym/data/validation.jsonl": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650",
+    "ml/nemo_gym/data/test.jsonl": "2b86c0e594b586f733a03f23ae5e607dfaa02a5182e4a1111a921945a8587e3b",
+    "scripts/vllm/serve_brev.sh": "009014a92debe7d5bd8232bf7225b9f36862fe60a042e1b15ee3db23fc3f8026"
+  },
+  "policy_sha256": {
+    "baseline": "6b15bea75f32d3d44b1cc97ba0784c469246753e2d5c1f9823a31f85b378f4da",
+    "tool_descriptions_only": "8cfcaa134d2c0d5b3bdf2a67cf57c7b5928dc829e0738311f93de3d5bb59fed5",
+    "system_prompt_only": "8f3f7977440d64b98195f80f90684750374f20922bbfad56e98a12495751882b",
+    "grounded_v2": "3f07030aed69074f5add45b2d8bd00c4195d42538168fc0989374ff0e68f8633"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "prompt": "Assess this simulated rescue incident using the available tools. Finish by calling submit_recommendation. Candidate graph routes are not safety clearances.",
+  "tool_descriptions": {}
+}
