@@ -335,7 +335,7 @@ export function RescueMap({
               {detail ?? "Streets for Asheville and Swannanoa are loading from OpenFreeMap."}
             </p>
             {phase === "error" ? (
-              <button type="button" onClick={retryStreet} className="mt-4 h-8 rounded-md bg-accent px-3 text-[13px] text-ink">
+              <button type="button" onClick={retryStreet} className="mt-4 h-8 rounded-md bg-accent px-3 text-[13px] font-semibold text-on-accent">
                 Retry street map
               </button>
             ) : null}

@@ -157,7 +157,7 @@ export function AppShell() {
           </p>
           <p className="mt-2 text-[13px] text-muted">{error ?? "Loading the Swannanoa road graph"}</p>
           {error ? (
-            <button type="button" onClick={() => refresh()} className="mt-4 h-8 rounded-md bg-accent px-3 text-[13px]">
+            <button type="button" onClick={() => refresh()} className="mt-4 h-8 rounded-md bg-accent px-3 text-[13px] font-semibold text-on-accent">
               Retry
             </button>
           ) : null}

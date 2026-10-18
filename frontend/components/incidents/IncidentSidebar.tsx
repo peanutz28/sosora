@@ -161,7 +161,7 @@ export function IncidentSidebar({
               <button
                 type="button"
                 onClick={() => onPlace(!placeMode)}
-                className={`h-8 flex-1 rounded-md px-2 text-[12px] ${placeMode ? "bg-accent text-ink" : "bg-elevated text-muted"}`}
+                className={`h-8 flex-1 rounded-md px-2 text-[12px] ${placeMode ? "bg-accent text-on-accent font-semibold" : "bg-elevated text-muted"}`}
               >
                 {draftPoint ? "Location set" : "Click map to place"}
               </button>
@@ -181,7 +181,7 @@ export function IncidentSidebar({
                 type="button"
                 disabled={busy || !draftPoint || !message.trim()}
                 onClick={submit}
-                className="h-8 flex-1 rounded-md bg-accent text-[12px] text-ink disabled:opacity-40"
+                className="h-8 flex-1 rounded-md bg-accent text-[12px] font-semibold text-on-accent disabled:opacity-40"
               >
                 Add SOS
               </button>
