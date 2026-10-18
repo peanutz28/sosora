@@ -1,0 +1,14 @@
+[
+  {
+    "level": "warn",
+    "message": "You are using the same source for a hillshade layer and for 3D terrain. Please consider using two separate sources to improve rendering quality.",
+    "timestamp": "2026-10-18T09:23:43.277Z",
+    "url": "http://127.0.0.1:17863/_next/static/chunks/a0de323a.552e9ef61013c6cd.js"
+  },
+  {
+    "level": "warn",
+    "message": "You are using the same source for a hillshade layer and for 3D terrain. Please consider using two separate sources to improve rendering quality.",
+    "timestamp": "2026-10-18T09:24:44.472Z",
+    "url": "http://127.0.0.1:17863/_next/static/chunks/a0de323a.552e9ef61013c6cd.js"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "time_utc": "2026-10-18T09:11:39.906181+00:00",
+  "action": "Create Docker Space with default free CPU",
+  "success": false,
+  "http_status": 402,
+  "reason": "Static Spaces are free for everyone, but hosting Gradio and Docker Spaces on free cpu-basic requires a PRO subscription. Subscribe at https://huggingface.co/pro",
+  "no_paid_hardware_or_plan_requested": true
+}

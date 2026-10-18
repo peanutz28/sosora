@@ -1,0 +1,218 @@
+- main:
+  - note: Hosted demo · cached replay · the real system runs offline on one GPU box
+  - generic: ≋
+  - strong: SOSora
+  - generic: RESCUE INTELLIGENCE
+  - text: Swannanoa operations drill
+  - generic: "[SIMULATED]"
+  - generic "Map rendering status": Map
+  - generic "Demo mode is on. The model service is not called.": Model cached
+  - generic "Radio agent processing status": "Agent: Needs review"
+  - button "Run demo":
+    - text: Run demo
+  - complementary:
+    - paragraph: OPERATIONS
+    - heading "Incident log 9" [level=1]
+    - button "Collapse incidents":
+    - textbox "⌕":
+      - /placeholder: Search incidents
+    - generic: ⌕
+    - button "all"
+    - button "critical"
+    - button "cut off"
+    - button "SOS-001 [SIMULATED] Bee Tree Road 3 people Route available":
+      - generic: SOS-001
+      - generic: "[SIMULATED]"
+      - heading "Bee Tree Road" [level=2]
+      - text: 3 people
+      - generic: Route available
+    - button "SOS-002 [SIMULATED] Riddle Road 2 people Route available":
+      - generic: SOS-002
+      - generic: "[SIMULATED]"
+      - heading "Riddle Road" [level=2]
+      - text: 2 people
+      - generic: Route available
+    - button "SOS-003 [SIMULATED] Long Branch Road 4 people Route available":
+      - generic: SOS-003
+      - generic: "[SIMULATED]"
+      - heading "Long Branch Road" [level=2]
+      - text: 4 people
+      - generic: Route available
+    - button "SOS-004 [SIMULATED] Watch Knob Lane 1 person Route available":
+      - generic: SOS-004
+      - generic: "[SIMULATED]"
+      - heading "Watch Knob Lane" [level=2]
+      - text: 1 person
+      - generic: Route available
+    - button "SOS-005 [SIMULATED] Smokey Mountain Drive 5 people Route available":
+      - generic: SOS-005
+      - generic: "[SIMULATED]"
+      - heading "Smokey Mountain Drive" [level=2]
+      - text: 5 people
+      - generic: Route available
+    - button "SOS-006 [SIMULATED] Grovemont Avenue 3 people Route available":
+      - generic: SOS-006
+      - generic: "[SIMULATED]"
+      - heading "Grovemont Avenue" [level=2]
+      - text: 3 people
+      - generic: Route available
+    - button "SOS-009 [SIMULATED] Lake Eden Road 1 person Route available":
+      - generic: SOS-009
+      - generic: "[SIMULATED]"
+      - heading "Lake Eden Road" [level=2]
+      - text: 1 person
+      - generic: Route available
+    - button "SOS-007 [SIMULATED] Patton Cove Road 1 person Route available":
+      - generic: SOS-007
+      - generic: "[SIMULATED]"
+      - heading "Patton Cove Road" [level=2]
+      - text: 1 person
+      - generic: Route available
+    - button "SOS-008 [SIMULATED] Old US Highway 70 2 people Route available":
+      - generic: SOS-008
+      - generic: "[SIMULATED]"
+      - heading "Old US Highway 70" [level=2]
+      - text: 2 people
+      - generic: Route available
+    - button "Create drill SOS":
+      - text: Create drill SOS
+    - paragraph:
+      - text: Simulated reports. Real road geometry.
+      - text: Operator review before any response.
+  - button "street"
+  - button "satellite"
+  - button "hybrid"
+  - button "Helene track"
+  - region "Map"
+  - button "Map marker"
+  - button "Map marker"
+  - button "Map marker":
+    - button "SOS-001. [SIMULATED] Bee Tree Road. Route available"
+  - button "Map marker":
+    - button "SOS-002. [SIMULATED] Riddle Road. Route available"
+  - button "Map marker":
+    - button "SOS-003. [SIMULATED] Long Branch Road. Route available"
+  - button "Map marker":
+    - button "SOS-004. [SIMULATED] Watch Knob Lane. Route available"
+  - button "Map marker":
+    - button "SOS-005. [SIMULATED] Smokey Mountain Drive. Route available"
+  - button "Map marker":
+    - button "SOS-006. [SIMULATED] Grovemont Avenue. Route available"
+  - button "Map marker":
+    - button "SOS-009. [SIMULATED] Lake Eden Road. Route available"
+  - button "Map marker":
+    - button "SOS-007. [SIMULATED] Patton Cove Road. Route available"
+  - button "Map marker":
+    - button "SOS-008. [SIMULATED] Old US Highway 70. Route available"
+  - button "Map marker":
+    - generic: Beacon
+  - button "Map marker":
+    - button "A"
+    - generic: Bridge A · confirm
+  - button "Map marker":
+    - button "B"
+    - generic: Bridge B · confirm
+  - generic "Toggle attribution"
+  - text: Elevation © Mapzen / AWS Open Data |
+  - link "OpenFreeMap":
+    - /url: https://openfreemap.org
+  - link "© OpenMapTiles":
+    - /url: https://www.openmaptiles.org/
+  - text: Data from
+  - link "OpenStreetMap":
+    - /url: https://www.openstreetmap.org/copyright
+  - button "Zoom in":
+  - button "Zoom out":
+  - button "Fit corridor":
+  - button "Layers":
+  - button "Fullscreen map":
+  - generic "MAP KEY [SIMULATED]":
+    - text: MAP KEY
+    - generic: "[SIMULATED]"
+  - generic: Rescue unit
+  - generic: SOS reachable
+  - generic: "!"
+  - text: SOS cut off
+  - text: Beacon
+  - generic: Blocked road
+  - generic: Contested
+  - generic: Helene track
+  - text: OSM GRAPH · SIMULATED REPORTS
+  - complementary "Operations console":
+    - paragraph: COMMAND INTELLIGENCE
+    - heading "Every report. One picture." [level=2]
+    - button "Collapse intelligence":
+    - generic: Families cut off
+    - 'generic "Families cut off: 0"': "00"
+    - generic: SOS reachable
+    - 'generic "SOS reachable: 9"': "09"
+    - generic: Roads blocked
+    - 'generic "Roads blocked: 0"': "00"
+    - generic: Agent
+    - generic: Needs review
+    - button "DRILL CONTROLS SIMULATED" [expanded]:
+      - text: DRILL CONTROLS
+      - generic: SIMULATED
+    - button "S Seed drill":
+      - generic: S
+      - text: Seed drill
+    - button "B Beacon report":
+      - generic: B
+      - text: Beacon report
+    - button "R Responder radio":
+      - generic: R
+      - text: Responder radio
+    - button "D DOT says open":
+      - generic: D
+      - text: DOT says open
+    - button "W Water spike":
+      - generic: W
+      - text: Water spike
+    - button "I Imagery offline":
+      - generic: I
+      - text: Imagery offline
+    - paragraph: LOCATION NEEDS REVIEW
+    - heading "Which bridge did they mean?" [level=3]
+    - paragraph: Multiple real crossings match. Confirm the location before changing road status.
+    - button "A Confirm bridge A 35.61258, -82.42702 ↗":
+      - generic: A
+      - text: Confirm bridge A
+      - generic: 35.61258, -82.42702
+      - generic: ↗
+    - button "B Confirm bridge B 35.60791, -82.44394 ↗":
+      - generic: B
+      - text: Confirm bridge B
+      - generic: 35.60791, -82.44394
+      - generic: ↗
+    - text: RADIO FEED
+    - generic: Connected
+    - article:
+      - generic: Engine 4
+      - generic: SIMULATED
+      - time: 05:29:27
+      - paragraph: “[SIMULATED] Command, Engine 4... the bridge on Warren Wilson Road is gone, river took it... three families on the far side, we can't get across. Over.”
+      - generic: bridge collapse
+      - generic: Warren Wilson Road
+      - generic: critical
+    - button "View 2 radio events":
+      - text: View 2 radio events
+    - text: AGENT TRACE
+    - button "3 calls · Show inputs"
+    - generic "Cached tool replay; no live model call or latency": cached replay
+    - log "Agent tool calls":
+      - generic: "01"
+      - code: find_segments
+      - generic "Complete": ✓
+      - paragraph: 2 locations match → needs review
+      - generic: "02"
+      - code: recompute_reachability
+      - generic "Complete": ✓
+      - paragraph: 0 incidents lost access
+      - generic: "03"
+      - code: submit_assessment
+      - generic "Complete": ✓
+      - paragraph: Simulated cached radio assessment. Location requires operator review.
+    - text: LATEST ASSESSMENT
+    - generic: Human review required
+    - paragraph: Simulated cached radio assessment. Location requires operator review.
+- alert

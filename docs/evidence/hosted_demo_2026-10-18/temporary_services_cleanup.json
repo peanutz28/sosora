@@ -1,0 +1,10 @@
+{
+  "stopped_at_utc": "2026-10-18T09:33:37.197276+00:00",
+  "docker_container": "sosora-hosted-demo-check",
+  "docker_stop_exit_code": 0,
+  "auto_removed_ephemeral_container": true,
+  "isolated_frontend_pid": 75439,
+  "isolated_frontend_port": 17863,
+  "frontend_stop_exit_code": 0,
+  "active_demo_or_gpu_services_modified": false
+}

@@ -8,6 +8,7 @@ import { RescueMap } from "@/components/map/RescueMap";
 import { OpsConsole, type DrillAction } from "@/components/ops/OpsConsole";
 import { agentStatus, latestAssessment, reviewCandidates } from "@/lib/ops";
 import { Header } from "@/components/shell/Header";
+import { HostedDemoBanner } from "@/components/shell/HostedDemoBanner";
 import { useOps } from "@/hooks/useOps";
 import { calculateRoute } from "@/lib/api";
 import { buildQueue } from "@/lib/queue";
@@ -140,6 +141,7 @@ export function AppShell() {
   if (!state) {
     return (
       <main className="flex h-dvh items-center justify-center bg-bg text-ink">
+        <HostedDemoBanner loading />
         <div className="max-w-sm text-center">
           <p className="text-[18px] font-semibold tracking-tight">
             <span>SOS</span>
@@ -164,6 +166,7 @@ export function AppShell() {
 
   return (
     <main className={`command-shell flex h-dvh flex-col overflow-hidden bg-bg text-ink ${presentation ? "presentation" : ""}`}>
+      <HostedDemoBanner />
       <Header
         state={state}
         mapPhase={mapPhase}

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
@@ -72,7 +73,9 @@ class Hub:
 def create_app(graph, anchors: dict, db_path: str) -> FastAPI:
     app = FastAPI(title="SOSora", version="0.1.0")
     app.add_middleware(GZipMiddleware, minimum_size=800)
-    app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+    cors = os.getenv("APP_CORS_ORIGINS")
+    origins = [origin.strip().rstrip("/") for origin in cors.split(",") if origin.strip()] if cors else ["*"]
+    app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["*"], allow_headers=["*"])
     engine = ScenarioEngine(graph, anchors, _store(db_path))
     hub = Hub()
     app.state.engine = engine

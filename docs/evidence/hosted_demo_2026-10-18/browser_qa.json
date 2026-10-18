@@ -1,0 +1,56 @@
+{
+  "scope": "isolated production frontend 127.0.0.1:17863 with built Docker backend 127.0.0.1:17860; NOT public",
+  "checks": {
+    "seed_nine_reachable": {
+      "passed": true,
+      "evidence": "browser_seed.txt"
+    },
+    "beacon_five_cut_off": {
+      "passed": true,
+      "evidence": "browser_beacon.txt"
+    },
+    "beacon_four_reachable": {
+      "passed": true,
+      "evidence": "browser_beacon.txt"
+    },
+    "dot_keeps_bridge_avoided": {
+      "passed": true,
+      "evidence": "browser_dot.txt"
+    },
+    "responder_requests_review": {
+      "passed": true,
+      "evidence": "browser_responder_review.txt"
+    },
+    "responder_no_closure_before_confirmation": {
+      "passed": true,
+      "evidence": "browser_responder_review.txt"
+    },
+    "confirmation_five_cut_off": {
+      "passed": true,
+      "evidence": "browser_responder_confirm.txt"
+    },
+    "confirmation_four_reachable": {
+      "passed": true,
+      "evidence": "browser_responder_confirm.txt"
+    },
+    "hosted_disclosure": {
+      "passed": true,
+      "evidence": "browser_beacon.txt"
+    },
+    "cached_replay_badge": {
+      "passed": true,
+      "evidence": "browser_beacon.txt"
+    }
+  },
+  "console_errors": 0,
+  "notes": [
+    "Initial isolated-browser load/first requests needed reload or retry; final states are recorded. No public cold-start or latency claim."
+  ],
+  "screenshots": [
+    "docs/screenshots/hosted_demo/01_seed_local.jpg",
+    "docs/screenshots/hosted_demo/02_beacon_local.jpg",
+    "docs/screenshots/hosted_demo/03_dot_local.jpg",
+    "docs/screenshots/hosted_demo/04_responder_review_local.jpg",
+    "docs/screenshots/hosted_demo/05_responder_confirm_local.jpg"
+  ]
+}

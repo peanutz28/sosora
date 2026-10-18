@@ -178,7 +178,7 @@ export function accessCounters(state: AppState, stream: OpsEvent[]) {
 
 export function agentTraceBadge(stream: OpsEvent[], demoMode: boolean) {
   const runtime = [...stream].reverse().find(e => e.agent_runtime)?.agent_runtime;
-  if (demoMode || runtime?.cached) return { label: "cached replay", title: "Cached tool replay; no live model call or latency" };
+  if (process.env.NEXT_PUBLIC_HOSTED_DEMO === "true" || demoMode || runtime?.cached) return { label: "cached replay", title: "Cached tool replay; no live model call or latency" };
   if (!runtime?.model_id) return { label: "Model metadata unavailable", title: "No successful model-call metadata has arrived" };
   const model = /nemotron[-_ ]3\.5[-_ ]lightning/i.test(runtime.model_id) ? "Nemotron 3.5 Lightning" : runtime.model_id;
   const latency = runtime.last_call_latency_ms;

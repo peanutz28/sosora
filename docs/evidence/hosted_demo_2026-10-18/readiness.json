@@ -1,0 +1,74 @@
+{
+  "recorded_at_utc": "2026-10-18T09:31:45.836597+00:00",
+  "public_deployment": false,
+  "backend_target_url": "https://peanutz28-sosora-command-demo.hf.space",
+  "backend_target_live": false,
+  "frontend_url": null,
+  "hf_blocker": {
+    "time_utc": "2026-10-18T09:11:39.906181+00:00",
+    "action": "Create Docker Space with default free CPU",
+    "success": false,
+    "http_status": 402,
+    "reason": "Static Spaces are free for everyone, but hosting Gradio and Docker Spaces on free cpu-basic requires a PRO subscription. Subscribe at https://huggingface.co/pro",
+    "no_paid_hardware_or_plan_requested": true
+  },
+  "vercel_auth": {
+    "verified_at_utc": "2026-10-18T09:23:27.112767+00:00",
+    "authenticated": true,
+    "username": "peanutz28",
+    "credential_source": "Vercel CLI login"
+  },
+  "verification": {
+    "backend_tests": {
+      "tests": 41,
+      "failures": 0,
+      "errors": 0,
+      "evidence": "backend_tests.xml"
+    },
+    "frontend_tests": {
+      "tests": 16,
+      "passed": 16,
+      "failed": 0,
+      "evidence": "frontend_tests.txt"
+    },
+    "typescript": {
+      "exit_code": 0,
+      "command": "tsc --noEmit --incremental false",
+      "scope": "isolated frontend source manifest",
+      "evidence": "isolated_typescript.txt"
+    },
+    "production_frontend_build": {
+      "exit_code": 0,
+      "evidence": "isolated_frontend_build.txt"
+    },
+    "docker_build": {
+      "exit_code": 0,
+      "platform": "linux/amd64",
+      "evidence": "docker_build.txt"
+    },
+    "docker_http_websocket": {
+      "passed": true,
+      "checks": {
+        "cors": true,
+        "websocket_initial_state": true,
+        "seed": true,
+        "beacon_hero_and_websocket_broadcast": true,
+        "dot_open_keeps_closure": true,
+        "responder_review_and_confirm": true
+      },
+      "evidence": "docker_backend_smoke.json.gz"
+    },
+    "isolated_browser": {
+      "passed": true,
+      "evidence": "browser_qa.json"
+    },
+    "public_seed_websocket_browser": {
+      "passed": false,
+      "reason": "HF Space creation blocked; public endpoints not available"
+    }
+  },
+  "secrets_uploaded": false,
+  "paid_plan_purchased": false,
+  "gpu_launched": false,
+  "agent_deadline_utc": "2026-10-18T10:30:00+00:00"
+}
