@@ -10,6 +10,7 @@ import httpx
 from fastapi.testclient import TestClient
 from ml.nemo_gym.app import local_app
 from ml.nemo_gym.scenarios import SYSTEM
+from ml.nemo_gym.tool_arguments import ADAPTER, adapt_arguments
 
 BASELINE='Assess this simulated rescue incident using the available tools. Finish by calling submit_recommendation. Candidate graph routes are not safety clearances.'
 
@@ -22,6 +23,7 @@ def main():
     parser.add_argument('--limit',type=int,default=3)
     parser.add_argument('--max-turns',type=int,default=12)
     parser.add_argument('--max-seconds',type=float,default=180)
+    parser.add_argument('--argument-adapter',choices=['none',ADAPTER],default='none')
     args=parser.parse_args()
     policy_config = json.loads((Path(__file__).parent/'policies'/'grounded_v2.json').read_text()) if args.policy == 'grounded_v2' else {}
     prompt = policy_config.get('prompt', SYSTEM if args.policy == 'evidence_first' else BASELINE)
@@ -50,7 +52,7 @@ def main():
             for tool in tools:
                 if tool['function']['name'] in policy_config.get('tool_descriptions', {}):
                     tool['function']['description'] = policy_config['tool_descriptions'][tool['function']['name']]
-            trajectory=[];latencies=[];usage=[];error=None
+            trajectory=[];argument_audit=[];latencies=[];usage=[];error=None
             for turn in range(args.max_turns):
                 if time.monotonic()-started>=args.max_seconds:break
                 try:
@@ -64,6 +66,11 @@ def main():
                     if not tool_calls:break
                     for tool_call in tool_calls:
                         name=tool_call['function']['name'];arguments=tool_call['function']['arguments'];call_id=tool_call['id']
+                        if args.argument_adapter == ADAPTER:
+                            schema=next((t['parameters'] for t in params['tools'] if t['name']==name),{})
+                            effective,edits=adapt_arguments(arguments,schema)
+                            argument_audit.append({'call_id':call_id,'name':name,'raw_arguments':arguments,'effective_arguments':effective,'edits':edits})
+                            arguments=effective
                         trajectory.append({'type':'function_call','id':call_id,'call_id':call_id,'name':name,'arguments':arguments,'status':'completed'})
                         try:
                             tool_response=task.post('/'+name,json=json.loads(arguments)) if name in {t['name'] for t in params['tools']} else None
@@ -79,10 +86,14 @@ def main():
             verify=task.post('/verify',json={'scenario_id':row['scenario_id'],'responses_create_params':params,'response':official_response})
             verify.raise_for_status();scored=verify.json()
             result={'scenario_id':row['scenario_id'],'reward':scored['reward'],'issues':scored['issues'],'error_type':error,'request_latencies_ms':latencies,'usage':usage,'trajectory':trajectory}
+            if args.argument_adapter != 'none':
+                result.update(argument_adapter=args.argument_adapter,argument_audit=argument_audit)
             results.append(result)
             with (out/'rollouts.jsonl').open('a') as handle:handle.write(json.dumps(result)+'\n')
     summary={'status':'evaluated' if results else 'not_evaluated','model':model,'provider':provider,'policy':args.policy,'split':args.split,'language_model_calls':calls_made,'scenarios_completed':len(results),'requested_limit':args.limit,'mean_reward':sum(r['reward'] for r in results)/len(results) if results else None,'error_count':sum(r['error_type'] is not None for r in results),'elapsed_seconds':time.monotonic()-started,'harness':'custom chat-completions agent using official NeMo Gym resource-server HTTP tools and verify; not full Gym CLI','upstream_commit':'3045a793346a31291d7ea4ae6af3f94a35036ce5','improvement_claim':False}
+    if args.argument_adapter != 'none':
+        summary.update(argument_adapter=args.argument_adapter,experiment_kind='system compatibility adapter; not prompt-only')
     (out/'metrics.json').write_text(json.dumps(summary,indent=2))
-    (out/'evaluation_config.json').write_text(json.dumps({'split':args.split,'policy':args.policy,'limit':args.limit,'max_turns':args.max_turns,'max_seconds':args.max_seconds,'prompt':prompt,'model':model},indent=2))
+    (out/'evaluation_config.json').write_text(json.dumps({'split':args.split,'policy':args.policy,'limit':args.limit,'max_turns':args.max_turns,'max_seconds':args.max_seconds,'prompt':prompt,'model':model,'argument_adapter':args.argument_adapter},indent=2))
     print(json.dumps(summary))
 if __name__=='__main__':main()

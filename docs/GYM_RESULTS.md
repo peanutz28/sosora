@@ -144,3 +144,36 @@ python -m ml.nemo_gym.evaluate_agent --split test --policy grounded_v2 --limit 1
 ```
 
 These commands document reproduction; the saved experiment invoked each exactly once. This uses the custom chat-completions runner with pinned official NeMo Gym resource-server tools and verifier, not the full Gym CLI. The provider label `redhat_vllm` is historical configuration; the container is upstream vLLM, not a verified Red Hat distribution. GPU shutdown verification is saved separately; disk remains billable.
+
+## Follow-up: nullable argument compatibility (offline, no new model score)
+
+Added opt-in `--argument-adapter nullable-null-v1` to the custom Gym runner.
+Default remains `none`, preserving the original experiment. For scalar schemas
+that explicitly permit null and forbid strings, it converts the exact strings
+`"None"` or `"null"` to JSON null. It does not fill missing fields, coerce graph
+version strings to integers, change statuses or routes, or relax the verifier.
+Raw/effective arguments and individual edits are retained in `argument_audit`;
+metrics/config explicitly label adapter-enabled runs as system compatibility work.
+The saved parsed responses do not establish whether generation or serving created
+the original mismatch; this is a boundary compatibility fix, not a proven vLLM bug fix.
+
+Offline replay of the frozen R2 **validation calls** changes 10/14 accepted traces
+to 14/14, editing exactly four null values through the unchanged official verifier.
+Historical tool outputs remain historical: this replay checks call validity and is
+**not** a fresh model evaluation or a replacement test result. The one-shot test
+score remains **10/14 vs baseline 6/14**. No test rerun, GPU restart or new model
+calls occurred. Fresh size-17 simulated cases use a fake provider and real Gym
+HTTP tools/verifier to test both adapter modes and continued rejection of unsafe
+recommendations. These are deterministic regression checks, not model performance.
+
+Evidence: `ml/nemo_gym/evidence/null_adapter_2026-10-18/`. Reproduce the offline check:
+
+```sh
+# Official NeMo Gym and repository root must be on PYTHONPATH.
+python scripts/vllm/replay_null_adapter.py --output /path/to/fresh/replay
+python -m pytest ml/nemo_gym/tests -q
+```
+
+A new live system comparison needs fresh simulated evaluation cases, the adapter
+applied equally to both policies, and a separately reported protocol. Neither
+benchmark reasoning improvement nor a new 14/14 test result has been measured.

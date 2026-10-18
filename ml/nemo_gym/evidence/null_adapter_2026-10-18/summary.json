@@ -1,0 +1,17 @@
+{
+  "kind": "offline recorded VALIDATION call replay diagnostic; NOT a fresh model evaluation",
+  "simulated": true,
+  "adapter": "nullable-null-v1",
+  "new_llm_calls": 0,
+  "source_sha256": "d529df4a901cba4522aad5a4a432b6815b197ce94aaf257d8e4475243e223272",
+  "validation_tasks_sha256": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650",
+  "before_passed": 10,
+  "after_replay_passed": 14,
+  "total": 14,
+  "edited_calls": 4,
+  "limitations": [
+    "Historical tool outputs are retained; only call arguments are reverified.",
+    "No new test or live model evaluation.",
+    "Verifies encoding repair, not improved reasoning or broad generalization."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "kind": "post-experiment system reliability fix, offline only",
+  "created_utc": "2026-10-18T06:50:03.465516+00:00",
+  "gpu_restarted": false,
+  "new_model_calls": 0,
+  "new_test_runs": 0,
+  "raw_generation_vs_parser_origin": "Not established by saved parsed responses; adapter handles the observed wire-type mismatch.",
+  "adapter_default": "none",
+  "opt_in": "--argument-adapter nullable-null-v1",
+  "behavior": "Decode exact None/null text only for nullable non-string scalar schema fields; preserve other fields, invalid values, and raw audit trail.",
+  "fresh_regression_cases": "Deterministic fake-provider size-17 simulated missing_location and tool_failure scenarios with real runner, resource-server tools and verifier. Not model eval.",
+  "unchanged_sha256": {
+    "ml/nemo_gym/core.py": "e59eb6752e796568896e07bf4d33c833b8bceb6c2bac129affa04a5f6e188696",
+    "ml/nemo_gym/app.py": "7f3df73d2315605270d6294292dbfee79582701bb0c20768acedef9230d1f126",
+    "ml/nemo_gym/data/validation.jsonl": "95cc3e20a782cd11c73c1ce5211b5fbdf9df5f867844472ed472b6abde643650",
+    "ml/nemo_gym/data/test.jsonl": "2b86c0e594b586f733a03f23ae5e607dfaa02a5182e4a1111a921945a8587e3b",
+    "ml/nemo_gym/policies/grounded_v2.json": "bacd482bc08054d058aecad93889624370ee6a06ee97a13babb2984f0399ef28"
+  }
+}
