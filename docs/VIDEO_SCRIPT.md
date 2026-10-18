@@ -1,55 +1,53 @@
-# SOSora video script v5: short, punchy, pitch style (~3:20 at your pace)
+# SOSora video script v6: sell the track and every bounty (~4:30 at your pace, hard max 5:00)
 
-Rules: [SIMULATED] labels visible. Never show phone signal bars while saying "no signal".
-Public-domain Helene footage only (NCDOT, FEMA, National Guard/DVIDS, NOAA). Numbers match docs/.
-Prize name as a lower-third during PROOF (NEMOTRON LIGHTNING, RED HAT vLLM, NeMo GYM, TOOL CALLING).
-Say it in your own words wherever a line feels stiff.
+Every claim maps to a judging criterion. Lower-thirds name the criterion/prize while you talk.
+[X] = number from the final-sprint runs; if a run doesn't finish, cut that sentence (never guess).
+Rules: [SIMULATED] labels visible; no phone signal bars with "no signal"; public-domain Helene footage only.
 
 ## COLD OPEN (0:00–0:10)
-[Dark. Hand presses the Pi button. Dashboard: bridge goes red, counter hits 05.]
+[Dark. Pi button. Dashboard: bridge red, counter hits 05.]
 RIA (radio voice): "Command, Engine 4. Warren Wilson Road bridge is gone. Three families on the far side."
 JIA (VO): That one radio call just cut five families off from rescue. SOSora knew in seconds.
 
-## INTRO (0:10–0:20)  [both on camera]
-JIA: Hi, I'm Jia.
-RIA: And I'm Ria. We're sisters from North Carolina, and this is SOSora.
-JIA: It keeps the rescue map working when the cell towers and the roads go down.
+## INTRO + PROBLEM (0:10–0:40)  [both on camera, then Helene footage + stats]
+JIA: Hi, I'm Jia.  RIA: And I'm Ria. We're sisters from North Carolina, and this is SOSora.
+JIA: When Helene hit western North Carolina, about three quarters of cell sites in the disaster area went down, and more than 8,100 roads, bridges and culverts were damaged.
+RIA: Rescuers lost two things at once: who needs help, and which roads still work. The state's own review says local teams need to run for 72 hours with no communications.
+JIA: So we built a rescue map that keeps working with no internet at all.
 
-## PROBLEM (0:20–0:45)  [Helene footage, stats on screen]
-RIA: When Helene hit western North Carolina in 2024, about three quarters of cell sites in the disaster area went down. More than 8,100 roads, bridges and culverts were damaged.
-JIA: So rescuers had two problems at once. They didn't know who needed help. And they didn't know which roads still worked.
-RIA: Road reports came in over the radio and got written on whiteboards. The state's own review says local teams need to run for 72 hours with no communications.
+## SOLUTION (0:40–1:00)  [diagram → Pi → phone → GPU terminal]
+RIA: Three parts. A beacon: a Raspberry Pi with a mic and a water sensor that sits by a bridge. An app that holds your SOS until it finds a connection. And Command: one GPU box in the county's command truck.
+JIA: The brain is a single small model, NVIDIA Nemotron 3.5 Lightning, served with Red Hat's vLLM, and graded with NVIDIA NeMo Gym. Everything runs on open data: real OpenStreetMap roads, the Hurricane Center's Helene track, and public flood imagery.
 
-## SOLUTION (0:45–1:05)  [diagram, Pi, phone, GPU terminal]
-JIA: So we built three things that work without the internet.
-RIA: A beacon: a Raspberry Pi with a mic and a water sensor you can mount near a bridge.
-JIA: An app that saves your SOS on your phone until it finds a connection.
-RIA: And Command: one GPU box in the county's command truck. It runs NVIDIA Nemotron 3.5 Lightning, which reads every report and updates the map.
+## DEMO: TOOL CALLING (1:00–2:25)  [lower-third: TOOL-CALLING TRACK; checklist ticks on screen as you say each]
+JIA: Here's a drill on real Swannanoa roads. Nine simulated SOS calls. Teal lines are routes our truck can take.
+RIA: The radio call comes in.
+[Agent trace.] JIA: Watch the right side. Nemotron decides when to call a tool and which one. Find the road. Check its status. Check aerial imagery. There's none, so it keeps the uncertainty instead of inventing an answer. Report it. Recompute who we can reach.
+RIA: Five families cut off. And our truck's routes reroute around the bridge.
+[Responder radio, A/B.] JIA: Now the hard case: no location, and two bridges with that name. It doesn't guess. It asks the dispatcher.
+RIA: In thirty live tests, the model tried to close a bridge on its own nine times out of ten. Our code verified every change and blocked all nine. The model suggests. The code decides.
+[DOT says open.] JIA: An unverified "it's open" can't reopen a road. A wrong "open" sends a crew into a river.
+[Imagery offline.] RIA: When a tool fails, the error goes back to the model, it says so, and still lands on a safe answer. If it sends a bad call, like two tools at once, we return the error and it corrects itself on the next turn.
+[Pi: water pour; router unplug, replug.] JIA: The beacon reports by itself when water crosses the line, and holds reports when the link drops.
+[Optional, only if verified: phone in airplane mode → SOS queued → reconnect → pin drops.]
 
-## DEMO (1:05–2:30)  [presentation mode, fresh Seed each beat]
-JIA: This is a drill on real roads in Swannanoa. Nine simulated SOS calls. The teal lines are routes our rescue truck can take. Everyone's reachable.
-RIA: Now the radio call comes in.
-[Agent trace.] JIA: Nemotron reads it, then works through its tools one at a time. Find the road. Check its status. Check for aerial photos. There aren't any, so it says it's unsure. Record the report. Recompute who we can reach.
-RIA: Bridge closed. Five families cut off. Seconds, not hours.
-[Responder radio, A/B.] JIA: Radio isn't always that clear. Here's the same call with no location, and there are two bridges with that name.
-RIA: So it asks the dispatcher instead of guessing.
-JIA: That matters. In our tests, the model tried to close a bridge on its own nine times out of ten. A rule in our code blocked it every time. The model suggests. The code decides.
-[DOT says open.] RIA: If someone radios that the bridge is open, it stays closed until it's verified. A wrong "open" sends a crew into a river.
-[Imagery offline.] JIA: If a tool goes down, it tells you, and still gives a safe answer.
-[Pi on the table: water pour, router unplug/replug.] RIA: The beacon doesn't need a person. Water rises past the line, and it reports the road itself. If the link drops, it holds the report and sends it when the link comes back.
-[Optional, only if verified on the real phone.] JIA: Residents can send an SOS with no signal. It waits on the phone and shows up here when it reconnects.
+## WHY LIGHTNING (2:25–2:55)  [lower-third: NEMOTRON LIGHTNING]
+RIA: Why Lightning? It's a hybrid Mamba-Transformer mixture of experts: about 32 billion parameters of knowledge, but only around 3 billion active per token. Smart enough to read messy radio, fast enough for one GPU in a truck.
+JIA: It does two real jobs: turning radio chatter into structured reports, and running the agent. We use its native tool-call format, switch its reasoning mode off for speed, and follow NVIDIA's recommended sampling. Counting every expert, plus its built-in prediction heads and our speech model, we're at 32.95 billion, under the 33 billion cap.
 
-## PROOF (2:30–3:05)  [lower-thirds, terminal, evidence files]
-RIA: Now the numbers.
-JIA: One language model, Nemotron 3.5 Lightning. Counting every expert plus our speech model, we're at 32.95 billion parameters, under the 33 billion limit.
-RIA: We serve it with Red Hat's vLLM on one H100. Each agent step went from 24 to 55 seconds on the hosted API to under one second.
-JIA: In thirty live runs, it found the right bridge twenty out of twenty times, and held all ten unclear calls for a human.
-RIA: We built a NeMo Gym environment to grade the agent. On 42 new scenarios, a better system prompt took it from 36 to 71 percent, and we tested each change on its own to see what helped.
-JIA: We also fine-tuned an NVIDIA vision model for flooded roads. It isn't reliable yet, and we say so. SOSora treats it as a clue, not a fact.
+## WHY vLLM (2:55–3:30)  [lower-third: RED HAT vLLM; show the serve command + numbers]
+RIA: vLLM isn't bolted on. It's how Command runs. It serves Lightning on one H100 with the native tool parser and the Nemotron reasoning parser, prefix caching for our long system prompt, and continuous batching.
+JIA: One agent step went from 24 to 55 seconds on the hosted API to 0.85 seconds. [X]% of prompt tokens came straight from the prefix cache.
+RIA: And in a storm, reports arrive all at once. When we fired [X] radio reports at the same time, vLLM cleared them all in [X] seconds.
+JIA: Across thirty live runs, it found the right bridge twenty out of twenty times.
 
-## CLOSE (3:05–3:20)  [both on camera]
-RIA: Counties already roll out command trucks after every big storm. SOSora is one box that goes in that truck.
-JIA: No internet. Seventy-two hours. A map that still knows who you can reach.
-RIA: We're Jia and Ria.
-BOTH: And this is SOSora.
-END CARD: github.com/peanutz28/sosora · Nemotron 3.5 Lightning · Red Hat vLLM · NeMo Gym
+## WHY NeMo GYM (3:30–4:05)  [lower-third: NeMo GYM; show the results table]
+RIA: To make the agent better, we needed a score. So we built a NeMo Gym environment: seven kinds of rescue tasks, real tools, and a verifier that grades every attempt.
+JIA: Baseline Lightning passed 36 percent of 42 sealed scenarios it had never seen. We changed one thing at a time. A rewritten system prompt took it to 71 percent. [X: An argument-repair layer for its malformed calls took it to X percent.]
+RIA: Same tasks, same settings, three runs each, every run published.
+
+## CLOSE (4:05–4:25)  [both on camera]
+JIA: A county emergency manager could use this tomorrow. One box, a browser, no internet.
+RIA: We can't stop the next hurricane. But when the towers go down and the roads wash away, the rescue map shouldn't go down with them.
+BOTH: We're SOSora.
+END CARD: github.com/peanutz28/sosora · Nemotron 3.5 Lightning · Red Hat vLLM · NeMo Gym · Tool-Calling track
