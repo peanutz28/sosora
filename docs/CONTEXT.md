@@ -83,10 +83,12 @@ Bounties: Nemotron Lightning, NeMo Gym model improvement, Red Hat vLLM.
 | ASR model | Not chosen/served | `backend/app/asr.py` TODO |
 | Gym results | Clean vLLM: validation 8/14 baseline vs 2/14 evidence_first; test 7/14 vs 4/14; zero provider errors across 56 scenarios | `docs/GYM_RESULTS.md`, `ml/nemo_gym/evidence/vllm_2026-10-17/protocol.json` |
 | vLLM on Brev | Complete; Lightning BF16 H100 verified; GPU STOPPED, disk retained | `docs/VLLM_RESULTS.md`, `docs/evidence/vllm_2026-10-17/hardware.json` |
-| Dashboard wired to radio flow | SOS pins, incident list and selected rescue-access panel consume backend reachability; isolated incidents show red ! markers and No road access; radio controls pending | `frontend/lib/access.ts`, `frontend/tests/road-access.test.cjs` |
+| Dashboard wired to radio flow | Jia’s design ported to Next.js; OpsConsole controls, streamed radio/tool trace, bridge confirmation, KPI tiles, Beacon/shockwave markers and Helene overlay verified; screenshot review pending before push/PR | `docs/screenshots/`, `docs/evidence/ui_merge_2026-10-18/` |
 | Video | Not started | |
 
 ## Open issues / gotchas
+- UI merge is local and awaiting Ria’s screenshot review before pushing `integration` / opening the PR. `dashboard/` and `ios-app/` were not modified.
+- Command needs `websockets` (now pinned in `backend/requirements.txt`) for streamed events. Build alongside dev with `SOSORA_NEXT_DIST_DIR=.next-build npm run build` to avoid replacing the dev cache. Google Fonts are fetched at build time and served locally afterward; street/satellite basemap tiles still need network/cache.
 - Beacon delivery is at-least-once: UUIDs and Idempotency-Key persist, but Command audio/reading endpoints do not deduplicate. Lost acknowledgements can duplicate events. Use `--flush` to resume an offline replay without enqueuing it again.
 - Fake sensor must target Command with `DEMO_MODE=true`: the backend currently ignores the posted simulated flag and derives source labels from its own demo setting. Real Pi mic/sensor/button and physical Wi-Fi unplug are unverified.
 - Brev H100 is STOPPED. Restart with `docs/VLLM_RESULTS.md` instructions before a live demo; model weights must download again because the cache was in RAM. Local ignored `.env.vllm` holds the token and loopback tunnel configuration. Disk is retained and still incurs storage charges.
@@ -102,6 +104,7 @@ Bounties: Nemotron Lightning, NeMo Gym model improvement, Red Hat vLLM.
   query per incident on the 86k-edge graph. Optimization: one single-source Dijkstra from the base.
 
 ## Changelog (newest first)
+- 2026-10-18 00:48 Codex: UI merge Steps 0–5 completed on the existing Claude palette/fonts/track groundwork. Verified S→B, S→R→confirm eastern bridge→D (no reopening), S→W, primary Run demo, Helene track and incident details. Each closure flow cuts off 5 of 9 SOS incidents; 6 frontend tests and 30 backend tests pass, production build passes. Screenshots at 1440×900 and 1920×1080 saved in `docs/screenshots/`; local commit/docs ready, push/PR held for requested visual review.
 - 2026-10-18 00:18 Codex: wired backend incident reachable/route fields through the dashboard queue, map markers, list and intelligence panel. Missing access and snap failures remain unknown; route existence is not verified passability. Node regression tests and TypeScript check pass; live dashboard confirmed SOS-001 through SOS-005 show No road access while the other seeded incidents retain routes.
 - 23:51 Codex: Job A done: H100 Lightning BF16 vLLM; final hero 5/5, mean 12.442 s; clean Gym test baseline 7/14 vs evidence_first 4/14, no provider errors across 56 scenarios; surge 200/200; GPU STOPPED. Results, commands and restart instructions in `docs/VLLM_RESULTS.md` and `docs/GYM_RESULTS.md`. Do not claim evidence_first improvement or a verified Red Hat-distributed image.
 - 23:50 Codex: Beacon client implemented with fake sensor, WAV replay, lazy GPIO/mic, durable outbox/backoff/receipts and `--flush`. 12 unit tests pass; isolated HTTP verification confirms fake sensor and cached replay each block the bridge and cut off 5 of 9 SOS pins; disconnected/restarted queue produces one received report. Evidence in `beacon/evidence/`. Pi hardware and exactly-once backend deduplication remain pending.

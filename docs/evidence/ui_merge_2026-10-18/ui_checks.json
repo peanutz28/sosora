@@ -1,0 +1,78 @@
+{
+  "mode": "DEMO_MODE=true",
+  "method": "Browser UI interactions on localhost:3000 against real Command backend and OSM graph",
+  "checks": [
+    {
+      "flow": "S → B",
+      "cutOff": 5,
+      "reachable": 4,
+      "toolCalls": 6,
+      "shockwaveObserved": true
+    },
+    {
+      "flow": "S → R",
+      "cutOff": 0,
+      "reachable": 9,
+      "ambiguousCandidates": 2,
+      "reviewRequired": true
+    },
+    {
+      "flow": "S → R → confirm bridge A",
+      "cutOff": 5,
+      "reachable": 4,
+      "toolCalls": 6,
+      "candidatePinsCleared": true
+    },
+    {
+      "flow": "S → R → confirm A → D",
+      "cutOff": 5,
+      "reachable": 4,
+      "closedDirections": 2,
+      "unverifiedOpenDidNotReopen": true
+    },
+    {
+      "flow": "S → W",
+      "cutOff": 5,
+      "reachable": 4,
+      "closedDirections": 2,
+      "toolCalls": 6
+    },
+    {
+      "flow": "Run demo button",
+      "cutOff": 5,
+      "reachable": 4,
+      "toolCalls": 6
+    },
+    {
+      "availablePins": 4,
+      "check": "1920x1080 layout",
+      "horizontalOverflow": false,
+      "lostPins": 5,
+      "viewport": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "check": "Helene overlay",
+      "nhcBestTrackVisible": true,
+      "localGeojson": true
+    },
+    {
+      "check": "Incident selection and close",
+      "incidentAccess": "No road access",
+      "closeReturnsToOpsConsole": true
+    },
+    {
+      "availablePins": 4,
+      "check": "1440x900 final layout",
+      "horizontalOverflow": false,
+      "lostPins": 5,
+      "toolRows": 6,
+      "viewport": [
+        1440,
+        900
+      ]
+    }
+  ]
+}

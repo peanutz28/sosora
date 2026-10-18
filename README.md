@@ -82,6 +82,31 @@ Real: OpenStreetMap / NCDOT roads, the routing graph, Nemotron model calls, NeMo
 vision evaluation numbers, Helene statistics (sourced). **Simulated and labeled:** SOS
 incidents, radio messages, rescue units. SOSora is a hackathon prototype, not a dispatch system.
 
+## Command dashboard screenshots
+
+Jia’s night-operations visual design now runs on the Next.js / MapLibre command dashboard,
+with the existing road graph, agent and trust rule. All drill SOS incidents and radio reports
+remain labeled **SIMULATED**. In `DEMO_MODE=true`, parsing and the agent plan use cached demo
+fixtures; tool execution and reachability run against the real graph.
+
+![Command dashboard, 1440×900](docs/screenshots/ui-hero-1440x900.png)
+
+[1920×1080 hero view](docs/screenshots/ui-hero-1920x1080.png) ·
+[Ambiguous bridge review](docs/screenshots/ui-ambiguity-1440x900.png) ·
+[NHC Helene track](docs/screenshots/ui-helene-1920x1080.png) ·
+[Incident details](docs/screenshots/ui-incident-1920x1080.png)
+
+Use **Run demo** to seed and submit the Beacon report. The collapsible drill controls also
+support **S** seed, **B** Beacon, **R** responder without location, **D** unverified DOT open
+claim, and **W** sensor spike. Two matching bridges require an operator to confirm a real
+candidate on the map or in the console. The radio feed, tool trace and access counts update
+over WebSocket; the interface stays interactive while an assessment runs.
+
+Validation: `node --test frontend/tests/*.test.cjs`, `cd backend && pytest -q`, and
+`cd frontend && npm run build`. Saved [UI QA evidence](docs/evidence/ui_merge_2026-10-18/)
+covers the Beacon, ambiguity/confirmation, DOT and sensor paths. A production build can run
+beside the dev server with `SOSORA_NEXT_DIST_DIR=.next-build npm run build`.
+
 ## Run it
 ```bash
 # Backend (DEMO_MODE=true needs no API keys; uses cached parses and a cached agent trace)

@@ -1,0 +1,14 @@
+✔ socket and persisted events merge without duplicate tool rows (7.867417ms)
+✔ ambiguous bridges are deduped across directions and retain real centroids (0.22425ms)
+✔ latest assessment and trace summaries use structured fields, not guessed prose (0.170667ms)
+✔ bridge closure changes only the five disconnected incidents; reset clears it (42.301583ms)
+✔ missing access and map snap failures are unknown, including synthetic queue items (6.706208ms)
+✔ route status is a fallback only when the backend boolean is absent (5.893ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 287.152041
