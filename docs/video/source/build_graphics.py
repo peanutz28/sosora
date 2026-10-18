@@ -22,77 +22,123 @@ for family in ('Manrope', 'DM Sans', 'IBM Plex Mono'):
     fonts[family] = Path(name).name
     font_css.append("@font-face{font-family:'" + family + "';font-style:normal;font-weight:100 1000;src:url(data:font/woff2;base64," + base64.b64encode(data).decode() + ") format('woff2')}")
 
-BG='#090b0e'; SURFACE='#0e1b25'; INK='#f4f7f8'; MUTED='#b4c7d0'; FAINT='#7d95a2'; LINE='#29404c'; TEAL='#3ee0cf'; RED='#ff6d78'; GOLD='#f0b429'
-def text(x,y,content,size=32,color=INK,font='DM Sans',weight=400,spacing=None):
-    extra = f' letter-spacing="{spacing}"' if spacing is not None else ''
-    return f'<text x="{x}" y="{y}" font-family="{font}" font-size="{size}" font-weight="{weight}" fill="{color}"{extra}>{escape(content)}</text>'
-def lines(x,y,content,size=36,color=INK,font='DM Sans',weight=400,step=None):
-    return ''.join(text(x,y+i*(step or size*1.35),v,size,color,font,weight) for i,v in enumerate(content))
-def rect(x,y,w,h,color=SURFACE,r=24,stroke=LINE,extra=''):
-    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{r}" fill="{color}" stroke="{stroke}" {extra}/>'
-def path(d,color=TEAL,width=3,extra=''):
+# Film graphics: a fixed 96px safe area, large type, actual road geometry.
+BG='#090b0e'; NAVY='#0e1b25'; WHITE='#f4f7f8'; MUTED='#b4c7d0'; FAINT='#7d95a2'; LINE='#29404c'; CYAN='#3ee0cf'; CORAL='#ff6d78'
+def t(x,y,value,size=32,color=WHITE,font='DM Sans',weight=400,anchor='start',spacing=None):
+    return f'<text x="{x}" y="{y}" text-anchor="{anchor}" font-family="{font}" font-size="{size}" font-weight="{weight}" fill="{color}"'+(f' letter-spacing="{spacing}"' if spacing else '')+'>'+escape(value)+'</text>'
+def txt(x,y,values,size=40,color=WHITE,font='DM Sans',weight=400,step=None):
+    return ''.join(t(x,y+i*(step or size*1.22),v,size,color,font,weight) for i,v in enumerate(values))
+def line(d,color=CYAN,width=2,extra=''):
     return f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{width}" stroke-linecap="round" stroke-linejoin="round" {extra}/>'
-def logo(x=96,y=80,scale=1):
-    return f'<g transform="translate({x} {y}) scale({scale})">'+rect(0,0,64,64,TEAL,18,TEAL)+''.join(path(f'M18 {v} Q25 {v-5} 32 {v} T46 {v}', '#08252a',3) for v in (25,33,41))+'</g>'
-def brand():
-    return logo()+text(182,124,'SOSora',38,font='Manrope',weight=800)+text(1510,117,'RESCUE INTELLIGENCE',18,FAINT,'IBM Plex Mono',spacing=2)
-def terrain():
-    out=''
-    for i in range(14):
-        x=1020+i*42; y=90+i*48
-        out+=path(f'M{x} -40 C {x-350} {y+70}, {x+420} {y+160}, {x+90} {y+350} S {x-480} {y+700}, {x+460} 1130',LINE,1.4,extra='opacity=".48"')
-    return out
+def box(x,y,w,h,fill=NAVY,stroke=LINE,r=0):
+    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{r}" fill="{fill}" stroke="{stroke}"/>'
+def circle(x,y,r,fill=CYAN,extra=''):
+    return f'<circle cx="{x}" cy="{y}" r="{r}" fill="{fill}" {extra}/>'
+def mark(x,y,size=56):
+    return f'<g transform="translate({x} {y}) scale({size/64})">'+box(0,0,64,64,CYAN,CYAN,19)+''.join(line(f'M18 {v} Q25 {v-5} 32 {v} T46 {v}', '#08252a',3.5) for v in (25,33,41))+'</g>'
+def header(section):
+    return mark(96,72,48)+t(163,109,'SOSora',32,font='Manrope',weight=800)+t(1824,105,section,22,FAINT,'IBM Plex Mono',anchor='end')
+def foot(source):
+    return line('M96 965 H1824',LINE,1)+t(96,1013,source,22,MUTED,'DM Sans')
+def dot(x,y,color=CORAL):
+    return circle(x,y,27,color,'opacity=".12"')+circle(x,y,14,'none',f'stroke="{color}" stroke-width="2"')+circle(x,y,6,color)
 
-def frame(content,transparent=False):
-    bg='' if transparent else f'<rect width="1920" height="1080" fill="{BG}"/>'+terrain()+brand()
-    return '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><style>'+''.join(font_css)+'</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10" fill="'+TEAL+'"/></marker></defs>'+bg+content+'</svg>'
-def save(name,content,transparent=False):
-    (OUT / (name+'.svg')).write_text(frame(content,transparent))
-def footer(label):
-    return path('M96 964 H1824',LINE,1)+text(96,1016,label,21,FAINT,'IBM Plex Mono')
+roads=json.loads((ROOT/'backend/data/roads.geojson').read_text())['features']
+def road_map(x,y,w,h,opacity=1,labels=False,pins=True):
+    # Swannanoa operations corridor. Projected road geometry is used as design material.
+    west,east,south,north=-82.458,-82.365,35.584,35.65
+    def xy(p): return x+(p[0]-west)/(east-west)*w,y+(north-p[1])/(north-south)*h
+    clip_id=f'crop-{x}-{y}-{w}-{h}'.replace('.','_')
+    out=f'<defs><clipPath id="{clip_id}"><rect x="{x}" y="{y}" width="{w}" height="{h}"/></clipPath></defs><g clip-path="url(#mapClip)"><g opacity="{opacity}" clip-path="url(#{clip_id})"><rect x="{x}" y="{y}" width="{w}" height="{h}" fill="url(#ocean)"/>'
+    for f in roads:
+        pts=f['geometry'].get('coordinates',[])
+        if f['geometry']['type']!='LineString' or not pts: continue
+        if not any(west<=p[0]<=east and south<=p[1]<=north for p in pts): continue
+        prop=f['properties'];name=prop.get('name','');major=prop.get('highway') in ('primary','secondary','motorway','trunk','tertiary')
+        highlight=name in ('Warren Wilson Road','Bee Tree Road','Old US Highway 70')
+        d='M'+' L'.join(f'{a:.1f} {b:.1f}' for a,b in map(xy,pts))
+        out+=line(d,CYAN if highlight else '#395466',2.8 if highlight else 1.4 if major else .8,extra='opacity="'+('0.85' if highlight else '.62' if major else '.35')+'"')
+    for p in ([(-82.40719,35.63129),(-82.41446,35.61981),(-82.41475,35.64090),(-82.41149,35.62712),(-82.42622,35.62413)] if pins else []):
+        a,b=xy(p);out+=dot(a,b)
+    a,b=xy((-82.42702,35.61258));out+=box(a-9,b-9,18,18,CYAN,CYAN,3)
+    if labels:out+=t(a+27,b+10,'BEACON',21,CYAN,'IBM Plex Mono')
+    return out+'</g></g>'
 
-save('01-title',text(96,330,'WHEN TOWERS AND ROADS FAIL',23,TEAL,'IBM Plex Mono',spacing=3)+text(86,530,'SOSora',178,font='Manrope',weight=800)+lines(96,644,['Keep the rescue map alive.','Know who needs help. Know how to reach them.'],44,MUTED,step=65)+''.join(rect(x,826,w,62,'#152631',12)+text(x+24,868,label,22,TEAL,'IBM Plex Mono') for x,w,label in [(96,300,'BEACON INTAKE'),(420,290,'RESIDENT SOS'),(734,340,'COMMAND MAP')])+footer('HACKATHON PROTOTYPE  /  SIMULATED INCIDENTS · REAL ROAD GRAPH'))
+BASE_DEFS='''<radialGradient id="ocean"><stop stop-color="#102936"/><stop offset="1" stop-color="#090b0e"/></radialGradient>
+<linearGradient id="veil"><stop stop-color="#090b0e"/><stop offset=".5" stop-color="#090b0e" stop-opacity=".97"/><stop offset="1" stop-color="#090b0e" stop-opacity="0"/></linearGradient>
+<linearGradient id="panel"><stop stop-color="#182f3c"/><stop offset="1" stop-color="#0e1b25"/></linearGradient>
+<linearGradient id="rule"><stop stop-color="#3ee0cf"/><stop offset="1" stop-color="#3ee0cf" stop-opacity="0"/></linearGradient>
+<clipPath id="mapClip"><rect x="0" y="140" width="1920" height="805"/></clipPath>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10" fill="#3ee0cf"/></marker>'''
+def save(name,body,section='',transparent=False):
+    bg='' if transparent else f'<rect width="1920" height="1080" fill="{BG}"/>'
+    svg='<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><style>'+''.join(font_css)+'</style>'+BASE_DEFS+'</defs>'+bg+body+(header(section) if section else '')+'</svg>'
+    (OUT/(name+'.svg')).write_text(svg)
 
-sources={
-'cell_sites': {'url':'https://docs.fcc.gov/public/attachments/DOC-405893A1.pdf','corroboration':'https://wirelessestimator.com/wp-content/uploads/2024/09/Hurricane.Helene.Cell_.Tower_.Status.pdf','note':'FCC Sep 28 2024, 9 AM EDT, 21-county NC reporting area; rounded to 74%. Sep 29 report p16 corroborates prior 74.3%; direct primary fetch was blocked.'},
-'damaged_sites': {'url':'https://www.ncdot.gov/news/press-releases/Pages/2024/2024-11-01-this-week-ncdot-now.aspx','note':'More than 8,100 damaged sites, not distinct roads; Nov 1 2024.'},
-'72_hours': {'url':'https://www.ncdps.gov/tropical-storm-helene-after-action-review','note':'NCEM/McChrystal Group recommendation for local emergency managers, not a demonstrated SOSora runtime.'}}
+# Opening: oversized identity against a geographic signal field.
+body=road_map(750,150,1250,830,.9,True)+'<rect x="0" y="140" width="1370" height="805" fill="url(#veil)"/>'
+body+=t(96,263,'WHEN TOWERS AND ROADS GO DOWN',26,CYAN,'IBM Plex Mono',spacing=2)
+body+=t(83,526,'SOSora',252,font='Manrope',weight=800)
+body+=txt(103,661,['Keep the rescue','map alive.'],77,WHITE,'Manrope',700,step=91)
+body+='<rect x="105" y="814" width="185" height="5" fill="'+CYAN+'"/>'+t(105,883,'BEACON  /  SOS APP  /  COMMAND',26,MUTED,'IBM Plex Mono')
+body+=foot('Hackathon prototype  ·  Real road geometry  ·  Simulated incidents')
+save('01-title',body,'RESCUE INTELLIGENCE')
 
-def stat(name,kicker,number,unit,headline,detail,source,decoration):
-    body=text(96,270,kicker,23,TEAL,'IBM Plex Mono',spacing=3)+text(82,540,number,218,font='Manrope',weight=800)+text(105,613,unit,28,TEAL,'IBM Plex Mono',spacing=2)+lines(96,730,headline,49,INK,'Manrope',700,step=65)+lines(96,884,detail,27,MUTED,step=39)+decoration+footer(source)
-    save(name,body)
-# An honest 100-cell visual: 74 outages, 26 service cells.
-grid=''.join(rect(1394+(i%10)*32,326+(i//10)*32,19,19,RED if i<74 else '#29404c',4,RED if i<74 else '#29404c') for i in range(100))
-stat('02-stat-cell-sites','HELENE / COMMUNICATIONS','74%','CELL SITES OUT OF SERVICE',['When the signal disappears,','so does the rescue picture.'],['21-county North Carolina reporting area.','Snapshot: September 28, 2024 · 9 AM EDT.'],'SOURCE: FCC · COMMUNICATIONS STATUS REPORT · SEP 28, 2024',grid)
-road=path('M1370 742 L1460 620 L1430 514 L1552 410 L1660 308',FAINT,8)+path('M1430 514 L1545 560 L1660 515',FAINT,8)+path('M1491 462 L1537 427',RED,12)+text(1370,833,'ACCESS DISRUPTED',20,RED,'IBM Plex Mono')
-stat('03-stat-damaged-sites','HELENE / ROAD ACCESS','8,100+','DAMAGED SITES',['Road damage turns','nearby into unreachable.'],['Road, bridge and culvert damage sites in western NC.','Reported by NCDOT on November 1, 2024.'],'SOURCE: NCDOT · HELENE RECOVERY UPDATE · NOV 1, 2024',road)
-clock='<circle cx="1540" cy="484" r="148" fill="none" stroke="'+LINE+'" stroke-width="3"/>'+path('M1540 365 V484 L1630 533',TEAL,8)+''.join(path(f'M1540 322 V344',FAINT,4,extra=f'transform="rotate({a} 1540 484)"') for a in range(0,360,30))
-stat('04-stat-72-hours','READINESS / THE OPERATING REQUIREMENT','72','HOURS WITHOUT COMMUNICATIONS',['Prepare to keep working','when networks cannot.'],['NCEM after-action recommendation for local emergency managers.','A readiness target, not a measured SOSora endurance claim.'],'SOURCE: NCEM / McCHRYSTAL GROUP · HELENE AFTER-ACTION REVIEW',clock)
+# One statistic, one visual idea, one source line.
+body=t(96,252,'THE COMMUNICATIONS NETWORK FAILS',26,CYAN,'IBM Plex Mono',spacing=1)
+body+=t(80,655,'74',450,font='Manrope',weight=800)+t(610,442,'%',160,CORAL,'Manrope',700)
+body+=txt(104,772,['of cell sites were offline.'],63,WHITE,'Manrope',700)+txt(108,856,['North Carolina’s 21-county disaster-reporting area.','September 28, 2024 · 9 AM EDT snapshot.'],29,MUTED,step=43)
+body+=circle(1450,440,290,'none',f'stroke="{LINE}" stroke-width="2" stroke-dasharray="2 14"')+circle(1450,440,210,'none',f'stroke="{CORAL}" stroke-width="2" opacity=".35"')
+body+=line('M1320 846 L1450 491 L1580 846 M1370 710 H1530 M1405 616 H1495 M1350 788 H1550 M1370 710 L1550 788 M1530 710 L1350 788',FAINT,5)
+body+=dot(1450,440,CORAL)+line('M1318 328 Q1243 440 1318 552 M1582 328 Q1657 440 1582 552',CORAL,5)+line('M1259 267 Q1146 440 1259 613 M1641 267 Q1754 440 1641 613',CORAL,3,'opacity=".4"')
+body+=t(1450,926,'NO SIGNAL',27,CORAL,'IBM Plex Mono',anchor='middle',spacing=3)+foot('FCC · Helene Communications Status Report · September 28, 2024 · Rounded from 74.3%')
+save('02-stat-cell-sites',body,'HELENE / COMMUNICATIONS')
 
-body=text(96,260,'FIELD EVIDENCE → SHARED SITUATIONAL AWARENESS',23,TEAL,'IBM Plex Mono',spacing=2)
-body+=rect(96,365,365,235)+logo(125,398,.7)+text(190,439,'BEACON',32,font='Manrope',weight=800)+lines(126,499,['Voice + water sensor','Known crossing location','Durable outbox'],24,MUTED,step=36)
-body+=rect(96,638,365,225)+text(126,697,'SOS APP',32,font='Manrope',weight=800)+lines(126,753,['Resident request + GPS','Queues without signal','Sends when a link returns'],24,MUTED,step=36)
-body+=path('M461 482 H528 V600 H606',TEAL,3,'marker-end="url(#arrow)"')+path('M461 750 H528 V600',TEAL,3)
-body+=rect(620,340,660,554,'#152631',28,TEAL)+text(662,406,'COMMAND',43,font='Manrope',weight=800)+text(662,456,'NEMOTRON LIGHTNING ON vLLM',24,TEAL,'IBM Plex Mono')
-for y,num,label,desc in [(502,'01','Resolve the road','Real OSM segment IDs'),(611,'02','Apply the trust rule','Road status is enforced in code'),(720,'03','Recompute road access','Graph reachability from rescue base')]:
-    body+=text(666,y+39,num,25,FAINT,'IBM Plex Mono')+text(724,y+26,label,31,font='Manrope',weight=700)+text(724,y+65,desc,23,MUTED)
-body+=path('M1280 600 H1377',TEAL,3,'marker-end="url(#arrow)"')+rect(1392,365,432,498)+text(1426,425,'LIVE RESCUE MAP',29,font='Manrope',weight=800)
-body+=path('M1429 684 L1508 577 L1591 630 L1675 513 L1788 580',LINE,10)+path('M1429 684 L1508 577 L1591 630',TEAL,5)+path('M1615 596 L1649 548',RED,9)
-for x,y in [(1647,485),(1731,513),(1773,470)]: body+=f'<circle cx="{x}" cy="{y}" r="12" fill="{RED}"/><circle cx="{x}" cy="{y}" r="23" fill="none" stroke="{RED}" opacity=".5"/>'
-body+=lines(1426,755,['SOS pins + access status','Evidence + operator review'],24,MUTED,step=42)+footer('OFFLINE-CAPABLE ARCHITECTURE  /  CAPTURE USES LIVE REMOTE vLLM · SIMULATED REPORTS')
-save('05-system-diagram',body)
+body=road_map(1060,165,920,780,.7,pins=False)+'<rect x="900" y="140" width="420" height="805" fill="url(#veil)"/>'
+body+=t(96,252,'THE ROAD NETWORK FAILS TOO',26,CYAN,'IBM Plex Mono',spacing=1)+t(82,583,'8,100+',296,font='Manrope',weight=800)
+body+=txt(105,723,['Road, bridge and','culvert damage sites.'],65,WHITE,'Manrope',700,step=82)+txt(109,893,['Damage sites identified in western North Carolina.'],29,MUTED)
+body+=foot('NCDOT · Helene recovery update · November 1, 2024 · Sites, not distinct destroyed roads')
+save('03-stat-damaged-sites',body,'HELENE / ROAD ACCESS')
 
-lower=[('06-lower-tool-calling','TOOL CALLING','Resolve location. Check evidence. Recompute access.'),('07-lower-nemotron','NEMOTRON LIGHTNING','The only generative model in SOSora.'),('08-lower-redhat-vllm','RED HAT vLLM','Integration target · this capture runs upstream vLLM.'),('09-lower-nemo-gym','NeMo GYM','Official resource tools + verifier · simulated workflow evaluation.')]
-for name,title,desc in lower:
-    save(name,rect(96,800,1728,184,'#0e1b25',18,LINE,extra='fill-opacity=".96"')+f'<rect x="96" y="800" width="7" height="184" rx="3" fill="{TEAL}"/>'+text(136,875,title,49,font='Manrope',weight=800)+text(139,933,desc,28,MUTED)+text(1592,853,'SOSora',24,TEAL,'Manrope',800),True)
+body=t(96,252,'THE READINESS REQUIREMENT',26,CYAN,'IBM Plex Mono',spacing=1)+t(80,624,'72',420,font='Manrope',weight=800)+t(685,621,'hours',84,CYAN,'Manrope',700)
+body+=txt(105,757,['Prepare to operate','without communications.'],61,WHITE,'Manrope',700,step=76)+t(109,902,'NCEM recommendation — not a measured SOSora runtime.',29,MUTED)
+body+=circle(1470,548,286,'none',f'stroke="{LINE}" stroke-width="2"')+circle(1470,548,235,'none',f'stroke="{CYAN}" stroke-width="2" opacity=".2"')
+for a in range(0,360,6):body+=line('M1470 248 V'+str(270 if a%30==0 else 259),CYAN if a%30==0 else LINE,4 if a%30==0 else 2,f'transform="rotate({a} 1470 548)"')
+body+=line('M1470 350 V548 L1595 622',CYAN,7)+circle(1470,548,10,CYAN)+t(1470,917,'KEEP WORKING.',26,CYAN,'IBM Plex Mono',anchor='middle',spacing=2)+foot('NCEM / McChrystal Group · Tropical Storm Helene after-action review · Communications recommendation')
+save('04-stat-72-hours',body,'HELENE / RESILIENCE')
 
-body=text(96,260,'MEASURED. REPRODUCIBLE. BOUNDED.',51,font='Manrope',weight=800)
-for x in [96,680,1264]: body+=rect(x,318,560,505)
-body+=text(126,374,'NeMo GYM / FRESH EXAM',20,TEAL,'IBM Plex Mono')+text(126,476,'15 → 30',73,font='Manrope',weight=800)+lines(126,529,['Mean passes out of 42','Baseline → grounded_v2'],27,MUTED,step=43)+lines(126,640,['Three repeats per frozen policy.','Prompt-only: mean 29.67 / 42.','Simulated workflow cases.'],23,MUTED,step=39)
-body+=text(710,374,'LIVE vLLM / HERO FLOW',20,TEAL,'IBM Plex Mono')+text(710,476,'20 / 20',73,font='Manrope',weight=800)+lines(710,529,['Correct bridge + exact','five-incident access loss'],27,MUTED,step=43)+text(710,669,'7.912 s',57,TEAL,'Manrope',800)+lines(710,716,['Median text-radio request.','Excludes ASR + browser rendering.'],22,MUTED,step=35)
-body+=text(1294,374,'SERVED PARAMETER BUDGET',20,TEAL,'IBM Plex Mono')+text(1294,459,'32,954,738,082',39,font='IBM Plex Mono',weight=500)+lines(1294,519,['Exact model parameters','including Whisper tiny.en'],27,MUTED,step=43)+text(1294,661,'45,261,918',43,TEAL,'IBM Plex Mono',500)+lines(1294,707,['parameters below the 33B cap.','All Nemotron experts + MTP counted.'],22,MUTED,step=35)
-body+=lines(96,885,['Limits: grounded_v2 still fails 12/42 cases per run (missing location / tool failure).','Ambiguity: safe final state 10/10; strict model abstention only 1/10. Safeguards matter.'],23,FAINT,step=37)+footer('SOURCES: docs/GYM_RESULTS.md · docs/VLLM_RESULTS.md · docs/PARAM_BUDGET.md')
-save('10-results',body)
-save('11-end-card',text(96,327,'WHEN THE NETWORK FAILS,',25,TEAL,'IBM Plex Mono',spacing=3)+lines(96,465,['Keep the rescue','map alive.'],108,INK,'Manrope',800,step=130)+text(101,760,'SOSora',67,TEAL,'Manrope',800)+text(102,823,'Beacon + SOS app + Command',35,MUTED)+footer('HACKATHON PROTOTYPE  /  DECISION SUPPORT · OPERATOR REVIEW BEFORE RESPONSE'))
-(ROOT/'docs/video/evidence/graphic_sources.json').write_text(json.dumps({'stats':sources,'results':['docs/GYM_RESULTS.md','docs/VLLM_RESULTS.md','docs/PARAM_BUDGET.md'],'fonts':fonts,'palette_source':'frontend/app/globals.css','serving_qualification':'Red Hat vLLM is an integration target; actual capture uses upstream vLLM.'},indent=2)+'\n')
-print('Built',len(list(OUT.glob('*.svg'))),'SVGs')
+# Architecture: devices and routes rather than a grid of dashboard cards.
+body=t(96,254,'Many signals. One rescue picture.',77,WHITE,'Manrope',800)
+body+=line('M160 375 V346 M139 365 Q160 346 181 365 M123 351 Q160 317 197 351',CYAN,3)+box(126,382,70,125,'url(#panel)',CYAN,10)+box(141,404,40,29,BG,LINE,3)+circle(161,467,8,CYAN)
+body+=t(225,415,'BEACON',37,WHITE,'Manrope',800)+txt(227,463,['Voice + water sensor','Queued at the crossing.'],27,MUTED,step=39)
+body+=box(130,620,66,128,'url(#panel)',CYAN,10)+line('M151 635 H175',FAINT,3)+circle(163,689,19,CORAL)+t(225,653,'SOS APP',37,WHITE,'Manrope',800)+txt(227,701,['Resident request + GPS','Queue now. Send when linked.'],27,MUTED,step=39)
+body+=line('M555 443 H615 V564 H716',CYAN,3,'marker-end="url(#arrow)"')+line('M555 682 H615 V564',CYAN,3)
+body+='<path d="M744 362 H1264 L1300 398 V758 H744 Z" fill="url(#panel)" stroke="'+CYAN+'" stroke-width="2"/>'
+body+=t(785,438,'COMMAND',56,WHITE,'Manrope',800)+t(787,501,'Nemotron Lightning',35,CYAN,'Manrope',700)+t(788,547,'ON vLLM',26,MUTED,'IBM Plex Mono')+line('M785 584 H1257',LINE,2)
+for x,label,sub in [(787,'Resolve','real road IDs'),(958,'Enforce','trust in code'),(1132,'Recompute','road access')]:
+ body+=circle(x+6,627,5,CYAN)+t(x,677,label,26,WHITE,'Manrope',700)+t(x,718,sub,20,MUTED)
+body+=line('M1300 564 H1400',CYAN,3,'marker-end="url(#arrow)"')
+body+=box(1421,362,403,396,NAVY,LINE,0)+road_map(1441,385,360,348,.85)+t(1422,815,'RESCUE MAP',36,WHITE,'Manrope',800)
+body+=t(96,920,'Code owns road status. Operators own the decision.',39,WHITE,'Manrope',700)+foot('Offline-capable architecture · This video uses live remote vLLM · Real OSM graph, simulated reports')
+save('05-system-diagram',body,'SYSTEM / FIELD TO COMMAND')
+
+# Compact, transparent overlays with real safe margins.
+lower=[('06-lower-tool-calling','TOOL CALLING','Location → evidence → trust → access'),('07-lower-nemotron','NEMOTRON LIGHTNING','One generative model. Structured tools.'),('08-lower-redhat-vllm','RED HAT vLLM','Integration target · capture uses upstream vLLM'),('09-lower-nemo-gym','NeMo GYM','Official tools + verifier · simulated workflows')]
+for name,title,subtitle in lower:
+ body='<path d="M96 805 H1234 L1266 837 V984 H96 Z" fill="'+NAVY+'" fill-opacity=".97" stroke="'+LINE+'"/>'
+ body+='<path d="M96 805 H1266" stroke="url(#rule)" stroke-width="3"/>'+mark(122,843,53)+t(202,882,title,45,WHITE,'Manrope',800)+t(205,943,subtitle,27,MUTED)
+ save(name,body,transparent=True)
+
+body=t(96,245,'RESULTS / FROZEN EVALUATIONS',26,CYAN,'IBM Plex Mono',spacing=1)+t(96,345,'Tested, with the limits in view.',76,WHITE,'Manrope',800)
+body+=line('M661 416 V776 M1257 416 V776',LINE,2)
+body+=t(96,446,'NeMo GYM',26,CYAN,'IBM Plex Mono')+t(91,578,'15 → 30',102,WHITE,'Manrope',800)+t(100,643,'mean passes / 42',40,WHITE,'Manrope',700)+txt(101,705,['Baseline → grounded_v2','Three repeats. Simulated cases.','Prompt-only: mean 29.67 / 42.'],26,MUTED,step=37)
+body+=t(710,446,'LIVE vLLM',26,CYAN,'IBM Plex Mono')+t(704,578,'20/20',112,WHITE,'Manrope',800)+t(713,643,'correct hero outcomes',38,WHITE,'Manrope',700)+t(714,711,'7.912 s median',42,CYAN,'Manrope',800)+txt(716,755,['Text-radio request; excludes ASR','and browser rendering.'],24,MUTED,step=33)
+body+=t(1306,446,'BELOW THE CAP',26,CYAN,'IBM Plex Mono')+t(1302,578,'33B',112,WHITE,'Manrope',800)+t(1310,643,'Total parameters:',32,MUTED,'Manrope',700)+t(1308,711,'32,954,738,082',38,CYAN,'IBM Plex Mono',500)+t(1310,755,'ASR + vision included.',25,MUTED)+t(1310,791,'All Nemotron experts counted.',22,MUTED)
+body+=line('M96 832 H1824',LINE,1)+t(97,877,'LIMITS',23,CORAL,'IBM Plex Mono')+t(224,877,'12/42 Gym cases still fail per run: missing location and tool failure.',27,WHITE,'Manrope',700)+t(225,920,'Ambiguity: model abstention 1/10; safe guarded state 10/10. Code safeguards remain essential.',25,MUTED)
+body+=foot('Sources: GYM_RESULTS.md  /  VLLM_RESULTS.md  /  PARAM_BUDGET.md  ·  Exact source snapshots included')
+save('10-results',body,'MEASURED / REPRODUCIBLE')
+
+body=road_map(0,160,1920,780,.29)+'<rect x="0" y="0" width="1920" height="1080" fill="'+BG+'" opacity=".4"/>'
+body+=mark(908,193,104)+t(960,529,'SOSora',232,WHITE,'Manrope',800,anchor='middle')+t(960,658,'Keep the rescue map alive.',67,WHITE,'Manrope',700,anchor='middle')+t(960,730,'When towers and roads go down.',36,MUTED,anchor='middle')+t(960,859,'BEACON  /  SOS APP  /  COMMAND',25,CYAN,'IBM Plex Mono',anchor='middle',spacing=2)+foot('Hackathon prototype · Simulated incidents · Decision support, operator review required')
+save('11-end-card',body)
+print('Rebuilt 11 graphic artboards')

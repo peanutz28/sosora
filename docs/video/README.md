@@ -1,6 +1,8 @@
 # SOSora video asset kit
 
-All graphics and delivery clips are **1920 × 1080**. Graphics use the dashboard’s
+All graphics and delivery clips are **1920 × 1080**. The graphic set was rebuilt
+with larger typography, real Swannanoa road geometry, simplified stat layouts,
+and compact transparent lower-thirds. Only the replacement graphics are in `graphics/`. Graphics use the dashboard’s
 night-operations palette, Manrope display type, DM Sans body type, and IBM Plex
 Mono data labels. SVGs embed the font subsets, so editable text preserves its
 appearance. Font licenses are included in `source/font-licenses/`.
@@ -25,7 +27,9 @@ Each entry in `graphics/` has matching `.png` and `.svg` files.
 
 The four lower-thirds have transparent full-HD canvases. Place them directly over
 footage; the title bars sit within safe margins near the bottom. Other cards are
-opaque. A contact sheet is in `evidence/graphics-contact-sheet.jpg`.
+opaque. The gallery and contact sheet preview lower-thirds over footage; the downloadable
+PNG/SVG files retain transparency. A contact sheet is in
+`evidence/graphics-contact-sheet.jpg`.
 
 ## Stat sources and qualifications
 
@@ -85,6 +89,8 @@ GPU lifecycle state or secrets are changed or included in the deliverables.
 - `source/build_graphics.py`: regenerate the SVGs from the bundled dashboard fonts.
 - `source/render_graphics.cjs`: Playwright PNG rendering, font-bound checks, contact sheet.
 - `source/record_broll.cjs`: isolated live capture; optional argument selects a named beat.
+- `source/build_gallery.py`: regenerate the gallery with contextual lower-third previews.
+- `source/check_graphics.cjs`: check visible glyph spacing, dimensions, transparency and gallery links.
 - `source/verify_assets.cjs`: check PNG dimensions/transparency; fully decode MP4s;
   extract opening/middle/ending frames and create `manifest.json`.
 

@@ -13,7 +13,9 @@ const root=path.resolve(__dirname,'..');
   if(overflow.length) throw new Error(file+' overflow '+JSON.stringify(overflow));
   const png=path.join(root,'graphics',file.replace('.svg','.png')); await page.screenshot({path:png,omitBackground:true});
   const metadata=await sharp(png).metadata();qa.push({file,width:metadata.width,height:metadata.height,hasAlpha:metadata.hasAlpha,overflow});
-  const thumbnail=await sharp(png).flatten({background:'#090b0e'}).resize(480,270).png().toBuffer(); thumbs.push({input:thumbnail,left:(i%3)*480,top:Math.floor(i/3)*270});
+  const preview=file.includes('lower-') ? await sharp(path.join(root,'evidence/02-beacon-hero-final.png')).composite([{input:png}]).png().toBuffer() : await fs.readFile(png);
+  if(file.includes('lower-')) await sharp(preview).jpeg({quality:90}).toFile(path.join(root,'evidence',file.replace('.svg','-preview.jpg')));
+  const thumbnail=await sharp(preview).flatten({background:'#090b0e'}).resize(480,270).png().toBuffer(); thumbs.push({input:thumbnail,left:(i%3)*480,top:Math.floor(i/3)*270});
  }
  await sharp({create:{width:1440,height:Math.ceil(files.length/3)*270,channels:3,background:'#090b0e'}}).composite(thumbs).jpeg({quality:90}).toFile(path.join(root,'evidence/graphics-contact-sheet.jpg'));
  await fs.writeFile(path.join(root,'evidence/graphics_qa.json'),JSON.stringify(qa,null,2)+'\n'); await browser.close();console.log('Rendered '+files.length+' PNGs; typography bounds passed');

@@ -25,5 +25,6 @@
     "IBM Plex Mono": "98e207f02528a563-s.p.woff2"
   },
   "palette_source": "frontend/app/globals.css",
-  "serving_qualification": "Red Hat vLLM is an integration target; actual capture uses upstream vLLM."
+  "serving_qualification": "Red Hat vLLM is an integration target; actual capture uses upstream vLLM.",
+  "map_geometry": "backend/data/roads.geojson; Swannanoa OSM road geometry. Title, architecture and end-card pins illustrate simulated incidents. Historical damage-stat card uses roads without incident pins."
 }

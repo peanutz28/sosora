@@ -1,0 +1,16 @@
+from pathlib import Path
+from html import escape
+import re
+root=Path(__file__).resolve().parents[1]
+fonts=re.search(r'<style>(.*?)</style>',(root/'graphics/01-title.svg').read_text(),re.S)[1]
+titles=['Title','Communications outage','Road damage','72-hour readiness','System architecture','Tool calling','Nemotron Lightning','Red Hat vLLM integration','NeMo Gym','Measured results','End card']
+css='''*{box-sizing:border-box}body{margin:0;background:#090b0e;color:#f4f7f8;font:17px 'DM Sans',sans-serif}main{max-width:1600px;margin:auto;padding:64px 48px 100px}header{padding:0 0 42px;border-bottom:1px solid #29404c;margin-bottom:40px}.eyebrow{font:15px 'IBM Plex Mono',monospace;letter-spacing:2px;color:#3ee0cf}h1{font:800 64px 'Manrope',sans-serif;letter-spacing:-2px;margin:20px 0}h2{font:700 32px 'Manrope';margin:58px 0 24px}p{color:#b4c7d0;line-height:1.65}a{color:#3ee0cf;text-decoration:none}a:hover{text-decoration:underline}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}figure{margin:0;border:1px solid #29404c;border-radius:12px;overflow:hidden;background:#0e1b25}img,video{width:100%;display:block;aspect-ratio:16/9}figcaption{padding:20px 22px;display:flex;justify-content:space-between;gap:20px;align-items:center}b{font:700 18px 'Manrope'}small{color:#7d95a2;font-size:14px}.links{white-space:nowrap;font:14px 'IBM Plex Mono'}.links a{margin-left:14px}@media(max-width:800px){main{padding:36px 18px}h1{font-size:42px}.grid{grid-template-columns:1fr}figcaption{padding:16px}}'''
+html='<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SOSora — Film assets</title><style>'+fonts+css+'</style><main><header><div class="eyebrow">SOSora / FILM ASSETS</div><h1>Keep the rescue map alive.</h1><p>1920 × 1080 · Editable SVG + PNG · Transparent lower-thirds<br>Night-operations palette. Sources and model limits preserved.</p><a href="README.md">Source notes and editing guide ↗</a></header><h2>Graphics</h2><p>Lower-thirds are previewed over footage. Their PNG and SVG downloads have transparent backgrounds.</p><section class="grid">'
+for title,p in zip(titles,sorted((root/'graphics').glob('*.png'))):
+ preview='evidence/'+p.stem+'-preview.jpg' if 'lower-' in p.name else 'graphics/'+p.name
+ html+=f'<figure><a href="graphics/{p.name}"><img src="{preview}" alt="{escape(title)}" loading="lazy"></a><figcaption><div><b>{escape(title)}</b><br><small>{p.stem}</small></div><span class="links"><a href="graphics/{p.name}" download>PNG</a><a href="graphics/{p.stem}.svg" download>SVG</a></span></figcaption></figure>'
+html+='</section><h2>Live dashboard B-roll</h2><p>Each beat begins from a fresh seed in presentation mode. Inference beats use live vLLM; seeding is code-only.</p><section class="grid">'
+for stem in ['01-seed','02-beacon-hero','03-responder-confirm-A','04-dot-open','05-imagery-offline','06-water-spike']:
+ html+=f'<figure><video controls preload="metadata" poster="evidence/{stem}-final.png" src="broll/{stem}.mp4"></video><figcaption><b>{stem}</b><span class="links"><a href="broll/{stem}.mp4" download>MP4</a></span></figcaption></figure>'
+html+='</section></main></html>'
+(root/'index.html').write_text(html)

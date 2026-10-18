@@ -8,67 +8,89 @@
       "file": "graphics/01-title.png",
       "width": 1920,
       "height": 1080,
-      "transparent": false
+      "transparent": false,
+      "sha256": "ae097ce4d634f7ea6ee436c8f1bfa717ab8ab572cd8f586f845cd44f116aff74",
+      "svgSha256": "326b964cf4230dbdb0e4921560675e3c8052cc5d8c6f91d10ffcf8ca919fa0d5"
     },
     {
       "file": "graphics/02-stat-cell-sites.png",
       "width": 1920,
       "height": 1080,
-      "transparent": false
+      "transparent": false,
+      "sha256": "5fe0667865705170fca727f30d73531c656e3cb91a955df3b3393af1265b33df",
+      "svgSha256": "7fbe8090e577034a8aa91f9f6ebe62311e18f793d2a93712d35c4a48a6c0b93b"
     },
     {
       "file": "graphics/03-stat-damaged-sites.png",
       "width": 1920,
       "height": 1080,
-      "transparent": false
+      "transparent": false,
+      "sha256": "ea4787e533f02921ad56172b138f028c18e87272ee864785a072fb6013e56678",
+      "svgSha256": "b13075b3a2f005e7b860fe945b3b679b784ee70d10a4c3e2d62c5e55bfa740de"
     },
     {
       "file": "graphics/04-stat-72-hours.png",
       "width": 1920,
       "height": 1080,
-      "transparent": false
+      "transparent": false,
+      "sha256": "09cdd9a129537bd91a5754f62133811fad3985cc80f85bd2e8d48ac6fe09676a",
+      "svgSha256": "cf16498540fd9a4a5e4069ebe36148d0346638962a9c772d7cbccbd8875cd419"
     },
     {
       "file": "graphics/05-system-diagram.png",
       "width": 1920,
       "height": 1080,
-      "transparent": false
+      "transparent": false,
+      "sha256": "a820ed04364a11869ea7fbb136688bbb391cfb821e9e04d3eeff46179f525621",
+      "svgSha256": "2adfe85717c423d6a7a452b9d0fc8f10f89649a1a959eb765316578d0901eff3"
     },
     {
       "file": "graphics/06-lower-tool-calling.png",
       "width": 1920,
       "height": 1080,
-      "transparent": true
+      "transparent": true,
+      "sha256": "0b2369ec022a0ce66c29932c64c04316f5b355a5becfa0c4529a19cb9d37e7de",
+      "svgSha256": "17b32dc7273b798b890087e4b98e0edcafbf7f284b1be1b23f60f61c32ee4266"
     },
     {
       "file": "graphics/07-lower-nemotron.png",
       "width": 1920,
       "height": 1080,
-      "transparent": true
+      "transparent": true,
+      "sha256": "77622d3ebac9c46001c3aac1a625ecaf122702fe6d5078a4236b0db210b87985",
+      "svgSha256": "9c45f1f836c5863a306a9af963e2eb6a9d0473ec2318abc5b4c79e7e568a12dc"
     },
     {
       "file": "graphics/08-lower-redhat-vllm.png",
       "width": 1920,
       "height": 1080,
-      "transparent": true
+      "transparent": true,
+      "sha256": "9a207215e45d05e3c59094b0d5affd36c99f2a7fdd51e44f313a31dd08e74c90",
+      "svgSha256": "9e4328227170e1ec051edd04703c566ed017d881e0fe08e093e64db731d9ff45"
     },
     {
       "file": "graphics/09-lower-nemo-gym.png",
       "width": 1920,
       "height": 1080,
-      "transparent": true
+      "transparent": true,
+      "sha256": "1a10b704db9bcca01326716ff5c9b0f8a13a1921bc0d0453bc9cf0d20f62bd49",
+      "svgSha256": "d52576b9139eeb9222223986242918409be24aa9befd99173171c4a6c1853ebf"
     },
     {
       "file": "graphics/10-results.png",
       "width": 1920,
       "height": 1080,
-      "transparent": false
+      "transparent": false,
+      "sha256": "4758027a9b5a576d3fb922bc7a405a8d2e1f2852a6ebe2aff5a3c27d344e5317",
+      "svgSha256": "be1aabbb4dc68f0925eb4043c4d63e7e04491461003c0a6e03afc61dbb4826da"
     },
     {
       "file": "graphics/11-end-card.png",
       "width": 1920,
       "height": 1080,
-      "transparent": false
+      "transparent": false,
+      "sha256": "9c021ba6ecbbeddfb6fe70aadb4c8e319f9e2b9c2f4dfe8c26f7456ac08652a0",
+      "svgSha256": "e53d89bf354feee0a98a658f3de010f021214283f806b2b37454daa4568c35ed"
     }
   ],
   "videos": [
@@ -195,5 +217,6 @@
     "ml": 18028,
     "vllmForward": 18088,
     "database": "/tmp/sosora-video-command.db"
-  }
+  },
+  "graphicEdition": "replacement"
 }

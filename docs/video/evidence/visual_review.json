@@ -1,5 +1,5 @@
 {
-  "graphics": "All 11 cards reviewed in graphics-contact-sheet.jpg; text bounds passed at 1920x1080.",
+  "graphics": "Rejected graphics and their previews replaced in place. Replacement set inspected at full size over three design passes; typography bounds and visible glyph collisions checked. Lower-thirds reviewed on actual footage.",
   "video": "All six clips decoded; opening/middle/ending actual video frames reviewed in broll-contact-sheet.jpg.",
   "checks": [
     "No loading screen in delivery openings",
@@ -19,5 +19,6 @@
     "broll/04-dot-open.mp4": 22.77,
     "broll/05-imagery-offline.mp4": 20.2,
     "broll/06-water-spike.mp4": 15.03
-  }
+  },
+  "graphicReviewEvidence": "graphic_redesign_qa.json"
 }

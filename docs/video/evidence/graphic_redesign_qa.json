@@ -1,0 +1,108 @@
+{
+  "checks": [
+    {
+      "file": "01-title.svg",
+      "width": 1920,
+      "height": 1080,
+      "textCollisions": [],
+      "alpha": null
+    },
+    {
+      "file": "02-stat-cell-sites.svg",
+      "width": 1920,
+      "height": 1080,
+      "textCollisions": [],
+      "alpha": null
+    },
+    {
+      "file": "03-stat-damaged-sites.svg",
+      "width": 1920,
+      "height": 1080,
+      "textCollisions": [],
+      "alpha": null
+    },
+    {
+      "file": "04-stat-72-hours.svg",
+      "width": 1920,
+      "height": 1080,
+      "textCollisions": [],
+      "alpha": null
+    },
+    {
+      "file": "05-system-diagram.svg",
+      "width": 1920,
+      "height": 1080,
+      "textCollisions": [],
+      "alpha": null
+    },
+    {
+      "file": "06-lower-tool-calling.svg",
+      "width": 1920,
+      "height": 1080,
+      "textCollisions": [],
+      "alpha": {
+        "min": 0,
+        "max": 255
+      }
+    },
+    {
+      "file": "07-lower-nemotron.svg",
+      "width": 1920,
+      "height": 1080,
+      "textCollisions": [],
+      "alpha": {
+        "min": 0,
+        "max": 255
+      }
+    },
+    {
+      "file": "08-lower-redhat-vllm.svg",
+      "width": 1920,
+      "height": 1080,
+      "textCollisions": [],
+      "alpha": {
+        "min": 0,
+        "max": 255
+      }
+    },
+    {
+      "file": "09-lower-nemo-gym.svg",
+      "width": 1920,
+      "height": 1080,
+      "textCollisions": [],
+      "alpha": {
+        "min": 0,
+        "max": 255
+      }
+    },
+    {
+      "file": "10-results.svg",
+      "width": 1920,
+      "height": 1080,
+      "textCollisions": [],
+      "alpha": null
+    },
+    {
+      "file": "11-end-card.svg",
+      "width": 1920,
+      "height": 1080,
+      "textCollisions": [],
+      "alpha": null
+    }
+  ],
+  "galleryLinksResolve": true,
+  "reviewPasses": [
+    {
+      "pass": 1,
+      "action": "Replaced the rejected style with large typography, real road geometry, restrained colors, and compact transparent overlays."
+    },
+    {
+      "pass": 2,
+      "action": "Fixed diagram map clipping and Beacon connector spacing; balanced results metrics; added footage-context lower-third previews."
+    },
+    {
+      "pass": 3,
+      "action": "Clarified damage-site units; removed simulated pins from the historical damage-stat graphic; checked text collisions, dimensions, alpha and gallery links."
+    }
+  ]
+}
